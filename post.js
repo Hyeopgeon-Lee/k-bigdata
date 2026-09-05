@@ -9,7 +9,7 @@ async function renderPost() {
     const posts = await response.json();
     const post = posts.find((item) => item.slug === slug) || posts[0];
     if (!post) throw new Error('empty');
-    document.title = `${post.title} | K·BIGDATA`;
+    document.title = `${post.title} | 빅데이터소프트웨어공학과`;
     const paragraphs = (post.body || [post.excerpt]).map((paragraph) => `<p>${esc(paragraph)}</p>`).join('');
     article.innerHTML = `
       <header class="article-head">

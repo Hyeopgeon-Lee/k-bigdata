@@ -51,7 +51,7 @@ button, input { font: inherit; }
 .brand { display: inline-flex; align-items: center; gap: .75rem; line-height: 1.05; }
 .brand-mark { display: grid; place-items: center; width: 2.5rem; aspect-ratio: 1; color: var(--navy-950); background: var(--lime-400); border-radius: .68rem .68rem .68rem .12rem; font-weight: 900; font-size: 1.25rem; }
 .brand strong, .brand small { display: block; }
-.brand strong { letter-spacing: .06em; font-size: 1rem; }
+.brand strong { letter-spacing: -.025em; font-size: 1rem; white-space: nowrap; }
 .brand small { margin-top: .25rem; color: rgba(255,255,255,.65); font-size: .72rem; }
 .main-nav { display: flex; align-items: center; gap: 1.65rem; font-size: .93rem; font-weight: 600; }
 .main-nav > a:not(.nav-cta) { color: rgba(255,255,255,.78); transition: color .2s ease; }
@@ -239,6 +239,10 @@ button, input { font: inherit; }
   :root { --container: min(100% - 1.35rem, 1180px); --radius: 1rem; }
   body { padding-bottom: 4.3rem; }
   .header-inner { height: 4.4rem; }
+  .brand { gap: .6rem; }
+  .brand-mark { width: 2.25rem; font-size: 1.1rem; }
+  .brand strong { font-size: .84rem; }
+  .brand small { margin-top: .18rem; font-size: .66rem; }
   .main-nav { top: 4.4rem; }
   .hero { min-height: auto; }
   .hero-media { background-position: 70% center; opacity: .5; }
