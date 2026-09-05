@@ -2,6 +2,21 @@ const article = document.querySelector('#article-content');
 const slug = new URLSearchParams(location.search).get('slug');
 const esc = (value = '') => value.replace(/[&<>'"]/g, (char) => ({ '&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;' }[char]));
 
+const setMeta = (selector, value) => {
+  const element = document.querySelector(selector);
+  if (element) element.setAttribute('content', value);
+};
+
+const setCanonical = (value) => {
+  let canonical = document.querySelector('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement('link');
+    canonical.rel = 'canonical';
+    document.head.append(canonical);
+  }
+  canonical.href = value;
+};
+
 async function renderPost() {
   try {
     const response = await fetch(`data/posts.json?v=${Date.now()}`);
@@ -10,6 +25,12 @@ async function renderPost() {
     const post = posts.find((item) => item.slug === slug) || posts[0];
     if (!post) throw new Error('empty');
     document.title = `${post.title} | 빅데이터소프트웨어공학과`;
+    const canonicalUrl = `https://ai.k-bigdata.kr/post.html?slug=${encodeURIComponent(post.slug)}`;
+    setMeta('meta[name="description"]', post.excerpt);
+    setMeta('meta[property="og:title"]', post.title);
+    setMeta('meta[property="og:description"]', post.excerpt);
+    setMeta('meta[property="og:url"]', canonicalUrl);
+    setCanonical(canonicalUrl);
     const paragraphs = (post.body || [post.excerpt]).map((paragraph) => `<p>${esc(paragraph)}</p>`).join('');
     article.innerHTML = `
       <header class="article-head">
