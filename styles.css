@@ -49,7 +49,7 @@ button, input { font: inherit; }
 .site-header.scrolled { background: rgba(4,18,37,.94); box-shadow: 0 8px 32px rgba(0,0,0,.16); }
 .header-inner { height: 5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
 .brand { display: inline-flex; align-items: center; gap: .75rem; line-height: 1.05; }
-.brand-mark { display: grid; place-items: center; width: 2.5rem; aspect-ratio: 1; color: var(--navy-950); background: var(--lime-400); border-radius: .68rem .68rem .68rem .12rem; font-weight: 900; font-size: 1.25rem; }
+.brand-mark { display: grid; place-items: center; width: 2.5rem; aspect-ratio: 1; color: var(--navy-950); background: var(--lime-400); border-radius: .68rem .68rem .68rem .12rem; font-weight: 900; font-size: 1rem; letter-spacing: -.04em; }
 .brand strong, .brand small { display: block; }
 .brand strong { letter-spacing: -.025em; font-size: 1rem; white-space: nowrap; }
 .brand small { margin-top: .25rem; color: rgba(255,255,255,.65); font-size: .72rem; }
@@ -240,7 +240,7 @@ button, input { font: inherit; }
   body { padding-bottom: 4.3rem; }
   .header-inner { height: 4.4rem; }
   .brand { gap: .6rem; }
-  .brand-mark { width: 2.25rem; font-size: 1.1rem; }
+  .brand-mark { width: 2.25rem; font-size: .9rem; }
   .brand strong { font-size: .84rem; }
   .brand small { margin-top: .18rem; font-size: .66rem; }
   .main-nav { top: 4.4rem; }
