@@ -1,0 +1,23 @@
+.post-page { background: #f5f8fc; }
+.back-link { color: rgba(255,255,255,.76); font-size: .9rem; font-weight: 700; }
+.article-shell { min-height: 80vh; padding: 9rem 0 6rem; }
+.article { max-width: 850px; padding: clamp(1.5rem,5vw,4rem); background: white; border: 1px solid var(--line); border-radius: 1.5rem; box-shadow: 0 24px 70px rgba(4,25,58,.09); }
+.article-head { padding-bottom: 2rem; border-bottom: 1px solid var(--line); }
+.article-kicker { margin: 0 0 1rem; color: var(--blue-600); font-weight: 850; font-size: .8rem; letter-spacing: .11em; }
+.article h1 { margin: 0; font-size: clamp(2.2rem,5vw,4rem); line-height: 1.12; letter-spacing: -.055em; }
+.article-meta { display: flex; flex-wrap: wrap; gap: .8rem 1.2rem; margin-top: 1.5rem; color: var(--muted); font-size: .83rem; }
+.article-body { padding-top: 2.2rem; font-size: 1.07rem; line-height: 1.85; }
+.article-body p { margin: 0 0 1.4rem; }
+.article-body h2 { margin: 2.6rem 0 1rem; font-size: 1.65rem; letter-spacing: -.04em; }
+.article-connection { margin: 2.5rem 0; padding: 1.5rem; background: #ecf4ff; border-left: 4px solid var(--blue-600); border-radius: .3rem 1rem 1rem .3rem; }
+.article-connection strong { display: block; margin-bottom: .45rem; color: var(--blue-600); }
+.source-box { margin-top: 2.5rem; padding-top: 1.6rem; border-top: 1px solid var(--line); }
+.source-box a { color: var(--blue-600); font-weight: 760; }
+.article-cta { margin-top: 3rem; padding: 2rem; color: white; background: var(--navy-900); border-radius: 1rem; }
+.article-cta h2 { margin-top: 0; }.article-cta p { color: rgba(255,255,255,.68); }
+.article-cta .button { margin-top: .5rem; }
+.article-loading, .article-error { text-align: center; color: var(--muted); }
+.article-footer { padding: 2rem 0; color: white; background: var(--navy-950); }
+.article-footer .container { display: flex; justify-content: space-between; gap: 1rem; }
+.article-footer span { color: rgba(255,255,255,.5); font-size: .8rem; }
+@media(max-width:640px){.article-shell{padding:6.7rem 0 3rem}.article{border-radius:1rem}.article-footer .container{display:grid}.back-link{font-size:.78rem}}
