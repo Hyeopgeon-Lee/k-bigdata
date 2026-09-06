@@ -23,7 +23,7 @@ GitHub Actions가 **매주 월·수·금 오전 6시(한국시간)**에 최신 A
 
 - [학과 공식 홈페이지](https://www.kopo.ac.kr/kangseo/content.do?menu=1547)
 - [2027학년도 모집요강](https://kopo.ac.kr/kangseo/content.do?menu=321)
-- [온라인 원서접수](https://apply.jinhakapply.com/Notice/5041039/A)
+- [온라인 원서접수](https://apply.jinhakapply.com/Notice/5041044/A)
 - [입학 상담 오픈채팅](https://open.kakao.com/o/gEd0JIad)
 
 > 입학 일정과 전형 기준은 대학 사정에 따라 바뀔 수 있으므로 공식 모집요강을 우선합니다.

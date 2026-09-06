@@ -42,7 +42,7 @@ async function renderPost() {
         ${paragraphs}
         <aside class="article-connection"><strong>이 흐름이 우리 학과와 연결되는 이유</strong>${esc(post.connection)}</aside>
         <div class="source-box">원문 출처 · <a href="${esc(post.sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(post.source)}에서 확인하기 ↗</a></div>
-        <section class="article-cta"><h2>트렌드를 읽는 데서 끝내지 마세요.</h2><p>AI·데이터·클라우드 기술을 직접 구현하고 포트폴리오로 완성하는 2년을 시작해 보세요.</p><a class="button button-primary" href="https://apply.jinhakapply.com/Notice/5041039/A" target="_blank" rel="noopener noreferrer">2027학년도 수시 1차 지원하기 ↗</a></section>
+        <section class="article-cta"><h2>트렌드를 읽는 데서 끝내지 마세요.</h2><p>AI·데이터·클라우드 기술을 직접 구현하고 포트폴리오로 완성하는 2년을 시작해 보세요.</p><a class="button button-primary" href="https://apply.jinhakapply.com/Notice/5041044/A" target="_blank" rel="noopener noreferrer">2027학년도 수시 1차 지원하기 ↗</a></section>
       </div>`;
   } catch (error) {
     article.innerHTML = '<p class="article-error">글을 불러오지 못했습니다. <a href="index.html#stories">인사이트 목록으로 돌아가기</a></p>';
