@@ -1,5 +1,13 @@
 # 빅데이터소프트웨어공학과 홍보 홈페이지
 
+[![2027학년도 빅데이터소프트웨어공학과 수시 1차 모집](https://ai.k-bigdata.kr/assets/promo/og-share-2027-susi1.png)](https://apply.jinhakapply.com/Notice/5041044/A)
+
+<p align="center">
+  <a href="https://apply.jinhakapply.com/Notice/5041044/A"><img src="https://img.shields.io/badge/2027학년도%20수시%201차-원서접수%20바로가기-CBFF3D?style=for-the-badge&labelColor=071A33" alt="2027학년도 수시 1차 원서접수 바로가기"></a>
+</p>
+
+> **원서접수 2026.09.07 — 10.01 23:59** · 이미지를 누르거나 위 버튼을 선택하면 원서접수 페이지로 이동합니다.
+
 한국폴리텍대학 서울강서캠퍼스 **빅데이터소프트웨어공학과** 홍보 홈페이지입니다.
 
 - [학과 홈페이지](https://ai.k-bigdata.kr/)
