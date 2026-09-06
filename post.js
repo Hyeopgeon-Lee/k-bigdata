@@ -30,6 +30,8 @@ async function renderPost() {
     setMeta('meta[property="og:title"]', post.title);
     setMeta('meta[property="og:description"]', post.excerpt);
     setMeta('meta[property="og:url"]', canonicalUrl);
+    setMeta('meta[name="twitter:title"]', post.title);
+    setMeta('meta[name="twitter:description"]', post.excerpt);
     setCanonical(canonicalUrl);
     const paragraphs = (post.body || [post.excerpt]).map((paragraph) => `<p>${esc(paragraph)}</p>`).join('');
     article.innerHTML = `
