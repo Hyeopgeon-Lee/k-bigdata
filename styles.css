@@ -138,6 +138,16 @@ button, input { font: inherit; }
 .roadmap-item h3 { margin: 0 0 .35rem; font-size: 1.35rem; }
 .roadmap-item p { margin: 0; color: var(--muted); }
 
+.guide-home-section { background: linear-gradient(180deg, #eef5ff, #f8fbff); }
+.guide-home-section .section-heading { margin-bottom: 3.4rem; }
+.guide-home-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: .8rem; }
+.guide-home-card { display: flex; min-height: 285px; flex-direction: column; padding: 1.55rem; background: white; border: 1px solid var(--line); border-radius: var(--radius); transition: transform .24s ease, border-color .24s ease, box-shadow .24s ease; }
+.guide-home-card:hover { transform: translateY(-5px); border-color: #94bcff; box-shadow: 0 18px 44px rgba(4,25,58,.11); }
+.guide-home-card > span { color: var(--blue-600); font-size: .72rem; font-weight: 850; letter-spacing: .1em; }
+.guide-home-card h3 { margin: 2.4rem 0 .7rem; font-size: 1.28rem; line-height: 1.32; letter-spacing: -.04em; }
+.guide-home-card p { margin: 0; color: var(--muted); font-size: .88rem; }
+.guide-home-card b { margin-top: auto; padding-top: 1.2rem; color: var(--blue-600); font-size: .82rem; }
+
 .achievements-section { color: white; background: linear-gradient(135deg, #071a33 0%, #0d3160 100%); }
 .achievements-layout { display: grid; grid-template-columns: .75fr 1.25fr; gap: 6rem; }
 .achievement-copy { align-self: center; }
@@ -228,6 +238,8 @@ button, input { font: inherit; }
   .proof-strip div { padding: 1rem; border-bottom: 1px solid rgba(255,255,255,.15); }
   .proof-strip div:nth-child(2) { border-right: 0; }
   .feature-grid, .roadmap-layout, .achievements-layout, .admission-grid, .faq-layout { grid-template-columns: 1fr; gap: 3rem; }
+  .guide-home-grid { grid-template-columns: 1fr 1fr; }
+  .guide-home-card:last-child { grid-column: 1 / -1; }
   .feature-card-large { grid-row: auto; min-height: 590px; }
   .roadmap-layout > .section-heading { position: static; }
   .story-grid { grid-template-columns: 1fr 1fr; }
@@ -259,6 +271,7 @@ button, input { font: inherit; }
   .feature-grid { display: block; }.feature-card { margin-bottom: .8rem; }.feature-card-large { min-height: 560px; }
   .code-window { right: 1rem; width: calc(100% - 2rem); }.code-window pre { padding: 1.1rem; font-size: .72rem; }
   .roadmap::before { left: 0; }.roadmap-item { grid-template-columns: 1fr; gap: .7rem; padding: 1.5rem 0 1.5rem 1.2rem; }.semester { width: 4.6rem; }
+  .guide-home-grid { grid-template-columns: 1fr; }.guide-home-card, .guide-home-card:last-child { min-height: 240px; grid-column: auto; }
   .achievements-layout { gap: 2.5rem; }.award { grid-template-columns: 3.4rem 1fr; }.award > b { display: none; }
   .stories-head { align-items: start; flex-direction: column; }.story-grid { grid-template-columns: 1fr; }.story-card:last-child { grid-column: auto; }
   .story-card { min-height: 310px; }
