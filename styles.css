@@ -178,6 +178,8 @@ button, input { font: inherit; }
 .story-placeholder { gap: 1rem; }
 .story-placeholder div { height: 1rem; border-radius: .4rem; background: linear-gradient(90deg,#edf1f6,#f8fafc,#edf1f6); background-size: 200% 100%; animation: shimmer 1.4s infinite; }
 .story-placeholder div:nth-child(2) { width: 85%; height: 2.8rem; margin-top: 2rem; }.story-placeholder div:nth-child(3) { width: 65%; }
+.stories-more { display: flex; width: fit-content; align-items: center; gap: .75rem; margin: 2rem auto 0; padding: .85rem 1.1rem; border: 1px solid var(--line); border-radius: 999px; color: var(--navy-900); font-size: .86rem; font-weight: 800; }
+.stories-more:hover { border-color: #a9c7fa; color: var(--blue-600); }
 @keyframes shimmer { to { background-position: -200% 0; } }
 
 .admission-section { color: white; background: var(--navy-950); }

@@ -2,12 +2,14 @@
   {
     "slug": "2026-09-14-tech-insight-ai-cpu",
     "date": "2026-09-14",
+    "lastModified": "2026-09-14",
     "tag": "AI · AGENT",
     "title": "[Tech Insight]AI 에이전트發 CPU 공급난이 소프트웨어 조직에 던지는 메시지",
-    "excerpt": "디지털투데이의 최신 보도를 학과 교육과 진로 관점에서 읽어봅니다.",
+    "excerpt": "AI 에이전트 확산이 CPU 인프라와 소프트웨어 설계에 주는 영향을 학과 교육과 진로 관점에서 살펴봅니다.",
     "source": "디지털투데이",
     "sourceUrl": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9mR0RFRUE0bXUtckVITS01U2UzNFdEX19TV0Vrc21pa2ozeEJSV014RnItWHozU29mTkZ6N19CR0FWV1pTR1g5cVE3Q3Z1c0dQRTRjSFBDSEo4ZUp1VVpmVkxWS3AyMjJpaUlOUzJDVDVGM1E?oc=5",
     "connection": "빅데이터소프트웨어공학과에서는 Python과 자연어처리, AI 프로그래밍을 소프트웨어 프로젝트와 연결합니다. 도구를 사용하는 데서 멈추지 않고, 데이터와 AI를 실제 서비스로 구현하는 역량을 기릅니다.",
+    "automated": true,
     "body": [
       "디지털투데이이(가) 최근 ‘[Tech Insight]AI 에이전트發 CPU 공급난이 소프트웨어 조직에 던지는 메시지’ 소식을 전했습니다. 이 글은 기사 제목과 공개된 출처를 바탕으로 기술 흐름이 학생의 학습과 진로에 주는 의미를 살펴봅니다.",
       "빠르게 바뀌는 IT 산업에서는 한 가지 도구를 외우는 것보다 데이터를 이해하고, 문제를 정의하고, 작동하는 소프트웨어로 구현하는 기초 체력이 중요합니다. 새로운 기술이 등장해도 프로그래밍·데이터베이스·클라우드의 원리를 아는 사람은 변화에 더 빠르게 적응할 수 있습니다.",
@@ -18,12 +20,14 @@
   {
     "slug": "2026-09-11-sw-ai",
     "date": "2026-09-11",
+    "lastModified": "2026-09-14",
     "tag": "AI · AGENT",
     "title": "건양대 SW중심대학, 학생들이 만든 AI 에이전트 네이버클라우드 실시간 배포",
-    "excerpt": "hdnews.co.kr의 최신 보도를 학과 교육과 진로 관점에서 읽어봅니다.",
+    "excerpt": "학생이 만든 AI 에이전트를 클라우드에 배포한 사례로 프로젝트·백엔드·운영 역량의 연결을 살펴봅니다.",
     "source": "hdnews.co.kr",
     "sourceUrl": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBONVVyNlBKanNXYkdYMlpyVEJUaW05d3UtX2VuVEx1MWpYcmZyVXo0STEtdWVGREZERk5peG40VnF4bTFtYzBldUxTbW1BR2ZYY0QxY3oyekE5b2RqZDZraDR4XzU1OFNyR1dz?oc=5",
     "connection": "빅데이터소프트웨어공학과에서는 Python과 자연어처리, AI 프로그래밍을 소프트웨어 프로젝트와 연결합니다. 도구를 사용하는 데서 멈추지 않고, 데이터와 AI를 실제 서비스로 구현하는 역량을 기릅니다.",
+    "automated": true,
     "body": [
       "hdnews.co.kr이(가) 최근 ‘건양대 SW중심대학, 학생들이 만든 AI 에이전트 네이버클라우드 실시간 배포’ 소식을 전했습니다. 이 글은 기사 제목과 공개된 출처를 바탕으로 기술 흐름이 학생의 학습과 진로에 주는 의미를 살펴봅니다.",
       "빠르게 바뀌는 IT 산업에서는 한 가지 도구를 외우는 것보다 데이터를 이해하고, 문제를 정의하고, 작동하는 소프트웨어로 구현하는 기초 체력이 중요합니다. 새로운 기술이 등장해도 프로그래밍·데이터베이스·클라우드의 원리를 아는 사람은 변화에 더 빠르게 적응할 수 있습니다.",
@@ -34,12 +38,14 @@
   {
     "slug": "2026-09-09-ai",
     "date": "2026-09-09",
+    "lastModified": "2026-09-14",
     "tag": "AI · AGENT",
     "title": "메가존클라우드, 한미약품 품질보증 AI 에이전트 구축 착수",
-    "excerpt": "데이터넷의 최신 보도를 학과 교육과 진로 관점에서 읽어봅니다.",
+    "excerpt": "품질보증 업무에 AI 에이전트를 적용하는 사례로 데이터·AI·소프트웨어 역량이 함께 필요한 이유를 살펴봅니다.",
     "source": "데이터넷",
     "sourceUrl": "https://news.google.com/rss/articles/CBMia0FVX3lxTE02SkxyZVc1M3dLR1RBaFJHQ1BJdlRfZ3JHbFlYZ3E2ck8xSmw3c01nbl9RSndjSDU0WVZ1bjhfNWZvWkg4RXVZd3pMMml2SFRlZEFQT25lWU9lUDlHbnF4Wk1uMlZDa1VJdDVN?oc=5",
     "connection": "빅데이터소프트웨어공학과에서는 Python과 자연어처리, AI 프로그래밍을 소프트웨어 프로젝트와 연결합니다. 도구를 사용하는 데서 멈추지 않고, 데이터와 AI를 실제 서비스로 구현하는 역량을 기릅니다.",
+    "automated": true,
     "body": [
       "데이터넷이(가) 최근 ‘메가존클라우드, 한미약품 품질보증 AI 에이전트 구축 착수’ 소식을 전했습니다. 이 글은 기사 제목과 공개된 출처를 바탕으로 기술 흐름이 학생의 학습과 진로에 주는 의미를 살펴봅니다.",
       "빠르게 바뀌는 IT 산업에서는 한 가지 도구를 외우는 것보다 데이터를 이해하고, 문제를 정의하고, 작동하는 소프트웨어로 구현하는 기초 체력이 중요합니다. 새로운 기술이 등장해도 프로그래밍·데이터베이스·클라우드의 원리를 아는 사람은 변화에 더 빠르게 적응할 수 있습니다.",
@@ -50,12 +56,14 @@
   {
     "slug": "2026-09-07-keit-m-ax-ai",
     "date": "2026-09-07",
+    "lastModified": "2026-09-14",
     "tag": "AI · AGENT",
     "title": "알체라, KEIT ‘M.AX 전문기업’ 선정…피지컬 AI 데이터 역량 공인",
-    "excerpt": "세계비즈의 최신 보도를 학과 교육과 진로 관점에서 읽어봅니다.",
+    "excerpt": "피지컬 AI에서 데이터 품질과 소프트웨어 구현 역량이 중요한 이유를 학과 프로젝트 관점에서 살펴봅니다.",
     "source": "세계비즈",
     "sourceUrl": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9UOURHZnkyaGRwOXJiZVJVOW9JaDZhbHFKR09Gd3hHRE8yenpQRzUtSk45X0tseXF2ZmI0WnI4TWlXS1RFZ0xvRXJGcWhNVDhYMTFsaGVHUV9yY3RVTkU1R0xXYS0?oc=5",
     "connection": "빅데이터소프트웨어공학과에서는 Python과 자연어처리, AI 프로그래밍을 소프트웨어 프로젝트와 연결합니다. 도구를 사용하는 데서 멈추지 않고, 데이터와 AI를 실제 서비스로 구현하는 역량을 기릅니다.",
+    "automated": true,
     "body": [
       "세계비즈이(가) 최근 ‘알체라, KEIT ‘M.AX 전문기업’ 선정…피지컬 AI 데이터 역량 공인’ 소식을 전했습니다. 이 글은 기사 제목과 공개된 출처를 바탕으로 기술 흐름이 학생의 학습과 진로에 주는 의미를 살펴봅니다.",
       "빠르게 바뀌는 IT 산업에서는 한 가지 도구를 외우는 것보다 데이터를 이해하고, 문제를 정의하고, 작동하는 소프트웨어로 구현하는 기초 체력이 중요합니다. 새로운 기술이 등장해도 프로그래밍·데이터베이스·클라우드의 원리를 아는 사람은 변화에 더 빠르게 적응할 수 있습니다.",
@@ -66,6 +74,7 @@
   {
     "slug": "2027-early-admission-start",
     "date": "2026-09-05",
+    "lastModified": "2026-09-14",
     "tag": "입학 · 진로",
     "title": "9월 7일 수시 1차 시작, AI를 쓰는 사람에서 만드는 사람으로",
     "excerpt": "2027학년도부터 빅데이터소프트웨어공학과라는 새 이름으로 30명의 실무형 인재를 모집합니다.",
@@ -81,6 +90,7 @@
   {
     "slug": "2026-data-ai-innovation-challenge",
     "date": "2026-09-03",
+    "lastModified": "2026-09-14",
     "tag": "DATA · AI",
     "title": "데이터+AI 혁신 챌린지가 보여준 실전형 인재의 조건",
     "excerpt": "기업 데이터로 사회·산업 문제를 해결하는 2026 데이터+AI 혁신 챌린지. 지금 필요한 것은 문제를 정의하고 구현하는 힘입니다.",
@@ -96,6 +106,7 @@
   {
     "slug": "ai-agent-cloud-native-career",
     "date": "2026-09-01",
+    "lastModified": "2026-09-14",
     "tag": "AI · CLOUD",
     "title": "AI 에이전트와 클라우드 네이티브, 함께 배워야 하는 이유",
     "excerpt": "AI 기능이 실제 서비스가 되려면 데이터 파이프라인, 백엔드, 클라우드 운영이 함께 움직여야 합니다.",

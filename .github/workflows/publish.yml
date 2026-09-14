@@ -23,6 +23,8 @@ jobs:
     steps:
       - name: 저장소 가져오기
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: 파이썬 준비
         uses: actions/setup-python@v5
@@ -45,10 +47,13 @@ jobs:
       - name: GitHub Pages 준비
         uses: actions/configure-pages@v5
 
+      - name: 검색 가능한 정적 홈페이지 만들기
+        run: python tools/build_site.py
+
       - name: 홈페이지 묶음 만들기
         uses: actions/upload-pages-artifact@v4
         with:
-          path: .
+          path: _site
 
   deploy:
     environment:

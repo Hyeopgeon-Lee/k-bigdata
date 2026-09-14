@@ -111,14 +111,14 @@ def main() -> int:
         "date": today,
         "tag": choose_tag(title),
         "title": title,
-        "excerpt": f"{candidate['source']}의 최신 보도를 학과 교육과 진로 관점에서 읽어봅니다.",
+        "excerpt": f"‘{title}’ 이슈가 AI·데이터·소프트웨어 교육과 진로에 주는 의미를 살펴봅니다.",
         "source": candidate["source"],
         "sourceUrl": candidate["link"],
         "connection": connection_for(title),
+        "automated": True,
         "body": [
-            f"{candidate['source']}이(가) 최근 ‘{title}’ 소식을 전했습니다. 이 글은 기사 제목과 공개된 출처를 바탕으로 기술 흐름이 학생의 학습과 진로에 주는 의미를 살펴봅니다.",
+            f"출처 ‘{candidate['source']}’는 최근 ‘{title}’ 소식을 전했습니다. 이 글은 기사 제목과 공개된 출처를 바탕으로 기술 흐름이 학생의 학습과 진로에 주는 의미를 살펴봅니다.",
             "빠르게 바뀌는 IT 산업에서는 한 가지 도구를 외우는 것보다 데이터를 이해하고, 문제를 정의하고, 작동하는 소프트웨어로 구현하는 기초 체력이 중요합니다. 새로운 기술이 등장해도 프로그래밍·데이터베이스·클라우드의 원리를 아는 사람은 변화에 더 빠르게 적응할 수 있습니다.",
-            connection_for(title),
             "원문의 세부 내용과 수치는 아래 출처 링크에서 직접 확인할 수 있습니다. 학과에서는 최신 기술 이슈를 수업과 프로젝트 주제로 연결해 학생이 스스로 검증하고 구현하는 경험을 쌓도록 돕습니다.",
         ],
     }

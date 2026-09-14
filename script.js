@@ -31,34 +31,6 @@ if (countdown) {
   else countdown.textContent = '수시 1차 접수 마감';
 }
 
-const escapeHtml = (value = '') => value.replace(/[&<>'"]/g, (char) => ({
-  '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
-}[char]));
-
-async function loadStories() {
-  const grid = document.querySelector('#story-grid');
-  if (!grid) return;
-  try {
-    const response = await fetch(`data/posts.json?v=${Date.now()}`);
-    if (!response.ok) throw new Error('게시물을 불러오지 못했습니다.');
-    const posts = await response.json();
-    grid.innerHTML = posts.slice(0, 6).map((post) => `
-      <article class="story-card">
-        <div class="story-meta">
-          <span class="story-tag">${escapeHtml(post.tag || 'AI · IT')}</span>
-          <time datetime="${escapeHtml(post.date)}">${escapeHtml(post.date.replaceAll('-', '.'))}</time>
-        </div>
-        <h3>${escapeHtml(post.title)}</h3>
-        <p>${escapeHtml(post.excerpt)}</p>
-        <a href="post.html?slug=${encodeURIComponent(post.slug)}" aria-label="${escapeHtml(post.title)} 자세히 읽기">인사이트 읽기 <span aria-hidden="true">→</span></a>
-      </article>`).join('');
-  } catch (error) {
-    grid.innerHTML = '<p class="story-error">새 글을 불러오는 중입니다. 잠시 후 다시 확인해 주세요.</p>';
-  }
-}
-
-loadStories();
-
 const revealObserver = 'IntersectionObserver' in window
   ? new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
