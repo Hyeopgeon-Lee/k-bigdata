@@ -9,6 +9,12 @@
 .article-body { padding-top: 2.2rem; font-size: 1.07rem; line-height: 1.85; }
 .article-body p { margin: 0 0 1.4rem; }
 .article-body h2 { margin: 2.6rem 0 1rem; font-size: 1.65rem; letter-spacing: -.04em; }
+.article-section { margin-top: 2.8rem; }
+.article-section:first-child { margin-top: 0; }
+.article-body .article-section h2 { margin: 0 0 1rem; font-size: clamp(1.4rem,4vw,1.8rem); line-height: 1.35; }
+.article-points { display: grid; gap: .65rem; margin: 1.2rem 0 0; padding: 0; list-style: none; }
+.article-points li { position: relative; margin: 0; padding: .9rem 1rem .9rem 2.2rem; border: 1px solid var(--line); border-radius: .75rem; background: #fff; font-size: .94rem; }
+.article-points li::before { position: absolute; left: 1rem; color: var(--blue-600); font-weight: 900; content: "✓"; }
 .article-connection { margin: 2.5rem 0; padding: 1.5rem; background: #ecf4ff; border-left: 4px solid var(--blue-600); border-radius: .3rem 1rem 1rem .3rem; }
 .article-connection strong { display: block; margin-bottom: .45rem; color: var(--blue-600); }
 .article-learning { margin: 2.5rem 0; padding: 1.6rem; border: 1px solid var(--line); border-radius: 1rem; background: #fff; }

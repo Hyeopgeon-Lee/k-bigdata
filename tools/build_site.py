@@ -117,17 +117,46 @@ def render_related(posts: list[dict], current: dict) -> str:
     return "".join(items)
 
 
-def render_post(template: Template, posts: list[dict], post: dict) -> str:
-    url = post_url(post)
+def render_body(post: dict) -> str:
+    paragraphs = []
     source_prefix = f"{post['source']}이(가)"
     source_credit = f"출처 ‘{post['source']}’는"
-    paragraphs = [
-        str(paragraph).replace(source_prefix, source_credit)
-        for paragraph in post.get("body", [post["excerpt"]])
-        if str(paragraph).strip() != str(post["connection"]).strip()
-    ]
-    body = "".join(f"<p>{html(paragraph)}</p>" for paragraph in paragraphs)
-    learning_points, project_prompt = learning_context(post)
+    for paragraph in post.get("body", []):
+        text = str(paragraph).strip()
+        if text and text != str(post["connection"]).strip():
+            paragraphs.append(f"<p>{html(text.replace(source_prefix, source_credit))}</p>")
+
+    sections = []
+    for section in post.get("sections", []):
+        heading = str(section.get("heading", "")).strip()
+        section_paragraphs = "".join(
+            f"<p>{html(paragraph)}</p>"
+            for paragraph in section.get("paragraphs", [])
+            if str(paragraph).strip()
+        )
+        bullets = section.get("bullets", [])
+        bullet_list = ""
+        if bullets:
+            bullet_list = '<ul class="article-points">' + "".join(
+                f"<li>{html(bullet)}</li>" for bullet in bullets if str(bullet).strip()
+            ) + "</ul>"
+        if heading or section_paragraphs or bullet_list:
+            sections.append(
+                '<section class="article-section">'
+                f"<h2>{html(heading)}</h2>{section_paragraphs}{bullet_list}"
+                "</section>"
+            )
+
+    rendered = "".join(paragraphs + sections)
+    return rendered or f"<p>{html(post['excerpt'])}</p>"
+
+
+def render_post(template: Template, posts: list[dict], post: dict) -> str:
+    url = post_url(post)
+    body = render_body(post)
+    default_learning_points, default_project_prompt = learning_context(post)
+    learning_points = post.get("learningPoints") or default_learning_points
+    project_prompt = post.get("projectPrompt") or default_project_prompt
     editorial_note = ""
     if post.get("automated"):
         editorial_note = (
