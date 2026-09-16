@@ -20,17 +20,6 @@ menuButton?.addEventListener('click', () => {
 nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
 window.addEventListener('scroll', () => header?.classList.toggle('scrolled', window.scrollY > 24), { passive: true });
 
-const countdown = document.querySelector('#countdown');
-if (countdown) {
-  const now = new Date();
-  const start = new Date('2026-09-07T00:00:00+09:00');
-  const end = new Date('2026-10-01T23:59:59+09:00');
-  const days = (target) => Math.max(0, Math.ceil((target - now) / 86400000));
-  if (now < start) countdown.textContent = `모집 시작 D-${days(start)}`;
-  else if (now <= end) countdown.textContent = `접수 마감 D-${days(end)}`;
-  else countdown.textContent = '수시 1차 접수 마감';
-}
-
 const revealObserver = 'IntersectionObserver' in window
   ? new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {

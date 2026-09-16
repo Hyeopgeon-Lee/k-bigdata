@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="/post.css" />
     <script defer src="/script.js"></script>
     <script type="application/ld+json">$schema</script>
+      <script defer src="/admission.js"></script>
   </head>
   <body class="post-page">
     <a class="skip-link" href="#article">본문으로 바로가기</a>
@@ -51,14 +52,14 @@
           <div class="article-meta"><time datetime="$date_iso">$date_display</time><span>출처 · $source</span></div>
         </header>
         <div class="article-body">
+          $toc
           $body
-          <aside class="article-connection"><strong>이 흐름이 우리 학과와 연결되는 이유</strong>$connection</aside>
+          <aside class="article-connection"><strong>수업에서 이어서 탐구하기</strong>$connection</aside>
           <section class="article-learning"><span>LEARNING CHECKPOINT</span><h2>학생이 이 이슈에서 확인할 것</h2><ul>$learning_points</ul><p>$project_prompt</p></section>
-          <div class="source-box">참고 자료 · <a href="$source_url" target="_blank" rel="noopener noreferrer">$source에서 확인하기 ↗</a></div>
-          $editorial_note
+          <div class="source-box"><strong>더 읽어볼 공식 자료</strong>$references</div>
           <section class="article-author" aria-label="발행 정보"><span>발행</span><strong>한국폴리텍대학 서울강서캠퍼스<br />빅데이터소프트웨어공학과</strong><p>홈페이지 운영 · 학과장 이협건 교수</p></section>
           <section class="related-articles" aria-labelledby="related-title"><span>RELATED ARTICLES</span><h2 id="related-title">함께 읽으면 좋은 글</h2><ul>$related</ul></section>
-          <section class="article-cta"><h2>트렌드를 읽는 데서 끝내지 마세요.</h2><p>AI·데이터·클라우드 기술을 직접 구현하고 포트폴리오로 완성하는 2년을 시작해 보세요.</p><a class="button button-primary" href="https://apply.jinhakapply.com/Notice/5041044/A" target="_blank" rel="noopener noreferrer">2027학년도 수시 1차 지원하기 ↗</a></section>
+          <section class="article-cta"><h2>다음은 직접 만들어 볼 차례입니다.</h2><p>학생들이 데이터를 수집하고 AI와 소프트웨어로 구현한 결과를 살펴보세요. 이번 글의 실습과 비교하면 새로운 프로젝트 아이디어를 찾을 수 있습니다.</p><a class="button button-primary" href="https://portfolio.k-bigdata.kr/">학생 프로젝트 살펴보기 ↗</a></section>
         </div>
       </article>
     </main>

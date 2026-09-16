@@ -21,6 +21,7 @@
       return null;
     }
 
+    if (link.hasAttribute('data-admission-link')) return link.getAttribute('data-admission-phase') === 'open' ? 'apply_click' : 'admission_info_click';
     if (url.hostname === "apply.jinhakapply.com") return "apply_click";
     if (url.hostname === "open.kakao.com") return "kakao_consult_click";
     if (url.hostname === "portfolio.k-bigdata.kr") return "portfolio_click";

@@ -3,9 +3,6 @@ name: 학과 홈페이지 자동 발행
 on:
   push:
     branches: [main]
-  schedule:
-    # 한국시간 월·수·금 오전 6시 = UTC 일·화·목 오후 9시
-    - cron: "0 21 * * 0,2,4"
   workflow_dispatch:
 
 permissions:
@@ -31,18 +28,11 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: 최신 AI·IT 기사로 새 글 만들기
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-        run: python tools/generate_post.py
-
-      - name: 새 글 저장하기
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+      - name: 인사이트 품질 검사
         run: |
-          git config user.name "k-bigdata-bot"
-          git config user.email "actions@users.noreply.github.com"
-          git add data/posts.json
-          git diff --cached --quiet || git commit -m "새 AI·IT 인사이트 자동 발행"
-          git push
+          python tools/generate_post.py --check
+          python tools/test_insights.py
+          node tools/test_admission.cjs
 
       - name: GitHub Pages 준비
         uses: actions/configure-pages@v5

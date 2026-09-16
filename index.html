@@ -17,7 +17,7 @@
     <meta property="og:title" content="빅데이터소프트웨어공학과 | 한국폴리텍대학 서울강서캠퍼스" />
     <meta
       property="og:description"
-      content="데이터를 읽고, AI로 만들고, 소프트웨어로 증명하는 2년. 2027학년도 수시 1차 모집 안내."
+      content="데이터를 읽고, AI로 만들고, 소프트웨어로 증명하는 2년. 교육과정과 입학 일정 안내."
     />
     <meta property="og:image" content="https://ai.k-bigdata.kr/assets/promo/og-share-2027-susi1.png" />
     <meta property="og:image:secure_url" content="https://ai.k-bigdata.kr/assets/promo/og-share-2027-susi1.png" />
@@ -27,7 +27,7 @@
     <meta property="og:image:alt" content="한국폴리텍대학 서울강서캠퍼스 빅데이터소프트웨어공학과 2027학년도 수시 1차 모집" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="빅데이터소프트웨어공학과 | 한국폴리텍대학 서울강서캠퍼스" />
-    <meta name="twitter:description" content="데이터를 읽고, AI로 만들고, 소프트웨어로 증명하는 2년. 2027학년도 수시 1차 모집 안내." />
+    <meta name="twitter:description" content="데이터를 읽고, AI로 만들고, 소프트웨어로 증명하는 2년. 교육과정과 입학 일정 안내." />
     <meta name="twitter:image" content="https://ai.k-bigdata.kr/assets/promo/og-share-2027-susi1.png" />
     <meta name="twitter:image:alt" content="빅데이터소프트웨어공학과 2027학년도 수시 1차 모집" />
     <title>서울 AI·빅데이터학과 | 빅데이터소프트웨어공학과</title>
@@ -85,6 +85,7 @@
         }
       }
     </script>
+      <script defer src="/admission.js"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">본문으로 바로가기</a>
@@ -107,7 +108,7 @@
           <a href="#guides">전공 가이드</a>
           <a href="#stories">AI·IT 인사이트</a>
           <a href="#admission">입학 안내</a>
-          <a class="nav-cta" href="https://apply.jinhakapply.com/Notice/5041044/A" target="_blank" rel="noopener noreferrer">원서접수</a>
+          <a class="nav-cta" href="https://www.kopo.ac.kr/kangseo/content.do?menu=321" data-admission-link target="_blank" rel="noopener noreferrer">입학 일정 확인 ↗</a>
         </nav>
       </div>
     </header>
@@ -125,30 +126,28 @@
               빅데이터소프트웨어공학과에서 실무형 AI 개발자로 성장하세요.
             </p>
             <div class="hero-actions">
-              <a class="button button-primary" href="https://apply.jinhakapply.com/Notice/5041044/A" target="_blank" rel="noopener noreferrer">
-                수시 1차 지원하기 <span aria-hidden="true">↗</span>
-              </a>
+              <a class="button button-primary" href="https://www.kopo.ac.kr/kangseo/content.do?menu=321" data-admission-link target="_blank" rel="noopener noreferrer">입학 일정 확인 ↗</a>
               <a class="button button-ghost" href="https://open.kakao.com/o/gEd0JIad" target="_blank" rel="noopener noreferrer">
                 입학 상담하기
               </a>
             </div>
           </div>
 
-          <aside class="admission-card" aria-label="2027학년도 수시 1차 일정">
+          <aside class="admission-card" data-admission-card aria-label="입학 일정">
             <div class="card-topline">
               <span class="live-dot" aria-hidden="true"></span>
-              <strong>2027학년도 수시 1차</strong>
+              <strong data-admission="title">입학 안내</strong>
             </div>
-            <p class="countdown" id="countdown">모집 시작 D-2</p>
+            <p class="countdown" id="countdown" data-admission="countdown">공식 모집요강 확인</p>
             <div class="date-range">
-              <div><small>접수 시작</small><strong>09.07</strong></div>
+              <div><small>접수 시작</small><strong data-admission="start">—</strong></div>
               <span aria-hidden="true">→</span>
-              <div><small>접수 마감</small><strong>10.01</strong></div>
+              <div><small>접수 마감</small><strong data-admission="end">—</strong></div>
             </div>
             <dl class="admission-quick">
-              <div><dt>수시 1차 선발</dt><dd>23명</dd></div>
-              <div><dt>면접</dt><dd>10월 14일</dd></div>
-              <div><dt>최초 합격 발표</dt><dd>10월 22일</dd></div>
+              <div><dt>선발인원</dt><dd data-admission="seats">공식 모집요강 확인</dd></div>
+              <div><dt>면접</dt><dd data-admission="interview">공식 모집요강 확인</dd></div>
+              <div><dt>최초 합격 발표</dt><dd data-admission="result">공식 모집요강 확인</dd></div>
             </dl>
             <a href="https://kopo.ac.kr/kangseo/content.do?menu=321" target="_blank" rel="noopener noreferrer">2027 모집요강 확인 <span aria-hidden="true">→</span></a>
           </aside>
@@ -282,7 +281,7 @@ deploy(service, <span>"cloud"</span>)</code></pre>
               <p class="section-kicker">AI · IT INSIGHT</p>
               <h2>세상의 변화를<br />학과의 배움으로 연결합니다</h2>
             </div>
-            <div class="publish-info"><span aria-hidden="true">●</span> 매주 월·수·금 오전 6시 새 글</div>
+            <div class="publish-info"><span aria-hidden="true">●</span> 매주 월·수·금 새 글</div>
           </div>
           <div class="story-grid" id="story-grid" aria-live="polite">
             <!-- GENERATED_STORIES_START -->
@@ -299,30 +298,30 @@ deploy(service, <span>"cloud"</span>)</code></pre>
         <div class="container">
           <div class="section-heading light reveal">
             <p class="section-kicker">2027 ADMISSION</p>
-            <h2>이번 가을,<br />미래의 개발자로 출발하세요.</h2>
+            <h2>배움의 시작,<br />미래의 개발자로 출발하세요.</h2>
             <p>2027학년도부터 학과명이 ‘빅데이터소프트웨어공학과’로 바뀝니다. 더 선명해진 소프트웨어 교육으로 여러분을 기다립니다.</p>
           </div>
           <div class="admission-grid">
             <div class="schedule reveal">
-              <h3>수시 1차 일정</h3>
+              <h3 data-admission="title">입학 일정</h3><p data-admission-pending hidden></p>
               <ol>
-                <li class="active"><span>01</span><div><small>원서접수</small><strong>2026.09.07 — 10.01 23:59</strong></div></li>
-                <li><span>02</span><div><small>면접</small><strong>2026.10.14</strong></div></li>
-                <li><span>03</span><div><small>최초 합격자 발표</small><strong>2026.10.22</strong></div></li>
+                <li><span>01</span><div><small>원서접수</small><strong data-admission="period">공식 모집요강 확인</strong></div></li>
+                <li><span>02</span><div><small>면접</small><strong data-admission="interview">공식 모집요강 확인</strong></div></li>
+                <li><span>03</span><div><small>최초 합격자 발표</small><strong data-admission="result">공식 모집요강 확인</strong></div></li>
               </ol>
             </div>
             <div class="apply-panel reveal">
-              <span class="apply-label">모집정원 30명 · 수시 1차 23명</span>
+              <span class="apply-label" data-admission="seats">모집인원은 공식 모집요강 확인</span>
               <h3>망설이는 시간보다<br />도전하는 한 번이 빠릅니다.</h3>
               <p>고등학교 졸업(예정)자 또는 동등 이상의 학력이 있다면 지원할 수 있습니다. 폴리텍대학과 일반대학 간 복수지원도 가능합니다.</p>
               <div class="apply-actions">
-                <a class="button button-primary" href="https://apply.jinhakapply.com/Notice/5041044/A" target="_blank" rel="noopener noreferrer">온라인 원서접수 <span aria-hidden="true">↗</span></a>
+                <a class="button button-primary" href="https://www.kopo.ac.kr/kangseo/content.do?menu=321" data-admission-link target="_blank" rel="noopener noreferrer">입학 일정 확인 ↗</a>
                 <a class="button button-outline" href="https://open.kakao.com/o/gEd0JIad" target="_blank" rel="noopener noreferrer">카카오톡 상담</a>
               </div>
               <p class="contact-line">입학 문의 <a href="tel:0221865815">02-2186-5815</a> · 학과 문의 <a href="tel:0221865981">02-2186-5981</a></p>
             </div>
           </div>
-          <p class="official-note">※ 세부 지원자격과 전형 기준은 반드시 한국폴리텍대학 서울강서캠퍼스 공식 모집요강을 확인하세요.</p>
+          <p class="official-note">※ 한국시간 기준 안내입니다. 모집인원과 일정은 변경될 수 있으며, 세부 지원자격과 전형 기준은 반드시 한국폴리텍대학 서울강서캠퍼스 공식 모집요강을 확인하세요.</p>
         </div>
       </section>
 
@@ -353,12 +352,12 @@ deploy(service, <span>"cloud"</span>)</code></pre>
           <a href="https://github.com/Hyeopgeon-Lee" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
       </div>
-      <div class="container copyright">© 2026 빅데이터소프트웨어공학과. Department promotional site.</div>
+      <div class="container copyright">© 2026 빅데이터소프트웨어공학과. AI · DATA · SOFTWARE.</div>
     </footer>
 
     <div class="mobile-apply" aria-label="모바일 빠른 지원">
-      <span><b>수시 1차</b><small>09.07 — 10.01</small></span>
-      <a href="https://apply.jinhakapply.com/Notice/5041044/A" target="_blank" rel="noopener noreferrer">지원하기</a>
+      <span><b data-admission="name">입학 안내</b><small data-admission="countdown">공식 모집요강 확인</small></span>
+      <a href="https://www.kopo.ac.kr/kangseo/content.do?menu=321" data-admission-link target="_blank" rel="noopener noreferrer">입학 일정 확인 ↗</a>
     </div>
   </body>
 </html>

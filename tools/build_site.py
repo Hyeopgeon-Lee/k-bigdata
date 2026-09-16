@@ -127,7 +127,7 @@ def render_body(post: dict) -> str:
             paragraphs.append(f"<p>{html(text.replace(source_prefix, source_credit))}</p>")
 
     sections = []
-    for section in post.get("sections", []):
+    for index, section in enumerate(post.get("sections", []), 1):
         heading = str(section.get("heading", "")).strip()
         section_paragraphs = "".join(
             f"<p>{html(paragraph)}</p>"
@@ -140,10 +140,23 @@ def render_body(post: dict) -> str:
             bullet_list = '<ul class="article-points">' + "".join(
                 f"<li>{html(bullet)}</li>" for bullet in bullets if str(bullet).strip()
             ) + "</ul>"
-        if heading or section_paragraphs or bullet_list:
+        extra = ""
+        if section.get("table"):
+            table = section["table"]
+            extra += '<div class="article-table" role="region" tabindex="0" aria-label="' + html(heading) + '"><table><caption>' + html(table.get("caption", heading)) + '</caption><thead><tr>'
+            extra += ''.join(f'<th scope="col">{html(cell)}</th>' for cell in table['headers']) + '</tr></thead><tbody>'
+            extra += ''.join('<tr>' + ''.join(f'<td>{html(cell)}</td>' for cell in row) + '</tr>' for row in table['rows'])
+            extra += '</tbody></table></div>'
+        if section.get("code"):
+            extra += '<pre class="article-code"><code>' + html(section['code']) + '</code></pre>'
+        if section.get("references"):
+            extra += '<p class="section-sources">근거 자료 · ' + ' · '.join(
+                f'<a href="{html(ref["url"])}" target="_blank" rel="noopener noreferrer">{html(ref["title"])}</a>'
+                for ref in section['references']) + '</p>'
+        if heading or section_paragraphs or bullet_list or extra:
             sections.append(
-                '<section class="article-section">'
-                f"<h2>{html(heading)}</h2>{section_paragraphs}{bullet_list}"
+                f'<section class="article-section" id="section-{index}">'
+                f"<h2>{html(heading)}</h2>{section_paragraphs}{bullet_list}{extra}"
                 "</section>"
             )
 
@@ -157,13 +170,11 @@ def render_post(template: Template, posts: list[dict], post: dict) -> str:
     default_learning_points, default_project_prompt = learning_context(post)
     learning_points = post.get("learningPoints") or default_learning_points
     project_prompt = post.get("projectPrompt") or default_project_prompt
-    editorial_note = ""
-    if post.get("automated"):
-        editorial_note = (
-            '<aside class="editorial-note"><strong>자동 발행 안내</strong>'
-            '<p>이 글은 공개된 기사 제목과 출처를 바탕으로 자동 구성한 학과 홍보용 기술 인사이트입니다. '
-            '원문의 세부 내용과 수치는 연결된 출처에서 직접 확인해 주세요.</p></aside>'
-        )
+    toc = '<nav class="article-toc" aria-label="글 목차"><strong>이 글에서 알아볼 내용</strong><ol>' + ''.join(
+        f'<li><a href="#section-{index}">{html(section["heading"])}</a></li>'
+        for index, section in enumerate(post.get('sections', []), 1)) + '</ol></nav>'
+    references = post.get('references') or [{"title":post['source'], "url":post['sourceUrl']}]
+    reference_links = '<ul>' + ''.join(f'<li><a href="{html(ref["url"])}" target="_blank" rel="noopener noreferrer">{html(ref["title"])}</a></li>' for ref in references) + '</ul>'
     schema = {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
@@ -204,7 +215,8 @@ def render_post(template: Template, posts: list[dict], post: dict) -> str:
         connection=html(post["connection"]),
         learning_points="".join(f"<li>{html(point)}</li>" for point in learning_points),
         project_prompt=html(project_prompt),
-        editorial_note=editorial_note,
+        toc=toc,
+        references=reference_links,
         related=render_related(posts, post),
         schema=compact_json(schema),
         social_image=SOCIAL_IMAGE,
@@ -245,7 +257,7 @@ def update_home(posts: list[dict]) -> None:
 
 def write_archive(posts: list[dict]) -> None:
     template = Template(ARCHIVE_TEMPLATE_FILE.read_text(encoding="utf-8"))
-    latest_date = posts[0]["date"] if posts else date.today().isoformat()
+    latest_date = max(p.get("lastModified", p["date"]) for p in posts) if posts else date.today().isoformat()
     archive = template.safe_substitute(cards=render_story_cards(posts, limit=None), latest_date=latest_date)
     target = OUTPUT / "insights" / "index.html"
     target.parent.mkdir(parents=True, exist_ok=True)
