@@ -21,7 +21,10 @@ class InsightTests(unittest.TestCase):
         with self.assertRaises(ValueError):publish(self.post,[],today='2026-09-15')
     def test_html_is_escaped_and_table_renders(self):
         p=copy.deepcopy(self.post);p['sections'][0]['paragraphs']=['<script>alert(1)</script>']
+        p['sections'][0]['table']={'headers':['Test'],'rows':[['<unsafe>']]}
         body=render_body(p)
         self.assertNotIn('<script>',body);self.assertIn('&lt;script&gt;',body)
-        self.assertIn('<table>',body);self.assertIn('id="section-10"',body)
+        self.assertIn('<table>',body);self.assertIn('&lt;unsafe&gt;',body)
+        for index in range(1,len(p['sections'])+1):
+            self.assertEqual(body.count(f'id="section-{index}"'),1)
 if __name__=='__main__':unittest.main()
