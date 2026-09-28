@@ -1,5 +1,5 @@
 /* 2027 admissions. Source: Seoul Gangseo official prospectus, p.7 (2026-09-16).
- * Keep identical copies in the department, portfolio and professor sites.
+ * Keep schedule dates and destination URLs synchronized across the department, portfolio and professor sites.
  * All dates have an explicit Korea offset; never infer an unannounced admission round.
  */
 (function (root) {
@@ -7,10 +7,10 @@
   const GUIDE = 'https://www.kopo.ac.kr/kangseo/content.do?menu=321';
   const APPLY = 'https://www.kopo.ac.kr/kangseo/content.do?menu=1714';
   const rounds = [
-    {name:'수시 1차', start:'2026-09-07', end:'2026-10-01', interview:'2026-10-14', result:'2026-10-22', seats:23,
+    {name:'수시 1차', label:'대입 수시 1차', title:'2027학년도 대학입학 수시 1차', start:'2026-09-07', end:'2026-10-01', interview:'2026-10-14', result:'2026-10-22', seats:23,
       apply:'https://apply.jinhakapply.com/Notice/5041044/A'},
-    {name:'수시 2차', start:'2026-11-11', end:'2026-11-27', interview:'2026-12-02', result:'2026-12-17', seats:4, apply:APPLY},
-    {name:'정시모집', start:'2027-01-04', end:'2027-01-22', interview:'2027-01-27', result:'2027-02-04', seats:3, apply:APPLY}
+    {name:'수시 2차', label:'대입 수시 2차', title:'2027학년도 대학입학 수시 2차', start:'2026-11-11', end:'2026-11-27', interview:'2026-12-02', result:'2026-12-17', seats:4, apply:APPLY},
+    {name:'정시모집', label:'대입 정시모집', title:'2027학년도 대학입학 정시모집', start:'2027-01-04', end:'2027-01-22', interview:'2027-01-27', result:'2027-02-04', seats:3, apply:APPLY}
   ];
   const instant = (day) => Date.parse(day + 'T00:00:00+09:00');
   const koreaDay = (now) => new Date(Number(now) + 9*3600000).toISOString().slice(0,10);
@@ -33,9 +33,9 @@
       seats:'모집인원은 공식 모집요강 확인', start:'—', end:'—'};
     const open = today >= round.start;
     const days = Math.round((instant(open ? round.end : round.start) - instant(today))/86400000);
-    return {phase:open?'open':'upcoming', name:round.name, title:`2027학년도 ${round.name}`,
+    return {phase:open?'open':'upcoming', name:round.label, title:round.title,
       countdown:open ? (days===0?'오늘 23:59 접수 마감':`접수 마감 D-${days}`) : `접수 시작 D-${days}`,
-      button:open?`${round.name} 원서접수`:`${round.name} 모집일정 확인`, href:open?round.apply:GUIDE,
+      button:open?`${round.label} 원서접수`:`${round.label} 모집일정 확인`, href:open?round.apply:GUIDE,
       period:`${fullDate(round.start)} ~ ${fullDate(round.end)} 23:59`, pending,
       interview:fullDate(round.interview), result:fullDate(round.result),
       seats:`${round.name} ${round.seats}명`, start:shortDate(round.start), end:shortDate(round.end)};
