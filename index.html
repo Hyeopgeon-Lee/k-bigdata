@@ -43,6 +43,7 @@
     />
     <link rel="stylesheet" href="styles.css" />
     <script defer src="script.js"></script>
+    <script defer src="employment-preview.js"></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -107,6 +108,7 @@
           <a href="#roadmap">배우는 것</a>
           <a href="#guides">전공 가이드</a>
           <a href="#stories">AI·IT 인사이트</a>
+          <a href="/employment/">졸업생 취업현황</a>
           <a href="#admission">입학 안내</a>
           <a class="nav-cta" href="https://www.kopo.ac.kr/kangseo/content.do?menu=321" data-admission-link target="_blank" rel="noopener noreferrer">입학 일정 확인 ↗</a>
         </nav>
@@ -197,9 +199,21 @@ deploy(service, <span>"cloud"</span>)</code></pre>
               <span class="feature-icon" aria-hidden="true">↗</span>
               <h3>취업까지 연결되는 실무</h3>
               <p>AI 개발자, 데이터 엔지니어, 백엔드 개발자, 클라우드·DevOps 엔지니어로 진출할 수 있는 실전 역량을 쌓습니다.</p>
-              <a href="https://www.kopo.ac.kr/kangseo/board.do?menu=15690" target="_blank" rel="noopener noreferrer">졸업생 진로 확인 <span aria-hidden="true">↗</span></a>
+              <a href="/employment/">졸업생 취업현황 <span aria-hidden="true">→</span></a>
             </article>
           </div>
+        </div>
+      </section>
+
+      <section class="section employment-preview" aria-labelledby="employment-preview-title">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="section-kicker">ALUMNI CAREERS</p>
+            <h2 id="employment-preview-title">배운 기술이<br />이어지는 현장</h2>
+            <p>졸업생들이 실제로 일하고 있는 회사와 직무를 확인해 보세요.</p>
+          </div>
+          <div id="employment-preview-list" class="employment-preview-grid" aria-live="polite"><p class="employment-loading">취업현황을 불러오는 중입니다.</p></div>
+          <a class="stories-more" href="/employment/">졸업생 취업현황 전체보기 <span aria-hidden="true">→</span></a>
         </div>
       </section>
 
