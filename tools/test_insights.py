@@ -3,7 +3,7 @@ import json
 import unittest
 from pathlib import Path
 from generate_post import validate, publish
-from build_site import render_body
+from build_site import STATIC_PAGES, render_body
 
 class InsightTests(unittest.TestCase):
     def setUp(self):
@@ -27,4 +27,12 @@ class InsightTests(unittest.TestCase):
         self.assertIn('<table>',body);self.assertIn('&lt;unsafe&gt;',body)
         for index in range(1,len(p['sections'])+1):
             self.assertEqual(body.count(f'id="section-{index}"'),1)
+    def test_employment_page_is_in_sitemap_sources(self):
+        self.assertIn(('employment/','employment/index.html'),STATIC_PAGES)
+    def test_employment_page_has_indexing_metadata_and_static_content(self):
+        page=(Path(__file__).resolve().parents[1]/'employment/index.html').read_text(encoding='utf-8')
+        self.assertIn('name="robots" content="index, follow',page)
+        self.assertIn('rel="canonical" href="https://ai.k-bigdata.kr/employment/"',page)
+        self.assertIn('"@type": "CollectionPage"',page)
+        self.assertIn('AI·데이터·소프트웨어 역량이',page)
 if __name__=='__main__':unittest.main()
