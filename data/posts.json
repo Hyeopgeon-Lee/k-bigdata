@@ -1,5 +1,179 @@
 [
   {
+    "slug": "2026-10-02-async-api-state-machine",
+    "date": "2026-10-02",
+    "tag": "API · CLOUD · BACKEND",
+    "title": "요청은 끝났는데 작업은 진행 중? 비동기 API와 상태 기계 설계",
+    "excerpt": "GitHub의 비동기 병합 API를 출발점으로 202 응답, 요청 ID, 폴링, 재시도와 중복 방지를 이해하고 Python·SQL·Java로 작업 추적 서비스를 설계합니다.",
+    "source": "GitHub 공식 발표·REST API 문서",
+    "sourceUrl": "https://github.blog/changelog/2026-10-01-github-async-merge-api-generally-available/",
+    "references": [
+      {
+        "title": "GitHub · 비동기 병합 API 정식 제공 발표",
+        "url": "https://github.blog/changelog/2026-10-01-github-async-merge-api-generally-available/"
+      },
+      {
+        "title": "GitHub Docs · Pull Request 비동기 병합 REST API",
+        "url": "https://docs.github.com/en/rest/pulls/pulls?apiVersion=2026-03-10"
+      },
+      {
+        "title": "GitHub Docs · REST API 버전 관리",
+        "url": "https://docs.github.com/en/rest/about-the-rest-api/api-versions"
+      }
+    ],
+    "editorialVersion": 2,
+    "sections": [
+      {
+        "heading": "1. API 요청이 끝났다고 작업까지 끝난 것은 아니다",
+        "paragraphs": [
+          "웹 API를 처음 만들면 요청을 받은 서버가 모든 일을 마친 뒤 결과를 돌려주는 모습을 떠올리기 쉽습니다. 짧은 조회에는 잘 맞지만 병합, 영상 변환, 대용량 보고서 생성처럼 시간이 걸리거나 대기열을 거치는 작업은 연결을 오래 붙잡게 됩니다. 처리 시간이 길어질수록 클라이언트와 중간 네트워크의 시간 제한에도 영향을 받습니다.",
+          "GitHub는 2026년 10월 1일 비동기 병합 API의 일반 제공을 발표했습니다. 공식 발표에 따르면 클라이언트는 PUT 요청으로 병합을 요청하고, 반환된 요청 ID를 사용해 GET 요청으로 상태를 확인합니다. 개별 또는 쌓인 Pull Request를 처리하거나 병합 대기열에 추가하는 경우를 지원합니다. 이 글은 특정 저장소에서 실제 병합을 수행한 보고서가 아니라, 이 발표를 출발점으로 비동기 작업 API를 설계하는 교육용 실습입니다.",
+          "핵심은 HTTP 응답과 업무 결과를 분리하는 것입니다. 서버가 202 Accepted를 돌려줬다면 요청을 접수했다는 뜻이지 병합 성공을 보장한다는 뜻이 아닙니다. 클라이언트가 이 둘을 같은 상태로 표시하면 실제로는 대기 중이거나 실패한 작업을 완료로 오해할 수 있습니다."
+        ],
+        "references": [
+          {
+            "title": "GitHub · 비동기 병합 API 정식 제공 발표",
+            "url": "https://github.blog/changelog/2026-10-01-github-async-merge-api-generally-available/"
+          }
+        ]
+      },
+      {
+        "heading": "2. 비동기 작업은 상태 기계로 생각한다",
+        "paragraphs": [
+          "상태 기계는 시스템이 가질 수 있는 상태와 상태 사이의 이동 조건을 정리한 모델입니다. 교육용 병합 작업은 received, pending, merged, enqueued, failed, expired로 표현할 수 있습니다. received는 우리 서비스가 사용자의 요청을 받은 상태이고 pending은 외부 서비스가 처리 중인 상태입니다. merged와 failed는 종료 상태지만 enqueued는 해석에 주의해야 합니다.",
+          "GitHub 공식 문서는 enqueued가 병합 대기열 요청에서 최종 응답이지만 Pull Request가 실제로 병합됐다는 의미는 아니라고 설명합니다. 대기열이 나중에 병합했는지는 Pull Request의 병합 여부를 별도로 확인해야 합니다. 하나의 status 필드만 화면에 그대로 출력하기보다 ‘대기열 등록 완료’와 ‘코드 병합 완료’를 다른 사용자 상태로 번역해야 합니다.",
+          "상태 전이는 무조건 앞쪽에서 뒤쪽으로만 움직이게 설계하는 편이 이해하기 쉽습니다. 이미 merged인 작업을 늦게 도착한 pending 응답으로 되돌리지 않습니다. 각 응답에는 관찰 시각과 원본 상태를 함께 저장해 순서가 뒤바뀐 네트워크 응답을 분석할 수 있게 합니다."
+        ],
+        "references": [
+          {
+            "title": "GitHub Docs · Pull Request 비동기 병합 REST API",
+            "url": "https://docs.github.com/en/rest/pulls/pulls?apiVersion=2026-03-10"
+          }
+        ],
+        "table": {
+          "headers": [
+            "외부 상태",
+            "서비스 화면 표현",
+            "다음 행동"
+          ],
+          "rows": [
+            [
+              "pending",
+              "병합 처리 중",
+              "간격을 두고 다시 확인"
+            ],
+            [
+              "enqueued",
+              "병합 대기열 등록 완료",
+              "PR의 실제 병합 여부 별도 확인"
+            ],
+            [
+              "merged",
+              "병합 완료",
+              "결과 커밋 식별자 저장"
+            ],
+            [
+              "failed",
+              "병합 실패",
+              "오류 원인 표시 후 사람 확인"
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "3. 요청 ID는 작업을 다시 찾는 영수증이다",
+        "paragraphs": [
+          "비동기 요청의 첫 응답에는 작업을 다시 조회할 식별자가 필요합니다. GitHub 문서에서는 UUID가 이 역할을 합니다. 클라이언트가 UUID를 메모리에만 보관하면 앱이 재시작될 때 진행 중인 작업을 잃어버립니다. 따라서 사용자 요청과 외부 요청 ID, 대상 Pull Request, 예상 head SHA, 생성 시각을 데이터베이스에 저장하는 실습을 제안합니다.",
+          "expected head SHA는 병합을 요청할 때 검토한 코드와 실제 처리할 코드가 같은지 확인하는 단서입니다. 검토 뒤 새 커밋이 올라왔다면 예전 승인으로 새 코드를 병합하지 않도록 정책을 세울 수 있습니다. SHA를 저장했다고 자동으로 안전해지는 것은 아니며, 서버 요청에 올바르게 전달하고 불일치 응답을 처리해야 합니다.",
+          "공식 문서에 따르면 비동기 병합 결과는 최근 업데이트 뒤 24시간 동안 유지되고 이후 UUID 조회가 404가 될 수 있습니다. 404를 곧바로 ‘Pull Request가 존재하지 않는다’로 표시하면 안 됩니다. 요청 결과 보관 기간이 끝난 것인지, 권한이 부족한 것인지, 경로가 잘못된 것인지 구분할 추가 확인이 필요합니다. 우리 데이터베이스에는 마지막으로 확인한 상태를 보존하되 출처의 최신 상태라고 단정하지 않습니다."
+        ],
+        "references": [
+          {
+            "title": "GitHub Docs · Pull Request 비동기 병합 REST API",
+            "url": "https://docs.github.com/en/rest/pulls/pulls?apiVersion=2026-03-10"
+          }
+        ]
+      },
+      {
+        "heading": "4. SQL로 작업과 상태 이력을 분리한다",
+        "paragraphs": [
+          "작업 테이블에는 task_id, repository, pull_number, external_uuid, expected_head_sha, current_status, created_at, updated_at을 둡니다. 상태 이력 테이블에는 task_id, observed_status, observed_at, response_code를 저장합니다. 현재 상태만 덮어쓰면 pending에서 failed로 바뀐 과정과 재시도 횟수를 알 수 없습니다. 두 테이블을 분리하면 화면은 빠르게 현재 상태를 읽고, 분석에서는 전체 전이를 조사할 수 있습니다.",
+          "하나의 Pull Request에 동일한 병합 요청이 반복되지 않게 활성 작업에 대한 유일성 조건을 설계해 볼 수 있습니다. 다만 실패 후 새 요청을 허용하는 정책과 충돌할 수 있으므로 단순히 pull_number 전체를 영구적으로 unique 처리하지 않습니다. 활성 상태를 나타내는 별도 열이나 업무 키를 사용하고 종료 뒤 새 시도를 연결하는 방식이 더 명확합니다.",
+          "아래 SQL은 PostgreSQL을 가정한 교육용 설계 예시이며 실제 GitHub 응답을 저장한 결과가 아닙니다. 상태 값의 범위를 제약하고 시간은 일관된 기준으로 저장합니다. 운영 환경에서는 저장소 식별자와 사용자 권한, 개인정보 보존 정책도 별도로 검토해야 합니다."
+        ],
+        "code": "-- 교육용 작업 테이블 설계 예시\nCREATE TABLE merge_tasks (\n  task_id uuid PRIMARY KEY,\n  repository text NOT NULL,\n  pull_number integer NOT NULL,\n  external_uuid uuid,\n  expected_head_sha text NOT NULL,\n  current_status text NOT NULL\n    CHECK (current_status IN ('received','pending','enqueued','merged','failed','expired')),\n  created_at timestamptz NOT NULL,\n  updated_at timestamptz NOT NULL\n);\n\nCREATE TABLE merge_status_events (\n  task_id uuid REFERENCES merge_tasks(task_id),\n  observed_status text NOT NULL,\n  observed_at timestamptz NOT NULL,\n  response_code integer NOT NULL\n);"
+      },
+      {
+        "heading": "5. 폴링은 반복 호출이 아니라 부하 제어다",
+        "paragraphs": [
+          "폴링은 작업이 끝났는지 일정 간격으로 묻는 방식입니다. 100명의 사용자가 0.1초마다 조회하면 작은 상태 확인도 큰 부하가 됩니다. 첫 조회는 짧게 기다리고, 계속 pending이면 간격을 늘리는 지수 백오프를 사용할 수 있습니다. 여기에 약간의 무작위 지연을 더하면 여러 클라이언트가 동시에 요청하는 현상을 줄일 수 있습니다.",
+          "무한 폴링도 피해야 합니다. 최대 대기시간과 최대 시도 횟수를 정하고, 초과하면 실패로 단정하기보다 ‘자동 확인 중단, 수동 확인 필요’ 상태로 둡니다. 네트워크 오류와 업무 실패도 구분합니다. 상태 조회 요청이 잠시 실패했다고 병합 작업 자체가 실패했다고 볼 수 없기 때문입니다.",
+          "Python 실습에서는 가상 서버가 pending을 세 번 반환한 뒤 merged를 반환하도록 만들고 호출 시각을 기록하세요. 또 다른 시나리오는 두 번째 조회에서 네트워크 오류, 마지막에는 failed를 반환하도록 구성합니다. 아래 수치는 실습 제안이며 실제 GitHub의 권장 호출 간격이나 성능 측정값이 아닙니다."
+        ],
+        "table": {
+          "headers": [
+            "시도",
+            "제안 대기시간",
+            "처리 예"
+          ],
+          "rows": [
+            [
+              "1",
+              "1초",
+              "pending이면 계속"
+            ],
+            [
+              "2",
+              "2초",
+              "일시 오류면 제한적으로 재시도"
+            ],
+            [
+              "3",
+              "4초",
+              "종료 상태면 즉시 중단"
+            ],
+            [
+              "4 이후",
+              "최대 간격 안에서 증가",
+              "총 대기 한도 초과 시 사람에게 전달"
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "6. 재시도는 같은 작업을 두 번 만들 수 있다",
+        "paragraphs": [
+          "클라이언트가 요청을 보낸 직후 응답을 받지 못하면 서버가 접수했는지 알 수 없습니다. 사용자가 다시 누르면 동일한 병합 요청이 두 개 생길 수 있습니다. 이런 상황을 다루는 성질을 멱등성이라고 합니다. 같은 의도의 요청을 여러 번 보내도 업무 결과가 한 번 수행된 것과 같도록 만드는 설계입니다.",
+          "교육용 서비스에서는 사용자·저장소·Pull Request 번호·expected head SHA를 조합해 요청 키를 만들고, 같은 키의 활성 작업이 있으면 기존 task_id를 반환하도록 제안합니다. 데이터베이스 트랜잭션과 유일성 조건을 함께 사용해야 동시에 들어온 두 요청도 막을 수 있습니다. 메모리의 if 검사만으로는 여러 서버 인스턴스가 각각 통과할 수 있습니다.",
+          "GitHub 공식 문서에는 이미 병합 요청이 대기 중인 Pull Request에 새 요청을 보내면 409가 될 수 있다고 나옵니다. 외부 409를 내부 500 오류로 숨기기보다 기존 작업을 조회해 사용자에게 현재 상태를 보여 주는 흐름을 설계할 수 있습니다. 단, 어떤 409든 동일한 중복이라고 가정하지 말고 응답 내용과 문서를 확인해야 합니다."
+        ],
+        "references": [
+          {
+            "title": "GitHub Docs · Pull Request 비동기 병합 REST API",
+            "url": "https://docs.github.com/en/rest/pulls/pulls?apiVersion=2026-03-10"
+          }
+        ]
+      },
+      {
+        "heading": "7. Java·클라우드·AI를 연결한 1주 실습",
+        "paragraphs": [
+          "Java 백엔드는 POST /merge-tasks로 교육용 작업을 만들고 GET /merge-tasks/{id}로 상태를 제공합니다. 별도 작업 프로세스는 외부 가상 API에 요청하고 결과를 SQL에 저장합니다. 웹 요청을 처리하는 스레드가 완료까지 기다리지 않게 분리하면 비동기 구조를 직접 관찰할 수 있습니다. 클라우드 실습에서는 작업 대기열과 재시도 횟수, 처리시간을 로그와 지표로 남깁니다.",
+          "첫째 날에는 상태 전이표와 테이블을 설계하고, 둘째 날에는 가상 외부 API를 만듭니다. 셋째 날에는 폴링과 백오프, 넷째 날에는 중복 요청과 서버 재시작을 시험합니다. 다섯째 날에는 대시보드에서 접수·처리 중·대기열 등록·완료·실패를 서로 다른 문구로 표시합니다. 이 일정은 프로젝트 제안이며 실제 시스템 구현 또는 운영 성능을 주장하는 것이 아닙니다.",
+          "AI는 실패 로그를 요약하거나 다음 확인 항목을 제안하도록 사용할 수 있습니다. 평가에서는 UUID나 SHA를 바꾸지 않았는지, enqueued를 merged로 잘못 번역하지 않았는지, 근거 없이 실패 원인을 확정하지 않았는지 확인합니다. 숫자 집계와 상태 판정은 코드와 SQL 규칙으로 수행하고 AI 문장은 원본 사건 기록과 대조합니다.",
+          "최종 평가는 정상 완료만 보지 않습니다. 중복 요청이 하나의 활성 작업으로 연결되는지, 네트워크 오류 뒤에도 상태 이력이 보존되는지, 오래된 응답이 최신 상태를 되돌리지 않는지, 최대 대기 뒤 사람이 확인할 수 있는 정보가 남는지 측정합니다. 비동기 시스템의 완성도는 빨리 끝난 한 사례보다 예외 상황을 설명하고 복구할 수 있는 구조에서 드러납니다."
+        ]
+      }
+    ],
+    "connection": "Python 가상 API로 상태 변화를 재현하고 SQL에 작업과 사건 이력을 저장합니다. Java 백엔드는 작업 생성과 조회를 제공하며, 클라우드 대기열·재시도 지표와 AI 로그 요약을 검증하는 프로젝트로 연결합니다.",
+    "learningPoints": [
+      "202 Accepted와 업무 완료를 구분할 수 있나요?",
+      "enqueued와 merged를 다른 상태로 표현했나요?",
+      "재시도에도 활성 작업이 중복 생성되지 않나요?",
+      "서버 재시작 뒤 요청 ID와 상태 이력을 복구할 수 있나요?"
+    ],
+    "projectPrompt": "가상 병합 API와 작업 추적 서비스를 만드세요. pending·merged·enqueued·failed, 네트워크 오류, 중복 요청과 재시작을 재현하고 상태 전이 및 폴링 횟수, 남은 한계를 보고서로 제출하세요."
+  },
+  {
     "slug": "2026-09-30-git-conflict-resolution-workflow",
     "date": "2026-09-30",
     "tag": "GIT · COLLABORATION · TEST",
