@@ -226,6 +226,7 @@ button, input { font: inherit; }
 .footer-links a { color: rgba(255,255,255,.7); }
 .copyright { margin-top: 2.6rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.35); font-size: .72rem; }
 .mobile-apply { display: none; }
+.project-paths{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem;margin-top:2rem}.project-path{min-width:0;padding:2rem;border:1px solid var(--line);border-radius:1rem;background:#f3f7fa}.project-path>span{color:var(--blue-600);font-size:.75rem;font-weight:800;letter-spacing:.08em}.project-path h3{font-size:1.55rem;letter-spacing:-.03em}.project-path p{color:var(--muted);line-height:1.8}.project-path a{display:inline-block;margin-top:.7rem;color:var(--blue-600);font-weight:800}.project-path img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:.6rem;margin-bottom:1.2rem}@media(max-width:700px){.project-paths{grid-template-columns:1fr}.project-path{padding:1.4rem}}
 
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
 .reveal.visible { opacity: 1; transform: none; }

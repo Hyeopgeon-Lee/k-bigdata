@@ -32,6 +32,7 @@ STATIC_PAGES = (
     ("seoul-it-college/", "seoul-it-college/index.html"),
     ("career-portfolio/", "career-portfolio/index.html"),
     ("employment/", "employment/index.html"),
+    ("projects/", "projects/index.html"),
     ("privacy.html", "privacy.html"),
 )
 

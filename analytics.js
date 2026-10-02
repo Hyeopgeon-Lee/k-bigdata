@@ -25,6 +25,7 @@
     if (url.hostname === "apply.jinhakapply.com") return "apply_click";
     if (url.hostname === "open.kakao.com") return "kakao_consult_click";
     if (url.hostname === "portfolio.k-bigdata.kr") return "portfolio_click";
+    if (url.hostname === "contest.k-bigdata.kr") return "project_exhibition_click";
     if (url.hostname === "www.youtube.com" || url.hostname === "youtube.com" || url.hostname === "youtu.be") return "youtube_click";
     return null;
   };
