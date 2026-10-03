@@ -1,0 +1,13 @@
+{
+  "asOf":"2026-10-03",
+  "rows":[
+    {"graduation_year":"2025","company":"(주)이노그리드","job":"엔지니어"},
+    {"graduation_year":"2025","company":"오케스트로","job":"Cloud Native Architect"},
+    {"graduation_year":"2025","company":"클러쉬","job":"웹 개발 (SI/SM)"},
+    {"graduation_year":"2024","company":"KMAC한국능률협회컨설팅","job":"컨설턴트"},
+    {"graduation_year":"2022","company":"KB데이타시스템","job":"데이터 엔지니어"},
+    {"graduation_year":"2018","company":"라인플러스","job":"소프트웨어 엔지니어"},
+    {"graduation_year":"2018","company":"이베이재팬","job":"백엔드 개발"},
+    {"graduation_year":"2018","company":"KT DS","job":"Solutions Architect"}
+  ]
+}

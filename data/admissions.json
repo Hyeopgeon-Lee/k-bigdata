@@ -1,0 +1,20 @@
+{
+  "year": 2027,
+  "timezone": "Asia/Seoul",
+  "verifiedOn": "2026-10-03",
+  "sourceUrl": "https://www.kopo.ac.kr/cmm/fms/Download.do?atchFileId=FILE_000000000452216&fileSn=0",
+  "guideUrl": "https://www.kopo.ac.kr/kangseo/content.do?menu=321",
+  "admissionUrl": "/admission/2027/",
+  "applyUrl": "https://apply.jinhakapply.com/Notice/5041044/A",
+  "kakaoUrl": "https://open.kakao.com/o/gEd0JIad",
+  "phone": "02-2186-5815",
+  "seoTitle": "한국폴리텍대학 빅데이터소프트웨어공학과 | 2027 {round}",
+  "seoDescription": "2027학년도 한국폴리텍대학 서울강서캠퍼스 빅데이터소프트웨어공학과 {round} 안내. AI·빅데이터·백엔드·클라우드를 프로젝트로 배우는 2년제 산업학사 과정입니다.",
+  "ogDescription": "학생 작품과 졸업생 취업현황으로 확인하는 2년제 대학 학위과정. 2027학년도 {round} · {period}",
+  "cta": {"UPCOMING": "{round} 모집일정", "OPEN": "{round} 원서접수", "CLOSED": "추가모집·입학 공지 확인"},
+  "rounds": [
+    {"id":"susi1","name":"수시1차","start":"2026-09-07","end":"2026-10-01","deadlineTime":"23:59","interview":"2026-10-14","result":"2026-10-22","seats":23,"socialImage":"og-department.png"},
+    {"id":"susi2","name":"수시2차","start":"2026-11-11","end":"2026-11-27","deadlineTime":"23:59","interview":"2026-12-02","result":"2026-12-17","seats":4,"socialImage":"og-admission-2027-susi2.png"},
+    {"id":"regular","name":"정시모집","start":"2027-01-04","end":"2027-01-22","deadlineTime":"23:59","interview":"2027-01-27","result":"2027-02-04","seats":3,"socialImage":"og-admission-2027-regular.png"}
+  ]
+}

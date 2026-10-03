@@ -4,6 +4,8 @@
 from __future__ import annotations
 
 import json
+import hashlib
+import os
 import re
 import shutil
 import subprocess
@@ -13,6 +15,10 @@ from html import escape
 from pathlib import Path
 from string import Template
 from xml.sax.saxutils import escape as xml_escape
+import xml.etree.ElementTree as ET
+from urllib.request import urlopen
+from admission_build import load_admissions, state_at, enhance_page, round_cards, reorder_home, json_script
+from employment_build import load_snapshot, inject as inject_employment
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "_site"
@@ -21,7 +27,7 @@ TEMPLATE_FILE = ROOT / "tools" / "templates" / "insight.html"
 ARCHIVE_TEMPLATE_FILE = ROOT / "tools" / "templates" / "insights-index.html"
 SITE_URL = "https://ai.k-bigdata.kr"
 DEPARTMENT = "한국폴리텍대학 서울강서캠퍼스 빅데이터소프트웨어공학과"
-SOCIAL_IMAGE = f"{SITE_URL}/assets/promo/og-share-2027-susi1.png"
+SOCIAL_IMAGE = f"{SITE_URL}/assets/promo/og-insights.png"
 KST = timezone(timedelta(hours=9))
 EXCLUDED = {".git", ".github", ".idea", "_site", "tools"}
 STATIC_PAGES = (
@@ -33,6 +39,7 @@ STATIC_PAGES = (
     ("career-portfolio/", "career-portfolio/index.html"),
     ("employment/", "employment/index.html"),
     ("projects/", "projects/index.html"),
+    ("admission/2027/", "tools/templates/admission.html"),
     ("privacy.html", "privacy.html"),
 )
 
@@ -222,6 +229,7 @@ def render_post(template: Template, posts: list[dict], post: dict) -> str:
         related=render_related(posts, post),
         schema=compact_json(schema),
         social_image=SOCIAL_IMAGE,
+        guide_url='/data-analysis/' if 'DATA' in post.get('tag','').upper() else '/backend-software/' if any(t in post.get('tag','').upper() for t in ('CLOUD','SW','BACKEND','API')) else '/seoul-it-college/' if '입학' in post.get('tag','') else '/ai-software/',
     )
 
 
@@ -282,11 +290,11 @@ def git_last_modified(path: str) -> str:
 
 def write_sitemap(posts: list[dict]) -> None:
     urls = [
-        (f"{SITE_URL}/{relative_url}", git_last_modified(source_path))
+        (f"{SITE_URL}/{relative_url}", max(git_last_modified(source_path), git_last_modified('data/admissions.json'), git_last_modified('tools/admission_build.py')) if relative_url in ('','admission/2027/') else git_last_modified(source_path))
         for relative_url, source_path in STATIC_PAGES
     ]
     if posts:
-        urls.append((f"{SITE_URL}/insights/", posts[0]["date"]))
+        urls.append((f"{SITE_URL}/insights/", max(p.get('lastModified',p['date']) for p in posts)))
     urls.extend((post_url(post), post.get("lastModified", post["date"])) for post in posts)
     entries = "\n".join(
         "  <url>\n"
@@ -315,7 +323,8 @@ def write_feed(posts: list[dict]) -> None:
             f"      <link>{xml_escape(url)}</link>\n"
             f"      <guid isPermaLink=\"true\">{xml_escape(url)}</guid>\n"
             f"      <pubDate>{format_datetime(published)}</pubDate>\n"
-            f"      <description>{xml_escape(post['excerpt'])}</description>\n"
+            f"      <description>{xml_escape(render_body(post))}</description>\n"
+            f"      <source url=\"{xml_escape(post['sourceUrl'], {'\"':'&quot;'})}\">{xml_escape(post['source'])}</source>\n"
             "    </item>\n"
         )
     feed = (
@@ -333,7 +342,30 @@ def write_feed(posts: list[dict]) -> None:
     (OUTPUT / "feed.xml").write_text(feed, encoding="utf-8")
 
 
+def update_content_lastmod(snapshot):
+    previous={}
+    if not os.environ.get('OFFLINE_BUILD'):
+        try:
+            with urlopen(f'{SITE_URL}/content-manifest.json',timeout=10) as response:previous=json.load(response)
+        except Exception:pass
+    tree=ET.parse(OUTPUT/'sitemap.xml');namespace={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
+    current={};today=datetime.fromisoformat(os.environ.get('BUILD_TIME') or datetime.now(KST).isoformat()).astimezone(KST).date().isoformat()
+    for entry in tree.getroot():
+        url=entry.find('s:loc',namespace).text
+        relative=url.removeprefix(SITE_URL+'/')
+        path=OUTPUT/(relative+'index.html' if not Path(relative).suffix else relative)
+        if not path.is_file():raise ValueError(f'Sitemap target missing: {url}')
+        digest=hashlib.sha256(path.read_bytes()).hexdigest();old=previous.get(url,{})
+        modified=old.get('lastmod',today) if old.get('hash')==digest else today
+        current[url]={'hash':digest,'lastmod':modified}
+        entry.find('s:lastmod',namespace).text=modified
+    ET.register_namespace('',namespace['s']);tree.write(OUTPUT/'sitemap.xml',encoding='utf-8',xml_declaration=True)
+    (OUTPUT/'content-manifest.json').write_text(json.dumps(current,ensure_ascii=False,indent=2),encoding='utf-8')
+
+
 def main() -> None:
+    data = load_admissions()
+    state = state_at()
     posts = load_posts()
     template = Template(TEMPLATE_FILE.read_text(encoding="utf-8"))
     copy_public_files()
@@ -343,8 +375,23 @@ def main() -> None:
         target.write_text(render_post(template, posts, post), encoding="utf-8")
     update_home(posts)
     write_archive(posts)
+    admission_template=Template((ROOT/'tools/templates/admission.html').read_text(encoding='utf-8'))
+    admission_schema=[{'@context':'https://schema.org','@type':'WebPage','name':state['title'],'description':state['seoDescription'],'url':f'{SITE_URL}/admission/2027/','inLanguage':'ko-KR','about':{'@type':'EducationalOrganization','name':DEPARTMENT,'url':f'{SITE_URL}/'}},
+        {'@context':'https://schema.org','@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':1,'name':'학과 홈','item':f'{SITE_URL}/'},{'@type':'ListItem','position':2,'name':'2027 입학안내','item':f'{SITE_URL}/admission/2027/'}]}]
+    admission_page=admission_template.safe_substitute(schema=json_script(admission_schema),round_cards=round_cards(data,state),guide_url=html(data['guideUrl']),source_url=html(data['sourceUrl']),apply_url=html(data['applyUrl']),kakao_url=html(data['kakaoUrl']),verified_on=data['verifiedOn'])
+    target=OUTPUT/'admission/2027/index.html';target.parent.mkdir(parents=True,exist_ok=True);target.write_text(admission_page,encoding='utf-8')
+    snapshot=load_snapshot()
+    inject_employment(OUTPUT,snapshot)
+    for page in OUTPUT.rglob('*.html'):
+        if page.name.startswith(('google','naver')):continue
+        relative=page.relative_to(OUTPUT).as_posix()
+        content=page.read_text(encoding='utf-8')
+        if relative=='index.html':content=reorder_home(content)
+        page.write_text(enhance_page(content,relative,state,data),encoding='utf-8')
     write_sitemap(posts)
     write_feed(posts)
+    # Content hashes retain the real deployed change date; unchanged daily builds do not reset lastmod.
+    update_content_lastmod(snapshot)
     print(f"Built {len(posts)} insight pages in {OUTPUT}")
 
 

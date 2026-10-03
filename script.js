@@ -18,6 +18,8 @@ menuButton?.addEventListener('click', () => {
 });
 
 nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+document.addEventListener('keydown', event => { if (event.key === 'Escape') { closeMenu(); menuButton?.focus(); } });
+if (nav && menuButton) { nav.id = nav.id || 'main-navigation'; menuButton.setAttribute('aria-controls', nav.id); }
 window.addEventListener('scroll', () => header?.classList.toggle('scrolled', window.scrollY > 24), { passive: true });
 
 const revealObserver = 'IntersectionObserver' in window

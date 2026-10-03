@@ -1,44 +1,46 @@
-/* 2027 admissions. Source: Seoul Gangseo official prospectus, p.7 (2026-09-16).
- * Keep schedule dates and destination URLs synchronized across the department, portfolio and professor sites.
- * All dates have an explicit Korea offset; never infer an unannounced admission round.
- */
+/* Shared Node/browser state engine. Dates live only in admissions.json. */
 (function (root) {
   'use strict';
-  const GUIDE = 'https://www.kopo.ac.kr/kangseo/content.do?menu=321';
-  const APPLY = 'https://www.kopo.ac.kr/kangseo/content.do?menu=1714';
-  const rounds = [
-    {name:'수시 1차', label:'대입 수시 1차', title:'2027학년도 대학입학 수시 1차', start:'2026-09-07', end:'2026-10-01', interview:'2026-10-14', result:'2026-10-22', seats:23,
-      apply:'https://apply.jinhakapply.com/Notice/5041044/A'},
-    {name:'수시 2차', label:'대입 수시 2차', title:'2027학년도 대학입학 수시 2차', start:'2026-11-11', end:'2026-11-27', interview:'2026-12-02', result:'2026-12-17', seats:4, apply:APPLY},
-    {name:'정시모집', label:'대입 정시모집', title:'2027학년도 대학입학 정시모집', start:'2027-01-04', end:'2027-01-22', interview:'2027-01-27', result:'2027-02-04', seats:3, apply:APPLY}
-  ];
-  const instant = (day) => Date.parse(day + 'T00:00:00+09:00');
-  const koreaDay = (now) => new Date(Number(now) + 9*3600000).toISOString().slice(0,10);
-  const shortDate = (day) => day.slice(5).replace('-', '.');
-  const fullDate = (day) => day.replaceAll('-', '.');
+  const data = typeof module !== 'undefined' && module.exports ? require('./data/admissions.json') : root.ADMISSIONS_DATA;
+  if (!data) return;
+  const rounds = data.rounds;
+  const instant = day => Date.parse(day + 'T00:00:00+09:00');
+  const koreaDay = now => new Date(Number(now) + 9 * 3600000).toISOString().slice(0, 10);
+  const fullDate = day => day.replaceAll('-', '.');
+  const shortDate = day => day.slice(5).replace('-', '.');
+  const format = (text, round) => text.replaceAll('{round}', round);
+  function roundStatus(round, now = new Date()) {
+    const today = koreaDay(now);
+    if (Number(now) < instant(round.start)) return 'UPCOMING';
+    if (Number(now) <= Date.parse(`${round.end}T${round.deadlineTime}:59.999+09:00`)) return 'OPEN';
+    if (today <= round.interview) return 'INTERVIEW';
+    if (today < round.result) return 'RESULT_WAIT';
+    return 'CLOSED';
+  }
   function getState(now = new Date()) {
     const today = koreaDay(now);
-    const round = rounds.find(r => today <= r.end);
+    const round = rounds.find(r => ['UPCOMING', 'OPEN'].includes(roundStatus(r, now)));
     const previous = [...rounds].reverse().find(r => today > r.end);
     let pending = '';
-    if (previous && today <= previous.result) {
-      pending = today <= previous.interview
-        ? `${previous.name} 면접 ${fullDate(previous.interview)}`
-        : `${previous.name} 최초 합격자 발표 ${fullDate(previous.result)}`;
-    }
-    if (!round) return {phase:'closed', name:'입학 안내', title:'입학 안내', countdown:'2027학년도 정규 원서접수 종료',
-      button:'추가모집·입학 공지 확인', href:GUIDE, period:'추가모집 여부는 공식 안내 확인', pending,
-      interview:today <= '2027-03-01' ? '2027.01.27' : '공식 모집요강 확인',
-      result:today <= '2027-03-01' ? '2027.02.04' : '공식 모집요강 확인',
-      seats:'모집인원은 공식 모집요강 확인', start:'—', end:'—'};
-    const open = today >= round.start;
-    const days = Math.round((instant(open ? round.end : round.start) - instant(today))/86400000);
-    return {phase:open?'open':'upcoming', name:round.label, title:round.title,
-      countdown:open ? (days===0?'오늘 23:59 접수 마감':`접수 마감 D-${days}`) : `접수 시작 D-${days}`,
-      button:open?`${round.label} 원서접수`:`${round.label} 모집일정 확인`, href:open?round.apply:GUIDE,
-      period:`${fullDate(round.start)} ~ ${fullDate(round.end)} 23:59`, pending,
-      interview:fullDate(round.interview), result:fullDate(round.result),
-      seats:`${round.name} ${round.seats}명`, start:shortDate(round.start), end:shortDate(round.end)};
+    if (previous && today <= previous.result) pending = today <= previous.interview
+      ? `${previous.name} 면접 ${fullDate(previous.interview)}`
+      : `${previous.name} 최초 합격자 발표 ${fullDate(previous.result)}`;
+    const name = round ? round.name : '정규모집 종료';
+    const status = round ? roundStatus(round, now) : 'CLOSED';
+    const open = status === 'OPEN';
+    const days = round ? Math.round((instant(open ? round.end : round.start) - instant(today)) / 86400000) : 0;
+    const period = round ? `${fullDate(round.start)} ~ ${fullDate(round.end)} ${round.deadlineTime}` : '추가모집 및 입학 공지 확인';
+    return {status, phase:status.toLowerCase(), roundId: round?.id || 'closed', name, title: `${data.year}학년도 ${name}`,
+      countdown: round ? (open ? (days === 0 ? `오늘 ${round.deadlineTime} 접수 마감` : `접수 마감 D-${days}`) : `${name} 접수 시작 D-${days}`) : `${data.year}학년도 정규모집 종료`,
+      announcement: round ? (open ? `${Number(round.end.slice(5,7))}월 ${Number(round.end.slice(8))}일 ${round.deadlineTime} 마감` : `${Number(round.start.slice(5,7))}월 ${Number(round.start.slice(8))}일 원서접수 시작`) : '추가모집 및 입학 공지 확인',
+      button: format(data.cta[status], name), href: open ? data.applyUrl : round ? data.admissionUrl : data.guideUrl,
+      period, pending, interview: round ? fullDate(round.interview) : '공식 입학 공지 확인',
+      result: round ? fullDate(round.result) : '공식 입학 공지 확인', seats: round ? `${name} ${round.seats}명` : '공식 입학 공지 확인',
+      start: round ? shortDate(round.start) : '—', end: round ? shortDate(round.end) : '—',
+      seoTitle: format(data.seoTitle, name), seoDescription: format(data.seoDescription, name),
+      ogDescription: format(data.ogDescription, name).replace('{period}', period),
+      socialImage: round ? round.socialImage : 'og-department.png',
+      previousStatus: previous ? roundStatus(previous, now) : null};
   }
   function update(doc = root.document, now = new Date()) {
     const state = getState(now);
@@ -47,24 +49,27 @@
       if (value !== undefined) el.textContent = value;
     });
     doc.querySelectorAll('[data-admission-link]').forEach(el => {
-      el.href = state.href;
+      el.href = state.phase === 'upcoming' && doc.location?.pathname === data.admissionUrl ? '#schedule' : state.href;
       el.setAttribute('data-admission-phase', state.phase);
-      el.textContent = state.button + ' ↗';
-      el.setAttribute('aria-label', state.button + ' (새 창)');
+      el.textContent = state.button + ' →';
+      if (state.href.startsWith('/')) { el.removeAttribute?.('target'); el.removeAttribute?.('rel'); }
+      else { el.setAttribute('target', '_blank'); el.setAttribute('rel', 'noopener noreferrer'); }
+      el.setAttribute('aria-label', state.button + (state.href.startsWith('/') ? '' : ' (새 창)'));
     });
-    doc.querySelectorAll('[data-admission-pending]').forEach(el => {
-      el.textContent = state.pending;
-      el.hidden = !state.pending;
-    });
+    doc.querySelectorAll('[data-admission-pending]').forEach(el => { el.textContent = state.pending; el.hidden = !state.pending; });
     doc.querySelectorAll('[data-admission-card]').forEach(el => el.setAttribute('aria-label', state.title + ' 일정'));
+    doc.querySelectorAll('[data-round-status]').forEach(el => {
+      const status = roundStatus(rounds.find(r => r.id === el.getAttribute('data-round-status')), now);
+      el.textContent = status === 'OPEN' ? '접수중' : status === 'UPCOMING' ? '예정' : '접수 종료';
+      el.setAttribute('data-status', status.toLowerCase());
+    });
     return state;
   }
-  root.Admissions = {getState, update, rounds};
+  root.Admissions = {getState, update, rounds, roundStatus, data};
   if (typeof module !== 'undefined' && module.exports) module.exports = root.Admissions;
   if (root.document) {
     const start = () => { update(); root.setInterval(() => update(), 30000); };
-    if (root.document.readyState === 'loading') root.document.addEventListener('DOMContentLoaded', start);
-    else start();
+    if (root.document.readyState === 'loading') root.document.addEventListener('DOMContentLoaded', start); else start();
     root.document.addEventListener('visibilitychange', () => { if (!root.document.hidden) update(); });
   }
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -10,9 +10,10 @@
       const result = await response.json();
       if (!response.ok || !result.success) throw new Error('취업현황을 불러오지 못했습니다.');
       const rows = (result.data || []).slice(0, 8);
-      root.innerHTML = rows.length ? rows.map(row => `<article class="employment-mini-card"><span>${esc(row.graduation_year)}년 졸업</span><h3>${esc(row.company)}</h3><p>${esc(row.job)}</p><small>${esc(row.masked_name)} 동문</small></article>`).join('') : '<p class="employment-loading">공개된 취업현황을 준비 중입니다.</p>';
+      root.innerHTML = rows.length ? rows.map(row => `<article class="employment-mini-card"><span>${esc(row.graduation_year)}년 ${Number(row.graduation_year) > new Date().getFullYear() ? '졸업예정' : '졸업'}</span><h3>${esc(row.company)}</h3><p>${esc(row.job)}</p><small>${esc(row.masked_name)} 동문</small></article>`).join('') : '<p class="employment-loading">공개된 취업현황을 준비 중입니다.</p>';
     } catch (_) {
-      root.innerHTML = '<p class="employment-loading">취업현황은 전체 페이지에서 확인해 주세요.</p>';
+      // Retain server-rendered public examples when the live API is unavailable.
+      if (!root.querySelector('.employment-mini-card')) root.innerHTML = '<p class="employment-loading">취업현황은 전체 페이지에서 확인해 주세요.</p>';
     }
   });
 })();

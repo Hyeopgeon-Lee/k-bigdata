@@ -4,9 +4,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: '37 15 * * *' # KST 00:37, without creating Git commits
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -18,33 +20,29 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: 저장소 가져오기
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: 파이썬 준비
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-
-      - name: 인사이트 품질 검사
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: 기존 글·입시 검증
         run: |
           python tools/generate_post.py --check
           python tools/test_insights.py
           node tools/test_admission.cjs
-
-      - name: GitHub Pages 준비
-        uses: actions/configure-pages@v5
-
-      - name: 검색 가능한 정적 홈페이지 만들기
+          node tools/test_analytics.cjs
+      - uses: actions/configure-pages@v5
+      - name: 모집정보·검색 콘텐츠 정적 빌드
         run: python tools/build_site.py
-
-      - name: 홈페이지 묶음 만들기
-        uses: actions/upload-pages-artifact@v4
+      - name: SEO·RSS·개인정보·링크 검사 (실패 시 배포 중단)
+        run: python tools/test_site.py
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: _site
-
   deploy:
     environment:
       name: github-pages
@@ -55,73 +53,15 @@ jobs:
       - name: GitHub Pages 게시
         id: deployment
         uses: actions/deploy-pages@v4
-
   notify-indexnow:
     name: Bing·IndexNow 검색엔진 알림
     runs-on: ubuntu-latest
     needs: deploy
-    env:
-      SITE_HOST: ai.k-bigdata.kr
-      INDEXNOW_KEY: 3d3a35e839ee4f35b33dcc45ad0450cd
+    timeout-minutes: 10
     steps:
-      - name: 저장소 가져오기
-        uses: actions/checkout@v4
-
-      - name: 현재 사이트맵 만들기
-        run: python tools/build_site.py
-
-      - name: 공개된 IndexNow 키 확인
-        shell: bash
-        run: |
-          set -euo pipefail
-          key_url="https://${SITE_HOST}/${INDEXNOW_KEY}.txt"
-          for attempt in {1..18}; do
-            if curl --fail --silent --show-error "$key_url" | grep --fixed-strings --line-regexp "$INDEXNOW_KEY"; then
-              exit 0
-            fi
-            sleep 10
-          done
-          echo "IndexNow key was not available at $key_url" >&2
-          exit 1
-
-      - name: 사이트맵 전체 URL을 IndexNow에 알림
-        shell: bash
-        run: |
-          set -euo pipefail
-          mapfile -t urls < <(sed -n 's:.*<loc>\(.*\)</loc>.*:\1:p' _site/sitemap.xml)
-          if [ "${#urls[@]}" -eq 0 ]; then
-            echo "No URLs were found in sitemap.xml" >&2
-            exit 1
-          fi
-
-          url_json=$(printf '%s\n' "${urls[@]}" | jq --raw-input . | jq --slurp .)
-          jq --null-input \
-            --arg host "$SITE_HOST" \
-            --arg key "$INDEXNOW_KEY" \
-            --arg keyLocation "https://${SITE_HOST}/${INDEXNOW_KEY}.txt" \
-            --argjson urlList "$url_json" \
-            '{host: $host, key: $key, keyLocation: $keyLocation, urlList: $urlList}' \
-            > indexnow-payload.json
-
-          for attempt in {1..6}; do
-            status=$(curl --silent --show-error \
-              --output indexnow-response.txt \
-              --write-out '%{http_code}' \
-              --header 'Content-Type: application/json; charset=utf-8' \
-              --data-binary @indexnow-payload.json \
-              https://api.indexnow.org/indexnow)
-            if [ "$status" = "200" ] || [ "$status" = "202" ]; then
-              echo "IndexNow accepted ${#urls[@]} URLs with HTTP $status."
-              exit 0
-            fi
-            if [ "$status" = "429" ] || [[ "$status" =~ ^5 ]]; then
-              sleep $((attempt * 10))
-              continue
-            fi
-            echo "IndexNow returned HTTP $status" >&2
-            cat indexnow-response.txt >&2
-            exit 1
-          done
-          echo "IndexNow did not accept the URLs after 6 attempts (last HTTP $status)." >&2
-          cat indexnow-response.txt >&2
-          exit 1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 배포된 사이트맵·키 확인 후 전체 URL 알림
+        run: python tools/notify_indexnow.py
