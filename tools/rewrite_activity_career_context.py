@@ -265,8 +265,9 @@ def main() -> None:
             raise ValueError(f"Career editorial absent/too short {slug}")
         if "도움이 됩니다" in content or "이해하는 데" in content:
             raise AssertionError("Vague filler "+slug)
-        if "보장" in content and "않" not in content:
-            raise AssertionError("Unqualified hiring guarantee "+slug)
+        if re.search(r"(?:취업|채용)\s*(?:100%\s*)?보장|전원\s*취업|무조건\s*취업", content):
+            if not re.search(r"보장.{0,16}(?:않|아니|없)", content):
+                raise AssertionError("Unqualified hiring guarantee "+slug)
         if content in new_contexts.values():
             raise AssertionError("Duplicate career paragraph "+slug)
         new_contexts[slug]=content
