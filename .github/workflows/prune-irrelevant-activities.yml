@@ -1,0 +1,68 @@
+name: 학과 활동 모집공지·기술동향 삭제
+on:
+  push:
+    branches: [main]
+    paths:
+      - tools/prune_irrelevant_activities.py
+      - .github/workflows/prune-irrelevant-activities.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: prune-obsolete-activities
+  cancel-in-progress: false
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Remove 35 expired/unrelated posts from the public archive
+        run: python tools/prune_irrelevant_activities.py
+      - name: Build and validate activity pages and sitemap
+        run: |
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+          python - <<'PY'
+          import json,re
+          from pathlib import Path
+          root=Path(".")
+          exclusions=json.loads((root/"data/removed_activity_posts.json").read_text())
+          names=set(sum(exclusions["groups"].values(),[]))
+          assert len(names)==35
+          source=(root/"activities/index.html").read_text()
+          built=(root/"_site/activities/index.html").read_text()
+          assert source.count('class="activity-card"')==286
+          assert built.count('class="activity-card"')==286
+          sitemap=(root/"_site/sitemap.xml").read_text()
+          for name in names:
+              assert not (root/"activities"/name/"index.html").exists(),name
+              assert not (root/"_site"/"activities"/name/"index.html").exists(),name
+              assert f"/activities/{name}/" not in source,name
+              assert f"/activities/{name}/" not in built,name
+              assert f"/activities/{name}/" not in sitemap,name
+          assert (root/"_site"/"activities"/"kopo-738804"/"index.html").is_file()
+          assert (root/"_site"/"activities"/"kopo-727480"/"index.html").is_file()
+          print("DELETE_VALIDATED",len(names),"posts",286,"retained",flush=True)
+          PY
+      - name: Commit removed posts and updated routes
+        run: |
+          git config user.name "k-bigdata-site-bot"
+          git config user.email "site-bot@users.noreply.github.com"
+          git add -A activities/ assets/activities/ tools/build_site.py tools/test_site.py data/removed_activity_posts.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Remove 35 expired calls and unrelated technology-reference posts"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Trigger refreshed GitHub Pages publication
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run publish.yml --ref main

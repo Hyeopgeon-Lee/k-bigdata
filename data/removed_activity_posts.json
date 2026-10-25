@@ -1,0 +1,45 @@
+{
+  "updated_at": "2026-10-25",
+  "purpose": "Remove expired recruitment/participation notices and unrelated general technology/news reference material from the department activity showcase; retain real educational activities and outcomes.",
+  "groups": {
+    "expired_announcements": [
+      "kopo-738811",
+      "kopo-738806",
+      "kopo-734726",
+      "kopo-730244",
+      "kopo-734724",
+      "kopo-728998",
+      "kopo-734723",
+      "kopo-734722",
+      "kopo-727483",
+      "kopo-706932",
+      "kopo-707036",
+      "kopo-625388",
+      "kopo-631891",
+      "kopo-595583",
+      "kopo-746172",
+      "kopo-460887",
+      "kopo-459578",
+      "kopo-459577",
+      "kopo-458497",
+      "kopo-456658",
+      "kopo-454274",
+      "kopo-454062",
+      "kopo-453665",
+      "kopo-451147",
+      "kopo-450780",
+      "kopo-450315"
+    ],
+    "unrelated_reference": [
+      "kopo-495740",
+      "kopo-453342",
+      "kopo-451149",
+      "kopo-451953",
+      "kopo-451952",
+      "kopo-451148",
+      "kopo-450187",
+      "kopo-450160",
+      "kopo-445213"
+    ]
+  }
+}
