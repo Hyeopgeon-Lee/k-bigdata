@@ -90,8 +90,10 @@ def role_for(title: str, actual_body: str) -> str:
     return "소프트웨어·데이터 관련"
 
 def topic_from_title(title: str) -> str:
-    subject=title.split(",")[0].strip()
-    return subject if len(subject)<=49 else subject[:46].rstrip()+"…"
+    # Preserve distinguishing details after the comma; otherwise several
+    # different Java mentoring activities collapse into identical career copy.
+    subject=title.strip()
+    return subject if len(subject)<=68 else subject[:65].rstrip()+"…"
 
 def result_detail(title: str, actual: str) -> str:
     if re.search("논문|학술|연구",title):
