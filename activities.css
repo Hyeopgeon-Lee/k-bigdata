@@ -200,3 +200,13 @@
  .activity-content{font-size:1rem;line-height:1.82}
  .activity-content>section:not([class]) h2{margin-top:1.9rem}
 }
+
+/* Activity pages use the same global footer as the homepage.
+   Unlike the homepage, activities have no floating mobile application bar. */
+@media(max-width:640px){
+  body.activity-page{padding-bottom:0}
+  .activity-page .activity-pagination .activity-page-buttons{
+    display:flex;flex-wrap:nowrap;justify-content:flex-start;align-items:center;
+    max-width:100%;overflow-x:auto;overflow-y:hidden
+  }
+}
