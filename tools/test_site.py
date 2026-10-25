@@ -236,6 +236,35 @@ class ActivityPromotionTests(unittest.TestCase):
                         '활동에 등장한 기술 이해하기' in content or '전공과 진로의 연결' in content)
         self.assertGreaterEqual(enriched,10)
 
+    def test_activity_footer_matches_homepage_on_archive_and_details(self):
+        homepage = (OUT/'index.html').read_text(encoding='utf-8')
+        expected = re.search(r'<footer class="site-footer">.*?</footer>',homepage,re.S)
+        self.assertIsNotNone(expected)
+        self.assertIn('href="/privacy.html"',expected.group(0))
+        self.assertIn('class="footer-inner"',expected.group(0))
+        self.assertIn('class="footer-links"',expected.group(0))
+        for slug in [None] + [
+            re.search(r'<h3><a href="/activities/([^/]+)/"',card).group(1)
+            for card in self.cards
+        ]:
+            file = OUT/'activities/index.html' if slug is None else OUT/'activities'/slug/'index.html'
+            content = file.read_text(encoding='utf-8')
+            with self.subTest(page=slug or 'archive'):
+                footer = re.search(r'<footer class="site-footer">.*?</footer>',content,re.S)
+                self.assertIsNotNone(footer)
+                self.assertEqual(footer.group(0),expected.group(0))
+                self.assertNotIn('class="article-footer',content)
+
+    def test_mobile_activity_pagination_stays_on_one_row(self):
+        script = (OUT/'activity-pagination.js').read_text(encoding='utf-8')
+        css = (OUT/'activities.css').read_text(encoding='utf-8')
+        self.assertIn("matchMedia('(max-width: 640px)')",script)
+        self.assertIn('start = end = state.page',script)
+        self.assertIn("compact ? 3 : 5",script)
+        self.assertIn('.activity-page-buttons{display:flex;align-items:center;justify-content:center;flex-wrap:nowrap',css)
+        self.assertIn('overflow-x:auto',css)
+        self.assertIn('body.activity-page{padding-bottom:0}',css)
+
     def test_career_relevance_is_specific_and_employment_oriented(self):
         # Generic AI boilerplate used in past editorial passes must not return.
         stale = (
