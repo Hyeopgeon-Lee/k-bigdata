@@ -19,7 +19,20 @@ POSTS=json.loads(r'''[{"id":"766164","slug":"sesac-hackathon-grand-prize-2025","
 PUBLISHED=datetime.now(timezone(timedelta(hours=9))).isoformat(timespec="seconds")
 def h(x):return escape(str(x),quote=True)
 
-def mosaic(img):
+# Supplemental visual review of missed front/side-profile faces, in image-relative boxes.
+# Keep this table in addition to the automatic Haar face detectors.
+MANUAL_FACE_REGIONS={
+    "766164-1":[(.386,.445,.456,.538)],
+    "781894-1":[(.942,.626,1.0,.752)],
+    "781893-1":[(.572,.482,.622,.560),(.020,.602,.105,.690)],
+    "781892-1":[(.015,.653,.095,.772),(.125,.633,.218,.765)],
+    "777791-1":[(.750,.560,.830,.670),(.927,.568,.995,.690),(.515,.573,.584,.680)],
+    "780387-1":[(.966,.125,1.0,.224)],
+    "780387-2":[(.832,.595,1.0,.940)],
+    "780387-3":[(.780,.526,.886,.640),(.933,.509,1.0,.635)],
+}
+
+def mosaic(img,key):
     arr=cv2.cvtColor(np.asarray(img),cv2.COLOR_RGB2BGR)
     gray=cv2.cvtColor(arr,cv2.COLOR_BGR2GRAY)
     faces=[]
@@ -29,6 +42,8 @@ def mosaic(img):
     mirror=cv2.flip(gray,1)
     side=cv2.CascadeClassifier(cv2.data.haarcascades+"haarcascade_profileface.xml")
     faces.extend([(gray.shape[1]-x-w,y,w,ht) for x,y,w,ht in side.detectMultiScale(mirror,scaleFactor=1.08,minNeighbors=3,minSize=(24,24))])
+    for left,top,right,bottom in MANUAL_FACE_REGIONS.get(key,[]):
+        faces.append((int(left*arr.shape[1]),int(top*arr.shape[0]),int((right-left)*arr.shape[1]),int((bottom-top)*arr.shape[0])))
     for x,y,w,ht in faces:
         m=max(w,ht)//5;x0=max(0,x-m);y0=max(0,y-m);x1=min(arr.shape[1],x+w+m);y1=min(arr.shape[0],y+ht+m)
         region=arr[y0:y1,x0:x1]
@@ -98,7 +113,7 @@ for p in POSTS:
             original=Image.open(io.BytesIO(rsp.content))
             original=ImageOps.exif_transpose(original).convert("RGB")
             original.thumbnail((1440,1440),Image.Resampling.LANCZOS)
-            edited,number=mosaic(original)
+            edited,number=mosaic(original,f'{seq}-{i+1}')
             path=f"assets/activities/official-board/{seq}-{i+1}.jpg"
             target=ROOT/path;target.parent.mkdir(parents=True,exist_ok=True)
             edited.save(target,"JPEG",quality=85,progressive=True,optimize=True)
