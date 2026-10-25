@@ -7,7 +7,6 @@ No change to photos, date, original claim category or source URL.
 """
 import json,re,html
 from pathlib import Path
-from bs4 import BeautifulSoup
 
 ROOT=Path(__file__).resolve().parents[1]
 ARCH=ROOT/"activities"/"index.html"
