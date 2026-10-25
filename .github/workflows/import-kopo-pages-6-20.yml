@@ -40,8 +40,12 @@ jobs:
           git config user.name "k-bigdata-site-bot"
           git config user.email "site-bot@users.noreply.github.com"
           git add data/kopo_official_pages_6_20.json activities/index.html tools/build_site.py activities/kopo-*/index.html assets/activities/official-board/
-          git commit -m "Publish KOPO board pages 6 to 10 with protected images"
-          git push origin HEAD:main
+          if git diff --cached --quiet; then
+            echo "Pages 6–10 already imported"
+          else
+            git commit -m "Publish KOPO board pages 6 to 10 with protected images"
+            git push origin HEAD:main
+          fi
       - name: Import pages 11–15
         run: python tools/import_kopo_pages_6_20.py --start 11 --end 15
       - name: Validate batch 11–15
@@ -51,8 +55,12 @@ jobs:
       - name: Commit second batch
         run: |
           git add activities/index.html tools/build_site.py activities/kopo-*/index.html assets/activities/official-board/
-          git commit -m "Publish KOPO board pages 11 to 15 with protected images"
-          git push origin HEAD:main
+          if git diff --cached --quiet; then
+            echo "Pages 11–15 already imported"
+          else
+            git commit -m "Publish KOPO board pages 11 to 15 with protected images"
+            git push origin HEAD:main
+          fi
       - name: Import pages 16–20
         run: python tools/import_kopo_pages_6_20.py --start 16 --end 20
       - name: Validate batch 16–20 and published count
@@ -74,8 +82,12 @@ jobs:
       - name: Commit final batch
         run: |
           git add activities/index.html tools/build_site.py activities/kopo-*/index.html assets/activities/official-board/
-          git commit -m "Publish KOPO board pages 16 to 20 and complete 150-post archive"
-          git push origin HEAD:main
+          if git diff --cached --quiet; then
+            echo "Pages 16–20 already imported"
+          else
+            git commit -m "Publish KOPO board pages 16 to 20 and complete 150-post archive"
+            git push origin HEAD:main
+          fi
       - name: Publish complete site through GitHub Pages
         env:
           GH_TOKEN: ${{ github.token }}

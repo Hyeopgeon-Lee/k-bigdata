@@ -83,11 +83,16 @@ def formatted_article(entry,body):
         if len(dated)>1:title+=f" · {entry['id']}"
     # Summarized article sections taken strictly from the official detailed text.
     clean=site.cleaned(body)
-    if len(clean)<30: raise RuntimeError(f"Very short official text for {entry['id']}")
-    try:a,b=site.chunks(clean)
-    except ValueError:
-        midpoint=max(1,len(clean)//2)
-        a,b=clean[:midpoint],clean[midpoint:]
+    if len(clean)<30:
+        # Some 2021-era notices have title/attachment only. Preserve provenance,
+        # without fabricating a fuller event report or a current deadline.
+        a=f"한국폴리텍대학 서울강서캠퍼스 학과 게시판에 {entry['date']} 등록된 공식 기록입니다."
+        b=("원문 본문: "+clean) if clean else "원문에 별도 설명 문장이 없습니다."
+    else:
+        try:a,b=site.chunks(clean)
+        except ValueError:
+            midpoint=max(1,len(clean)//2)
+            a,b=clean[:midpoint],clean[midpoint:]
     # Extract a source-grounded lead, stripping calls to action and hashtags.
     first=re.split(r"(?<=[.!?。])\s+",clean,1)[0].strip()
     if 28<=len(first)<=190 and not first.startswith(("안녕하세요","감사")):
