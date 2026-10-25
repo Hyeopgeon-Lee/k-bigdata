@@ -1,0 +1,56 @@
+name: 학생 주도 학과 활동 진로 문구 검증 및 정비
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/enforce_student_led_career.py'
+      - '.github/workflows/student-led-career-policy.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: student-led-career-policy
+  cancel-in-progress: false
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Remove non-student-led career boxes from all active posts
+        run: python tools/enforce_student_led_career.py
+      - name: Remove obsolete promotional cardnews detail pages
+        run: |
+          git rm -f -- activities/kopo-591399/index.html activities/kopo-591393/index.html
+          test ! -f activities/kopo-591399/index.html
+          test ! -f activities/kopo-591393/index.html
+      - name: Validate source and website without network
+        run: |
+          python -m py_compile tools/enforce_student_led_career.py tools/activity_promo.py tools/build_site.py tools/test_site.py
+          node --check activity-pagination.js
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+      - name: Commit approved copy and policy report
+        run: |
+          git config user.name 'k-bigdata-site-bot'
+          git config user.email 'site-bot@users.noreply.github.com'
+          git add activities/ reports/student_led_career_policy.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Limit career relevance to student-led activities and remove cardnews"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Deploy reviewed homepage
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run publish.yml --ref main
