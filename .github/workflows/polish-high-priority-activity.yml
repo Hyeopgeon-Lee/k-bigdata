@@ -1,0 +1,41 @@
+name: 학과 홍보 기사 28건 정밀 교열
+on:
+  push:
+    branches: [main]
+    paths:
+      - tools/polish_high_priority_activity.py
+      - .github/workflows/polish-high-priority-activity.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+jobs:
+  edit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply detailed fact-grounded edits and KIPS award correction
+        run: python tools/polish_high_priority_activity.py
+      - name: Verify rebuilt site and all links
+        run: |
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+      - name: Commit editorially revised activity posts
+        run: |
+          git config user.name "k-bigdata-site-bot"
+          git config user.email "site-bot@users.noreply.github.com"
+          git add activities/ reports/activity_promotion_edits_2026-10-25.md
+          git commit -m "Precisely polish 28 high-impact articles and verify ACK 2024 awards"
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Deploy final promotional edits
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run publish.yml --ref main
