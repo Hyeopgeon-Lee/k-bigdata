@@ -15,6 +15,7 @@ import json
 import re
 from bs4 import BeautifulSoup
 from activity_promo import CURATED
+from rewrite_activity_career_context import generate_career_text, CAREER_CATEGORIES
 
 ROOT = Path(__file__).resolve().parents[1]
 ARCHIVE = ROOT / "activities" / "index.html"
@@ -158,20 +159,6 @@ TECH = [
  ("LLM", "대규모 언어모델 LLM은 자연어 입력을 바탕으로 텍스트 생성과 분류, 요약 등 언어 처리 기능을 구현할 때 활용됩니다."),
  ("OCR", "OCR은 이미지나 스캔 문서에 포함된 글자를 추출해 디지털 텍스트로 변환하는 기술입니다."),
 ]
-TOPIC_CONTEXT = {
- "수상·성과": "수상 결과와 함께 작품의 문제 정의, 적용 기술, 구현 방법을 살펴보면 공모전 경험이 소프트웨어 개발 역량과 어떻게 연결되는지 이해하는 데 도움이 됩니다.",
- "취업·진로": "IT 직무를 탐색할 때는 채용기업의 업무 분야와 요구 기술을 확인하고, 자신의 프로젝트 경험을 직무별 역량과 연결해 정리하는 과정이 중요합니다.",
- "멘토링·진로": "선후배의 학습·취업 경험을 비교할 때는 준비 과정에서 활용한 기술, 프로젝트 수행 방식, 진로 선택에 영향을 준 요소를 함께 확인할 수 있습니다.",
- "전문가 특강": "산업 현장 사례는 교과목에서 배우는 기술이 기업의 개발·운영 업무와 어떤 관계가 있는지 이해하는 참고 자료가 됩니다.",
- "진로체험": "단순한 기술 설명을 넘어 직접 데이터를 다루거나 프로그램을 구현하는 경험은 소프트웨어와 인공지능 분야의 진로를 구체적으로 탐색하는 데 도움이 됩니다.",
- "교원 연수": "교원 연수의 실습 도구와 학습 주제는 데이터를 분석하고 AI 기술을 수업에 적용하는 방법을 탐색하기 위한 참고 사례입니다.",
- "학생 프로젝트": "프로젝트에서는 구현 결과뿐 아니라 요구사항, 기능 설계, 사용 기술, 팀의 문제 해결 과정을 함께 살펴볼 때 학습 성과를 더 구체적으로 이해할 수 있습니다.",
- "연구·학술": "연구 활동을 이해할 때는 문제 정의와 데이터·실험 방법, 분석 결과를 구분해 살펴보는 것이 중요합니다.",
- "산학협력": "기업과 학교가 다루는 기술 과제를 통해 실제 개발 환경에서 필요한 문제 정의, 기술 검토, 성과 검증 과정을 살펴볼 수 있습니다.",
- "사회공헌·봉사": "지역사회 활동은 기술적 지식뿐 아니라 사용자와의 소통, 현장 문제 해결, 협업의 중요성을 살펴보는 기회입니다.",
- "지역사회 교육": "참가 대상에 맞춰 소프트웨어와 데이터 기술을 설명하고 실습하는 활동은 기술 활용의 범위를 넓히는 사례가 됩니다.",
- "학과 행사": "학과 행사는 학생들의 교류와 공동 활동을 기록한 자료로, 전공 수업 외의 캠퍼스 생활을 확인할 수 있습니다.",
-}
 FACT_CORRECTIONS = {
  "kopo-591393": (
   r'<section><h2>행사 내용</h2><p>.*?</p></section><section><h2>참여 활동</h2><p>.*?</p></section>',
@@ -222,7 +209,7 @@ def amplify_lead(source_lead: str, source_body: str, headline: str) -> str:
                 return lead+" "+sentence
     return lead
 
-def contextual_sections(body: str, category: str, title: str) -> str:
+def contextual_sections(body: str, category: str, title: str, slug: str, lead: str) -> str:
     text = plaintext(body)
     techs = []
     for keyword, explanation in TECH:
@@ -237,9 +224,11 @@ def contextual_sections(body: str, category: str, title: str) -> str:
     if techs:
         out=' '.join(expl for _, expl in techs[:2])
         output += '<section class="activity-editorial-explainer"><h2>활동에 등장한 기술 이해하기</h2><p>'+html.escape(out)+'</p></section>'
-    if category in TOPIC_CONTEXT and len(text)>=160:
-        output += ('<section class="activity-editorial-context"><h2>전공과 진로의 연결</h2><p>'
-                   + html.escape(TOPIC_CONTEXT[category]) + '</p></section>')
+    if category in CAREER_CATEGORIES and len(text)>=160:
+        career = generate_career_text(slug, title, category, text, lead)
+        if career:
+            output += ('<section class="activity-editorial-context"><h2>전공과 진로의 연결</h2><p>'
+                       + html.escape(career) + '</p></section>')
     return output
 
 def restructure_body(markup: str) -> tuple[str,int]:
@@ -362,7 +351,7 @@ def main():
         if re.search(r'class="activity-editorial-(?:context|explainer)"',body):
             counts["contextual_expansions_present"]+=1
         if not re.search(r'class="activity-editorial-(?:context|explainer)"',body):
-            expansion=contextual_sections(body,category,new_title)
+            expansion=contextual_sections(body,category,new_title,slug,new_lead)
             if expansion:
                 body += '\n' + expansion
                 counts['contextual_expansions']+=1

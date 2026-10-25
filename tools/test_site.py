@@ -235,6 +235,57 @@ class ActivityPromotionTests(unittest.TestCase):
                         '활동에 등장한 기술 이해하기' in content or '전공과 진로의 연결' in content)
         self.assertGreaterEqual(enriched,200)
 
+    def test_career_relevance_is_specific_and_employment_oriented(self):
+        # Generic AI boilerplate used in past editorial passes must not return.
+        stale = (
+            '수상 결과와 함께 작품의 문제 정의',
+            '산업 현장 사례는 교과목에서 배우는 기술',
+            '학과 행사는 학생들의 교류와 공동 활동',
+            '멘토링 활동은 선후배 경험 공유',
+            '단순한 기술 설명을 넘어 직접 데이터를 다루거나',
+            '교원 연수의 실습 도구와 학습 주제',
+            '지역사회 활동은 기술적 지식뿐 아니라',
+            '프로젝트에서는 구현 결과뿐 아니라 요구사항',
+        )
+        careers = []
+        no_context = 0
+        for card in self.cards:
+            slug = re.search(r'<h3><a href="/activities/([^/]+)/"', card).group(1)
+            page = (OUT/'activities'/slug/'index.html').read_text(encoding='utf-8')
+            sections = re.findall(
+                r'<section class="activity-editorial-context">\s*'
+                r'<h2>전공과 진로의 연결</h2>\s*<p>(.*?)</p>\s*</section>',
+                page, re.S)
+            with self.subTest(slug=slug):
+                self.assertLessEqual(len(sections), 1)
+                if not sections:
+                    no_context += 1
+                    continue
+                value = unescape(re.sub(r'<[^>]+>', '',sections[0])).strip()
+                self.assertGreaterEqual(len(value),95)
+                self.assertLessEqual(len(value),550)
+                self.assertTrue(any(word in value for word in (
+                    '취업','포트폴리오','직무','채용','면접','자기소개서'
+                )), 'Career value must be concrete')
+                for generic in stale:
+                    self.assertNotIn(generic, value)
+                self.assertFalse(value.endswith('도움이 됩니다.'))
+                careers.append(value)
+        self.assertGreaterEqual(len(careers),245)
+        self.assertLessEqual(no_context,40)
+        self.assertEqual(len(careers),len(set(careers)))
+
+    def test_career_copy_keeps_awards_distinct_from_hiring_promises(self):
+        award = (OUT/'activities'/'sesac-hackathon-grand-prize-2025'/'index.html').read_text(encoding='utf-8')
+        teacher = (OUT/'activities'/'teacher-ai-llm-workshop-2026'/'index.html').read_text(encoding='utf-8')
+        employer = (OUT/'activities'/'kopo-777680'/'index.html').read_text(encoding='utf-8')
+        self.assertIn('수상 증빙',award)
+        self.assertIn('포트폴리오',award)
+        self.assertIn('취업',teacher)
+        self.assertIn('포트폴리오',employer)
+        self.assertNotIn('취업 보장',award)
+        self.assertNotIn('전원 취업',award)
+
     def test_filters_are_keyboard_accessible_and_have_real_content(self):
         script = (OUT/'activity-pagination.js').read_text(encoding='utf-8')
         stylesheet = (OUT/'activities.css').read_text(encoding='utf-8')
