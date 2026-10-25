@@ -1,0 +1,324 @@
+{
+  "records": [
+    {
+      "id": "542542",
+      "page": 21,
+      "expected_images": 3,
+      "downloaded": 3,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "542541",
+      "page": 21,
+      "expected_images": 2,
+      "downloaded": 2,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "539052",
+      "page": 21,
+      "expected_images": 2,
+      "downloaded": 2,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "538678",
+      "page": 21,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "538126",
+      "page": 21,
+      "expected_images": 2,
+      "downloaded": 2,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "538124",
+      "page": 21,
+      "expected_images": 2,
+      "downloaded": 2,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "536528",
+      "page": 21,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "536526",
+      "page": 21,
+      "expected_images": 4,
+      "downloaded": 4,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "534256",
+      "page": 21,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "534254",
+      "page": 21,
+      "expected_images": 3,
+      "downloaded": 3,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "532685",
+      "page": 22,
+      "expected_images": 3,
+      "downloaded": 3,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "528004",
+      "page": 22,
+      "expected_images": 3,
+      "downloaded": 3,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "528003",
+      "page": 22,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "527126",
+      "page": 22,
+      "expected_images": 6,
+      "downloaded": 6,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "522779",
+      "page": 22,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "522124",
+      "page": 22,
+      "expected_images": 3,
+      "downloaded": 3,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "521877",
+      "page": 22,
+      "expected_images": 7,
+      "downloaded": 7,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "518199",
+      "page": 22,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "518197",
+      "page": 22,
+      "expected_images": 5,
+      "downloaded": 5,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "516897",
+      "page": 22,
+      "expected_images": 7,
+      "downloaded": 7,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "516851",
+      "page": 23,
+      "expected_images": 2,
+      "downloaded": 2,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "516833",
+      "page": 23,
+      "expected_images": 2,
+      "downloaded": 2,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "516832",
+      "page": 23,
+      "expected_images": 3,
+      "downloaded": 3,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "512392",
+      "page": 23,
+      "expected_images": 3,
+      "downloaded": 3,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "512068",
+      "page": 23,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "511067",
+      "page": 23,
+      "expected_images": 4,
+      "downloaded": 4,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "509746",
+      "page": 23,
+      "expected_images": 3,
+      "downloaded": 3,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "509708",
+      "page": 23,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "507013",
+      "page": 23,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "504775",
+      "page": 23,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "504258",
+      "page": 24,
+      "expected_images": 4,
+      "downloaded": 4,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "504250",
+      "page": 24,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "501832",
+      "page": 24,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "501202",
+      "page": 24,
+      "expected_images": 3,
+      "downloaded": 3,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "500990",
+      "page": 24,
+      "expected_images": 4,
+      "downloaded": 4,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "500785",
+      "page": 24,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "500206",
+      "page": 24,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "500205",
+      "page": 24,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "499817",
+      "page": 24,
+      "expected_images": 2,
+      "downloaded": 2,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "499350",
+      "page": 24,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    }
+  ]
+}
