@@ -33,7 +33,7 @@ ROLE_MATCHES = [
     (r"LangChain|LangGraph|LLM|RAG|생성형 AI|언어모델|비전언어모델|자연어처리|OCR|이미지 인식|인공지능|AI 에이전트", "AI 응용·소프트웨어 개발"),
     (r"OpenCV|영상처리|컴퓨터비전|얼굴 인식|이미지 분류", "컴퓨터비전·AI 개발"),
     (r"Spark|Hadoop|맵리듀스|데이터 파이프라인|데이터 압축|데이터엔지니어|빅데이터 처리", "데이터 엔지니어링"),
-    (r"RStudio|통계|데이터 분석|데이터 시각화|소셜데이터|SNS분석|소셜 빅데이터", "데이터 분석·시각화"),
+    (r"RStudio|통계|데이터 분석|데이터 시각화|소셜데이터|SNS분석|소셜 빅데이터|빅데이터|SNS 데이터", "데이터 분석·시각화"),
     (r"Spring|Java|JPA|MyBatis|MariaDB|SQL|DB|웹 API|웹 개발|서버 개발", "백엔드·데이터베이스 개발"),
     (r"Flutter|앱 개발|모바일|UI/UX|React|Vue|프론트엔드|웹디자인", "프론트엔드·모바일 서비스 개발"),
     (r"보안|정보보호|암호화|블록체인", "정보보안·서비스 개발"),
@@ -241,6 +241,18 @@ def generate_career_text(slug: str, title: str, category: str, actual: str, lead
                 f"관련 {roles} 직무를 준비한다면 최신 도구와 요구 역량을 따로 확인하고 실제 구현한 과제를 포트폴리오에 담아야 합니다.")
     return None
 
+def correct_subject_particle(content: str, title: str) -> str:
+    # A quoted activity title ending in a vowel takes 는, not 은.
+    # Avoid unnatural phrasing such as '논문지 게재’은.
+    term="‘"+topic_from_title(title)+"’"
+    letters=re.findall(r'[가-힣]',topic_from_title(title))
+    if not letters:
+        particle="는"
+    else:
+        particle="은" if (ord(letters[-1])-0xAC00)%28 else "는"
+    return content.replace(term+"은",term+particle)
+
+
 def main() -> None:
     index=INDEX.read_text(encoding="utf-8")
     cards={}
@@ -278,6 +290,8 @@ def main() -> None:
             stats['unrelated_or_very_thin_without_context']+=1
             continue
         content=generate_career_text(slug,title,category,original,lead)
+        if content:
+            content=correct_subject_particle(content,title)
         if not content or len(content)<95:
             raise ValueError(f"Career editorial absent/too short {slug}")
         if "도움이 됩니다" in content or "이해하는 데" in content:
