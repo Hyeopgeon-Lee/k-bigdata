@@ -15,3 +15,11 @@ for x in sp.find_all('form'):
  if any(key in str(x) for key in ('board','bbs','list')):
   print('FORM',str(x)[:2000])
 print('SCRIPTS',[(x.get('src'),x.text[:800] if x.text and ('fn_view' in x.text or 'goView' in x.text) else '') for x in sp.find_all('script')][-18:])
+
+jsurl='https://www.kopo.ac.kr/js/kopo/board.js?ver1.4'
+j=s.get(jsurl,timeout=30)
+print('JS_GET',j.status_code,len(j.content))
+for phrase in ('fn_board_detail','board_detail','prdbbsSeq'):
+ pos=j.text.find(phrase)
+ print('JS_SNIPPET',phrase,pos,repr(j.text[max(0,pos-600):pos+1800]))
+print('INLINE_FN',[(x.text[x.text.find('fn_board_detail')-300:x.text.find('fn_board_detail')+1000]) for x in sp.find_all('script') if 'fn_board_detail' in x.text][:5])
