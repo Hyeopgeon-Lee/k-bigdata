@@ -319,6 +319,331 @@
       "downloaded": 1,
       "failed": [],
       "unsupported": []
+    },
+    {
+      "id": "499135",
+      "page": 25,
+      "expected_images": 3,
+      "downloaded": 3,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "498894",
+      "page": 25,
+      "expected_images": 3,
+      "downloaded": 3,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "498290",
+      "page": 25,
+      "expected_images": 2,
+      "downloaded": 2,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "497840",
+      "page": 25,
+      "expected_images": 2,
+      "downloaded": 2,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "497019",
+      "page": 25,
+      "expected_images": 2,
+      "downloaded": 2,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "495740",
+      "page": 25,
+      "expected_images": 0,
+      "downloaded": 0,
+      "failed": [],
+      "unsupported": [
+        "http://imgnews.naver.net/image/003/2018/03/04/NISI20180119_0000096546_web_20180304060206533.jpg?type=w647",
+        "http://imgnews.naver.net/image/003/2018/03/04/NISI20180302_0000115173_web_20180304060206539.jpg?type=w647"
+      ]
+    },
+    {
+      "id": "491736",
+      "page": 25,
+      "expected_images": 3,
+      "downloaded": 3,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "490345",
+      "page": 25,
+      "expected_images": 2,
+      "downloaded": 2,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "486822",
+      "page": 25,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "486358",
+      "page": 25,
+      "expected_images": 3,
+      "downloaded": 3,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "485605",
+      "page": 26,
+      "expected_images": 3,
+      "downloaded": 3,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "485394",
+      "page": 26,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "483717",
+      "page": 26,
+      "expected_images": 4,
+      "downloaded": 4,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "482129",
+      "page": 26,
+      "expected_images": 3,
+      "downloaded": 3,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "481777",
+      "page": 26,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "481308",
+      "page": 26,
+      "expected_images": 4,
+      "downloaded": 4,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "480598",
+      "page": 26,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "479985",
+      "page": 26,
+      "expected_images": 3,
+      "downloaded": 3,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "479983",
+      "page": 26,
+      "expected_images": 3,
+      "downloaded": 3,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "478685",
+      "page": 26,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "478684",
+      "page": 27,
+      "expected_images": 3,
+      "downloaded": 3,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "478683",
+      "page": 27,
+      "expected_images": 2,
+      "downloaded": 2,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "475993",
+      "page": 27,
+      "expected_images": 3,
+      "downloaded": 3,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "475988",
+      "page": 27,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "475984",
+      "page": 27,
+      "expected_images": 3,
+      "downloaded": 3,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "474640",
+      "page": 27,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "474345",
+      "page": 27,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "471961",
+      "page": 27,
+      "expected_images": 4,
+      "downloaded": 4,
+      "failed": [],
+      "unsupported": [
+        "http://img.yonhapnews.co.kr/etc/inner/KR/2017/08/28/AKR20170828138400848_01_i.jpg"
+      ]
+    },
+    {
+      "id": "471648",
+      "page": 27,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "469747",
+      "page": 27,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "469475",
+      "page": 28,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "468628",
+      "page": 28,
+      "expected_images": 4,
+      "downloaded": 4,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "467181",
+      "page": 28,
+      "expected_images": 4,
+      "downloaded": 4,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "466253",
+      "page": 28,
+      "expected_images": 0,
+      "downloaded": 0,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "466128",
+      "page": 28,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "464839",
+      "page": 28,
+      "expected_images": 4,
+      "downloaded": 4,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "464638",
+      "page": 28,
+      "expected_images": 6,
+      "downloaded": 6,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "464391",
+      "page": 28,
+      "expected_images": 6,
+      "downloaded": 6,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "464124",
+      "page": 28,
+      "expected_images": 2,
+      "downloaded": 2,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "463924",
+      "page": 28,
+      "expected_images": 2,
+      "downloaded": 2,
+      "failed": [],
+      "unsupported": []
     }
   ]
 }
