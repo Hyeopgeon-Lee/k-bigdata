@@ -11,6 +11,7 @@ import json
 import re
 from pathlib import Path
 from functools import lru_cache
+from admission_build import SEO_FOOTER_LINKS
 
 ROOT = Path(__file__).resolve().parents[1]
 URL = "https://ai.k-bigdata.kr"
@@ -291,7 +292,7 @@ def shared_home_footer() -> str:
     match = re.search(r'<footer class="site-footer">.*?</footer>', homepage, re.S)
     if not match:
         raise ValueError("Main homepage footer is missing")
-    return match.group(0)
+    return match.group(0).replace('</footer>', SEO_FOOTER_LINKS+'</footer>')
 
 
 def use_home_footer(source: str) -> str:
