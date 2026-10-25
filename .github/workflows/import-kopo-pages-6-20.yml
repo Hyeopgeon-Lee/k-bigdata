@@ -1,0 +1,82 @@
+name: KOPO 학과소식 6~20페이지 게시
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/import_kopo_pages_6_20.py'
+      - '.github/workflows/import-kopo-pages-6-20.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: kopo-pages-6-20
+  cancel-in-progress: false
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Dependencies for source article and image processing
+        run: pip install requests beautifulsoup4 pillow 'opencv-python-headless==4.11.0.86' 'numpy<2'
+      - name: Snapshot all official page lists
+        run: python tools/import_kopo_pages_6_20.py --scan
+      - name: Import pages 6–10
+        run: python tools/import_kopo_pages_6_20.py --start 6 --end 10
+      - name: Validate batch 6–10
+        run: |
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+      - name: Commit first batch
+        run: |
+          git config user.name "k-bigdata-site-bot"
+          git config user.email "site-bot@users.noreply.github.com"
+          git add data/kopo_official_pages_6_20.json activities/index.html tools/build_site.py activities/kopo-*/index.html assets/activities/official-board/
+          git commit -m "Publish KOPO board pages 6 to 10 with protected images"
+          git push origin HEAD:main
+      - name: Import pages 11–15
+        run: python tools/import_kopo_pages_6_20.py --start 11 --end 15
+      - name: Validate batch 11–15
+        run: |
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+      - name: Commit second batch
+        run: |
+          git add activities/index.html tools/build_site.py activities/kopo-*/index.html assets/activities/official-board/
+          git commit -m "Publish KOPO board pages 11 to 15 with protected images"
+          git push origin HEAD:main
+      - name: Import pages 16–20
+        run: python tools/import_kopo_pages_6_20.py --start 16 --end 20
+      - name: Validate batch 16–20 and published count
+        run: |
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          root=Path(".")
+          rows=json.loads((root/"data/kopo_official_pages_6_20.json").read_text())
+          missing=[e["id"] for e in rows if not (root/"activities"/("kopo-"+e["id"])/"index.html").exists()]
+          assert len(rows)==150 and not missing, f"Missing migrated posts: {missing}"
+          sitemap=(root/"_site"/"sitemap.xml").read_text()
+          assert all("/activities/kopo-"+e["id"]+"/" in sitemap for e in rows)
+          assert (root/"activities"/"index.html").read_text().count('class="activity-card"')>=201
+          print("150 POSTS VERIFIED, ALL IN SITEMAP, ARCHIVE PRESERVED")
+          PY
+      - name: Commit final batch
+        run: |
+          git add activities/index.html tools/build_site.py activities/kopo-*/index.html assets/activities/official-board/
+          git commit -m "Publish KOPO board pages 16 to 20 and complete 150-post archive"
+          git push origin HEAD:main
+      - name: Publish complete site through GitHub Pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run publish.yml --ref main

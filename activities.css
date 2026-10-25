@@ -54,3 +54,5 @@
 .activity-page-button.selected,.activity-page-button:hover{background:#133f75;color:white;border-color:#133f75}
 .activity-page-button:focus-visible{outline:3px solid #7fc9ff;outline-offset:2px}
 @media(max-width:750px){.activity-pagination{justify-content:center}.activity-page-status{width:100%;text-align:center}}
+
+.activity-page-button:disabled{opacity:.42;cursor:not-allowed}.activity-pagination-dots{display:inline-flex;align-items:center;justify-content:center;min-width:1rem;font-weight:800;color:#60768f}
