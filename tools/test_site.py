@@ -138,4 +138,78 @@ class SiteTests(unittest.TestCase):
     def test_indexnow_empty_and_invalid(self):
         for xml in (b'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"/>',b'not XML'):
             with self.assertRaises((ValueError,ET.ParseError)):urls_from_sitemap(xml)
+
+class ActivityPromotionTests(unittest.TestCase):
+    """Editorial, preservation, semantic markup and archive regression gate."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.index = (OUT/'activities/index.html').read_text(encoding='utf-8')
+        cls.cards = re.findall(r'<article class="activity-card">.*?</article>',cls.index,re.S)
+        cls.source_index = (ROOT/'activities/index.html').read_text(encoding='utf-8')
+        cls.source_cards = re.findall(r'<article class="activity-card">.*?</article>',cls.source_index,re.S)
+
+    def test_all_286_urls_dates_media_preserved(self):
+        self.assertEqual(len(self.cards),286)
+        self.assertEqual(len(self.source_cards),286)
+        def indexed(cards):
+            return {re.search(r'<h3><a href="/activities/([^/]+)/"',c).group(1):c for c in cards}
+        before,after = indexed(self.source_cards),indexed(self.cards)
+        self.assertEqual(set(before),set(after))
+        self.assertNotIn('kopo-738806/',self.index)
+        self.assertNotIn('kopo-707036/',self.index)
+        for slug in before:
+            with self.subTest(slug=slug):
+                src = before[slug]
+                dst = after[slug]
+                self.assertEqual(re.search(r'<time datetime="([^"]+)"',src).group(1),
+                                 re.search(r'<time datetime="([^"]+)"',dst).group(1))
+                self.assertEqual(re.findall(r'<img\b[^>]*\bsrc="([^"]+)"',src),
+                                 re.findall(r'<img\b[^>]*\bsrc="([^"]+)"',dst))
+                self.assertTrue((OUT/'activities'/slug/'index.html').is_file())
+
+    def test_main_promotional_gallery_and_source_titles(self):
+        self.assertIn('class="activity-featured"',self.index)
+        self.assertEqual(self.index.count('class="activity-feature-card"'),3)
+        self.assertIn('현장에서 배우고,',self.index)
+        self.assertIn('전체 학과 활동',self.index)
+        self.assertEqual(len(re.findall(r'alt="학과 활동 현장 사진"',self.index)),0)
+        recent = sum(re.search(r'<time datetime="(\d{4})-',c).group(1) in ('2025','2026') for c in self.cards)
+        self.assertEqual(recent,61)
+        for title in ('새싹 해커톤 대상','엔씨IDS 재직 졸업생','AI·클라우드 실습환경'):
+            self.assertIn(title,self.index)
+
+    def test_details_have_contextual_navigation_and_consistent_claims(self):
+        related = 0
+        facts = 0
+        for card in self.cards:
+            slug = re.search(r'<h3><a href="/activities/([^/]+)/"',card).group(1)
+            built = (OUT/'activities'/slug/'index.html').read_text(encoding='utf-8')
+            raw = (ROOT/'activities'/slug/'index.html').read_text(encoding='utf-8')
+            with self.subTest(slug=slug):
+                self.assertEqual(
+                    re.findall(r'<img\b[^>]*\bsrc="([^"]+)"',raw),
+                    re.findall(r'<img\b[^>]*\bsrc="([^"]+)"',built),
+                    'original gallery and photo src must not change')
+                self.assertNotIn('alt="학과 활동 현장 사진"',built)
+                self.assertIn('href="https://ai.k-bigdata.kr/activities/'+slug+'/"',built)
+                self.assertTrue(re.search(r'<h1>.+?</h1>',built,re.S))
+                if 'class="activity-related"' in built:
+                    related += 1
+                if 'class="activity-story-facts"' in built:
+                    facts += 1
+        self.assertGreaterEqual(related,270)
+        self.assertEqual(facts,61)
+
+    def test_filters_are_keyboard_accessible_and_have_real_content(self):
+        script = (OUT/'activity-pagination.js').read_text(encoding='utf-8')
+        stylesheet = (OUT/'activities.css').read_text(encoding='utf-8')
+        for token in ("type = 'search'","addSelect('연도'","addSelect('활동 분야'",
+                      "setAttribute('aria-pressed'","addEventListener('popstate'",
+                      "PAGE_SIZE = 12"):
+            self.assertIn(token,script)
+        for rule in ('.activity-toolbar','.activity-featured-grid',
+                     '.activity-related','.activity-featured[hidden]'):
+            self.assertIn(rule,stylesheet)
+
 if __name__=='__main__':unittest.main()
