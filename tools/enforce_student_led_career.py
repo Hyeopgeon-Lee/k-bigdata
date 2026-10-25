@@ -42,6 +42,11 @@ STUDENT_EVIDENCE = {
 SPORT = re.compile(r'운동회|풋살|피구|줄다리기|산책|체육|다과회|축제')
 NON_STUDENT = re.compile(r'참여학과 선정|초청 특강|현직자 특강|기술지도|기술 자문|'
                          r'교수진|교원 대상|교사 대상|연수|사업 설명회')
+OUTSIDER_EDUCATION = re.compile(
+    r'고교생 대상|고등학생 대상|중학생.*?(?:대상|직업체험)|'
+    r'고교 대상|고교생.*?교육|고교생.*?체험|'
+    r'여고 학생 대상|경복여고 학생 대상'
+)
 CAREER_FAIR = re.compile(r'취업박람회|일자리박람회|채용박람회')
 PROJECT = re.compile(r'졸업작품|프로젝트 (?:개발|전시|발표)|'
                      r'경진대회|해커톤|한이음|소프트웨어.*?공모전')
@@ -57,7 +62,7 @@ def is_student_led(slug: str, category: str, title: str,
     if slug in STUDENT_EVIDENCE:
         return True
     context = f"{title} {summary} {original[:1400]}"
-    if SPORT.search(title):
+    if SPORT.search(title) or OUTSIDER_EDUCATION.search(title):
         return False
     if NON_STUDENT.search(title) and not (category == "학생 프로젝트" and STUDENT.search(context)):
         return False
