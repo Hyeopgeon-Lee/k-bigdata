@@ -1,0 +1,46 @@
+name: 학과 활동 제목 통일 및 내용 보강
+on:
+  push:
+    branches: [feature/activities-editorial-consistency-20261025]
+    paths:
+      - '.github/workflows/activity-editorial-apply.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  editorial:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/activities-editorial-consistency-20261025
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install editorial parser
+        run: pip install beautifulsoup4
+      - name: Apply source-grounded editorial updates to all 286 posts
+        run: python tools/standardize_activity_editorial.py
+      - name: Validate source syntax and generated website
+        run: |
+          python -m py_compile tools/standardize_activity_editorial.py tools/activity_promo.py tools/build_site.py
+          node --check activity-pagination.js
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+      - name: Commit and push 286 reviewed articles to editorial branch
+        run: |
+          git config user.name 'k-bigdata-site-bot'
+          git config user.email 'site-bot@users.noreply.github.com'
+          git add activities/ data/activity_editorial_consistency_2026-10-25.json reports/activity_editorial_consistency_2026-10-25.md
+          if git diff --cached --quiet; then
+            echo "No modifications"
+          else
+            git commit -m "Standardize all activity headlines and enrich fact-grounded articles"
+            git pull --rebase origin feature/activities-editorial-consistency-20261025
+            git push origin HEAD:feature/activities-editorial-consistency-20261025
+          fi
