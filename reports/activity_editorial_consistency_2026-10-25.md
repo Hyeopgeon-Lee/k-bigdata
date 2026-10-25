@@ -6,10 +6,8 @@
 | 항목 | 건수 |
 |---|---:|
 | contextual_expansions_present | 260 |
-| detail_pages_changed | 1 |
 | original_under_240_chars | 53 |
 | thin_source_no_invention | 26 |
-| titles_changed | 1 |
 
 ## 원본 정보가 적어 추가 취재가 필요한 게시물
 
@@ -71,4 +69,3 @@
 
 | 원래 제목 | 변경 제목 |
 |---|---|
-| 졸업작품 전시, END English News Daily, 영문 뉴스로 배우는 실용 영어 학습 앱. 🇺🇸 | 졸업작품 전시, END English News Daily, 영문 뉴스로 배우는 실용 영어 학습 앱 |
