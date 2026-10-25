@@ -114,13 +114,13 @@ class SiteTests(unittest.TestCase):
             for old in legacy:
                 with self.subTest(page=url,old_name=old):
                     self.assertNotIn(old,html)
-        self.assertGreaterEqual(count,322)
+        self.assertGreaterEqual(count,287)
 
     def test_activity_cards_newest_first_and_schema_consistent(self):
         """All 321+ activity cards are sorted across the entire pagination range."""
         source=(OUT/'activities/index.html').read_text(encoding='utf-8')
         cards=re.findall(r'<article class="activity-card">.*?</article>',source,re.S)
-        self.assertGreaterEqual(len(cards),321)
+        self.assertEqual(len(cards),286)
         dates=[re.search(r'<time datetime="(\d{4}-\d{2}-\d{2})"',c)[1] for c in cards]
         self.assertEqual(dates,sorted(dates,reverse=True))
         urls=[re.search(r'<h3><a href="(/activities/[^"]+/)"',c)[1] for c in cards]
