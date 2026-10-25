@@ -214,20 +214,25 @@ class ActivityPromotionTests(unittest.TestCase):
                 self.assertTrue(14 <= len(title) <= 120)
 
     def test_enriched_article_content_is_source_grounded(self):
-        from bs4 import BeautifulSoup
+        # Keep the published-site CI self-contained: no optional bs4 package.
         enriched = 0
         for card in self.cards:
             slug = re.search(r'<h3><a href="/activities/([^/]+)/"',card).group(1)
-            page = BeautifulSoup((OUT/'activities'/slug/'index.html').read_text(encoding='utf-8'),'html.parser')
-            content = page.select_one('.activity-content')
+            page = (OUT/'activities'/slug/'index.html').read_text(encoding='utf-8')
             with self.subTest(slug=slug):
-                self.assertIsNotNone(content)
-                self.assertGreater(len(content.get_text(' ',strip=True)),45)
-                notes = content.select('.activity-editorial-explainer,.activity-editorial-context')
+                match = re.search(
+                    r'<div class="activity-content">(.*?)<div class="activity-cta">',
+                    page, re.S)
+                self.assertIsNotNone(match)
+                content = match.group(1)
+                plain = unescape(re.sub(r'<[^>]+>', ' ',content)).strip()
+                self.assertGreater(len(plain),45)
+                notes = re.findall(
+                    r'class="activity-editorial-(?:explainer|context)"',content)
                 if notes:
                     enriched += 1
-                    self.assertTrue(any('기술' in h.get_text() or '전공' in h.get_text()
-                                    for note in notes for h in note.select('h2')))
+                    self.assertTrue(
+                        '활동에 등장한 기술 이해하기' in content or '전공과 진로의 연결' in content)
         self.assertGreaterEqual(enriched,200)
 
     def test_filters_are_keyboard_accessible_and_have_real_content(self):
