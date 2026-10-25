@@ -1,0 +1,52 @@
+name: Naver 기존 사진 고해상도 재복원
+on:
+  push:
+    branches: [main]
+    paths:
+      - tools/restore_naver_hi_res.py
+      - .github/workflows/restore-naver-hi-res.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4 pillow 'opencv-python-headless==4.11.0.86' 'numpy<2'
+      - name: Download high-res Naver originals and anonymize faces
+        run: python tools/restore_naver_hi_res.py
+      - name: Validate original site and large thumbnails
+        run: |
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          for id in ("545134-1","545134-2","545135-2"):
+              path=Path("assets/activities/official-board")/(id+".jpg")
+              with Image.open(path) as im:
+                  assert im.width>=640 and im.height>=400,(id,im.size)
+          print("THREE_HIGH_RES_IMAGES_VERIFIED")
+          PY
+      - name: Commit updated high-resolution photos
+        run: |
+          git config user.name "k-bigdata-site-bot"
+          git config user.email "site-bot@users.noreply.github.com"
+          git add assets/activities/official-board/545134-1.jpg assets/activities/official-board/545134-2.jpg assets/activities/official-board/545135-2.jpg
+          git commit -m "Replace three legacy Naver thumbnail images with high-resolution originals"
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Publish high-resolution photos
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run publish.yml --ref main
