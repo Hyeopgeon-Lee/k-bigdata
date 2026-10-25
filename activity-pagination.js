@@ -77,7 +77,24 @@
     categoryShortcuts.append(button);
   });
   toolbar.append(categoryShortcuts);
+  const toolbarFooter = document.createElement('div');
+  toolbarFooter.className = 'activity-toolbar-footer';
+  const matchHint = document.createElement('p');
+  matchHint.className = 'activity-match-hint';
+  matchHint.setAttribute('aria-live', 'polite');
+  const clearFilters = document.createElement('button');
+  clearFilters.type = 'button';
+  clearFilters.className = 'activity-clear-filters';
+  clearFilters.textContent = '검색·필터 초기화';
+  clearFilters.addEventListener('click', () => {
+    state = {query:'', category:'all', year:'all', sort:'new', page:1};
+    draw(true, 'push');
+    searchInput.focus({preventScroll:true});
+  });
+  toolbarFooter.append(matchHint, clearFilters);
+  toolbar.append(toolbarFooter);
   const gridHeading = document.querySelector('.activity-list-heading');
+  const headingCount = gridHeading?.querySelector(':scope > span');
   if (gridHeading) gridHeading.insertAdjacentElement('afterend',toolbar);
   else grid.before(toolbar);
   const empty = document.createElement('div');
@@ -159,7 +176,11 @@
       pageButton('다음',state.page+1,false,state.page===total);
     }
     status.textContent = '전체 '+cards.length+'건 중 '+matches.length+'건 · '+state.page+' / '+total+'페이지';
-    if (featured) featured.hidden = state.query.length>0 || state.category!=='all' || state.year!=='all';
+    const filtering = Boolean(state.query) || state.category !== 'all' || state.year !== 'all' || state.sort !== 'new';
+    if (featured) featured.hidden = filtering;
+    clearFilters.hidden = !filtering;
+    matchHint.textContent = filtering ? '조건에 맞는 활동 ' + matches.length + '건' : '2016년부터 이어진 학과 활동 ' + cards.length + '건';
+    if (headingCount) headingCount.textContent = filtering ? '검색 결과 ' + matches.length + '건' : '2016–2026 · 전체 ' + cards.length + '건';
     writeURL(historyMode);
     if (scroll) (toolbar||grid).scrollIntoView({behavior:reduceMotion?'auto':'smooth',block:'start'});
   }
