@@ -31,7 +31,7 @@ jobs:
         run: python tools/enforce_student_led_career.py
       - name: Remove obsolete promotional cardnews detail pages
         run: |
-          git rm -f -- activities/kopo-591399/index.html activities/kopo-591393/index.html
+          git rm -f --ignore-unmatch -- activities/kopo-591399/index.html activities/kopo-591393/index.html
           test ! -f activities/kopo-591399/index.html
           test ! -f activities/kopo-591393/index.html
       - name: Validate source and website without network
