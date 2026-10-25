@@ -176,7 +176,7 @@ class ActivityPromotionTests(unittest.TestCase):
         self.assertEqual(len(re.findall(r'alt="학과 활동 현장 사진"',self.index)),0)
         recent = sum(re.search(r'<time datetime="(\d{4})-',c).group(1) in ('2025','2026') for c in self.cards)
         self.assertEqual(recent,61)
-        for title in ('새싹 해커톤 대상','엔씨IDS 재직 졸업생','AI·클라우드 실습환경'):
+        for title in ('새싹 해커톤 대상','엔씨IDS 재직 졸업생','AI와 클라우드 교육환경'):
             self.assertIn(title,self.index)
 
     def test_details_have_contextual_navigation_and_consistent_claims(self):
@@ -200,6 +200,35 @@ class ActivityPromotionTests(unittest.TestCase):
                     facts += 1
         self.assertGreaterEqual(related,270)
         self.assertEqual(facts,61)
+
+    def test_all_activity_headlines_follow_single_editorial_punctuation_style(self):
+        bad = re.compile(r'[·•・—–―“”‘’「」『』【】\[\]!?★☆✅✓📌🎉]')
+        for card in self.cards:
+            slug = re.search(r'<h3><a href="/activities/([^/]+)/"',card).group(1)
+            title = unescape(re.search(r'<h3><a href="[^"]+">(.*?)</a></h3>',card,re.S).group(1))
+            story = (OUT/'activities'/slug/'index.html').read_text(encoding='utf-8')
+            with self.subTest(slug=slug):
+                self.assertNotRegex(title,bad,'Titles should use words and commas, preserving technical names')
+                self.assertEqual(title,unescape(re.search(r'<h1>(.*?)</h1>',story,re.S).group(1)))
+                self.assertIn(title,unescape(re.search(r'<title>(.*?)</title>',story,re.S).group(1)))
+                self.assertTrue(14 <= len(title) <= 120)
+
+    def test_enriched_article_content_is_source_grounded(self):
+        from bs4 import BeautifulSoup
+        enriched = 0
+        for card in self.cards:
+            slug = re.search(r'<h3><a href="/activities/([^/]+)/"',card).group(1)
+            page = BeautifulSoup((OUT/'activities'/slug/'index.html').read_text(encoding='utf-8'),'html.parser')
+            content = page.select_one('.activity-content')
+            with self.subTest(slug=slug):
+                self.assertIsNotNone(content)
+                self.assertGreater(len(content.get_text(' ',strip=True)),45)
+                notes = content.select('.activity-editorial-explainer,.activity-editorial-context')
+                if notes:
+                    enriched += 1
+                    self.assertTrue(any('기술' in h.get_text() or '전공' in h.get_text()
+                                    for note in notes for h in note.select('h2')))
+        self.assertGreaterEqual(enriched,200)
 
     def test_filters_are_keyboard_accessible_and_have_real_content(self):
         script = (OUT/'activity-pagination.js').read_text(encoding='utf-8')
