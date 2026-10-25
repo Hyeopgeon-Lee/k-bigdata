@@ -74,6 +74,13 @@ def source_text(article):
 
 def formatted_article(entry,body):
     title=site.normalized_title(entry["title"])
+    # Distinguish recurring notices which have the same original title.
+    all_entries=json.loads(SNAPSHOT.read_text(encoding="utf-8"))
+    duplicates=[e for e in all_entries if site.normalized_title(e["title"])==title]
+    if len(duplicates)>1:
+        dated=[e for e in duplicates if e["date"]==entry["date"]]
+        title+=f" ({entry['date']} 게시)"
+        if len(dated)>1:title+=f" · {entry['id']}"
     # Summarized article sections taken strictly from the official detailed text.
     clean=site.cleaned(body)
     if len(clean)<30: raise RuntimeError(f"Very short official text for {entry['id']}")
@@ -87,7 +94,11 @@ def formatted_article(entry,body):
         lead=first
     else:
         lead=f"{title} 활동의 현장과 주요 내용을 소개합니다."
-    return dict(id=entry["id"],slug="kopo-"+entry["id"],title=title,tag=site.tag_for(title),
+    archive_kind=("모집" in title or "수시" in title or "입시" in title or "설명회" in title)
+    if archive_kind and entry["date"]<"2026-01-01":
+        lead+=" 과거 학과 게시물로, 현재 입학 일정과 다를 수 있습니다."
+    return dict(id=entry["id"],slug="kopo-"+entry["id"],title=title,
+        tag="과거 입시 기록" if archive_kind else site.tag_for(title),
         lead=lead,date=entry["date"],sections=[("활동 내용",a[:560]),("주요 성과와 경험",b[:560])])
 
 def attachment_urls(article):
@@ -202,7 +213,13 @@ def process(start,end):
         photos=photos_for(session,article,seq,detector)
         dest=ROOT/"activities"/obj["slug"]/"index.html"
         dest.parent.mkdir(parents=True,exist_ok=True)
-        dest.write_text(site.post_html(obj,photos),encoding="utf-8")
+        rendered=site.post_html(obj,photos)
+        # SEO requires distinct descriptions even for same-topic historical notices.
+        old_meta='<meta name="description" content="'+site.h(obj["lead"])+'">'
+        new_meta='<meta name="description" content="'+site.h(obj["lead"]+" | 원문 게시번호 "+seq)+'">'
+        if old_meta not in rendered:raise RuntimeError("SEO description missing for "+seq)
+        rendered=rendered.replace(old_meta,new_meta,1)
+        dest.write_text(rendered,encoding="utf-8")
         imported.append((obj,photos));count+=len(photos)
         print("IMPORTED",entry["page"],seq,"photos",len(photos),"chars",len(body),"title",obj["title"],flush=True)
     if imported:
