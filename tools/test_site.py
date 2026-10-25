@@ -302,7 +302,7 @@ class ActivityPromotionTests(unittest.TestCase):
         self.assertIn('수상 증빙',award)
         self.assertIn('포트폴리오',award)
         self.assertNotIn('전공과 진로의 연결',teacher)
-        self.assertIn('포트폴리오',employer)
+        self.assertNotIn('전공과 진로의 연결',employer)
         self.assertNotIn('취업 보장',award)
         self.assertNotIn('전원 취업',award)
 
