@@ -1,0 +1,73 @@
+name: KOPO 잔여 16~20페이지 사진 복구
+on:
+  push:
+    branches: [main]
+    paths:
+      - tools/repair_kopo_last_batch.py
+      - .github/workflows/repair-kopo-last-batch.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: kopo-photo-repair-final
+  cancel-in-progress: false
+jobs:
+  finish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 38
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image dependencies
+        run: pip install requests beautifulsoup4 pillow 'opencv-python-headless==4.11.0.86' 'numpy<2'
+      - name: Restore all official page 16–20 photos and retry Naver links
+        run: python tools/repair_kopo_last_batch.py
+      - name: Build and validate all internal pages and restored pictures
+        run: |
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('.')
+          audit=json.loads((root/'data/kopo_photo_audit_6_20.json').read_text())
+          total_actual=0
+          missing=[]
+          for article in audit['posts']:
+              seq=article['id']
+              content=(root/'activities'/('kopo-'+seq)/'index.html').read_text()
+              actual=content.count('class="activity-feature-image official-figure"')
+              expected=len(article['images'])
+              assert actual<=expected,(seq,actual,expected)
+              if actual<expected:
+                  missing.append((seq,expected-actual))
+              total_actual+=actual
+              for i in range(1,actual+1):
+                  image=root/'assets'/'activities'/'official-board'/f"{seq}-{i}.jpg"
+                  assert image.is_file() and image.stat().st_size>1000,str(image)
+          assert total_actual>=211,(total_actual,audit['total_images'])
+          assert all(seq in ('545134','545135') for seq,_ in missing),missing
+          print('PHOTO_REPAIR_VERIFIED',total_actual,'of',audit['total_images'])
+          print('UNAVAILABLE_ORIGINAL_IMAGES',missing)
+          PY
+      - name: Commit remaining restored photos
+        run: |
+          git config user.name "k-bigdata-site-bot"
+          git config user.email "site-bot@users.noreply.github.com"
+          git add activities/index.html activities/kopo-*/index.html assets/activities/official-board/
+          if ! git diff --cached --quiet; then
+            git commit -m "Restore final 16-20 KOPO archive photos and cover images"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Deploy finished archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run publish.yml --ref main
