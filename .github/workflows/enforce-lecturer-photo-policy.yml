@@ -1,0 +1,45 @@
+name: 학과 특강·연수 사진 참석자 보호 및 강사 얼굴 선택 복원
+on:
+  push:
+    branches: [main]
+    paths:
+      - tools/enforce_lecturer_only_photo_policy.py
+      - .github/workflows/enforce-lecturer-photo-policy.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pillow
+      - name: Keep attendee faces protected and restore reviewed lecturer regions
+        run: python tools/enforce_lecturer_only_photo_policy.py
+      - name: Verify activity archive, internal links and metadata
+        run: |
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+      - name: Commit privacy-aware images and HTML
+        run: |
+          git config user.name "k-bigdata-site-bot"
+          git config user.email "site-bot@users.noreply.github.com"
+          git add activities/ assets/activities/speaker-original/
+          if ! git diff --cached --quiet; then
+            git commit -m "Reveal reviewed instructors only; preserve attendee face mosaics"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Deploy privacy-aware photo archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run publish.yml --ref main
