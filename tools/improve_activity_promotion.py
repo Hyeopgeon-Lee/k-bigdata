@@ -226,11 +226,17 @@ def apply():
     changed=[];made=Counter()
     rewrites={}
     reports=[]
+    descriptions_seen=set()
     for row in rows:
         slug=row["slug"]
         title=clean_title(row["title"],slug)
         lead=safe_intro(row,title)
         snippet=desc_from(lead,title)
+        if snippet in descriptions_seen:
+            snippet=snippet[:105].rstrip(" .,") + " · " + title[:48] + " (" + row["date"] + ")"
+        if snippet in descriptions_seen:
+            snippet=snippet[:145] + " · 학과소식 " + slug.split("-")[-1]
+        descriptions_seen.add(snippet)
         category_name=category(title,row["tag"],row["date"])
         output=update_article(row,title,lead,category_name,snippet)
         if output!=row["raw"]:
