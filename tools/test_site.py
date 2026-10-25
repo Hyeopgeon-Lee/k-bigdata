@@ -241,7 +241,7 @@ class ActivityPromotionTests(unittest.TestCase):
         expected = re.search(r'<footer class="site-footer">.*?</footer>',homepage,re.S)
         self.assertIsNotNone(expected)
         self.assertIn('href="/privacy.html"',expected.group(0))
-        self.assertIn('class="footer-inner"',expected.group(0))
+        self.assertIn('class="container footer-inner"',expected.group(0))
         self.assertIn('class="footer-links"',expected.group(0))
         for slug in [None] + [
             re.search(r'<h3><a href="/activities/([^/]+)/"',card).group(1)
