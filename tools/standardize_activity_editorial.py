@@ -68,6 +68,8 @@ def clean_title(original: str) -> str:
     v = html.unescape(original).strip()
     v = re.sub(r'[“”‘’"\'「」『』【】\[\]]', '', v)
     v = re.sub(r'\s*[·•・—–―:;|]\s*', ', ', v)
+    v = re.sub(r'\s+-\s+', ', ', v)
+    v = v.replace('…','')
     v = re.sub(r'\s*&\s*', ' 및 ', v)
     v = re.sub(r'[!?★☆✅✓📌🎉]', '', v)
     v = re.sub(r'\(\s*종료\s*\)', ', 종료된 기록', v)
@@ -242,8 +244,13 @@ def main():
         present_title=CURATED.get(slug,(html.unescape(match.group(2)),source_lead))[0]
         new_title=clean_title(OVERRIDES.get(slug,present_title))
         if len(new_title)<14:
-            # Don't create speculative claims to make a title seem longer.
-            new_title=clean_title(html.unescape(match.group(2)))
+            # Add only the verifiable publication year, never a fictitious result.
+            published = re.search(r'<time datetime="(\d{4})-\d\d-\d\d"',card)
+            yr = published.group(1) if published else ''
+            if yr and not new_title.startswith(yr):
+                new_title=clean_title(yr+'년 '+new_title)
+            if len(new_title)<14:
+                new_title=clean_title(new_title+', 학과 활동 기록')
         for phrase in STOP_PHRASES:body=body.replace(phrase,'')
         if slug in FACT_CORRECTIONS:
             pattern,repl=FACT_CORRECTIONS[slug]
