@@ -296,7 +296,7 @@ def shared_home_footer() -> str:
 
 def use_home_footer(source: str) -> str:
     replacement = shared_home_footer()
-    footer_pattern = re.compile(r'<footer\\b[^>]*>.*?</footer>', re.S)
+    footer_pattern = re.compile(r'<footer\b[^>]*>.*?</footer>', re.S)
     if not footer_pattern.search(source):
         raise ValueError("Activity page footer is missing")
     return footer_pattern.sub(lambda _: replacement, source, count=1)
