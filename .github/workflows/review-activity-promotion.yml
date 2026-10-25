@@ -1,0 +1,35 @@
+name: 321건 학과활동 홍보 병렬 점검
+on:
+  push:
+    branches: [main]
+    paths:
+      - tools/review_activity_promotion.py
+      - .github/workflows/review-activity-promotion.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install beautifulsoup4
+      - name: Run six independent parallel editorial review passes
+        run: python tools/review_activity_promotion.py
+      - name: Commit review findings and per-post detail
+        run: |
+          git config user.name "k-bigdata-site-bot"
+          git config user.email "site-bot@users.noreply.github.com"
+          git add reports/activity_promotion_review_2026-10-25.md data/activity_promotion_audit_2026-10-25.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Audit 321 department activity articles from six promotional perspectives"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
