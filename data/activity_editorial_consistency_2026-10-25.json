@@ -4,9 +4,10 @@
   "stats": {
     "contextual_expansions_present": 260,
     "original_under_240_chars": 53,
-    "detail_pages_changed": 8,
-    "intros_changed": 8,
-    "thin_source_no_invention": 26
+    "detail_pages_changed": 2,
+    "titles_changed": 1,
+    "thin_source_no_invention": 26,
+    "factual_repairs": 1
   },
   "articles": {
     "sesac-hackathon-grand-prize-2025": {
@@ -20,7 +21,7 @@
     "department-funding-2025": {
       "date": "2025-11-08",
       "title_before": "AI와 클라우드 교육환경 고도화, 학과 개편 사업 10억 원 확보",
-      "title_after": "AI와 클라우드 교육환경 고도화, 학과 개편 사업 10억 원 확보",
+      "title_after": "AI와 클라우드 교육환경 고도화, 학과 개편 사업 약 10억 원 확보",
       "source_chars": 188,
       "final_body_chars": 328,
       "expanded": true
@@ -2198,7 +2199,7 @@
       "title_before": "학과 실습실 이전, 제3교육관에서 본관 3층으로",
       "title_after": "학과 실습실 이전, 제3교육관에서 본관 3층으로",
       "source_chars": 112,
-      "final_body_chars": 112,
+      "final_body_chars": 128,
       "expanded": false
     },
     "kopo-453392": {

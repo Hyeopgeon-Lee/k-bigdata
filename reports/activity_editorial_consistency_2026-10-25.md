@@ -6,14 +6,15 @@
 | 항목 | 건수 |
 |---|---:|
 | contextual_expansions_present | 260 |
-| detail_pages_changed | 8 |
-| intros_changed | 8 |
+| detail_pages_changed | 2 |
+| factual_repairs | 1 |
 | original_under_240_chars | 53 |
 | thin_source_no_invention | 26 |
+| titles_changed | 1 |
 
 ## 원본 정보가 적어 추가 취재가 필요한 게시물
 
-- [AI와 클라우드 교육환경 고도화, 학과 개편 사업 10억 원 확보](https://ai.k-bigdata.kr/activities/department-funding-2025/), 기존 본문 188자
+- [AI와 클라우드 교육환경 고도화, 학과 개편 사업 약 10억 원 확보](https://ai.k-bigdata.kr/activities/department-funding-2025/), 기존 본문 188자
 - [빅데이터소프트웨어공학과 개편, AI와 클라우드 실습 강화](https://ai.k-bigdata.kr/activities/department-reorganization-2025/), 기존 본문 232자
 - [부산대 대학원 진학 졸업생 초청, 학업과 진로 경험 공유](https://ai.k-bigdata.kr/activities/alumni-ha-jae-hyeong-lecture-2026/), 기존 본문 177자
 - [고교 교사 대상 생성형 AI와 R 데이터 분석 실습 연수](https://ai.k-bigdata.kr/activities/teacher-generative-ai-r-training-2026/), 기존 본문 207자
@@ -71,3 +72,4 @@
 
 | 원래 제목 | 변경 제목 |
 |---|---|
+| AI와 클라우드 교육환경 고도화, 학과 개편 사업 10억 원 확보 | AI와 클라우드 교육환경 고도화, 학과 개편 사업 약 10억 원 확보 |
