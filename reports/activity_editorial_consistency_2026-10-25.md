@@ -6,8 +6,7 @@
 | 항목 | 건수 |
 |---|---:|
 | contextual_expansions_present | 260 |
-| detail_pages_changed | 2 |
-| factual_repairs | 1 |
+| detail_pages_changed | 1 |
 | original_under_240_chars | 53 |
 | thin_source_no_invention | 26 |
 | titles_changed | 1 |
@@ -61,7 +60,7 @@
 - [제6회 학과 봉사활동, 교남소망의집 방문](https://ai.k-bigdata.kr/activities/kopo-462836/), 기존 본문 157자
 - [1학년과 2학년 교류를 위한 학과 소그룹 모임과 다과회](https://ai.k-bigdata.kr/activities/kopo-459546/), 기존 본문 179자
 - [숭실대학교 송관호 교수의 인문학과 ICT 서적 기증](https://ai.k-bigdata.kr/activities/kopo-454696/), 기존 본문 135자
-- [학과 실습실 이전, 제3교육관에서 본관 3층으로](https://ai.k-bigdata.kr/activities/kopo-454182/), 기존 본문 112자
+- [학과 실습실 이전, 제3교육관에서 본관 3층으로](https://ai.k-bigdata.kr/activities/kopo-454182/), 기존 본문 128자
 - [강서구청 감사장 수상, 학과의 지속적인 지역사회 봉사활동](https://ai.k-bigdata.kr/activities/kopo-448025/), 기존 본문 146자
 - [전문대 최초 SW동아리 재능기부 챌린지 지원사업 전국 2등 수상 동영상](https://ai.k-bigdata.kr/activities/kopo-448023/), 기존 본문 163자
 - [2016년 2학기 Charming 폴리텍 데이터 분석과 멘토, 멘티 만남의 장](https://ai.k-bigdata.kr/activities/kopo-446176/), 기존 본문 105자
@@ -72,4 +71,4 @@
 
 | 원래 제목 | 변경 제목 |
 |---|---|
-| AI와 클라우드 교육환경 고도화, 학과 개편 사업 10억 원 확보 | AI와 클라우드 교육환경 고도화, 학과 개편 사업 약 10억 원 확보 |
+| 졸업작품 전시, END English News Daily, 영문 뉴스로 배우는 실용 영어 학습 앱. 🇺🇸 | 졸업작품 전시, END English News Daily, 영문 뉴스로 배우는 실용 영어 학습 앱 |

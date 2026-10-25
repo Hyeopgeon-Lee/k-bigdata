@@ -4,10 +4,9 @@
   "stats": {
     "contextual_expansions_present": 260,
     "original_under_240_chars": 53,
-    "detail_pages_changed": 2,
-    "titles_changed": 1,
     "thin_source_no_invention": 26,
-    "factual_repairs": 1
+    "detail_pages_changed": 1,
+    "titles_changed": 1
   },
   "articles": {
     "sesac-hackathon-grand-prize-2025": {
@@ -20,7 +19,7 @@
     },
     "department-funding-2025": {
       "date": "2025-11-08",
-      "title_before": "AI와 클라우드 교육환경 고도화, 학과 개편 사업 10억 원 확보",
+      "title_before": "AI와 클라우드 교육환경 고도화, 학과 개편 사업 약 10억 원 확보",
       "title_after": "AI와 클라우드 교육환경 고도화, 학과 개편 사업 약 10억 원 확보",
       "source_chars": 188,
       "final_body_chars": 328,
@@ -1237,7 +1236,7 @@
     "kopo-602146": {
       "date": "2020-10-29",
       "title_before": "졸업작품 전시, END English News Daily, 영문 뉴스로 배우는 실용 영어 학습 앱. 🇺🇸",
-      "title_after": "졸업작품 전시, END English News Daily, 영문 뉴스로 배우는 실용 영어 학습 앱. 🇺🇸",
+      "title_after": "졸업작품 전시, END English News Daily, 영문 뉴스로 배우는 실용 영어 학습 앱",
       "source_chars": 552,
       "final_body_chars": 651,
       "expanded": true
@@ -2198,7 +2197,7 @@
       "date": "2017-02-09",
       "title_before": "학과 실습실 이전, 제3교육관에서 본관 3층으로",
       "title_after": "학과 실습실 이전, 제3교육관에서 본관 3층으로",
-      "source_chars": 112,
+      "source_chars": 128,
       "final_body_chars": 128,
       "expanded": false
     },
