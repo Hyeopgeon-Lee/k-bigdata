@@ -1,0 +1,42 @@
+name: 학과 활동 홍보 문장 최종 교열
+on:
+  push:
+    branches: [main]
+    paths:
+      - tools/polish_activity_editorial_round2.py
+      - .github/workflows/polish-activity-editorial-round2.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+jobs:
+  final-polish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install beautifulsoup4
+      - name: Proofread high-priority activity stories and ambiguous headline separators
+        run: python tools/polish_activity_editorial_round2.py
+      - name: Build and check all 286 pages
+        run: |
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+      - name: Commit proofread pages
+        run: |
+          git config user.name 'k-bigdata-site-bot'
+          git config user.email 'site-bot@users.noreply.github.com'
+          git add activities/ reports/activity_editorial_full_review_2026-10-25.md
+          git commit -m 'Finish manual factual proofreading of key success, training and career stories'
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Publish improved copy
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run publish.yml --ref main
