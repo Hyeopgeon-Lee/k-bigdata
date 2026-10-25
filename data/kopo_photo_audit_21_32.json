@@ -644,6 +644,358 @@
       "downloaded": 2,
       "failed": [],
       "unsupported": []
+    },
+    {
+      "id": "463762",
+      "page": 29,
+      "expected_images": 2,
+      "downloaded": 2,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "463357",
+      "page": 29,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "462836",
+      "page": 29,
+      "expected_images": 4,
+      "downloaded": 4,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "461556",
+      "page": 29,
+      "expected_images": 4,
+      "downloaded": 4,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "460887",
+      "page": 29,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": [
+        "file:///C:\\Users\\user\\AppData\\Local\\Temp\\Hnc\\BinData\\EMB0001ff8000b6.bmp"
+      ]
+    },
+    {
+      "id": "459871",
+      "page": 29,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "459578",
+      "page": 29,
+      "expected_images": 0,
+      "downloaded": 0,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "459577",
+      "page": 29,
+      "expected_images": 0,
+      "downloaded": 0,
+      "failed": [],
+      "unsupported": [
+        "http://fintechcenter.or.kr/attach/z99_attach/e1c5b11bd69697f58265811eff109288.jpg"
+      ]
+    },
+    {
+      "id": "459546",
+      "page": 29,
+      "expected_images": 3,
+      "downloaded": 3,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "458497",
+      "page": 29,
+      "expected_images": 0,
+      "downloaded": 0,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "459618",
+      "page": 30,
+      "expected_images": 8,
+      "downloaded": 8,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "456658",
+      "page": 30,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "454696",
+      "page": 30,
+      "expected_images": 0,
+      "downloaded": 0,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "454274",
+      "page": 30,
+      "expected_images": 0,
+      "downloaded": 0,
+      "failed": [],
+      "unsupported": [
+        "http://www.kocca.kr/newsletter/image/mail_20170209.png"
+      ]
+    },
+    {
+      "id": "454182",
+      "page": 30,
+      "expected_images": 0,
+      "downloaded": 0,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "454062",
+      "page": 30,
+      "expected_images": 0,
+      "downloaded": 0,
+      "failed": [],
+      "unsupported": [
+        "http://bigmail.nipa.kr/upload/massmail/F2BC2712B8CC9B9F531C7FD43ED5E4231486528641382"
+      ]
+    },
+    {
+      "id": "453665",
+      "page": 30,
+      "expected_images": 0,
+      "downloaded": 0,
+      "failed": [],
+      "unsupported": [
+        "http://woman.seoul.go.kr/files/2017/01/internetcitizen01.jpg",
+        "http://woman.seoul.go.kr/files/2017/01/internetcitizen02.jpg"
+      ]
+    },
+    {
+      "id": "453392",
+      "page": 30,
+      "expected_images": 0,
+      "downloaded": 0,
+      "failed": [],
+      "unsupported": [
+        "http://imgnews.naver.net/image/001/2017/02/03/AKR20170203059300848_01_i_99_20170203103704.jpg?type=w540"
+      ]
+    },
+    {
+      "id": "453342",
+      "page": 30,
+      "expected_images": 0,
+      "downloaded": 0,
+      "failed": [],
+      "unsupported": [
+        "https://mediahub.seoul.go.kr/wp-content/uploads/2017/02/325626a515af7448ce2b8d4c212304f8.jpg",
+        "https://mediahub.seoul.go.kr/wp-content/uploads/2017/02/bb19e982c81e79102af43f846303db1c.jpg",
+        "https://mediahub.seoul.go.kr/wp-content/uploads/2017/02/d5958a9bfc1529ef384da76e099c3614.jpg",
+        "https://mediahub.seoul.go.kr/wp-content/uploads/2017/02/28af76ec9bdf9b9850058b4630e434df.jpg",
+        "https://mediahub.seoul.go.kr/wp-content/uploads/2017/02/04079bf542d221efbfca30d267e5f89c.jpg"
+      ]
+    },
+    {
+      "id": "451953",
+      "page": 30,
+      "expected_images": 0,
+      "downloaded": 0,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "451952",
+      "page": 31,
+      "expected_images": 0,
+      "downloaded": 0,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "451149",
+      "page": 31,
+      "expected_images": 0,
+      "downloaded": 0,
+      "failed": [],
+      "unsupported": [
+        "https://mediahub.seoul.go.kr/wp-content/uploads/2017/01/901fbda2ffea3520f8520c04b288b4b0.jpg",
+        "https://mediahub.seoul.go.kr/wp-content/uploads/2017/01/36e5d1c53785dc5d5be56fea10049c8e.jpg",
+        "https://mediahub.seoul.go.kr/wp-content/uploads/2017/01/930b331cd74dee5f452fcf6b07d63a0c.jpg",
+        "https://mediahub.seoul.go.kr/wp-content/uploads/2017/01/97f9b7fc88b9baf4d3c863ba5bbcae5a.jpg"
+      ]
+    },
+    {
+      "id": "451148",
+      "page": 31,
+      "expected_images": 0,
+      "downloaded": 0,
+      "failed": [],
+      "unsupported": [
+        "http://weekly.tta.or.kr/newsletter/article/img/2017-01-06/표_resize.png"
+      ]
+    },
+    {
+      "id": "451147",
+      "page": 31,
+      "expected_images": 0,
+      "downloaded": 0,
+      "failed": [],
+      "unsupported": [
+        "http://www.sw-eng.kr/common/attachfile/FileDown.do?fileId=00000000000000046854"
+      ]
+    },
+    {
+      "id": "450780",
+      "page": 31,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "450315",
+      "page": 31,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "450187",
+      "page": 31,
+      "expected_images": 0,
+      "downloaded": 0,
+      "failed": [],
+      "unsupported": [
+        "http://kbig.kr/sites/all/libraries/SE2/upload/880ab5f941502edc659846a4ab561954.jpg"
+      ]
+    },
+    {
+      "id": "450160",
+      "page": 31,
+      "expected_images": 0,
+      "downloaded": 0,
+      "failed": [],
+      "unsupported": [
+        "http://weekly.tta.or.kr/newsletter/article/img/2016-12-16/2017_01_HTML5스마트TV-(2).jpg"
+      ]
+    },
+    {
+      "id": "448025",
+      "page": 31,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "448023",
+      "page": 31,
+      "expected_images": 0,
+      "downloaded": 0,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "448020",
+      "page": 32,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "448019",
+      "page": 32,
+      "expected_images": 1,
+      "downloaded": 1,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "446176",
+      "page": 32,
+      "expected_images": 3,
+      "downloaded": 3,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "446171",
+      "page": 32,
+      "expected_images": 5,
+      "downloaded": 5,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "445461",
+      "page": 32,
+      "expected_images": 0,
+      "downloaded": 0,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "445458",
+      "page": 32,
+      "expected_images": 0,
+      "downloaded": 0,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "445213",
+      "page": 32,
+      "expected_images": 0,
+      "downloaded": 0,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "445198",
+      "page": 32,
+      "expected_images": 0,
+      "downloaded": 0,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "443897",
+      "page": 32,
+      "expected_images": 5,
+      "downloaded": 5,
+      "failed": [],
+      "unsupported": []
+    },
+    {
+      "id": "443890",
+      "page": 32,
+      "expected_images": 4,
+      "downloaded": 4,
+      "failed": [],
+      "unsupported": []
     }
   ]
 }
