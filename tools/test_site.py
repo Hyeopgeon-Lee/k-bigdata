@@ -103,6 +103,25 @@ class SiteTests(unittest.TestCase):
         import struct
         for name in ('og-department.png','og-admission-2027-susi2.png','og-admission-2027-regular.png','og-insights.png','og-projects.png','og-employment.png'):
             self.assertEqual(struct.unpack('>II',(OUT/'assets/promo'/name).read_bytes()[16:24]),(1200,630))
+    def test_activity_cards_newest_first_and_schema_consistent(self):
+        """All 321+ activity cards are sorted across the entire pagination range."""
+        source=(OUT/'activities/index.html').read_text(encoding='utf-8')
+        cards=re.findall(r'<article class="activity-card">.*?</article>',source,re.S)
+        self.assertGreaterEqual(len(cards),321)
+        dates=[re.search(r'<time datetime="(\d{4}-\d{2}-\d{2})"',c)[1] for c in cards]
+        self.assertEqual(dates,sorted(dates,reverse=True))
+        urls=[re.search(r'<h3><a href="(/activities/[^"]+/)"',c)[1] for c in cards]
+        self.assertEqual(len(urls),len(set(urls)))
+        self.assertEqual(dates[0],'2026-10-25')
+        self.assertEqual(dates[-1],'2016-10-31')
+        script=re.search(r'<script type="application/ld\+json">(.*?)</script>',source,re.S)
+        self.assertIsNotNone(script)
+        schema=json.loads(script[1])
+        items=schema['mainEntity']['itemListElement']
+        self.assertEqual([x['position'] for x in items],list(range(1,len(cards)+1)))
+        self.assertEqual([x['url'] for x in items],[HOST+x for x in urls])
+        self.assertIn('2016–2026',source)
+
     def test_indexnow_empty_and_invalid(self):
         for xml in (b'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"/>',b'not XML'):
             with self.assertRaises((ValueError,ET.ParseError)):urls_from_sitemap(xml)

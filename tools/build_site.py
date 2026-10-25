@@ -19,6 +19,7 @@ import xml.etree.ElementTree as ET
 from urllib.request import urlopen
 from admission_build import load_admissions, state_at, enhance_page, round_cards, reorder_home, json_script
 from employment_build import load_snapshot, inject as inject_employment
+from activity_sort import sort_activity_archive
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "_site"
@@ -709,7 +710,10 @@ def main() -> None:
         relative=page.relative_to(OUTPUT).as_posix()
         content=page.read_text(encoding='utf-8')
         if relative=='index.html':content=reorder_home(content)
-        page.write_text(enhance_page(content,relative,state,data),encoding='utf-8')
+        built = enhance_page(content,relative,state,data)
+        if relative == 'activities/index.html':
+            built = sort_activity_archive(built)
+        page.write_text(built, encoding='utf-8')
     write_sitemap(posts)
     write_feed(posts)
     # Content hashes retain the real deployed change date; unchanged daily builds do not reset lastmod.
