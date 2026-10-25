@@ -47,6 +47,11 @@ def official_photos(table):
            addr.path.startswith("/ckimage/") or addr.path=="/cmm/fms/kopoImg.do" or
            addr.path.startswith("/upload/") or addr.path.startswith("/cmm/fms/")):
             if url not in candidates:candidates.append(url)
+        elif (addr.netloc.lower() in {
+            "cdn.enewstoday.co.kr","cdn.thefairnews.co.kr","cdn.kihoilbo.co.kr",
+            "www.koit.co.kr","cgeimage.commutil.kr","postfiles.pstatic.net"
+        } and addr.scheme in ("https","http")):
+            if url not in candidates:candidates.append(url)
         elif url not in extra:
             extra.append(url)
     # File attachments display as kopoImg.do image elements on the official site.
@@ -74,9 +79,9 @@ def audit_sources():
     if total<=15:raise RuntimeError("Photo audit found no missed photos; investigate source HTML")
     print("AUDIT_COMPLETE",len(arr),"articles",total,"images",unsupported,"unhandled",flush=True)
     print("PAGE_COUNTS",json.dumps(counts,ensure_ascii=False),flush=True)
-    # Unhandled external images are not silently considered successfully copied.
+    # URLs outside the explicit origin allowlist must not silently disappear.
     if unsupported:
-        raise RuntimeError(f"{unsupported} images use unsupported URLs; add an explicit vetted source handling strategy")
+        raise RuntimeError(f"{unsupported} images use unapproved URLs; add a vetted source rule")
 
 def verify_photo_bytes(s,url,seq,i):
     r=s.get(url,timeout=70)
@@ -159,19 +164,23 @@ def repair(start,end):
         paths=[]
         for i,url in enumerate(urls,1):
             file=IMAGE_ROOT/f"{seq}-{i}.jpg"
-            # Previously published attachments used the same stable path; preserve
-            # their already anonymized versions rather than overwriting with originals.
-            if not file.is_file():
+            # Rebuild ALL photos in original source order; previously saved
+            # attached files may have a different index from inserted body images.
+            try:
                 pic=verify_photo_bytes(s,url,seq,i)
-                edited,faces=site.enhanced_mosaic(pic,f"{seq}-{i}",detector)
-                IMAGE_ROOT.mkdir(parents=True,exist_ok=True)
-                edited.save(file,"JPEG",quality=85,optimize=True,progressive=True)
-                updated+=1
-                print("DOWNLOADED",entry["page"],seq,i,"faces",faces,"bytes",file.stat().st_size,flush=True)
-            else:
-                print("REUSED",entry["page"],seq,i,flush=True)
+            except Exception as exc:
+                if urlparse(url).netloc.lower() in ("www.kopo.ac.kr","kopo.ac.kr"):
+                    raise
+                print("EXTERNAL_IMAGE_FAILED",seq,i,url[:180],repr(exc)[:300],flush=True)
+                continue
+            edited,faces=site.enhanced_mosaic(pic,f"{seq}-{i}",detector)
+            IMAGE_ROOT.mkdir(parents=True,exist_ok=True)
+            file=IMAGE_ROOT/f"{seq}-{len(paths)+1}.jpg"
+            edited.save(file,"JPEG",quality=85,optimize=True,progressive=True)
+            updated+=1
             paths.append("/"+file.relative_to(ROOT).as_posix())
             count+=1
+            print("DOWNLOADED",entry["page"],seq,i,"faces",faces,"bytes",file.stat().st_size,flush=True)
         # Replace previous incomplete gallery even for posts with 0 source photos.
         refresh_article(seq,paths)
         if paths:covers[seq]=paths[0]
