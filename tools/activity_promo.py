@@ -284,10 +284,28 @@ def detail_page(source: str, slug: str) -> str:
         raise ValueError("Original link removed for "+slug)
     return source
 
+@lru_cache(maxsize=1)
+def shared_home_footer() -> str:
+    """Single source of truth for the footer on the homepage and activity pages."""
+    homepage = (ROOT / "index.html").read_text(encoding="utf-8")
+    match = re.search(r'<footer class="site-footer">.*?</footer>', homepage, re.S)
+    if not match:
+        raise ValueError("Main homepage footer is missing")
+    return match.group(0)
+
+
+def use_home_footer(source: str) -> str:
+    replacement = shared_home_footer()
+    footer_pattern = re.compile(r'<footer\\b[^>]*>.*?</footer>', re.S)
+    if not footer_pattern.search(source):
+        raise ValueError("Activity page footer is missing")
+    return footer_pattern.sub(lambda _: replacement, source, count=1)
+
+
 def enhance_activity_page(source: str, relative: str) -> str:
     if relative == "activities/index.html":
-        return archive_page(source)
+        return use_home_footer(archive_page(source))
     m = ACTIVITY.fullmatch(relative)
     if m:
-        return detail_page(source,m.group(1))
+        return use_home_footer(detail_page(source,m.group(1)))
     return source
