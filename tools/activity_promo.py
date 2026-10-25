@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fact-grounded promotional presentation of 286 historic department activities.
+"""Fact-grounded promotional presentation of 284 historic department activities.
 
 Runs on the built static site, not on source posts. Source media, URLs, event dates
 and credited people remain unchanged. Editorial revisions are explicitly curated;
@@ -120,8 +120,8 @@ def articles() -> dict[str, dict[str, str]]:
             "category": strip_markup(category.group(1)),
             "date": date.group(1),
         }
-    if len(result) != 286:
-        raise ValueError(f"Expected 286 article cards, got {len(result)}")
+    if len(result) != 284:
+        raise ValueError(f"Expected 284 article cards, got {len(result)}")
     return result
 
 def replace_text_tag(source: str, tag: str, value: str) -> str:
