@@ -58,3 +58,37 @@
 
 규칙 기반 안전한 편집으로 반복 표현·메타데이터 오류를 우선 교정했습니다. 기사체 문장별 교열과 원본 자료 대조, 사진의 인물·초상권 검수까지 완료했다는 의미는 아닙니다.
 입학홍보 우선 페이지(최근 수상·채용·교육·산학협력)와 오래된 외부자료는 수동 확인 후 2차 수정이 필요합니다.
+
+## 2차 기사별 사실 기반 교열 (추가 28건)
+
+기존 본문에서 확인된 기업·일시·교육 내용·수상 사실을 이용해 제목/요약을 문장 단위로 보강했습니다.
+한국정보처리학회 공식 프로그램에서 ACK 2024 동상임을 확인해 ASK 표기 충돌 2건을 정정했습니다.
+
+- [ACK 2024 논문경진대회 동상, 맵리듀스 데이터 압축 연구 성과](https://ai.k-bigdata.kr/activities/kopo-738804/)
+- [한국정보처리학회 ACK 2024 동상, 학생·교수 공동연구](https://ai.k-bigdata.kr/activities/kopo-738801/)
+- [선후배 Java 멘토링, 반복문 실습 진행](https://ai.k-bigdata.kr/activities/kopo-746968/)
+- [2025 ICT 한이음 드림업 공모전, 학과 프로젝트 2팀 선정](https://ai.k-bigdata.kr/activities/kopo-746591/)
+- [2023 프로젝트 경진대회, 7기 허지혜 학생 최우수상](https://ai.k-bigdata.kr/activities/kopo-707043/)
+- [2017 강서구 SNS 톡톡 기자단 모집 안내(종료)](https://ai.k-bigdata.kr/activities/kopo-450315/)
+- [정보기술 국제표준(JTC1) 동향 참고자료](https://ai.k-bigdata.kr/activities/kopo-451148/)
+- [HTML5 기반 스마트 TV 플랫폼 표준 자료 소개](https://ai.k-bigdata.kr/activities/kopo-450160/)
+- [소프트웨어 개발 기술 읽을거리, POPIT 소개](https://ai.k-bigdata.kr/activities/kopo-445213/)
+- [2019 ICNCT 국제학술대회, 학과 교수진 논문 발표](https://ai.k-bigdata.kr/activities/kopo-527126/)
+- [2016 Dream Job 페스티벌, 빅데이터 진로체험 운영](https://ai.k-bigdata.kr/activities/kopo-443897/)
+- [제6회 학과 봉사활동, 교남소망의집 방문](https://ai.k-bigdata.kr/activities/kopo-462836/)
+- [고용노동부 중소기업 탐방, 이력서·모의면접 실습](https://ai.k-bigdata.kr/activities/kopo-511067/)
+- [2018 미래직업 전망 자료, 빅데이터 전문가 주목](https://ai.k-bigdata.kr/activities/kopo-495740/)
+- [2016 SW동아리 재능기부 사업 전국 2위, 슈퍼개발자팀 수상](https://ai.k-bigdata.kr/activities/kopo-448020/)
+- [PaaS-TA 오픈랩 확산 워크숍, 클라우드 교육 협력](https://ai.k-bigdata.kr/activities/kopo-633739/)
+- [2017 SW동아리 재능기부 사업 2년 연속 선정](https://ai.k-bigdata.kr/activities/kopo-463357/)
+- [2018 문화데이터 경진대회, 이지흠 학생 최우수상](https://ai.k-bigdata.kr/activities/kopo-509708/)
+- [ICT 학점연계 인턴십 사업, 2017·2018년 연속 선정](https://ai.k-bigdata.kr/activities/kopo-504250/)
+- [LG CNS 변재영 책임 초청, 클라우드 네이티브·MSA 특강](https://ai.k-bigdata.kr/activities/kopo-707039/)
+- [2024 고교 교원 AI 연수, Llama 3·컴퓨터비전 실습](https://ai.k-bigdata.kr/activities/kopo-727480/)
+- [2018 산학연 R&D 과제 선정, 자동차 정비 데이터 분석](https://ai.k-bigdata.kr/activities/kopo-501832/)
+- [2017 창업아이템 경진대회 참가 모집 안내(종료)](https://ai.k-bigdata.kr/activities/kopo-460887/)
+- [K-PaaS 서비스 공모전 수상, AI 활용 재활용 추천 서비스](https://ai.k-bigdata.kr/activities/kopo-699007/)
+- [ICT 학점연계 인턴십, 학과 학생 6명 선정](https://ai.k-bigdata.kr/activities/kopo-471648/)
+- [K-PaaS 공모전 2년 연속 대상, AI 실종자 찾기 서비스](https://ai.k-bigdata.kr/activities/kopo-711758/)
+- [서울 강서양천 고교생, R·소셜데이터 분석 진로체험](https://ai.k-bigdata.kr/activities/kopo-727476/)
+- [2016 김영운 교수 기고, R을 활용한 빅데이터 분석](https://ai.k-bigdata.kr/activities/kopo-445198/)
