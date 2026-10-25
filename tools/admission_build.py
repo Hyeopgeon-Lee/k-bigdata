@@ -11,6 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SITE = 'https://ai.k-bigdata.kr'
 KST = timezone(timedelta(hours=9))
+SEO_FOOTER_LINKS = '<p class="seo-footer-links"><a href="/ai-software/">AI 전공 가이드</a> · <a href="/data-analysis/">데이터 교육</a> · <a href="/backend-software/">백엔드 교육</a> · <a href="/seoul-it-college/">서울 IT학과 선택</a> · <a href="/career-portfolio/">취업 포트폴리오</a> · <a href="/insights/">AI·IT 인사이트</a> · <a href="/admission/2027/">2027 입학안내</a></p>'
 
 def load_admissions():
     data = json.loads((ROOT / 'data/admissions.json').read_text(encoding='utf-8'))
@@ -116,7 +117,7 @@ def enhance_page(page, relative, state, data):
     if relative not in ('index.html','privacy.html','404.html','post.html') and not relative.startswith('insights/'):
         page=page.replace('</main>',conversion_links()+'</main>')
     if '<footer' in page:
-        extra='<p class="seo-footer-links"><a href="/ai-software/">AI 전공 가이드</a> · <a href="/data-analysis/">데이터 교육</a> · <a href="/backend-software/">백엔드 교육</a> · <a href="/seoul-it-college/">서울 IT학과 선택</a> · <a href="/career-portfolio/">취업 포트폴리오</a> · <a href="/insights/">AI·IT 인사이트</a> · <a href="/admission/2027/">2027 입학안내</a></p>'
+        extra=SEO_FOOTER_LINKS
         page=page.replace('</footer>',extra+'</footer>')
     # Derive FAQ schema only from questions and answers actually rendered on this page.
     faq=FAQReader(); faq.feed(page)
