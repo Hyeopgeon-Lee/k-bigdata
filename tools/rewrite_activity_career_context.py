@@ -8,6 +8,7 @@ import html
 import json
 import re
 from collections import Counter
+from enforce_student_led_career import is_student_led
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -270,8 +271,8 @@ def main() -> None:
             raise ValueError("Broken index activity")
         cards[slug.group(1)]=(
             clean_text(name.group(1)),clean_text(category.group(1)),clean_text(lead.group(1)))
-    if len(cards)!=286:
-        raise AssertionError(f"Archive expected 286 posts, got {len(cards)}")
+    if len(cards)!=284:
+        raise AssertionError(f"Archive expected 284 posts, got {len(cards)}")
     stats=Counter()
     articles=[]
     new_contexts={}
@@ -290,8 +291,13 @@ def main() -> None:
         found=CONTEXT.findall(page)
         if len(found)>1:
             raise ValueError("Duplicated career section "+slug)
+        if not is_student_led(slug,category,title,lead,original):
+            if found:
+                path.write_text(CONTEXT.sub("",page),encoding="utf-8")
+                stats['career_removed_non_student_led']+=1
+            continue
         if not found:
-            stats['unrelated_or_very_thin_without_context']+=1
+            stats['student_led_without_context']+=1
             continue
         content=generate_career_text(slug,title,category,original,lead)
         if content:
@@ -322,17 +328,17 @@ def main() -> None:
         articles.append({"slug":slug,"category":category,"title":title,
                          "before":prev,"after":content,"length":len(content),
                          "hand_edited":slug in HAND_EDITED})
-    if not 245 <= len(new_contexts) <= 286:
+    if len(new_contexts) > 284:
         raise AssertionError(f"Unanticipated career context count: {len(new_contexts)}")
     stats["hand_edited"]=sum(1 for x in articles if x["hand_edited"])
     stats["distinct_old_paragraphs"]=len(set(previous_contexts))
     stats["distinct_new_paragraphs"]=len(set(new_contexts.values()))
     DETAIL.parent.mkdir(parents=True,exist_ok=True)
-    DETAIL.write_text(json.dumps({"date":"2026-10-25","posts":286,
+    DETAIL.write_text(json.dumps({"date":"2026-10-25","posts":284,
                                   "stats":dict(stats),"articles":articles},
                                   ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     summary=[
-       "# 학과 활동 286건 취업·포트폴리오 연계 문구 전수 교정",
+       "# 학생 주도 활동의 취업·포트폴리오 연계 문구 정비",
        "",
        "## 편집 원칙",
        "- 수상·프로젝트: 대외 수상 증빙과 실무 개발 포트폴리오, 채용·기술면접에서 활용할 지점을 설명",
