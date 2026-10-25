@@ -172,3 +172,27 @@
 .activity-content .activity-editorial-explainer p,
 .activity-content .activity-editorial-context p{font-size:.95rem;line-height:1.8;margin:0;color:#344f69}
 @media(max-width:650px){.activity-editorial-explainer,.activity-editorial-context{padding:1.05rem 1.15rem}}
+
+/* 2026-10: Editorial readability and accessible archive controls. */
+.activity-toolbar-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.65rem;margin-top:1rem;padding-top:.9rem;border-top:1px solid #e5edf5}
+.activity-match-hint{margin:0;color:#49647f;font-size:.84rem;line-height:1.5;font-weight:650}
+.activity-clear-filters{font:inherit;font-size:.84rem;font-weight:800;line-height:1.4;padding:.55rem .9rem;border-radius:.6rem;background:#fff;color:#174d81;border:1px solid #9fb9d5;cursor:pointer}
+.activity-clear-filters:hover{background:#eaf2fb;border-color:#567fa9}
+.activity-clear-filters:focus-visible{outline:3px solid #83c3fc;outline-offset:2px}
+.activity-clear-filters[hidden]{display:none!important}
+.activity-card h3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.activity-card p{-webkit-line-clamp:4}
+.activity-card .activity-read-more{display:inline-flex;align-items:center;align-self:flex-start;min-height:2.65rem}
+.activity-card:focus-within{border-color:#70a2d1;box-shadow:0 0 0 2px rgba(30,103,174,.14)}
+.activity-post-hero h1{max-width:920px;font-size:clamp(2rem,4.55vw,3.75rem);line-height:1.22;letter-spacing:-.045em}
+.activity-post-hero .activity-lead{line-height:1.78}
+.activity-content>section:not([class]){margin-bottom:1.7rem}
+.activity-content>section:not([class]) h2{margin-top:2.15rem}
+.activity-content>section:not([class]) p{margin-bottom:1.05rem}
+@media(max-width:650px){
+ .activity-toolbar-footer{align-items:flex-start}
+ .activity-clear-filters{min-height:2.7rem}
+ .activity-post-hero h1{font-size:clamp(1.85rem,7vw,2.4rem)}
+ .activity-content{font-size:1rem;line-height:1.82}
+ .activity-content>section:not([class]) h2{margin-top:1.9rem}
+}
