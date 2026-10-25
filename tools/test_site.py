@@ -37,7 +37,7 @@ class SiteTests(unittest.TestCase):
             self.assertIn(state['announcement'],page)
         self.assertEqual(len(data['rounds']),3)
     def test_all_required_urls_and_no_duplicates(self):
-        for path in ('','admission/2027/','projects/','employment/','ai-software/','data-analysis/','backend-software/','seoul-it-college/','career-portfolio/','insights/'):
+        for path in ('','admission/2027/','projects/','employment/','ai-software/','data-analysis/','backend-software/','seoul-it-college/','career-portfolio/','insights/','activities/','activities/social-data-career-trends/'):
             self.assertIn(HOST+'/'+path,self.urls)
         self.assertEqual(len(self.urls),len(set(self.urls)))
         for entry in self.map.getroot():self.assertRegex(entry.find('{http://www.sitemaps.org/schemas/sitemap/0.9}lastmod').text,r'^\d{4}-\d{2}-\d{2}$')

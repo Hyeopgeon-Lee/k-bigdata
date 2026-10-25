@@ -1,0 +1,43 @@
+/* 학과 활동: 기존 홈페이지 디자인 시스템에 결합되는 독립 스타일 */
+.activity-page{background:#f5f8fc;color:#132744}
+.activity-hero{padding:clamp(7.5rem,12vw,10rem) 0 clamp(3rem,7vw,5rem);background:linear-gradient(125deg,#071a33,#173c67);color:#fff}
+.activity-hero .container{max-width:1110px}
+.activity-breadcrumb{display:flex;align-items:center;gap:.65rem;margin:0 0 2.25rem;color:#bad5ef;font-size:.88rem}
+.activity-breadcrumb a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.activity-kicker{margin:0 0 1rem;color:#cbff3d;font-size:.75rem;font-weight:850;letter-spacing:.14em}
+.activity-hero h1{margin:0;font-weight:860;font-size:clamp(2.5rem,6.3vw,5rem);line-height:1.18;letter-spacing:-.065em;word-break:keep-all}
+.activity-hero .activity-lead{max-width:780px;margin:1.6rem 0 0;color:#d0e0ef;font-size:clamp(1rem,2vw,1.22rem);line-height:1.85;word-break:keep-all}
+.activity-post-meta{display:flex;flex-wrap:wrap;gap:.5rem 1.3rem;margin-top:1.8rem;color:#b6cee4;font-size:.83rem}
+.activity-list{padding:clamp(3rem,7vw,5rem) 0 6rem;min-height:40vh}
+.activity-list .container,.activity-article{max-width:1110px}
+.activity-list-heading{display:flex;align-items:end;justify-content:space-between;gap:1rem;margin-bottom:2rem}
+.activity-list-heading .activity-kicker{color:#2769ac}
+.activity-list-heading h2{margin:0;font-size:clamp(1.65rem,4vw,2.65rem);letter-spacing:-.055em}
+.activity-list-heading>span{font-size:1rem;color:#6a7990;font-weight:700}
+.activity-card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem}
+.activity-card{overflow:hidden;border:1px solid #dae3ec;border-radius:1.2rem;background:#fff;box-shadow:0 14px 36px rgba(4,25,58,.06)}
+.activity-image-link{display:block;overflow:hidden;aspect-ratio:4/3;background:#dbe8ee}
+.activity-image-link img{width:100%;height:100%;object-fit:cover;transition:transform .25s}
+.activity-image-link:hover img{transform:scale(1.025)}
+.activity-card-body{padding:1.6rem}
+.activity-card-meta{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem;color:#37689e;font-size:.78rem;font-weight:700}
+.activity-card h3{font-size:1.45rem;line-height:1.4;margin:.75rem 0;letter-spacing:-.03em;word-break:keep-all}
+.activity-card h3 a{color:#0c284b;text-decoration:none}
+.activity-card p{font-size:.95rem;color:#5a6d82;line-height:1.75}
+.activity-read-more{display:inline-block;margin-top:1rem;color:#165dac;font-weight:800;text-decoration:none}
+.activity-article{padding:0 0 6rem}
+.activity-feature-image{overflow:hidden;margin:-1.5rem 0 0;border-radius:1.2rem;background:#fff;box-shadow:0 15px 36px rgba(4,25,58,.13)}
+.activity-feature-image img{display:block;width:100%;height:auto}
+.activity-feature-image figcaption{padding:.8rem 1.3rem;color:#607186;font-size:.8rem;line-height:1.6}
+.activity-content{max-width:860px;margin:3rem auto 0;padding:0 .7rem;color:#2b3b50;font-size:1.05rem;line-height:1.9}
+.activity-content h2{margin:2.5rem 0 1rem;color:#0e2b4f;font-size:clamp(1.4rem,3.3vw,1.9rem);line-height:1.45;letter-spacing:-.045em;word-break:keep-all}
+.activity-content p{margin:0 0 1.4rem;word-break:keep-all}
+.activity-cta{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;margin-top:3rem;padding:2rem;background:#071a33;color:#fff;border-radius:1.1rem}
+.activity-cta small{color:#cbff3d;font-weight:850;letter-spacing:.1em}
+.activity-cta h2{color:#fff;margin:.5rem 0;font-size:1.45rem}
+.activity-cta p{color:#cad7e5;margin:0}
+.activity-cta-links{display:flex;flex-wrap:wrap;align-content:center;gap:.6rem}
+.activity-cta-links a{padding:.75rem 1rem;border:1px solid #8ea9c0;border-radius:.55rem;color:#fff;font-weight:750;text-decoration:none}
+.activity-post-nav{margin-top:2.5rem}.activity-post-nav a{color:#1662ae;font-weight:800}
+.activity-footer a{color:#bdcbd8}
+@media(max-width:750px){.activity-card-grid{grid-template-columns:1fr}.activity-list{padding-bottom:4rem}.activity-hero{padding-top:6.8rem}.activity-feature-image{border-radius:.75rem;margin-top:-.7rem}.activity-content{margin-top:2rem}.activity-cta{padding:1.35rem}.activity-card-body{padding:1.2rem}}

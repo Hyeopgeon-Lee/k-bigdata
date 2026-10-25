@@ -58,7 +58,7 @@ def bind_state(page, state, data):
 def nav():
     return ('<nav class="main-nav" id="main-navigation" aria-label="주요 메뉴">'
         '<a href="/#major">학과소개</a><a href="/#roadmap">교육과정</a>'
-        '<a href="/projects/">학생작품</a><a href="/employment/">취업·성과</a>'
+        '<a href="/projects/">학생작품</a><a href="/activities/">학과활동</a><a href="/employment/">취업·성과</a>'
         '<a href="/admission/2027/">입학안내</a>'
         '<a class="nav-cta" href="https://open.kakao.com/o/gEd0JIad" target="_blank" rel="noopener noreferrer">입학상담 ↗</a></nav>')
 
@@ -91,9 +91,9 @@ def enhance_page(page, relative, state, data):
         for key in ('description','twitter:description'): page=meta(page,key,description)
         page=meta(page,'og:description',state['ogDescription'],True)
         page=meta(page,'og:title',title,True); page=meta(page,'twitter:title',title)
-    image=SITE+'/assets/promo/'+image_name
+    image=(SITE+'/assets/activities/social-data-career-trends-2026.jpg' if relative.startswith('activities/') else SITE+'/assets/promo/'+image_name)
     for key in ('og:image','og:image:secure_url'): page=meta(page,key,image,True)
-    for key,value in (('og:image:width','1200'),('og:image:height','630'),('og:image:type','image/png')): page=meta(page,key,value,True)
+    for key,value in (('og:image:width','1100' if relative.startswith('activities/') else '1200'),('og:image:height','825' if relative.startswith('activities/') else '630'),('og:image:type','image/jpeg' if relative.startswith('activities/') else 'image/png')): page=meta(page,key,value,True)
     page=meta(page,'twitter:image',image)
     canonical=re.search(r'<link rel="canonical" href="([^"]+)"',page)
     if canonical:page=meta(page,'og:url',unescape(canonical[1]),True)
@@ -146,6 +146,7 @@ def reorder_home(page):
             depth+=1
     def rank(s):
         if 'class="hero"' in s:return 0
+        if 'id="activities"' in s:return 1
         if 'id="projects"' in s:return 1
         if 'employment-preview"' in s:return 2
         if 'achievements-section' in s:return 3
