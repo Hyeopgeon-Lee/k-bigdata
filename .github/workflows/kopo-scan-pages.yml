@@ -1,0 +1,21 @@
+name: KOPO pages 2 to 5 scan
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/kopo_scan_pages_2_5.py'
+      - '.github/workflows/kopo-scan-pages.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4
+      - run: python tools/kopo_scan_pages_2_5.py
