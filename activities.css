@@ -44,3 +44,13 @@
 
 /* official-board styles */
 .official-post-poster{box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;height:100%;padding:2rem;background:linear-gradient(125deg,#071a33,#27639a);color:white}.official-post-poster span{font-size:.72rem;letter-spacing:.13em;color:#d7f9b7;font-weight:800}.official-post-poster strong{font-size:clamp(1.35rem,2.8vw,2rem);line-height:1.48;word-break:keep-all}.official-post-gallery{display:grid;gap:1.2rem}.official-post-gallery .official-figure{margin:0}.official-post-gallery .official-figure:first-child{margin-top:-1.5rem}.official-post-gallery img{max-height:750px;object-fit:contain;background:#e8edf3}
+
+/* Archived official department news pagination */
+.activity-card[hidden]{display:none!important}
+.activity-pagination{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:2.2rem;padding:1rem 0}
+.activity-page-status{color:#49637e;font-size:.86rem;font-weight:700}
+.activity-page-buttons{display:flex;flex-wrap:wrap;gap:.45rem}
+.activity-page-button{min-width:2.45rem;height:2.45rem;padding:0 .4rem;border:1px solid #c6d4e4;border-radius:.58rem;background:white;color:#15385f;cursor:pointer;font:inherit;font-weight:750}
+.activity-page-button.selected,.activity-page-button:hover{background:#133f75;color:white;border-color:#133f75}
+.activity-page-button:focus-visible{outline:3px solid #7fc9ff;outline-offset:2px}
+@media(max-width:750px){.activity-pagination{justify-content:center}.activity-page-status{width:100%;text-align:center}}

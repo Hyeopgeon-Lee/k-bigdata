@@ -1,0 +1,50 @@
+name: KOPO 학과소식 2~5페이지 일괄 등록
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/import_kopo_pages_2_5.py'
+      - '.github/workflows/import-kopo-pages-2-5.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image and HTML dependencies
+        run: pip install requests beautifulsoup4 pillow 'opencv-python-headless==4.11.0.86' 'numpy<2'
+      - name: Verify official articles and publish privacy-edited pictures
+        run: python tools/import_kopo_pages_2_5.py
+      - name: Build and inspect links and metadata
+        run: |
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+      - name: Commit generated pages and photos
+        id: changes
+        run: |
+          git config user.name "k-bigdata-site-bot"
+          git config user.email "site-bot@users.noreply.github.com"
+          git add activities/index.html tools/build_site.py activities/kopo-*/index.html assets/activities/official-board/
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "Publish KOPO official board pages 2-5: forty verified articles"
+            git pull --rebase origin main
+            git push origin HEAD:main
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Trigger site publication
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run publish.yml --ref main
