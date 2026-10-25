@@ -22,7 +22,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install dependencies
-        run: pip install requests beautifulsoup4 pillow opencv-python-headless
+        run: pip install requests beautifulsoup4 pillow 'opencv-python-headless==4.11.0.86' 'numpy<2'
       - name: Retrieve and validate original article text and images
         run: python tools/import_kopo_first_page.py
       - name: Validate new pages and links
