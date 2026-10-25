@@ -137,9 +137,11 @@ def apply_cards(source: str) -> str:
     def change(match):
         item = match.group(0)
         slug = re.search(r'<h3><a href="/activities/([^/]+)/"', item).group(1)
+        record = records[slug]
+        item = item.replace('alt="학과 활동 현장 사진"',
+                            'alt="'+esc(record["title"]+" 관련 현장 사진")+'"')
         if slug not in CURATED:
             return item
-        record = records[slug]
         item = re.sub(r'(<h3><a href="[^"]+">).*?(</a></h3>)',
                       lambda m:m.group(1)+esc(record["title"])+m.group(2),item,count=1,flags=re.S)
         item = re.sub(r'(</h3><p>).*?(</p>)',
