@@ -1,0 +1,48 @@
+name: 286건 학과 활동 홍보 문구 전수 정비
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/revise_all_activity_copy.py'
+      - '.github/workflows/revise-all-activity-copy.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: all-activity-promotion-edits
+  cancel-in-progress: false
+jobs:
+  revise:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install parser
+        run: pip install beautifulsoup4
+      - name: Six parallel quality lenses and safe revision of current 286 posts
+        run: python tools/revise_all_activity_copy.py
+      - name: Validate complete site, metadata, links and archive counts
+        run: |
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+      - name: Commit reviewed content and inspection report
+        run: |
+          git config user.name 'k-bigdata-site-bot'
+          git config user.email 'site-bot@users.noreply.github.com'
+          git add activities/ data/activity_editorial_full_review_2026-10-25.json reports/activity_editorial_full_review_2026-10-25.md
+          if ! git diff --cached --quiet; then
+            git commit -m 'Revise promotional copy, structure and metadata for all 286 current activity posts'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Publish latest reviewed pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run publish.yml --ref main
