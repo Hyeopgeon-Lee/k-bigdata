@@ -20,6 +20,7 @@ from urllib.request import urlopen
 from admission_build import load_admissions, state_at, enhance_page, round_cards, reorder_home, json_script
 from employment_build import load_snapshot, inject as inject_employment
 from activity_sort import sort_activity_archive
+from normalize_department_activity_names import normalize_text
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "_site"
@@ -713,6 +714,8 @@ def main() -> None:
         built = enhance_page(content,relative,state,data)
         if relative == 'activities/index.html':
             built = sort_activity_archive(built)
+        if relative.startswith('activities/'):
+            built = normalize_text(built)
         page.write_text(built, encoding='utf-8')
     write_sitemap(posts)
     write_feed(posts)

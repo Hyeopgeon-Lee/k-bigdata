@@ -103,6 +103,19 @@ class SiteTests(unittest.TestCase):
         import struct
         for name in ('og-department.png','og-admission-2027-susi2.png','og-admission-2027-regular.png','og-insights.png','og-projects.png','og-employment.png'):
             self.assertEqual(struct.unpack('>II',(OUT/'assets/promo'/name).read_bytes()[16:24]),(1200,630))
+    def test_activity_department_name_consistency(self):
+        """All published activity articles use the current official department name."""
+        legacy=('빅데이터소프트웨어과', '빅데이터과', '데이터분석과')
+        count=0
+        for url,file,html,_page in self.pages:
+            if '/activities/' not in url:
+                continue
+            count+=1
+            for old in legacy:
+                with self.subTest(page=url,old_name=old):
+                    self.assertNotIn(old,html)
+        self.assertGreaterEqual(count,322)
+
     def test_activity_cards_newest_first_and_schema_consistent(self):
         """All 321+ activity cards are sorted across the entire pagination range."""
         source=(OUT/'activities/index.html').read_text(encoding='utf-8')
