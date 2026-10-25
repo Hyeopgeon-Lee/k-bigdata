@@ -87,3 +87,43 @@
 ## 남은 검토 항목
 
 수상·취업 성과의 공식 근거와 사진 초상권 등은 개별 원문 및 관계자 확인이 필요한 사항입니다. 본 작업은 원문 사실 범위의 편집 개선이며 외부 자료까지 모두 재검증했다는 의미는 아닙니다.
+
+## 추가 교열: 수상·취업·교육 핵심 게시글 및 제목 문장부호
+
+원문을 다시 읽고 핵심 24건의 설명문과 제목을 수정했습니다. 최종 추가 교열 파일 35건입니다.
+
+- [SQL 퀴즈 특강, 질의 작성·문제 해결 실습](https://ai.k-bigdata.kr/activities/kopo-773180/)
+- [2025 프로젝트경진대회, 우수상·장려상 수상](https://ai.k-bigdata.kr/activities/kopo-762210/)
+- [시스원 손병홍 이사 특강, AX 시대 IT 직무·기술 변화](https://ai.k-bigdata.kr/activities/kopo-759557/)
+- [AI 전문가·인사담당자 초청, 2학년 취업 실무교육](https://ai.k-bigdata.kr/activities/kopo-752594/)
+- [선후배 멘토링, Spring Boot·MariaDB 연동 실습](https://ai.k-bigdata.kr/activities/kopo-750981/)
+- [방과후 컴퓨터·코딩지도사 수료식, 여성 재취업 교육](https://ai.k-bigdata.kr/activities/kopo-750361/)
+- [선후배 Java 멘토링, 객체지향·캡슐화 실습](https://ai.k-bigdata.kr/activities/kopo-747615/)
+- [2학년 선배 주도 Java 멘토링, if 조건문 실습](https://ai.k-bigdata.kr/activities/kopo-746516/)
+- [코웨이 황윤영 졸업생, SW 개발 직무 특강](https://ai.k-bigdata.kr/activities/kopo-734728/)
+- [로지스올시스템즈 박수진 졸업생 초청 취업 특강](https://ai.k-bigdata.kr/activities/kopo-734727/)
+- [고교 교원 대상 생성형 AI 실습 연수, Llama 3.1 활용](https://ai.k-bigdata.kr/activities/kopo-734721/)
+- [Spring Boot 실무 특강, MariaDB 연동·웹 개발 실습](https://ai.k-bigdata.kr/activities/kopo-727478/)
+- [Meta Llama3 특강 진행 — LLM 실습으로 한 걸음 더 성장한 빅데이터소프트웨어공학과](https://ai.k-bigdata.kr/activities/kopo-727471/)
+- [2024 KB굿잡 취업박람회, 학과 홍보부스 운영](https://ai.k-bigdata.kr/activities/kopo-727469/)
+- [방과후 컴퓨터·코딩지도사 교육과정 수료식](https://ai.k-bigdata.kr/activities/kopo-727468/)
+- [카카오엔터테인먼트 손성용 개발자 초청 Spring 특강](https://ai.k-bigdata.kr/activities/kopo-727467/)
+- [AI 진로체험 1기, Python·OpenCV 이미지 처리 실습](https://ai.k-bigdata.kr/activities/kopo-707046/)
+- [빅데이터 진로체험 1기, R 분석·시각화 실습](https://ai.k-bigdata.kr/activities/kopo-707045/)
+- [OCR 기술로 소상공인 세무 서비스 개발 — 빅데이터소프트웨어공학과 재학생 ICT멘토링 선정](https://ai.k-bigdata.kr/activities/kopo-699010/)
+- [경력단절여성 재취업 지원 — 아동코딩지도사 교육과정 운영](https://ai.k-bigdata.kr/activities/kopo-699008/)
+- [K-PaaS 서비스 공모전 전국 1위, 과기정통부 장관상](https://ai.k-bigdata.kr/activities/kopo-699006/)
+- [개그맨 복현규 초청 특강 — 공감과 웃음, 그리고 인생 이야기](https://ai.k-bigdata.kr/activities/kopo-676277/)
+- [인공지능 교육캠퍼스 학생교육 종료 — 자연어처리·시각화 실습 중심 운영](https://ai.k-bigdata.kr/activities/kopo-661750/)
+- [레빗과 MOU 체결 — K-PaaS 기반 클라우드 인재 양성 협력](https://ai.k-bigdata.kr/activities/kopo-661749/)
+- [서울시교육청 고교생 대상 AI 기술교육 진행 — 빅데이터소프트웨어공학과 참여](https://ai.k-bigdata.kr/activities/kopo-661745/)
+- [K-PaaS 클라우드 컴퓨팅 특강 개최 — 실무 중심 클라우드 이해도 UP](https://ai.k-bigdata.kr/activities/kopo-659341/)
+- [경력단절여성 재취업 지원 — 아동코딩지도사 교육과정 운영 (2022.02.23)](https://ai.k-bigdata.kr/activities/kopo-658320/)
+- [퀴즈톡 자연어처리 기술 자문 진행 — 빅데이터소프트웨어공학과 김영운 교수 참여](https://ai.k-bigdata.kr/activities/kopo-658312/)
+- [1기 졸업생 문주현·박수용, 숭실대 대학원 석사 취득](https://ai.k-bigdata.kr/activities/kopo-612409/)
+- [이력서 사진 무료 촬영 행사 — 취업 준비에 날개를 달다](https://ai.k-bigdata.kr/activities/kopo-602143/)
+- [학과 빅데이터 분석 교육 소개 카드뉴스](https://ai.k-bigdata.kr/activities/kopo-591399/)
+- [2017 SW동아리 재능기부 챌린지 전국 3위 수상](https://ai.k-bigdata.kr/activities/kopo-485394/)
+- [2017 농협 핀테크 아이디어톤, 학과 학생 전국 3위](https://ai.k-bigdata.kr/activities/kopo-483717/)
+- [2017 ICNCT 국제학술대회, 교수진 최우수논문상](https://ai.k-bigdata.kr/activities/kopo-453392/)
+- [2016 폴리텍 엑스포, 학과 빅데이터 교육 소개](https://ai.k-bigdata.kr/activities/kopo-446171/)
