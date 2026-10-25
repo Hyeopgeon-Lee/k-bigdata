@@ -26,7 +26,7 @@ for page in range(2,6):
  for tr in sp.select("table.tbl_list tbody tr"):
   a=tr.select_one("a[onclick*=fn_board_detail]")
   if not a:continue
-  m=re.search(r"fn_board_detail\\('([^']+)'\\)",a.get("onclick",""))
+  m=re.search(r"fn_board_detail\('([^']+)'\)",a.get("onclick",""))
   if m:items.append((page,m.group(1),a.get_text(" ",strip=True)))
 for page,seq,title in items:
  rr=s.post(url+"&mode=view&post="+seq,data={"pageIndex":str(page)},timeout=45)
