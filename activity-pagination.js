@@ -110,6 +110,8 @@
   status.setAttribute('aria-live','polite');
   const pageButtons = document.createElement('div');
   pageButtons.className = 'activity-page-buttons';
+  pageButtons.setAttribute('role','group');
+  pageButtons.setAttribute('aria-label','페이지 이동 버튼');
   nav.append(status, pageButtons);
   empty.after(nav);
   const featured = document.querySelector('.activity-featured');
@@ -167,9 +169,20 @@
     empty.hidden = matches.length !== 0;
     pageButtons.replaceChildren();
     if (matches.length>PAGE_SIZE) {
+      // On narrow screens, reserve room for both previous and next buttons.
+      const compact = typeof matchMedia === 'function' &&
+                      matchMedia('(max-width: 640px)').matches;
       pageButton('이전',state.page-1,false,state.page===1);
-      let start = Math.max(1,state.page-2), end = Math.min(total,start+4);
-      start=Math.max(1,end-4);
+      let start, end;
+      if (compact && state.page > 3 && state.page < total-2) {
+        // Middle pages retain first/current/last and both arrow controls.
+        start = end = state.page;
+      } else {
+        const windowSize = compact ? 3 : 5;
+        start = Math.max(1, state.page-Math.floor(windowSize/2));
+        end = Math.min(total, start+windowSize-1);
+        start = Math.max(1, end-windowSize+1);
+      }
       if(start>1){pageButton('1',1,false,false);if(start>2)ellipsis();}
       for(let i=start;i<=end;i++)pageButton(String(i),i,i===state.page,false);
       if(end<total){if(end<total-1)ellipsis();pageButton(String(total),total,false,false);}
@@ -189,5 +202,7 @@
   yearSelect.addEventListener('change',()=>{state.year=yearSelect.value;state.page=1;draw(false,'replace');});
   sortSelect.addEventListener('change',()=>{state.sort=sortSelect.value;state.page=1;draw(false,'replace');});
   addEventListener('popstate',()=>{state=readURL();draw(false,'');});
+  const compactQuery = typeof matchMedia === 'function' ? matchMedia('(max-width: 640px)') : null;
+  if (compactQuery) compactQuery.addEventListener('change',()=>draw(false,''));
   draw(false,'');
 })();
