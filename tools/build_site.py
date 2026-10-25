@@ -41,6 +41,7 @@ STATIC_PAGES = (
     ("projects/", "projects/index.html"),
     ("activities/", "activities/index.html"),
     ("activities/social-data-career-trends/", "activities/social-data-career-trends/index.html"),
+    ("activities/gangseo-job-fair-2026/", "activities/gangseo-job-fair-2026/index.html"),
     ("admission/2027/", "tools/templates/admission.html"),
     ("privacy.html", "privacy.html"),
 )
