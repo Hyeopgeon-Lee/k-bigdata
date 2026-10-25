@@ -1,0 +1,50 @@
+name: KOPO 학과소식 최초 10건 등록
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/import_kopo_first_page.py'
+      - '.github/workflows/import-kopo-first-page.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 pillow opencv-python-headless
+      - name: Retrieve and validate original article text and images
+        run: python tools/import_kopo_first_page.py
+      - name: Validate new pages and links
+        run: |
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+      - name: Commit imported content
+        id: commit
+        run: |
+          git config user.name "k-bigdata-site-bot"
+          git config user.email "site-bot@users.noreply.github.com"
+          git add activities/index.html activities.css tools/build_site.py activities/ assets/activities/official-board/
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "Import official KOPO first-page department news articles and protected photos"
+            git pull --rebase origin main
+            git push origin HEAD:main
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Trigger Pages deployment
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run publish.yml --ref main
