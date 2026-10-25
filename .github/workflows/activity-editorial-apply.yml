@@ -4,6 +4,7 @@ on:
     branches: [feature/activities-editorial-consistency-20261025]
     paths:
       - '.github/workflows/activity-editorial-apply.yml'
+      - 'tools/standardize_activity_editorial.py'
   workflow_dispatch:
 permissions:
   contents: write
