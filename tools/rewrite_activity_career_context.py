@@ -82,11 +82,12 @@ def clean_text(value: str) -> str:
     return " ".join(html.unescape(TAG.sub(" ",value)).split())
 
 def role_for(title: str, actual_body: str) -> str:
-    # Prevent unrelated technology from leaking into a role label: first prefer
-    # title / article introduction and next consider the event's real text.
-    focus=title+" "+actual_body[:550]
-    for pattern,job in ROLE_MATCHES:
-        if re.search(pattern,focus,re.I):return job
+    # A number of archived posts end with generic AI/cloud promotional copy.
+    # Ignore that copy when choosing a specific career title.
+    for focus in (title, actual_body[:125]):
+        for pattern,job in ROLE_MATCHES:
+            if re.search(pattern,focus,re.I):
+                return job
     return "소프트웨어·데이터 관련"
 
 def topic_from_title(title: str) -> str:
@@ -115,7 +116,7 @@ def generate_career_text(slug: str, title: str, category: str, actual: str, lead
     topic=topic_from_title(title)
     roles=role_for(title,actual)
     awards=bool(re.search(r"수상|대상|동상|장려상|우수상|최우수상|전국 1위|감사장|1등|2위|3위",title))
-    is_student=bool(re.search("학생|재학생|팀|졸업생|프로젝트|공모전|대회",title+" "+lead))
+    is_student=bool(re.search("학생|재학생|졸업생|프로젝트|공모전",title+" "+lead))
     sports=bool(re.search("운동회|피구|줄다리기|풋살|축제|산책|체육|다과회|친목",title))
     faculty=bool(re.search("교수|교원|학회|논문지|국제학술",title))
     if sports:
@@ -125,7 +126,7 @@ def generate_career_text(slug: str, title: str, category: str, actual: str, lead
         if re.search("감사장|봉사",title):
             return (f"‘{topic}’ 성과는 지역사회와의 신뢰 관계를 보여주는 자료입니다. 활동 당시 본인이 맡은 역할과 현장 문제를 해결한 과정을 "
                     "취업 자기소개서의 책임감·협업 사례로 정리할 수 있습니다. 다만 전문 기술력을 입증하는 자료는 개발 프로젝트와 별도로 준비하는 것이 좋습니다.")
-        if faculty and not is_student:
+        if faculty and (re.search("교수|학과장",title) and not re.search("학생|재학생|졸업생",title) or not is_student):
             return (f"‘{topic}’ 수상은 교수진의 연구 역량과 학과의 전문성을 보여줍니다. 학생들이 이와 관련된 주제로 연구·개발 프로젝트를 수행한다면 "
                     f"{roles} 직무에 맞는 실험 결과와 구현 과정을 포트폴리오에 담을 수 있습니다. 교수진의 수상 실적을 학생 개인의 취업 성과로 표현해서는 안 됩니다.")
         detail=result_detail(title,actual)
@@ -142,7 +143,7 @@ def generate_career_text(slug: str, title: str, category: str, actual: str, lead
                 f"{detail}에 README, 실행 방법, 문제 해결 기록을 더하면 채용 담당자가 지원자의 실제 구현 범위를 판단하기 쉽습니다. "
                 "팀 프로젝트라면 전체 기능보다 본인이 설계·구현한 부분을 명확히 밝히는 것이 중요합니다.")
     if category=="멘토링·진로":
-        if re.search("졸업생|선배|취업|재직|기업",title):
+        if re.search("졸업생|재직|취업|기업|대학원 진학",title):
             return (f"‘{topic}’에서 소개된 선배의 진로 경험은 지원 기업과 직무를 정하는 데 참고할 만합니다. "
                     f"희망하는 {roles} 직무의 채용 요건을 살펴보고 선배가 강조한 학습·프로젝트 준비 내용을 자신의 기술 스택과 비교해 "
                     "이력서, 포트폴리오, 면접 답변의 보완 항목으로 구체화할 수 있습니다.")
@@ -178,8 +179,8 @@ def generate_career_text(slug: str, title: str, category: str, actual: str, lead
                 "학생들이 같은 유형의 문제를 프로젝트로 재현하고 요구사항, 구현 방법, 테스트 결과를 기록하면 "
                 "기업 지원 때 실무 이해도를 설명할 수 있는 포트폴리오로 연결할 수 있습니다.")
     if category=="연구·학술":
-        if faculty and not is_student:
-            return (f"‘{topic}’은 학과 교수진의 연구 주제와 기술 전문성을 보여줍니다. "
+        if faculty and (re.search("교수|학과장",title) and not re.search("학생|재학생|졸업생",title) or not is_student):
+            return (f"‘{topic}’ 연구는 학과 교수진의 연구 주제와 기술 전문성을 보여줍니다. "
                     f"학생 개인의 직접적인 연구 실적으로 간주하기보다는 관련 기술을 학습하고 실험·구현 결과를 스스로 만들어 {roles} 직무에 맞는 "
                     "포트폴리오로 발전시키는 것이 취업 준비에 의미가 있습니다.")
         return (f"‘{topic}’의 연구·발표 경험은 주제를 정의하고 데이터를 다루거나 성능을 검증한 과정을 보여줄 수 있습니다. "
@@ -200,7 +201,7 @@ def generate_career_text(slug: str, title: str, category: str, actual: str, lead
         return (f"‘{topic}’에서 다룬 교육 내용을 직접 실행한 코드나 학습 결과로 정리하면 {roles} 분야로 진입하기 위한 학습 이력을 만들 수 있습니다. "
                 "학습 단계에서 익힌 개념과 완성한 결과물, 추가로 보완할 기술을 구분하여 정리하는 것이 이후 직무 교육과 취업 준비에 유용합니다.")
     if category=="사회공헌·봉사":
-        if re.search("컴퓨터|SW|소프트웨어|수리|기술|개발",title+" "+actual[:250]):
+        if re.search("컴퓨터 유지보수|SW동아리|소프트웨어 개발|기술봉사|수리|설치",title+" "+actual[:145]):
             return (f"‘{topic}’에서 수행한 기술 지원이나 재능기부 활동은 현장 사용자의 문제를 이해한 경험으로 정리할 수 있습니다. "
                     "직접 맡은 점검·설치·개발 업무와 해결 과정을 사실대로 기록하면 IT 서비스 운영·기술지원 직무의 고객 대응·문제 해결 사례로 활용할 수 있습니다. "
                     "봉사 이력만으로 전문 개발 경험을 입증했다고 표현하지는 않는 것이 적절합니다.")
@@ -208,6 +209,22 @@ def generate_career_text(slug: str, title: str, category: str, actual: str, lead
                 "취업 자기소개서나 인성면접에서는 본인이 맡은 역할과 협업·소통 사례를 설명하는 자료가 될 수 있습니다. "
                 "IT 직무의 기술 역량은 별도 프로젝트 및 자격·실습 결과로 입증해야 합니다.")
     if category=="학과 행사":
+        if re.search("교수|논문|학술대회|연구 발표|연구 성과",title):
+            return (f"‘{topic}’은 학과의 연구·기술 성과를 소개하는 활동입니다. 교수진의 연구를 학생 개인 성과로 표현해서는 안 되며, "
+                    f"재학생이 해당 주제로 직접 실험하거나 코드를 구현하고 결과를 기록하면 {roles} 분야의 연구개발·기술 직무에 지원할 "
+                    "포트폴리오를 준비할 수 있습니다.")
+        if re.search("코딩지도사|방과후 컴퓨터|여성 재취업|교육과정 수료",title):
+            return (f"‘{topic}’에서 운영한 교육은 참여자의 취업·재취업 준비와 관련됩니다. 수료 이력에 더해 실습 결과, "
+                    "코딩 지도용 수업안, 과제 수행 내용을 직접 정리하면 방과후 교육·IT 교육지원 직무 지원 때 설명할 자료가 됩니다. "
+                    "수료 자체와 실제 취업 성과는 구분해야 합니다.")
+        if re.search("취업박람회|일자리박람회|채용박람회|취업 설명회",title):
+            return (f"‘{topic}’은 채용 현장과 IT 진로를 소개한 행사입니다. "
+                    f"관련 {roles} 분야의 채용공고를 확인해 본인의 구현 경험을 이력서·포트폴리오에 연결하고, "
+                    "체험부스 운영 경험이 있다면 설명·시연을 맡은 역할과 질문에 대응한 사례를 면접 준비에 활용할 수 있습니다.")
+        if re.search("고등학생|중학생|진로체험|코딩 체험|AI 교육|학생교육|교육캠퍼스",title):
+            return (f"‘{topic}’은 예비 진학자에게 IT 기술과 관련 직무를 소개하는 활동입니다. "
+                    "재학생의 실제 취업 경쟁력은 이런 행사를 운영했다는 기록만으로 생기는 것이 아니라, 교육 콘텐츠나 시연 프로그램을 직접 "
+                    "설계·구현한 경험을 구체적인 역할·코드·결과물로 정리할 때 드러납니다.")
         if re.search("GPU|워크스테이션|교육환경|학과 개편|실습실|AI|빅데이터|클라우드",title):
             return (f"‘{topic}’에서 소개된 교육환경과 실습 주제는 {roles} 분야의 직무 준비와 연결할 수 있습니다. "
                     "채용에서 의미 있는 것은 장비 보유나 행사 참가 그 자체가 아니라 학생이 직접 구현한 기능, 재현 가능한 실행 결과와 문제 해결 기록입니다. "
