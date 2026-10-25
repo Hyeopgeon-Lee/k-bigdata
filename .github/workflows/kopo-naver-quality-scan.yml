@@ -1,0 +1,21 @@
+name: Naver legacy photo resolution diagnostic
+on:
+  push:
+    branches: [main]
+    paths:
+      - tools/kopo_naver_quality_scan.py
+      - .github/workflows/kopo-naver-quality-scan.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pillow requests
+      - run: python tools/kopo_naver_quality_scan.py
