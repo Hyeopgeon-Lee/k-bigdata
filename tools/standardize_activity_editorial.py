@@ -131,6 +131,8 @@ def clean_title(original: str) -> str:
 # Explain only named technologies that are literally present in the original
 # article; factual technology background is explicitly separated from reports.
 TECH = [
+    ("GPU", "GPU는 많은 계산을 병렬로 처리하는 장치로, 인공지능 모델 학습과 대규모 데이터 연산에 사용됩니다."),
+    ("클라우드", "클라우드는 필요에 따라 서버와 저장소 등 IT 자원을 제공하고 서비스를 배포하고 운영하도록 지원하는 컴퓨팅 방식입니다."),
  ("LangGraph", "LangGraph는 여러 단계의 AI 모델 호출과 상태 전이를 연결해 복잡한 에이전트 작업 흐름을 설계할 때 활용됩니다."),
  ("LangChain", "LangChain은 언어모델을 프롬프트와 데이터, 외부 도구에 연결해 응용 서비스를 구현할 때 사용하는 개발 프레임워크입니다."),
  ("K-PaaS", "K-PaaS는 애플리케이션 개발과 배포, 운영을 지원하는 개방형 클라우드 플랫폼 기술입니다."),
@@ -187,16 +189,30 @@ def meaningful_sentences(text: str) -> list[str]:
     return [s for s in sentences if len(s)>16]
 
 def amplify_lead(source_lead: str, source_body: str, headline: str) -> str:
-    lead = " ".join(source_lead.split())
-    if len(lead)>=140: return lead
-    phrases=meaningful_sentences(plaintext(source_body))
-    for s in phrases:
-        # Only append meaningful, non-redundant detail from the same article.
-        if len(s)>35 and s[:22] not in lead and len(lead)+len(s)+1<=245:
-            candidate = re.sub(r'^(이번\s+(활동|특강|행사)(은|에서는)\s*)','',s)
-            if candidate and candidate[:24] not in lead:
-                lead += " " + candidate
-            if len(lead)>=125: break
+    """Prefer a concise verified event summary over padded or duplicate copy."""
+    lead=" ".join(source_lead.split())
+    if 85<=len(lead)<=185:
+        return lead
+    if len(lead)>185:
+        sentences=meaningful_sentences(lead)
+        result=[]
+        for sentence in sentences:
+            if len(sentence)<18: continue
+            if sum(map(len,result))+len(sentence)+len(result)>185: break
+            if sentence[:30] in " ".join(result): continue
+            result.append(sentence)
+        return " ".join(result) if result else lead[:185].rsplit(" ",1)[0]
+    from difflib import SequenceMatcher
+    for node in BeautifulSoup(source_body,"html.parser").select(
+            "section:not(.activity-editorial-context):not(.activity-editorial-explainer) p"):
+        for sentence in meaningful_sentences(node.get_text(" ",strip=True)):
+            if not 45<=len(sentence)<=155: continue
+            common=SequenceMatcher(None,lead,sentence)
+            if common.ratio()>0.4 or (common.find_longest_match(0,len(lead),0,len(sentence)).size
+                                      > min(len(lead),len(sentence))*0.52):
+                continue
+            if len(lead)+len(sentence)+1<=185:
+                return lead+" "+sentence
     return lead
 
 def contextual_sections(body: str, category: str, title: str) -> str:
@@ -265,6 +281,23 @@ def update_jsonld(source: str, title: str, lead: str, kind: str) -> str:
 
 TITLES={}
 LEADS={}
+BASELINE_LEADS = {}
+try:
+    _baseline=json.loads((ROOT/"data"/"activity_editorial_full_review_2026-10-25.json").read_text(encoding="utf-8"))
+    BASELINE_LEADS={entry["slug"]:entry.get("lead_after","") for entry in _baseline.get("articles",[])}
+except (FileNotFoundError,ValueError):
+    pass
+
+LEAD_OVERRIDES = {
+    "kopo-727472": "Spring AI 실습 특강에서 LLM과 RAG를 활용하는 인공지능 애플리케이션 개발을 다뤘습니다. ChatGPT와 Llama 등 언어모델의 Spring 기반 서비스 연동 방법을 살펴봤습니다.",
+    "kopo-707048": "카카오엔터테인먼트 손성용 개발자가 재학생을 대상으로 객체지향 설계 원칙과 JPA를 중심으로 Spring 실무 개발 사례를 소개했습니다.",
+    "kopo-745970": "경력단절여성의 IT 분야 취업 준비를 지원하기 위해 방과후 컴퓨터와 코딩지도사 강사 양성과정을 개강했습니다. 컴퓨터 기초와 코딩 교육을 다루는 과정입니다.",
+    "kopo-591393": "2020년 한이음 ICT 공모전에 참가하는 동아리의 소개 카드뉴스를 제작했습니다. 학과의 당시 학생 공모전 참가 활동을 기록한 자료입니다.",
+    "kopo-454182": "학과 교육 공간을 제3교육관에서 본관 3층으로 이전했다는 당시의 안내입니다. 현재 강의실 위치는 최신 캠퍼스 안내를 확인해야 합니다.",
+    "kopo-727475": "2024년 미래내일 일경험 사업을 통해 퀴즈톡과 함께 추진한 앱 UI/UX 개선 프로젝트의 설명회 기록입니다.",
+    "kopo-765578": "학과 1학년과 2학년 학생팀이 2025년 새싹 해커톤 본선에 진출했습니다. AI 기반 서비스의 기획과 구현을 중심으로 대회에 참여한 활동입니다.",
+}
+
 def main():
     content=ARCHIVE.read_text(encoding="utf-8")
     cards=CARD.findall(content)
@@ -306,7 +339,8 @@ def main():
         if split:counts['long_paragraphs_split']+=split
         # Intro includes only existing factual sentences from the original page.
         curated_lead=CURATED.get(slug,(None,source_lead))[1]
-        seed=curated_lead if slug in CURATED else source_lead
+        seed=curated_lead if slug in CURATED else BASELINE_LEADS.get(slug,source_lead)
+        seed=LEAD_OVERRIDES.get(slug,seed)
         new_lead=amplify_lead(seed,body,new_title)
         # Only provide editorial context for categories with original evidence.
         cat_match=re.search(r'<p class="activity-kicker">DEPARTMENT ACTIVITIES · (.*?)</p>',original,re.S)
