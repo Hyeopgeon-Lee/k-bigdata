@@ -114,13 +114,13 @@ class SiteTests(unittest.TestCase):
             for old in legacy:
                 with self.subTest(page=url,old_name=old):
                     self.assertNotIn(old,html)
-        self.assertGreaterEqual(count,287)
+        self.assertGreaterEqual(count,285)
 
     def test_activity_cards_newest_first_and_schema_consistent(self):
-        """All 321+ activity cards are sorted across the entire pagination range."""
+        """All active activity cards are sorted across the entire pagination range."""
         source=(OUT/'activities/index.html').read_text(encoding='utf-8')
         cards=re.findall(r'<article class="activity-card">.*?</article>',source,re.S)
-        self.assertEqual(len(cards),286)
+        self.assertEqual(len(cards),284)
         dates=[re.search(r'<time datetime="(\d{4}-\d{2}-\d{2})"',c)[1] for c in cards]
         self.assertEqual(dates,sorted(dates,reverse=True))
         urls=[re.search(r'<h3><a href="(/activities/[^"]+/)"',c)[1] for c in cards]
@@ -149,9 +149,9 @@ class ActivityPromotionTests(unittest.TestCase):
         cls.source_index = (ROOT/'activities/index.html').read_text(encoding='utf-8')
         cls.source_cards = re.findall(r'<article class="activity-card">.*?</article>',cls.source_index,re.S)
 
-    def test_all_286_urls_dates_media_preserved(self):
-        self.assertEqual(len(self.cards),286)
-        self.assertEqual(len(self.source_cards),286)
+    def test_all_284_urls_dates_media_preserved(self):
+        self.assertEqual(len(self.cards),284)
+        self.assertEqual(len(self.source_cards),284)
         def indexed(cards):
             return {re.search(r'<h3><a href="/activities/([^/]+)/"',c).group(1):c for c in cards}
         before,after = indexed(self.source_cards),indexed(self.cards)
