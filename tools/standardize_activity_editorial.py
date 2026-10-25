@@ -206,7 +206,7 @@ def amplify_lead(source_lead: str, source_body: str, headline: str) -> str:
     for node in BeautifulSoup(source_body,"html.parser").select(
             "section:not(.activity-editorial-context):not(.activity-editorial-explainer) p"):
         for sentence in meaningful_sentences(node.get_text(" ",strip=True)):
-            if not 45<=len(sentence)<=155: continue
+            if not 45<=len(sentence)<=155 or not sentence.endswith((".", "!", "?")): continue
             common=SequenceMatcher(None,lead,sentence)
             if common.ratio()>0.4 or (common.find_longest_match(0,len(lead),0,len(sentence)).size
                                       > min(len(lead),len(sentence))*0.52):
@@ -317,7 +317,10 @@ def main():
         body_match=BODY.search(original)
         if body_match is None:raise RuntimeError("Missing editorial body "+slug)
         body=body_match.group(2)
-        before_body_chars=len(plaintext(body))
+        plain_body=BeautifulSoup(body,"html.parser")
+        for note in plain_body.select(".activity-editorial-explainer,.activity-editorial-context"):
+            note.decompose()
+        before_body_chars=len(" ".join(plain_body.stripped_strings))
         # Site-generated presentation previously overlaid some curated title/lead
         # overrides; explicitly consolidate those into source pages.
         present_title=CURATED.get(slug,(html.unescape(match.group(2)),source_lead))[0]
@@ -341,12 +344,14 @@ def main():
         curated_lead=CURATED.get(slug,(None,source_lead))[1]
         seed=curated_lead if slug in CURATED else BASELINE_LEADS.get(slug,source_lead)
         seed=LEAD_OVERRIDES.get(slug,seed)
-        new_lead=amplify_lead(seed,body,new_title)
+        new_lead=seed if slug in LEAD_OVERRIDES else amplify_lead(seed,body,new_title)
         # Only provide editorial context for categories with original evidence.
         cat_match=re.search(r'<p class="activity-kicker">DEPARTMENT ACTIVITIES · (.*?)</p>',original,re.S)
         category=html.unescape(cat_match.group(1)) if cat_match else ''
         card_cat=re.search(r'<div class="activity-card-meta"><span>([^<]+)</span>',card)
         if card_cat:category=html.unescape(card_cat.group(1))
+        if re.search(r'class="activity-editorial-(?:context|explainer)"',body):
+            counts["contextual_expansions_present"]+=1
         if not re.search(r'class="activity-editorial-(?:context|explainer)"',body):
             expansion=contextual_sections(body,category,new_title)
             if expansion:
