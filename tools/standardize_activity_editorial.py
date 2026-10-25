@@ -118,12 +118,15 @@ def clean_title(original: str) -> str:
     v = v.replace('…','')
     v = re.sub(r'\s*&\s*', ' 및 ', v)
     v = re.sub(r'[!?★☆✅✓📌🎉]', '', v)
+    v = re.sub('[\\U0001F1E6-\\U0001F1FF\\U0001F300-\\U0001FAFF\\u2600-\\u27BF]', '', v)
     v = re.sub(r'\(\s*종료\s*\)', ', 종료된 기록', v)
     v = re.sub(r'\s*\(([^)]{1,22})\)', r' \1', v)
     v = re.sub(r'(?<=\s)/(?=\s)', '및', v)
     v = re.sub(r'\s*,\s*,+', ', ', v)
     v = re.sub(r'[,.\s]+$', '', v)
     v = re.sub(r'\s+', ' ', v).strip()
+    if re.search('[\\U0001F1E6-\\U0001F1FF\\U0001F300-\\U0001FAFF\\u2600-\\u27BF]',v):
+        raise ValueError("Emoji remains in title "+v)
     if DISALLOWED.search(v):
         raise ValueError(f"Title still has inconsistent punctuation: {v}")
     return v
