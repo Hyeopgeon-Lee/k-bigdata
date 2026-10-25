@@ -1,0 +1,2301 @@
+{
+  "date": "2026-10-25",
+  "count": 286,
+  "stats": {
+    "contextual_expansions_present": 260,
+    "titles_changed": 174,
+    "intros_changed": 88,
+    "original_under_240_chars": 53,
+    "thin_source_no_invention": 26
+  },
+  "articles": {
+    "sesac-hackathon-grand-prize-2025": {
+      "date": "2025-12-17",
+      "title_before": "2025 새싹 해커톤, 서울시 대상 수상",
+      "title_after": "2025 서울시 새싹 해커톤 대상 수상, AI 서비스 구현 성과",
+      "source_chars": 248,
+      "final_body_chars": 346,
+      "expanded": true
+    },
+    "department-funding-2025": {
+      "date": "2025-11-08",
+      "title_before": "학과 개편 사업 선정, 10억 원 예산 확보",
+      "title_after": "AI와 클라우드 교육환경 고도화, 학과 개편 사업 약 10억 원 확보",
+      "source_chars": 188,
+      "final_body_chars": 328,
+      "expanded": true
+    },
+    "department-reorganization-2025": {
+      "date": "2025-05-27",
+      "title_before": "빅데이터소프트웨어공학과, AI·소프트웨어 융합 교육 중심으로 개편",
+      "title_after": "빅데이터소프트웨어공학과 개편, AI와 클라우드 실습 강화",
+      "source_chars": 232,
+      "final_body_chars": 358,
+      "expanded": true
+    },
+    "alumni-ha-jae-hyeong-lecture-2026": {
+      "date": "2026-08-11",
+      "title_before": "부산대학교 대학원 진학 졸업생 초청 진로 특강",
+      "title_after": "부산대 대학원 진학 졸업생 초청, 학업과 진로 경험 공유",
+      "source_chars": 177,
+      "final_body_chars": 270,
+      "expanded": true
+    },
+    "teacher-generative-ai-r-training-2026": {
+      "date": "2026-08-11",
+      "title_before": "고등학교 교사 대상 생성형 AI·R 데이터 분석 연수",
+      "title_after": "고교 교사 대상 생성형 AI와 R 데이터 분석 실습 연수",
+      "source_chars": 207,
+      "final_body_chars": 360,
+      "expanded": true
+    },
+    "teacher-ai-llm-workshop-2026": {
+      "date": "2026-08-11",
+      "title_before": "고등학교 교사 대상 인공지능·LLM 실습 연수",
+      "title_after": "고교 교사 대상 Python과 LLM 기반 인공지능 실습 연수",
+      "source_chars": 200,
+      "final_body_chars": 424,
+      "expanded": true
+    },
+    "public-vibe-coding-class-2026": {
+      "date": "2026-08-11",
+      "title_before": "일반인 대상 생성형 AI 바이브코딩 실습 교육",
+      "title_after": "일반인 대상 생성형 AI 활용 Python 바이브코딩 실습 교육",
+      "source_chars": 196,
+      "final_body_chars": 347,
+      "expanded": true
+    },
+    "dongmyeong-school-vibe-coding-2026": {
+      "date": "2026-07-16",
+      "title_before": "동명중학교 학생 대상 AI 바이브코딩 체험",
+      "title_after": "동명중학교 학생 대상 AI 바이브코딩 게임 개발 진로체험",
+      "source_chars": 193,
+      "final_body_chars": 288,
+      "expanded": true
+    },
+    "kt-researcher-career-lecture-2026": {
+      "date": "2026-06-10",
+      "title_before": "KT 현직자 초청 빅데이터·SW 취업 특강",
+      "title_after": "KT 현직자 초청, 빅데이터와 소프트웨어 개발 직무 특강",
+      "source_chars": 167,
+      "final_body_chars": 259,
+      "expanded": true
+    },
+    "gangseo-job-fair-2026": {
+      "date": "2026-10-25",
+      "title_before": "빅데이터소프트웨어공학과 2학년, 2026 강서구 취업박람회 참여",
+      "title_after": "2026 강서구 취업박람회 참여, 2학년 학생들의 IT 직무 탐색",
+      "source_chars": 931,
+      "final_body_chars": 1167,
+      "expanded": true
+    },
+    "social-data-career-trends": {
+      "date": "2026-10-25",
+      "title_before": "소셜데이터로 읽는 미래직업, 진로체험 부스 운영",
+      "title_after": "소셜데이터 분석으로 알아보는 미래 직업과 관심 트렌드 체험",
+      "source_chars": 466,
+      "final_body_chars": 561,
+      "expanded": true
+    },
+    "kopo-777680": {
+      "date": "2026-06-09",
+      "title_before": "효성ITX 이주현 팀장 초청 특강 진행 – 기업이 주목하는 IT기술과 인재상 공유",
+      "title_after": "효성ITX 이주현 팀장 특강, 기업이 원하는 IT 인재와 직무 역량",
+      "source_chars": 585,
+      "final_body_chars": 662,
+      "expanded": true
+    },
+    "kopo-776799": {
+      "date": "2026-05-26",
+      "title_before": "빅데이터소프트웨어공학과, 2026 명랑운동회 피구·줄다리기 1등 달성",
+      "title_after": "빅데이터소프트웨어공학과, 2026 명랑운동회 피구, 줄다리기 1등 달성",
+      "source_chars": 470,
+      "final_body_chars": 568,
+      "expanded": true
+    },
+    "kopo-775379": {
+      "date": "2026-04-30",
+      "title_before": "2학년 취업 역량 강화를 위한 KB취업박람회 2026 참여",
+      "title_after": "KB 취업박람회 현장에 나선 2학년, 개발 직무, 채용 탐색",
+      "source_chars": 618,
+      "final_body_chars": 710,
+      "expanded": true
+    },
+    "kopo-775378": {
+      "date": "2026-04-30",
+      "title_before": "KB취업박람회 2026, 소셜데이터 AI 분석 체험 부스 운영",
+      "title_after": "KB 취업박람회에서 선보인 소셜데이터 AI 분석 체험",
+      "source_chars": 715,
+      "final_body_chars": 807,
+      "expanded": true
+    },
+    "kopo-773576": {
+      "date": "2026-04-02",
+      "title_before": "엔씨소프트 재직 졸업생 초청 특강 진행",
+      "title_after": "엔씨IDS 재직 졸업생 초청, 개발자 취업 준비와 성장 경험",
+      "source_chars": 458,
+      "final_body_chars": 551,
+      "expanded": true
+    },
+    "kopo-773180": {
+      "date": "2026-03-27",
+      "title_before": "SQL 퀴즈 풀이 특강 진행. 실전 문제 해결 역량 강화",
+      "title_after": "SQL 퀴즈 특강, 질의 작성, 문제 해결 실습",
+      "source_chars": 465,
+      "final_body_chars": 612,
+      "expanded": true
+    },
+    "kopo-770073": {
+      "date": "2026-02-12",
+      "title_before": "보험 IT 전문기업 ㈜에이전시프로 대상 Python·OpenCV 영상처리 기술지도 실시",
+      "title_after": "에이전시프로 기술지도, Python과 OpenCV 영상처리 활용",
+      "source_chars": 524,
+      "final_body_chars": 750,
+      "expanded": true
+    },
+    "kopo-770067": {
+      "date": "2026-02-12",
+      "title_before": "AI 에이전트 실전 구현 특강 개최 – 랭체인·랭그래프 기반 고급 워크플로우 설계",
+      "title_after": "졸업생이 전하는 AI 에이전트 구현, LangChain과 LangGraph 특강",
+      "source_chars": 645,
+      "final_body_chars": 877,
+      "expanded": true
+    },
+    "kopo-765955": {
+      "date": "2025-12-15",
+      "title_before": "2025 EBS-강서양천교육지원청 학습전략설명회 진로 특강 참여",
+      "title_after": "EBS와 강서양천교육지원청 학습전략설명회 진로 특강 참여",
+      "source_chars": 606,
+      "final_body_chars": 683,
+      "expanded": true
+    },
+    "kopo-765578": {
+      "date": "2025-12-10",
+      "title_before": "새싹 해커톤 본선 진출",
+      "title_after": "2025 서울시 새싹 해커톤 본선 진출, 학생팀의 AI 서비스 기획",
+      "source_chars": 666,
+      "final_body_chars": 765,
+      "expanded": true
+    },
+    "kopo-765207": {
+      "date": "2025-12-05",
+      "title_before": "멘토·멘티 데이 개최 — 졸업생 선배의 진로 및 대학원 진학 특강",
+      "title_after": "멘토, 멘티 데이 개최, 졸업생 선배의 진로 및 대학원 진학 특강",
+      "source_chars": 612,
+      "final_body_chars": 705,
+      "expanded": true
+    },
+    "kopo-764159": {
+      "date": "2025-11-25",
+      "title_before": "2025 한이음 드림업 공모전(창의도전형) 장려상 수상",
+      "title_after": "2025 한이음 드림업 공모전 창의도전형 장려상 수상",
+      "source_chars": 462,
+      "final_body_chars": 628,
+      "expanded": true
+    },
+    "kopo-764079": {
+      "date": "2025-11-24",
+      "title_before": "AI 산업 트렌드 및 취업역량 강화 특강 실시",
+      "title_after": "AI 산업 동향부터 자기소개서까지, 취업역량 강화 특강",
+      "source_chars": 431,
+      "final_body_chars": 523,
+      "expanded": true
+    },
+    "kopo-763327": {
+      "date": "2025-11-13",
+      "title_before": "ACK 2025 논문경진대회 ‘동상’ 수상",
+      "title_after": "ACK 2025 논문경진대회 동상, 비전언어모델 기반 얼굴 초해상도 연구",
+      "source_chars": 439,
+      "final_body_chars": 620,
+      "expanded": true
+    },
+    "kopo-762843": {
+      "date": "2025-11-08",
+      "title_before": "산학 공동연구 논문, 「한국정보전자통신기술학회 논문지」 게재",
+      "title_after": "산학 공동연구 논문, 한국정보전자통신기술학회 논문지 게재",
+      "source_chars": 710,
+      "final_body_chars": 779,
+      "expanded": true
+    },
+    "kopo-762738": {
+      "date": "2025-11-07",
+      "title_before": "2025 서울시 일자리박람회 – AI 인사이트랩 SNS분석 체험 부스 운영",
+      "title_after": "2025 서울시 일자리박람회, AI 인사이트랩 SNS분석 체험 부스 운영",
+      "source_chars": 656,
+      "final_body_chars": 728,
+      "expanded": true
+    },
+    "kopo-762734": {
+      "date": "2025-11-07",
+      "title_before": "2025 서울시 일자리박람회 참여 – 실전 취업 역량 강화 현장 체험",
+      "title_after": "2025 서울시 일자리박람회 참여, 실전 취업 역량 강화 현장 체험",
+      "source_chars": 535,
+      "final_body_chars": 627,
+      "expanded": true
+    },
+    "kopo-762378": {
+      "date": "2025-11-04",
+      "title_before": "서울강서양천교육지원청 주관 고등학생 대상 빅데이터 실습 교육 진행",
+      "title_after": "서울강서양천교육지원청 주관 고등학생 대상 빅데이터 실습 교육 진행",
+      "source_chars": 513,
+      "final_body_chars": 608,
+      "expanded": true
+    },
+    "kopo-762213": {
+      "date": "2025-11-03",
+      "title_before": "서울강서양천교육지원청 주관 고등학생 대상 인공지능 실습 교육 진행",
+      "title_after": "서울강서양천교육지원청 주관 고등학생 대상 인공지능 실습 교육 진행",
+      "source_chars": 491,
+      "final_body_chars": 734,
+      "expanded": true
+    },
+    "kopo-762210": {
+      "date": "2025-11-03",
+      "title_before": "프로젝트경진대회 수상 소식 – 빅데이터소프트웨어공학과 학생들 우수상·장려상 수상",
+      "title_after": "2025 프로젝트경진대회 우수상과 장려상, AI와 클라우드 작품",
+      "source_chars": 357,
+      "final_body_chars": 455,
+      "expanded": true
+    },
+    "kopo-761430": {
+      "date": "2025-10-27",
+      "title_before": "제8회 학부모 진로 Job, 자녀와 함께 AI·빅데이터로 미래를 탐색하다",
+      "title_after": "제8회 학부모 진로 Job, 자녀와 함께 AI, 빅데이터로 미래를 탐색하다",
+      "source_chars": 710,
+      "final_body_chars": 805,
+      "expanded": true
+    },
+    "kopo-761428": {
+      "date": "2025-10-27",
+      "title_before": "제12회 Dream Job, AI·소셜 빅데이터 진로체험",
+      "title_after": "제12회 Dream Job, AI, 소셜 빅데이터 진로체험",
+      "source_chars": 678,
+      "final_body_chars": 773,
+      "expanded": true
+    },
+    "kopo-759557": {
+      "date": "2025-09-30",
+      "title_before": "(주)시스원 손병홍 이사님 특강. AX시대가 요구하는 인재상과 IT기술 트렌드",
+      "title_after": "AX 시대 IT 직무의 변화, 시스원 손병홍 이사 실무 특강",
+      "source_chars": 367,
+      "final_body_chars": 444,
+      "expanded": true
+    },
+    "kopo-758416": {
+      "date": "2025-09-18",
+      "title_before": "대한민국 AX를 위한 소버린 클라우드 네이티브 전략 특강",
+      "title_after": "대한민국 AX를 위한 소버린 클라우드 네이티브 전략 특강",
+      "source_chars": 386,
+      "final_body_chars": 537,
+      "expanded": true
+    },
+    "kopo-758194": {
+      "date": "2025-09-16",
+      "title_before": "전남 공공·빅데이터 공모전 ‘장려상’ 수상. — 상금 150만원 쾌거",
+      "title_after": "전남 공공, 빅데이터 공모전 장려상 수상., 상금 150만원 쾌거",
+      "source_chars": 538,
+      "final_body_chars": 710,
+      "expanded": true
+    },
+    "kopo-757516": {
+      "date": "2025-09-11",
+      "title_before": "㈜오케스트로와 K-PaaS·AI·클라우드 인재 양성을 위한 MOU 체결",
+      "title_after": "㈜오케스트로와 K-PaaS, AI, 클라우드 인재 양성을 위한 MOU 체결",
+      "source_chars": 625,
+      "final_body_chars": 835,
+      "expanded": true
+    },
+    "kopo-753631": {
+      "date": "2025-07-22",
+      "title_before": "고등학생 대상 『파이썬 기반 인공지능 프로그래밍 진로체험 교육』 4주간 연속 운영",
+      "title_after": "고등학생 대상 파이썬 기반 인공지능 프로그래밍 진로체험 교육 4주간 연속 운영",
+      "source_chars": 603,
+      "final_body_chars": 775,
+      "expanded": true
+    },
+    "kopo-753629": {
+      "date": "2025-07-22",
+      "title_before": "『R을 활용한 쉽게 빅데이터 분석하기』 고교 교원 직무연수 진행",
+      "title_after": "R을 활용한 쉽게 빅데이터 분석하기 고교 교원 직무연수 진행",
+      "source_chars": 615,
+      "final_body_chars": 695,
+      "expanded": true
+    },
+    "kopo-753627": {
+      "date": "2025-07-22",
+      "title_before": "고등학교 교원 대상 『파이썬을 활용한 간단한 인공지능(AI) 만들기』 직무연수 진행",
+      "title_after": "고교 교원 대상 Python, 생성형 AI 프로그래밍 실습 연수",
+      "source_chars": 685,
+      "final_body_chars": 857,
+      "expanded": true
+    },
+    "kopo-753243": {
+      "date": "2025-07-15",
+      "title_before": "김영운 교수, ICIECT 2025 국제학술대회 논문 발표",
+      "title_after": "김영운 교수, ICIECT 2025 국제학술대회 논문 발표",
+      "source_chars": 499,
+      "final_body_chars": 568,
+      "expanded": true
+    },
+    "kopo-753242": {
+      "date": "2025-07-15",
+      "title_before": "이협건 교수, ICIECT 2025 국제학술대회 논문 발표",
+      "title_after": "이협건 교수, ICIECT 2025 국제학술대회 논문 발표",
+      "source_chars": 493,
+      "final_body_chars": 645,
+      "expanded": true
+    },
+    "kopo-752596": {
+      "date": "2025-07-03",
+      "title_before": "2학년 선배가 지도한 Spring Boot·MyBatis 개발 실습",
+      "title_after": "2학년 선배가 지도한 Spring Boot, MyBatis 개발 실습",
+      "source_chars": 437,
+      "final_body_chars": 686,
+      "expanded": true
+    },
+    "kopo-752594": {
+      "date": "2025-07-03",
+      "title_before": "AI 전문가부터 인사담당자까지, 실무형 커리어 교육 진행",
+      "title_after": "AI 전문가, 인사담당자와 함께한 2학년 취업 실무 교육",
+      "source_chars": 403,
+      "final_body_chars": 495,
+      "expanded": true
+    },
+    "kopo-750981": {
+      "date": "2025-06-11",
+      "title_before": "선배가 알려주는 실전 프로그래밍. Spring Boot & MariaDB 멘토링 진행",
+      "title_after": "선후배 개발 멘토링, Spring Boot와 MariaDB 연동 실습",
+      "source_chars": 416,
+      "final_body_chars": 665,
+      "expanded": true
+    },
+    "kopo-750383": {
+      "date": "2025-06-02",
+      "title_before": "이협건 교수, Emscripten 기반 OpenCV 성능 최적화 연구 발표",
+      "title_after": "이협건 교수, Emscripten 기반 OpenCV 성능 최적화 연구 발표",
+      "source_chars": 597,
+      "final_body_chars": 750,
+      "expanded": true
+    },
+    "kopo-750362": {
+      "date": "2025-06-02",
+      "title_before": "‘방과후컴퓨터 및 코딩지도사’ 수료식 및 간담회 개최 - 경력단절여성과 함께한 따뜻한 소통의 자리",
+      "title_after": "방과후 컴퓨터, 코딩지도사 수료식, 여성 재취업 교육 현장",
+      "source_chars": 700,
+      "final_body_chars": 772,
+      "expanded": true
+    },
+    "kopo-750361": {
+      "date": "2025-06-02",
+      "title_before": "‘방과후컴퓨터 및 코딩지도사’ 과정 수료식 개최 – 경력단절여성의 디지털 재도약 지원",
+      "title_after": "방과후 컴퓨터, 코딩지도사 수료식, 여성 재취업 교육",
+      "source_chars": 702,
+      "final_body_chars": 844,
+      "expanded": true
+    },
+    "kopo-750066": {
+      "date": "2025-05-28",
+      "title_before": "2학년 선배와 함께한 Rocky Linux & MariaDB 실습 멘토링 진행",
+      "title_after": "2학년 선배 주도 멘토링, Rocky Linux와 MariaDB 개발환경 구축",
+      "source_chars": 412,
+      "final_body_chars": 580,
+      "expanded": true
+    },
+    "kopo-749927": {
+      "date": "2025-05-27",
+      "title_before": "2학년 취업역량 UP. KB굿잡 취업박람회 현장 참여 보고",
+      "title_after": "2학년 취업역량 UP. KB굿잡 취업박람회 현장 참여 보고",
+      "source_chars": 491,
+      "final_body_chars": 583,
+      "expanded": true
+    },
+    "kopo-749925": {
+      "date": "2025-05-27",
+      "title_before": "KB굿잡 취업박람회에서 소셜 빅데이터 체험 부스 운영",
+      "title_after": "KB굿잡 취업박람회에서 소셜 빅데이터 체험 부스 운영",
+      "source_chars": 621,
+      "final_body_chars": 781,
+      "expanded": true
+    },
+    "kopo-748848": {
+      "date": "2025-05-10",
+      "title_before": "서울 4개 고등학교 대상 ‘빅데이터 진로체험’ 프로그램 운영",
+      "title_after": "서울 4개 고등학교 대상 빅데이터 진로체험 프로그램 운영",
+      "source_chars": 719,
+      "final_body_chars": 814,
+      "expanded": true
+    },
+    "kopo-748474": {
+      "date": "2025-05-02",
+      "title_before": "한국정보처리학회 논문지에 졸업생 우수논문 게재",
+      "title_after": "한국정보처리학회 논문지에 졸업생 우수논문 게재",
+      "source_chars": 545,
+      "final_body_chars": 614,
+      "expanded": true
+    },
+    "kopo-747615": {
+      "date": "2025-04-18",
+      "title_before": "자바 객체지향프로그래밍(OOP) 학습. 선후배 멘토링 세 번째 시간",
+      "title_after": "선후배 Java 멘토링, 객체지향, 캡슐화 실습",
+      "source_chars": 477,
+      "final_body_chars": 637,
+      "expanded": true
+    },
+    "kopo-746968": {
+      "date": "2025-04-09",
+      "title_before": "선후배 Java 멘토링, 반복문 실습 진행",
+      "title_after": "선후배 Java 멘토링, 반복문 작성과 제어 흐름 실습",
+      "source_chars": 465,
+      "final_body_chars": 625,
+      "expanded": true
+    },
+    "kopo-746591": {
+      "date": "2025-04-03",
+      "title_before": "2025 ICT 한이음 드림업 공모전, 학과 프로젝트 2팀 선정",
+      "title_after": "2025 ICT 한이음 드림업 공모전, 학과 프로젝트 2팀 선정",
+      "source_chars": 664,
+      "final_body_chars": 828,
+      "expanded": true
+    },
+    "kopo-746516": {
+      "date": "2025-04-02",
+      "title_before": "2학년 선배들의 자바 멘토링. 신입생 대상 야간 프로그래밍 교육 진행",
+      "title_after": "2학년 선배 주도 Java 멘토링, if 조건문 실습",
+      "source_chars": 300,
+      "final_body_chars": 460,
+      "expanded": true
+    },
+    "kopo-746370": {
+      "date": "2025-04-01",
+      "title_before": "KB데이타시스템 데이터엔지니어 선배의 진짜 이야기",
+      "title_after": "KB데이타시스템 데이터엔지니어 선배의 진짜 이야기",
+      "source_chars": 187,
+      "final_body_chars": 280,
+      "expanded": true
+    },
+    "kopo-745968": {
+      "date": "2025-03-26",
+      "title_before": "작곡가 박해운 초청 특강, 한류와 데이터 융합",
+      "title_after": "작곡가 박해운 초청 특강, 한류와 데이터 융합",
+      "source_chars": 289,
+      "final_body_chars": 434,
+      "expanded": true
+    },
+    "kopo-745970": {
+      "date": "2025-03-05",
+      "title_before": "여성 취업 지원을 위한 IT 교육 개강",
+      "title_after": "경력단절여성 취업 지원, 방과후 컴퓨터와 코딩지도사 과정 개강",
+      "source_chars": 524,
+      "final_body_chars": 616,
+      "expanded": true
+    },
+    "kopo-740753": {
+      "date": "2025-01-20",
+      "title_before": "2025년 ICT 학점연계 인턴십 참여 학과 선정",
+      "title_after": "2025년 ICT 학점연계 인턴십 참여 학과 선정",
+      "source_chars": 324,
+      "final_body_chars": 416,
+      "expanded": true
+    },
+    "kopo-738808": {
+      "date": "2024-12-20",
+      "title_before": "빅데이터소프트웨어공학과, 제8회 K-PaaS 공모전 동상 수상",
+      "title_after": "빅데이터소프트웨어공학과, 제8회 K-PaaS 공모전 동상 수상",
+      "source_chars": 728,
+      "final_body_chars": 961,
+      "expanded": true
+    },
+    "kopo-738804": {
+      "date": "2024-11-16",
+      "title_before": "ACK 2024 논문경진대회 동상, 맵리듀스 데이터 압축 연구 성과",
+      "title_after": "ACK 2024 논문경진대회 동상 수상, 맵리듀스 데이터 압축 연구",
+      "source_chars": 447,
+      "final_body_chars": 545,
+      "expanded": true
+    },
+    "kopo-738801": {
+      "date": "2024-11-12",
+      "title_before": "한국정보처리학회 ACK 2024 동상, 학생·교수 공동연구",
+      "title_after": "ACK 2024 논문경진대회 동상 수상, 학생과 교수 공동 연구",
+      "source_chars": 639,
+      "final_body_chars": 737,
+      "expanded": true
+    },
+    "kopo-734731": {
+      "date": "2024-11-04",
+      "title_before": "퀴즈톡앱 UI/UX 개선 및 신규 서비스 개발 경진대회",
+      "title_after": "퀴즈톡앱 UI/UX 개선 및 신규 서비스 개발 경진대회",
+      "source_chars": 734,
+      "final_body_chars": 806,
+      "expanded": true
+    },
+    "kopo-734730": {
+      "date": "2024-10-28",
+      "title_before": "한국정보전자통신기술학회 추계학술대회, 우수논문상 수상",
+      "title_after": "한국정보전자통신기술학회 추계학술대회, 우수논문상 수상",
+      "source_chars": 821,
+      "final_body_chars": 919,
+      "expanded": true
+    },
+    "kopo-734729": {
+      "date": "2024-10-02",
+      "title_before": "IT 전문기업 시스원과 함께한 실무 중심 취업 연계 특강 성공 개최",
+      "title_after": "IT 전문기업 시스원과 함께한 실무 중심 취업 연계 특강 성공 개최",
+      "source_chars": 729,
+      "final_body_chars": 889,
+      "expanded": true
+    },
+    "kopo-734728": {
+      "date": "2024-09-26",
+      "title_before": "(주)코웨이, 황윤영 졸업생, 소프트웨어 개발자 특강 진행",
+      "title_after": "코웨이 재직 졸업생 황윤영, SW 개발 업무와 취업 준비 특강",
+      "source_chars": 713,
+      "final_body_chars": 806,
+      "expanded": true
+    },
+    "kopo-734727": {
+      "date": "2024-09-23",
+      "title_before": "(주)로지스올시스템즈, 박수진 졸업생, 취업 특강 진행",
+      "title_after": "로지스올시스템즈 박수진 졸업생 초청 취업 특강",
+      "source_chars": 712,
+      "final_body_chars": 805,
+      "expanded": true
+    },
+    "kopo-734725": {
+      "date": "2024-09-20",
+      "title_before": "인문학과 빅데이터 융합 주제로 특강 열려",
+      "title_after": "인문학과 빅데이터 융합, 데이터 기술의 활용 범위 특강",
+      "source_chars": 714,
+      "final_body_chars": 859,
+      "expanded": true
+    },
+    "kopo-734721": {
+      "date": "2024-09-09",
+      "title_before": "생성형 AI 실습 중심. 고교 교원 대상 인공지능 연수 성료",
+      "title_after": "고교 교원 대상 생성형 AI 실습 연수, Llama 3.1 활용",
+      "source_chars": 568,
+      "final_body_chars": 781,
+      "expanded": true
+    },
+    "kopo-727480": {
+      "date": "2024-08-02",
+      "title_before": "2024 고교 교원 AI 연수, Llama 3·컴퓨터비전 실습",
+      "title_after": "2024 고교 교원 AI 연수, Llama 3, 컴퓨터비전 실습",
+      "source_chars": 594,
+      "final_body_chars": 809,
+      "expanded": true
+    },
+    "kopo-727478": {
+      "date": "2024-08-02",
+      "title_before": "실무에 한 걸음 더. 스프링부트(SpringBoot) 실습 특강 진행",
+      "title_after": "Spring Boot 실무 특강, MariaDB 연동, 웹 개발 실습",
+      "source_chars": 434,
+      "final_body_chars": 656,
+      "expanded": true
+    },
+    "kopo-727476": {
+      "date": "2024-07-25",
+      "title_before": "서울 강서양천 고교생, R·소셜데이터 분석 진로체험",
+      "title_after": "서울 강서양천 고교생, R, 소셜데이터 분석 진로체험",
+      "source_chars": 434,
+      "final_body_chars": 597,
+      "expanded": true
+    },
+    "kopo-727475": {
+      "date": "2024-07-03",
+      "title_before": "퀴즈톡 앱 UI/UX 개선 프로젝트 설명회",
+      "title_after": "퀴즈톡 앱 UI/UX 개선 프로젝트, 미래내일 일경험 사업 설명회",
+      "source_chars": 477,
+      "final_body_chars": 477,
+      "expanded": false
+    },
+    "kopo-727474": {
+      "date": "2024-07-03",
+      "title_before": "재학생 대상, 스프링부트 프로그래밍 기초 특강 진행",
+      "title_after": "재학생 대상, 스프링부트 프로그래밍 기초 특강 진행",
+      "source_chars": 208,
+      "final_body_chars": 425,
+      "expanded": true
+    },
+    "kopo-727473": {
+      "date": "2024-07-03",
+      "title_before": "스프링 부트(Spring Boot) 이해와 활용 특강 진행",
+      "title_after": "스프링 부트 Spring Boot 이해와 활용 특강 진행",
+      "source_chars": 405,
+      "final_body_chars": 568,
+      "expanded": true
+    },
+    "kopo-727472": {
+      "date": "2024-06-05",
+      "title_before": "Spring AI 프로그래밍 특강 진행",
+      "title_after": "Spring AI 실무 특강, LLM과 RAG를 활용한 AI 애플리케이션 개발",
+      "source_chars": 630,
+      "final_body_chars": 841,
+      "expanded": true
+    },
+    "kopo-727471": {
+      "date": "2024-06-03",
+      "title_before": "Meta Llama3 특강 진행. LLM 실습으로 한 걸음 더 성장한 빅데이터소프트웨어공학과",
+      "title_after": "Meta Llama3 특강 진행, LLM 실습으로 한 걸음 더 성장한 빅데이터소프트웨어공학과",
+      "source_chars": 452,
+      "final_body_chars": 612,
+      "expanded": true
+    },
+    "kopo-727469": {
+      "date": "2024-05-27",
+      "title_before": "2024 KB굿잡 취업박람회 참여. 빅데이터소프트웨어공학과 홍보부스 운영",
+      "title_after": "2024 KB굿잡 취업박람회, 학과 홍보부스 운영",
+      "source_chars": 738,
+      "final_body_chars": 898,
+      "expanded": true
+    },
+    "kopo-727468": {
+      "date": "2024-05-22",
+      "title_before": "방과후컴퓨터&코딩지도사 교육과정 수료식 진행",
+      "title_after": "방과후 컴퓨터와 코딩지도사 교육과정 수료식, 여성 재취업 지원",
+      "source_chars": 459,
+      "final_body_chars": 533,
+      "expanded": true
+    },
+    "kopo-727467": {
+      "date": "2024-05-22",
+      "title_before": "카카오엔터테인먼트 손성용 개발자, 실무 중심. 스프링 프레임워크 특강 진행",
+      "title_after": "카카오엔터테인먼트 개발자 초청, Spring Framework 실무 특강",
+      "source_chars": 460,
+      "final_body_chars": 605,
+      "expanded": true
+    },
+    "kopo-727466": {
+      "date": "2024-05-22",
+      "title_before": "서울교육청 공유캠퍼스-인공지능(AI) 코딩 교육진행",
+      "title_after": "서울교육청 공유캠퍼스-인공지능 AI 코딩 교육진행",
+      "source_chars": 651,
+      "final_body_chars": 858,
+      "expanded": true
+    },
+    "kopo-727465": {
+      "date": "2024-05-10",
+      "title_before": "빅데이터소프트웨어공학과 VS 디지털 콘텐츠과 여름 축제 풋살 예선",
+      "title_after": "빅데이터소프트웨어공학과 VS 디지털 콘텐츠과 여름 축제 풋살 예선",
+      "source_chars": 245,
+      "final_body_chars": 317,
+      "expanded": true
+    },
+    "kopo-727464": {
+      "date": "2024-04-15",
+      "title_before": "LangChain으로 배우는 LLM 실전 특강 진행",
+      "title_after": "LangChain으로 배우는 LLM 실전 특강 진행",
+      "source_chars": 555,
+      "final_body_chars": 786,
+      "expanded": true
+    },
+    "kopo-711758": {
+      "date": "2024-01-05",
+      "title_before": "K-PaaS 공모전 2년 연속 대상, AI 실종자 찾기 서비스",
+      "title_after": "K-PaaS 공모전 2년 연속 대상, AI 실종자 찾기 서비스",
+      "source_chars": 723,
+      "final_body_chars": 889,
+      "expanded": true
+    },
+    "kopo-707050": {
+      "date": "2023-11-06",
+      "title_before": "고등학생 대상 인공지능 기술 교육을 위한 진로체험",
+      "title_after": "고등학생 대상 인공지능 기술 교육을 위한 진로체험",
+      "source_chars": 280,
+      "final_body_chars": 456,
+      "expanded": true
+    },
+    "kopo-707049": {
+      "date": "2023-11-06",
+      "title_before": "빅데이터 분석 전문가 체험 수업 2기 성료",
+      "title_after": "빅데이터 분석 전문가 진로체험 2기, 실습 중심 프로그램 운영",
+      "source_chars": 443,
+      "final_body_chars": 515,
+      "expanded": true
+    },
+    "kopo-707048": {
+      "date": "2023-11-03",
+      "title_before": "카카오엔터테인먼트 손성용 개발자 특강 진행",
+      "title_after": "카카오엔터테인먼트 손성용 개발자, 객체지향 설계와 JPA 특강",
+      "source_chars": 595,
+      "final_body_chars": 672,
+      "expanded": true
+    },
+    "kopo-707046": {
+      "date": "2023-10-31",
+      "title_before": "인공지능 전문가 되기. 진로체험 수업 1기 성료",
+      "title_after": "AI 진로체험 1기, Python, OpenCV 이미지 처리 실습",
+      "source_chars": 561,
+      "final_body_chars": 798,
+      "expanded": true
+    },
+    "kopo-707045": {
+      "date": "2023-10-31",
+      "title_before": "빅데이터 분석 전문가 되기. 진로체험 수업 1기 성료",
+      "title_after": "빅데이터 진로체험 1기, R 분석, 시각화 실습",
+      "source_chars": 557,
+      "final_body_chars": 652,
+      "expanded": true
+    },
+    "kopo-707043": {
+      "date": "2023-10-31",
+      "title_before": "2023 프로젝트 경진대회, 7기 허지혜 학생 최우수상",
+      "title_after": "2023 프로젝트 경진대회, 7기 허지혜 학생 최우수상",
+      "source_chars": 473,
+      "final_body_chars": 571,
+      "expanded": true
+    },
+    "kopo-707041": {
+      "date": "2023-10-27",
+      "title_before": "LF융합실습지원센터 졸업작품 발표회 진행",
+      "title_after": "LF융합실습지원센터 졸업작품 발표회, 학생 프로젝트 성과 공유",
+      "source_chars": 558,
+      "final_body_chars": 657,
+      "expanded": true
+    },
+    "kopo-707039": {
+      "date": "2023-10-27",
+      "title_before": "LG CNS 변재영 책임 초청, 클라우드 네이티브·MSA 특강",
+      "title_after": "LG CNS 변재영 책임 초청, 클라우드 네이티브, MSA 특강",
+      "source_chars": 579,
+      "final_body_chars": 656,
+      "expanded": true
+    },
+    "kopo-707038": {
+      "date": "2023-10-26",
+      "title_before": "서울강서양천교육청과 함께한 인공지능 전문가 체험 수업 진행",
+      "title_after": "서울강서양천교육청과 함께한 인공지능 전문가 체험 수업 진행",
+      "source_chars": 568,
+      "final_body_chars": 640,
+      "expanded": true
+    },
+    "kopo-707037": {
+      "date": "2023-10-19",
+      "title_before": "(주)로지스올시스템 유상인 졸업생, 재학생 대상 특강 진행",
+      "title_after": "주로지스올시스템 유상인 졸업생, 재학생 대상 특강 진행",
+      "source_chars": 507,
+      "final_body_chars": 600,
+      "expanded": true
+    },
+    "kopo-699022": {
+      "date": "2023-07-28",
+      "title_before": "고등학교 교원 대상 빅데이터 직무연수 진행",
+      "title_after": "강서양천교육지원청 협력, 고교 교원 빅데이터 실습 직무연수",
+      "source_chars": 617,
+      "final_body_chars": 780,
+      "expanded": true
+    },
+    "kopo-699020": {
+      "date": "2023-07-27",
+      "title_before": "한서고 외 4개 고교 대상 인공지능 교육 진행",
+      "title_after": "한서고 외 4개 고교 대상 인공지능 교육 진행",
+      "source_chars": 683,
+      "final_body_chars": 781,
+      "expanded": true
+    },
+    "kopo-699021": {
+      "date": "2023-07-27",
+      "title_before": "서울시 고등학교 교원 대상 인공지능 직무연수 진행",
+      "title_after": "서울시 고등학교 교원 대상 인공지능 직무연수 진행",
+      "source_chars": 638,
+      "final_body_chars": 862,
+      "expanded": true
+    },
+    "kopo-699018": {
+      "date": "2023-07-05",
+      "title_before": "서울열린데이터광장 공공데이터 경진대회 대상 수상",
+      "title_after": "서울열린데이터광장 공공데이터 경진대회 대상 수상",
+      "source_chars": 715,
+      "final_body_chars": 881,
+      "expanded": true
+    },
+    "kopo-699017": {
+      "date": "2023-06-22",
+      "title_before": "PaaS-TA 기반 클라우드 컴퓨팅 프로젝트 발표회 성료",
+      "title_after": "PaaS-TA 기반 클라우드 컴퓨팅 프로젝트 발표회 성료",
+      "source_chars": 643,
+      "final_body_chars": 742,
+      "expanded": true
+    },
+    "kopo-699016": {
+      "date": "2023-05-22",
+      "title_before": "빅데이터소프트웨어공학과 1기 졸업생, KT DS 실무 특강 진행",
+      "title_after": "빅데이터소프트웨어공학과 1기 졸업생, KT DS 실무 특강 진행",
+      "source_chars": 530,
+      "final_body_chars": 623,
+      "expanded": true
+    },
+    "kopo-699015": {
+      "date": "2023-05-12",
+      "title_before": "큐버스랩 전창섭 대표 초청 특강 진행",
+      "title_after": "큐버스랩 전창섭 대표 초청, 빅데이터와 AI 서비스 실무 특강",
+      "source_chars": 709,
+      "final_body_chars": 786,
+      "expanded": true
+    },
+    "kopo-699014": {
+      "date": "2023-05-11",
+      "title_before": "경력단절여성 대상 아동코딩지도사 교육과정 수료식 진행",
+      "title_after": "경력단절여성 대상 아동코딩지도사 교육과정 수료식 진행",
+      "source_chars": 591,
+      "final_body_chars": 689,
+      "expanded": true
+    },
+    "kopo-699013": {
+      "date": "2023-05-04",
+      "title_before": "AI + 블록체인 기반 디지털 다이어리 프로젝트, 한이음 ICT 멘토링 사업 선정",
+      "title_after": "AI와 블록체인 기반 디지털 다이어리, 한이음 ICT 멘토링 사업 선정",
+      "source_chars": 713,
+      "final_body_chars": 874,
+      "expanded": true
+    },
+    "kopo-699012": {
+      "date": "2023-05-04",
+      "title_before": "김홍준 상무 초청, 클라우드 플랫폼 ‘칵테일 클라우드’ 특강 진행",
+      "title_after": "김홍준 상무 초청, 클라우드 플랫폼 칵테일 클라우드 특강 진행",
+      "source_chars": 511,
+      "final_body_chars": 588,
+      "expanded": true
+    },
+    "kopo-699011": {
+      "date": "2023-05-03",
+      "title_before": "장애부모 감정소통 AI 플랫폼 개발, 빅데이터소프트웨어공학과 재학생 ICT멘토링 선정",
+      "title_after": "장애부모 감정소통 AI 플랫폼 개발, 빅데이터소프트웨어공학과 재학생 ICT멘토링 선정",
+      "source_chars": 592,
+      "final_body_chars": 753,
+      "expanded": true
+    },
+    "kopo-699010": {
+      "date": "2023-04-21",
+      "title_before": "OCR 기술로 소상공인 세무 서비스 개발. 빅데이터소프트웨어공학과 재학생 ICT멘토링 선정",
+      "title_after": "OCR 기술로 소상공인 세무 서비스 개발, 빅데이터소프트웨어공학과 재학생 ICT멘토링 선정",
+      "source_chars": 552,
+      "final_body_chars": 763,
+      "expanded": true
+    },
+    "kopo-699009": {
+      "date": "2023-04-19",
+      "title_before": "네이버 클라우드 강민석 이사 초청, AI·빅데이터·클라우드 기술 특강 진행.",
+      "title_after": "네이버 클라우드 강민석 이사 초청, AI, 빅데이터, 클라우드 기술 특강 진행",
+      "source_chars": 670,
+      "final_body_chars": 815,
+      "expanded": true
+    },
+    "kopo-699008": {
+      "date": "2023-03-03",
+      "title_before": "경력단절여성 재취업 지원. 아동코딩지도사 교육과정 운영",
+      "title_after": "경력단절여성 재취업 지원, 아동코딩지도사 교육과정 운영",
+      "source_chars": 528,
+      "final_body_chars": 697,
+      "expanded": true
+    },
+    "kopo-699007": {
+      "date": "2023-01-05",
+      "title_before": "K-PaaS 서비스 공모전 수상, AI 활용 재활용 추천 서비스",
+      "title_after": "K-PaaS 서비스 공모전 수상, AI 활용 재활용 추천 서비스",
+      "source_chars": 660,
+      "final_body_chars": 826,
+      "expanded": true
+    },
+    "kopo-699006": {
+      "date": "2023-01-05",
+      "title_before": "빅데이터소프트웨어공학과, K-PaaS 공모전 과기정통부 장관상 수상",
+      "title_after": "K-PaaS 서비스 공모전 전국 1위, 과기정통부 장관상",
+      "source_chars": 591,
+      "final_body_chars": 757,
+      "expanded": true
+    },
+    "kopo-699005": {
+      "date": "2022-12-06",
+      "title_before": "빅데이터소프트웨어공학과, 프로보노 ICT멘토링 공모전 동상 수상",
+      "title_after": "빅데이터소프트웨어공학과, 프로보노 ICT멘토링 공모전 동상 수상",
+      "source_chars": 696,
+      "final_body_chars": 862,
+      "expanded": true
+    },
+    "kopo-676281": {
+      "date": "2022-10-26",
+      "title_before": "‘저니맨’ 최익성 전 프로야구 선수 초청 특강 진행",
+      "title_after": "저니맨 최익성 전 프로야구 선수 초청 특강 진행",
+      "source_chars": 596,
+      "final_body_chars": 673,
+      "expanded": true
+    },
+    "kopo-676279": {
+      "date": "2022-10-13",
+      "title_before": "제대(예정)군인 및 보훈가족 취·창업 박람회에서 빅데이터소프트웨어공학과 소개",
+      "title_after": "제대 예정군인 및 보훈가족 취, 창업 박람회에서 빅데이터소프트웨어공학과 소개",
+      "source_chars": 594,
+      "final_body_chars": 666,
+      "expanded": true
+    },
+    "kopo-676278": {
+      "date": "2022-10-12",
+      "title_before": "브랜디 데이터 엔지니어 양원석 졸업생 초청 특강 진행",
+      "title_after": "브랜디 데이터 엔지니어 양원석 졸업생 초청 특강 진행",
+      "source_chars": 517,
+      "final_body_chars": 610,
+      "expanded": true
+    },
+    "kopo-676277": {
+      "date": "2022-10-04",
+      "title_before": "개그맨 복현규 초청 특강. 공감과 웃음, 그리고 인생 이야기",
+      "title_after": "개그맨 복현규 초청 특강, 공감과 웃음, 그리고 인생 이야기",
+      "source_chars": 423,
+      "final_body_chars": 500,
+      "expanded": true
+    },
+    "kopo-666746": {
+      "date": "2022-08-11",
+      "title_before": "강서양천교육지원청 고교 교원 대상 AI·빅데이터 직무연수 진행",
+      "title_after": "강서양천교육지원청 고교 교원 대상 AI, 빅데이터 직무연수 진행",
+      "source_chars": 483,
+      "final_body_chars": 563,
+      "expanded": true
+    },
+    "kopo-663560": {
+      "date": "2022-07-05",
+      "title_before": "여름방학 맞이 스프링부트 웹 개발 특강 성료",
+      "title_after": "여름방학 5일간 Spring Boot 기반 웹 애플리케이션 개발 특강",
+      "source_chars": 553,
+      "final_body_chars": 716,
+      "expanded": true
+    },
+    "kopo-663347": {
+      "date": "2022-07-04",
+      "title_before": "빅데이터소프트웨어공학과, ‘ICT학점연계 프로젝트 인턴십’ 참여학과 선정",
+      "title_after": "빅데이터소프트웨어공학과, ICT학점연계 프로젝트 인턴십 참여학과 선정",
+      "source_chars": 686,
+      "final_body_chars": 853,
+      "expanded": true
+    },
+    "kopo-663346": {
+      "date": "2022-06-30",
+      "title_before": "빅데이터소프트웨어공학과, 고성능 GPU 워크스테이션 도입",
+      "title_after": "빅데이터소프트웨어공학과, 고성능 GPU 워크스테이션 도입",
+      "source_chars": 638,
+      "final_body_chars": 778,
+      "expanded": true
+    },
+    "kopo-661751": {
+      "date": "2022-06-14",
+      "title_before": "누구나 쉽게 배우는 인공지능(AI) 실습 프로그램 성료",
+      "title_after": "누구나 쉽게 배우는 인공지능 AI 실습 프로그램 성료",
+      "source_chars": 487,
+      "final_body_chars": 636,
+      "expanded": true
+    },
+    "kopo-661750": {
+      "date": "2022-06-04",
+      "title_before": "인공지능 교육캠퍼스 학생교육 종료. 자연어처리·시각화 실습 중심 운영",
+      "title_after": "인공지능 교육캠퍼스 학생교육 종료, 자연어처리, 시각화 실습 중심 운영",
+      "source_chars": 539,
+      "final_body_chars": 611,
+      "expanded": true
+    },
+    "kopo-661749": {
+      "date": "2022-05-26",
+      "title_before": "레빗과 MOU 체결. K-PaaS 기반 클라우드 인재 양성 협력",
+      "title_after": "레빗과 MOU 체결, K-PaaS 기반 클라우드 인재 양성 협력",
+      "source_chars": 620,
+      "final_body_chars": 772,
+      "expanded": true
+    },
+    "kopo-661745": {
+      "date": "2022-05-24",
+      "title_before": "서울시교육청 고교생 대상 AI 기술교육 진행. 빅데이터소프트웨어공학과 참여",
+      "title_after": "서울시교육청 고교생 대상 AI 기술교육 진행, 빅데이터소프트웨어공학과 참여",
+      "source_chars": 677,
+      "final_body_chars": 904,
+      "expanded": true
+    },
+    "kopo-661739": {
+      "date": "2022-05-19",
+      "title_before": "빅데이터소프트웨어공학과, 디지털콘텐츠과와의 풋살 예선전 승리",
+      "title_after": "빅데이터소프트웨어공학과, 디지털콘텐츠과와의 풋살 예선전 승리",
+      "source_chars": 479,
+      "final_body_chars": 551,
+      "expanded": true
+    },
+    "kopo-659342": {
+      "date": "2022-05-12",
+      "title_before": "IT기업 Sysone 김상훈 졸업생 초청 특강 진행",
+      "title_after": "IT기업 Sysone 김상훈 졸업생 초청 특강 진행",
+      "source_chars": 527,
+      "final_body_chars": 620,
+      "expanded": true
+    },
+    "kopo-659341": {
+      "date": "2022-05-10",
+      "title_before": "K-PaaS 클라우드 컴퓨팅 특강 개최. 실무 중심 클라우드 이해도 UP",
+      "title_after": "K-PaaS 클라우드 컴퓨팅 특강 개최, 실무 중심 클라우드 이해도 UP",
+      "source_chars": 552,
+      "final_body_chars": 697,
+      "expanded": true
+    },
+    "kopo-659340": {
+      "date": "2022-05-04",
+      "title_before": "봄날의 우장산 산책. 1·2학년 화합의 시간",
+      "title_after": "봄날의 우장산 산책. 1, 2학년 화합의 시간",
+      "source_chars": 447,
+      "final_body_chars": 519,
+      "expanded": true
+    },
+    "kopo-658320": {
+      "date": "2022-02-23",
+      "title_before": "경력단절여성 재취업 지원. 아동코딩지도사 교육과정 운영 (2022.02.23)",
+      "title_after": "경력단절여성 재취업 지원, 아동코딩지도사 교육과정 운영 2022.02.23",
+      "source_chars": 595,
+      "final_body_chars": 764,
+      "expanded": true
+    },
+    "kopo-658312": {
+      "date": "2022-01-13",
+      "title_before": "퀴즈톡 자연어처리 기술 자문 진행. 빅데이터소프트웨어공학과 김영운 교수 참여",
+      "title_after": "퀴즈톡 자연어처리 기술 자문 진행, 빅데이터소프트웨어공학과 김영운 교수 참여",
+      "source_chars": 520,
+      "final_body_chars": 604,
+      "expanded": true
+    },
+    "kopo-661742": {
+      "date": "2021-12-29",
+      "title_before": "All For You팀, 제5회 PaaS-TA 공모전 한국클라우드컴퓨팅연구조합 이사장상 수상",
+      "title_after": "All For You팀, 제5회 PaaS-TA 공모전 한국클라우드컴퓨팅연구조합 이사장상 수상",
+      "source_chars": 599,
+      "final_body_chars": 765,
+      "expanded": true
+    },
+    "kopo-658306": {
+      "date": "2021-12-24",
+      "title_before": "중등학교장 대상 빅데이터 연수 진행",
+      "title_after": "강서양천교육지원청 중등학교장 대상 빅데이터 활용 연수",
+      "source_chars": 519,
+      "final_body_chars": 599,
+      "expanded": true
+    },
+    "kopo-658296": {
+      "date": "2021-12-23",
+      "title_before": "제19회 임베디드 SW 경진대회 수상 소식",
+      "title_after": "제19회 임베디드 SW 경진대회, GAS GAS GAS팀 회장상 수상",
+      "source_chars": 521,
+      "final_body_chars": 619,
+      "expanded": true
+    },
+    "kopo-658288": {
+      "date": "2021-12-03",
+      "title_before": "강서양천 고교생 대상 사물인터넷 전문가 체험 교육 진행",
+      "title_after": "강서양천 고교생 대상 사물인터넷 전문가 체험 교육 진행",
+      "source_chars": 512,
+      "final_body_chars": 610,
+      "expanded": true
+    },
+    "kopo-658279": {
+      "date": "2021-11-15",
+      "title_before": "강서양천 고등학생 대상 진로체험 프로그램 성공적으로 운영",
+      "title_after": "강서양천 고등학생 대상 진로체험 프로그램 성공적으로 운영",
+      "source_chars": 488,
+      "final_body_chars": 583,
+      "expanded": true
+    },
+    "kopo-633740": {
+      "date": "2021-09-14",
+      "title_before": "한국폴리텍대학 서울강서캠퍼스 x 한국클라우드 업무협약 체결",
+      "title_after": "한국폴리텍대학 서울강서캠퍼스 x 한국클라우드 업무협약 체결",
+      "source_chars": 473,
+      "final_body_chars": 557,
+      "expanded": true
+    },
+    "kopo-633739": {
+      "date": "2021-08-05",
+      "title_before": "PaaS-TA 오픈랩 확산 워크숍, 클라우드 교육 협력",
+      "title_after": "PaaS-TA 오픈랩 확산 워크숍, 클라우드 교육 협력",
+      "source_chars": 680,
+      "final_body_chars": 764,
+      "expanded": true
+    },
+    "kopo-633735": {
+      "date": "2021-06-28",
+      "title_before": "[빅데이터소프트웨어공학과] 배리어프리 앱개발 콘테스트 선정",
+      "title_after": "빅데이터소프트웨어공학과 배리어프리 앱개발 콘테스트 선정",
+      "source_chars": 409,
+      "final_body_chars": 552,
+      "expanded": true
+    },
+    "kopo-633737": {
+      "date": "2021-06-05",
+      "title_before": "[빅데이터소프트웨어공학과] SNS를 활용한 빅데이터 분석 특강 진행",
+      "title_after": "빅데이터소프트웨어공학과 SNS를 활용한 빅데이터 분석 특강 진행",
+      "source_chars": 523,
+      "final_body_chars": 600,
+      "expanded": true
+    },
+    "kopo-633734": {
+      "date": "2021-06-01",
+      "title_before": "2021 춘계종합학술발표회 우수논문상 수상",
+      "title_after": "2021 춘계종합학술발표회 우수논문상, 학과 학생 공동 연구",
+      "source_chars": 584,
+      "final_body_chars": 682,
+      "expanded": true
+    },
+    "kopo-621351": {
+      "date": "2021-05-13",
+      "title_before": "블록체인 기술과 전망에 대한 특강 진행",
+      "title_after": "블록체인 기술과 미래 전망, 한국블록체인스타트업협회 전문가 특강",
+      "source_chars": 509,
+      "final_body_chars": 586,
+      "expanded": true
+    },
+    "kopo-621350": {
+      "date": "2021-04-29",
+      "title_before": "엑셈 개발자 박창원 졸업생 특강 진행",
+      "title_after": "엑셈 재직 졸업생 박창원 초청, 빅데이터 개발자 취업 특강",
+      "source_chars": 490,
+      "final_body_chars": 583,
+      "expanded": true
+    },
+    "kopo-619223": {
+      "date": "2021-04-27",
+      "title_before": "빅데이터소프트웨어공학과 [2021]한이음,프로보노 ICT 공모전 참가",
+      "title_after": "빅데이터소프트웨어공학과 2021한이음,프로보노 ICT 공모전 참가",
+      "source_chars": 874,
+      "final_body_chars": 1082,
+      "expanded": true
+    },
+    "kopo-616738": {
+      "date": "2021-03-30",
+      "title_before": "하이힐링원 통계 프로그램 개발 프로젝트 진행 중",
+      "title_after": "하이힐링원 통계 프로그램 개발 프로젝트 진행 중",
+      "source_chars": 449,
+      "final_body_chars": 548,
+      "expanded": true
+    },
+    "kopo-612409": {
+      "date": "2021-02-19",
+      "title_before": "1기 졸업생, 석사 학위 취득",
+      "title_after": "1기 졸업생 문주현, 박수용, 숭실대 대학원 석사 취득",
+      "source_chars": 247,
+      "final_body_chars": 340,
+      "expanded": true
+    },
+    "kopo-602151": {
+      "date": "2020-11-25",
+      "title_before": "국내 1호 프로파일러 권일용 교수님 초청 특강 진행",
+      "title_after": "국내 1호 프로파일러 권일용 교수님 초청 특강 진행",
+      "source_chars": 517,
+      "final_body_chars": 594,
+      "expanded": true
+    },
+    "kopo-602150": {
+      "date": "2020-11-23",
+      "title_before": "벤처창업아이템 경진대회 동상 수상",
+      "title_after": "제4회 벤처창업아이템 경진대회 동상, 슈퍼개발자팀 수상",
+      "source_chars": 285,
+      "final_body_chars": 383,
+      "expanded": true
+    },
+    "kopo-614467": {
+      "date": "2020-11-19",
+      "title_before": "2020 한이음 ICT 공모전 동상 수상",
+      "title_after": "2020 한이음 ICT 공모전 동상 수상, 슈퍼개발자 동아리",
+      "source_chars": 352,
+      "final_body_chars": 450,
+      "expanded": true
+    },
+    "kopo-614469": {
+      "date": "2020-11-12",
+      "title_before": "2020 한이음 ICT 공모전 입상",
+      "title_after": "2020 한이음 ICT 공모전 입상, 거북목 동아리 프로젝트",
+      "source_chars": 361,
+      "final_body_chars": 459,
+      "expanded": true
+    },
+    "kopo-602149": {
+      "date": "2020-11-06",
+      "title_before": "산업체 전문가 초청 특강 – 빅데이터·AI 플랫폼의 이해",
+      "title_after": "산업체 전문가 초청 특강, 빅데이터, AI 플랫폼의 이해",
+      "source_chars": 497,
+      "final_body_chars": 574,
+      "expanded": true
+    },
+    "kopo-602148": {
+      "date": "2020-10-30",
+      "title_before": "졸업작품경진대회 수상 소식",
+      "title_after": "2020 졸업작품경진대회 수상, 4기 재학생 프로젝트 성과",
+      "source_chars": 305,
+      "final_body_chars": 403,
+      "expanded": true
+    },
+    "kopo-602147": {
+      "date": "2020-10-29",
+      "title_before": "졸업작품 전시: “강아지는 훌륭하다 S2” – 반려인을 위한 스마트 커뮤니티 플랫폼",
+      "title_after": "졸업작품 전시, 강아지는 훌륭하다 S2, 반려인을 위한 스마트 커뮤니티 플랫폼",
+      "source_chars": 440,
+      "final_body_chars": 539,
+      "expanded": true
+    },
+    "kopo-602146": {
+      "date": "2020-10-29",
+      "title_before": "졸업작품 전시: “END(English News Daily)” – 영문 뉴스로 배우는 실용 영어 학습 앱. 🇺🇸",
+      "title_after": "졸업작품 전시, END English News Daily, 영문 뉴스로 배우는 실용 영어 학습 앱",
+      "source_chars": 552,
+      "final_body_chars": 651,
+      "expanded": true
+    },
+    "kopo-602144": {
+      "date": "2020-10-21",
+      "title_before": "코난테크놀로지, 빅데이터 분석 솔루션 '펄스K' 기증",
+      "title_after": "코난테크놀로지, 빅데이터 분석 솔루션 펄스K 기증",
+      "source_chars": 459,
+      "final_body_chars": 531,
+      "expanded": true
+    },
+    "kopo-602143": {
+      "date": "2020-10-20",
+      "title_before": "이력서 사진 무료 촬영 행사. 취업 준비에 날개를 달다",
+      "title_after": "이력서 사진 무료 촬영 행사, 취업 준비에 날개를 달다",
+      "source_chars": 443,
+      "final_body_chars": 535,
+      "expanded": true
+    },
+    "kopo-602142": {
+      "date": "2020-10-20",
+      "title_before": "KB데이타시스템 이강호 수석 초청, 빅데이터 실무 특강 진행",
+      "title_after": "KB데이타시스템 이강호 수석 초청, 빅데이터 실무 특강 진행",
+      "source_chars": 432,
+      "final_body_chars": 509,
+      "expanded": true
+    },
+    "kopo-602140": {
+      "date": "2020-09-15",
+      "title_before": "아이티아이즈와 MOU 체결, 빅데이터·AI 전문 인재 양성 협력",
+      "title_after": "아이티아이즈와 MOU 체결, 빅데이터, AI 전문 인재 양성 협력",
+      "source_chars": 646,
+      "final_body_chars": 798,
+      "expanded": true
+    },
+    "kopo-591405": {
+      "date": "2020-08-25",
+      "title_before": "AI 전문기업 ‘티쓰리큐’와 산학협력 MOU 체결",
+      "title_after": "AI 전문기업 티쓰리큐와 산학협력 MOU 체결",
+      "source_chars": 569,
+      "final_body_chars": 653,
+      "expanded": true
+    },
+    "kopo-591404": {
+      "date": "2020-08-24",
+      "title_before": "김도우·송진수 학생, 하계학술대회 우수논문상 수상",
+      "title_after": "김도우, 송진수 학생, 하계학술대회 우수논문상 수상",
+      "source_chars": 510,
+      "final_body_chars": 608,
+      "expanded": true
+    },
+    "kopo-591403": {
+      "date": "2020-08-11",
+      "title_before": "경복여고 학생 대상 빅데이터 분석·시각화 실습 교육 진행",
+      "title_after": "경복여고 학생 대상 빅데이터 분석, 시각화 실습 교육 진행",
+      "source_chars": 463,
+      "final_body_chars": 638,
+      "expanded": true
+    },
+    "kopo-591400": {
+      "date": "2020-08-06",
+      "title_before": "강서양천 일반고 교원 대상 인공지능 언어 '파이썬' 교육 실시",
+      "title_after": "강서양천 일반고 교원 대상 인공지능 언어 파이썬 교육 실시",
+      "source_chars": 449,
+      "final_body_chars": 624,
+      "expanded": true
+    },
+    "kopo-591399": {
+      "date": "2020-08-06",
+      "title_before": "빅데이터소프트웨어공학과 소개 카드뉴스",
+      "title_after": "학과 빅데이터 분석 교육 소개 카드뉴스",
+      "source_chars": 99,
+      "final_body_chars": 99,
+      "expanded": false
+    },
+    "kopo-591398": {
+      "date": "2020-07-31",
+      "title_before": "스프링 프레임워크 특강 5일간 진행",
+      "title_after": "여름방학 5일간 Spring Framework 실습, MVC와 게시판 구현",
+      "source_chars": 403,
+      "final_body_chars": 480,
+      "expanded": true
+    },
+    "kopo-591394": {
+      "date": "2020-07-23",
+      "title_before": "멘토-멘티데이 성황리에 개최",
+      "title_after": "1학년과 2학년이 함께한 멘토 멘티 데이, 학기말 교류 행사",
+      "source_chars": 366,
+      "final_body_chars": 459,
+      "expanded": true
+    },
+    "kopo-591393": {
+      "date": "2020-07-22",
+      "title_before": "빅데이터소프트웨어공학과 한이음 공모전 참가 동아리 카드뉴스",
+      "title_after": "2020 한이음 ICT 공모전 참가 동아리 소개 카드뉴스",
+      "source_chars": 132,
+      "final_body_chars": 132,
+      "expanded": false
+    },
+    "kopo-591392": {
+      "date": "2020-07-15",
+      "title_before": "2020 한이음 ICT멘토링 공모전 도전",
+      "title_after": "2020 한이음 ICT 공모전, 학과 학생 3개 팀 도전",
+      "source_chars": 381,
+      "final_body_chars": 474,
+      "expanded": true
+    },
+    "kopo-591387": {
+      "date": "2020-06-22",
+      "title_before": "데이터분석 “한국폴리텍대학”에 대한 소셜 빅데이터 분석 결과",
+      "title_after": "데이터분석 한국폴리텍대학에 대한 소셜 빅데이터 분석 결과",
+      "source_chars": 649,
+      "final_body_chars": 721,
+      "expanded": true
+    },
+    "kopo-583305": {
+      "date": "2020-06-10",
+      "title_before": "개그콘서트 ‘달인’의 작가가 전하는 미디어 특강",
+      "title_after": "개그콘서트 달인의 작가가 전하는 미디어 특강",
+      "source_chars": 440,
+      "final_body_chars": 517,
+      "expanded": true
+    },
+    "kopo-583306": {
+      "date": "2020-06-03",
+      "title_before": "] 1기 선배의 따뜻한 조언",
+      "title_after": "시스원 재직 1기 졸업생 김상훈, 실무 경험과 진로 특강",
+      "source_chars": 480,
+      "final_body_chars": 573,
+      "expanded": true
+    },
+    "kopo-562838": {
+      "date": "2020-01-22",
+      "title_before": "한국폴리텍대학 서울강서캠퍼스 × 숭실사이버대학교 MOU 체결",
+      "title_after": "한국폴리텍대학 서울강서캠퍼스 × 숭실사이버대학교 MOU 체결",
+      "source_chars": 371,
+      "final_body_chars": 455,
+      "expanded": true
+    },
+    "kopo-558498": {
+      "date": "2019-12-11",
+      "title_before": "호주 교육·공공기관 관계자, 빅데이터소프트웨어공학과 방문",
+      "title_after": "호주 교육, 공공기관 관계자, 빅데이터소프트웨어공학과 방문",
+      "source_chars": 385,
+      "final_body_chars": 457,
+      "expanded": true
+    },
+    "kopo-558040": {
+      "date": "2019-12-06",
+      "title_before": "2019 SW인재페스티벌 참가",
+      "title_after": "2019 SW인재페스티벌 참가, 소프트웨어 작품 시연과 전시 관람",
+      "source_chars": 464,
+      "final_body_chars": 559,
+      "expanded": true
+    },
+    "kopo-558038": {
+      "date": "2019-12-04",
+      "title_before": "빅데이터소프트웨어공학과 슈퍼개발자 동아리 2019 한이음 공모전 장려상 수상",
+      "title_after": "빅데이터소프트웨어공학과 슈퍼개발자 동아리 2019 한이음 공모전 장려상 수상",
+      "source_chars": 255,
+      "final_body_chars": 353,
+      "expanded": true
+    },
+    "kopo-554577": {
+      "date": "2019-11-04",
+      "title_before": "빅데이터소프트웨어공학과 한국정보처리학회 주관 추계학술대회 참여",
+      "title_after": "빅데이터소프트웨어공학과 한국정보처리학회 주관 추계학술대회 참여",
+      "source_chars": 162,
+      "final_body_chars": 231,
+      "expanded": true
+    },
+    "kopo-554578": {
+      "date": "2019-10-31",
+      "title_before": "청와대 황덕순 일자리수석 빅데이터소프트웨어공학과 방문",
+      "title_after": "청와대 황덕순 일자리수석 빅데이터소프트웨어공학과 방문",
+      "source_chars": 194,
+      "final_body_chars": 266,
+      "expanded": true
+    },
+    "kopo-554579": {
+      "date": "2019-10-28",
+      "title_before": "빅데이터소프트웨어공학과 19년도 추계학술대회 우수논문상 수상",
+      "title_after": "빅데이터소프트웨어공학과 19년도 추계학술대회 우수논문상 수상",
+      "source_chars": 561,
+      "final_body_chars": 659,
+      "expanded": true
+    },
+    "kopo-553753": {
+      "date": "2019-10-28",
+      "title_before": "빅데이터소프트웨어공학과 제4회 멘토 멘티 데이",
+      "title_after": "빅데이터소프트웨어공학과 제4회 멘토 멘티 데이",
+      "source_chars": 181,
+      "final_body_chars": 274,
+      "expanded": true
+    },
+    "kopo-553751": {
+      "date": "2019-10-26",
+      "title_before": "빅데이터소프트웨어공학과 한국정보전자통신기술학회 2019 추계학술대회 논문발표",
+      "title_after": "빅데이터소프트웨어공학과 한국정보전자통신기술학회 2019 추계학술대회 논문발표",
+      "source_chars": 296,
+      "final_body_chars": 365,
+      "expanded": true
+    },
+    "kopo-551221": {
+      "date": "2019-10-10",
+      "title_before": "빅데이터소프트웨어공학과 사우디 TVTC 공무원단 방문",
+      "title_after": "빅데이터소프트웨어공학과 사우디 TVTC 공무원단 방문",
+      "source_chars": 136,
+      "final_body_chars": 136,
+      "expanded": false
+    },
+    "kopo-548819": {
+      "date": "2019-09-27",
+      "title_before": "빅데이터소프트웨어공학과 드림잡 페스티벌에서 빅데이터를 적용한 작품 시연",
+      "title_after": "빅데이터소프트웨어공학과 드림잡 페스티벌에서 빅데이터를 적용한 작품 시연",
+      "source_chars": 247,
+      "final_body_chars": 342,
+      "expanded": true
+    },
+    "kopo-547654": {
+      "date": "2019-09-18",
+      "title_before": "빅데이터소프트웨어공학과 빅데이터 전문기업 넥스엔정보기술 특강",
+      "title_after": "빅데이터소프트웨어공학과 빅데이터 전문기업 넥스엔정보기술 특강",
+      "source_chars": 227,
+      "final_body_chars": 304,
+      "expanded": true
+    },
+    "kopo-546863": {
+      "date": "2019-09-03",
+      "title_before": "빅데이터소프트웨어공학과 크리스찬상조로부터 장학금 500만원 전달받아",
+      "title_after": "빅데이터소프트웨어공학과 크리스찬상조로부터 장학금 500만원 전달받아",
+      "source_chars": 481,
+      "final_body_chars": 553,
+      "expanded": true
+    },
+    "kopo-545134": {
+      "date": "2019-08-27",
+      "title_before": "﻿금태섭 국회의원 빅데이터소프트웨어공학과 방문",
+      "title_after": "﻿금태섭 국회의원 빅데이터소프트웨어공학과 방문",
+      "source_chars": 110,
+      "final_body_chars": 110,
+      "expanded": false
+    },
+    "kopo-545135": {
+      "date": "2019-08-26",
+      "title_before": "﻿빅데이터소프트웨어공학과 RPA 전문기업 그리드원 특강",
+      "title_after": "﻿빅데이터소프트웨어공학과 RPA 전문기업 그리드원 특강",
+      "source_chars": 295,
+      "final_body_chars": 372,
+      "expanded": true
+    },
+    "kopo-545133": {
+      "date": "2019-07-30",
+      "title_before": "﻿빅데이터소프트웨어공학과 지능정보 산업 기업 코난테크놀로지와 MOU 체결",
+      "title_after": "﻿빅데이터소프트웨어공학과 지능정보 산업 기업 코난테크놀로지와 MOU 체결",
+      "source_chars": 494,
+      "final_body_chars": 578,
+      "expanded": true
+    },
+    "kopo-542542": {
+      "date": "2019-07-12",
+      "title_before": "빅데이터소프트웨어공학과 교수진 ICIECT 2019 국제학술대회 논문 발표",
+      "title_after": "빅데이터소프트웨어공학과 교수진 ICIECT 2019 국제학술대회 논문 발표",
+      "source_chars": 331,
+      "final_body_chars": 400,
+      "expanded": true
+    },
+    "kopo-542541": {
+      "date": "2019-06-11",
+      "title_before": "인도 엘리트 공무원단 빅데이터소프트웨어공학과 방문",
+      "title_after": "인도 엘리트 공무원단 빅데이터소프트웨어공학과 방문",
+      "source_chars": 106,
+      "final_body_chars": 106,
+      "expanded": false
+    },
+    "kopo-539052": {
+      "date": "2019-06-03",
+      "title_before": "빅데이터소프트웨어공학과 유아이패스코리아로부터 RPA를 주제로 한 특강",
+      "title_after": "빅데이터소프트웨어공학과 유아이패스코리아로부터 RPA를 주제로 한 특강",
+      "source_chars": 281,
+      "final_body_chars": 358,
+      "expanded": true
+    },
+    "kopo-538678": {
+      "date": "2019-05-25",
+      "title_before": "빅데이터소프트웨어공학과 19년도 춘계학술대회 재학생 2명 우수논문상 수상",
+      "title_after": "빅데이터소프트웨어공학과 19년도 춘계학술대회 재학생 2명 우수논문상 수상",
+      "source_chars": 671,
+      "final_body_chars": 769,
+      "expanded": true
+    },
+    "kopo-538126": {
+      "date": "2019-05-21",
+      "title_before": "빅데이터소프트웨어공학과 암호화폐 결제대행 업체 하이브랩과 MOU 체결",
+      "title_after": "빅데이터소프트웨어공학과 암호화폐 결제대행 업체 하이브랩과 MOU 체결",
+      "source_chars": 472,
+      "final_body_chars": 556,
+      "expanded": true
+    },
+    "kopo-538124": {
+      "date": "2019-05-18",
+      "title_before": "빅데이터소프트웨어공학과 미래직업 체험박람회에서 빅데이터를 적용한 작품 시연",
+      "title_after": "빅데이터소프트웨어공학과 미래직업 체험박람회에서 빅데이터를 적용한 작품 시연",
+      "source_chars": 214,
+      "final_body_chars": 313,
+      "expanded": true
+    },
+    "kopo-536528": {
+      "date": "2019-04-25",
+      "title_before": "빅데이터소프트웨어공학과 국내 1위 인공지능 솔루션 전문기업 그리드원과 MOU 체결",
+      "title_after": "빅데이터소프트웨어공학과 국내 1위 인공지능 솔루션 전문기업 그리드원과 MOU 체결",
+      "source_chars": 496,
+      "final_body_chars": 580,
+      "expanded": true
+    },
+    "kopo-536526": {
+      "date": "2019-04-19",
+      "title_before": "빅데이터소프트웨어공학과 창업성장기술개발사업 연구결과 공유 세미나 참석",
+      "title_after": "빅데이터소프트웨어공학과 창업성장기술개발사업 연구결과 공유 세미나 참석",
+      "source_chars": 173,
+      "final_body_chars": 245,
+      "expanded": true
+    },
+    "kopo-534256": {
+      "date": "2019-03-26",
+      "title_before": "빅데이터소프트웨어공학과 18학번 이민영학생 부산은행 썸패스 QR결제 대학생 UCC 공모전 수상",
+      "title_after": "빅데이터소프트웨어공학과 18학번 이민영학생 부산은행 썸패스 QR결제 대학생 UCC 공모전 수상",
+      "source_chars": 293,
+      "final_body_chars": 391,
+      "expanded": true
+    },
+    "kopo-534254": {
+      "date": "2019-03-26",
+      "title_before": "리타이또 국제대학 교수진들 빅데이터소프트웨어공학과 방문",
+      "title_after": "리타이또 국제대학 교수진들 빅데이터소프트웨어공학과 방문",
+      "source_chars": 201,
+      "final_body_chars": 273,
+      "expanded": true
+    },
+    "kopo-532685": {
+      "date": "2019-03-05",
+      "title_before": "한국폴리텍대학 서울강서캠퍼스, (주)퀴즈톡과 MOU체결",
+      "title_after": "한국폴리텍대학 서울강서캠퍼스, 주퀴즈톡과 MOU체결",
+      "source_chars": 677,
+      "final_body_chars": 761,
+      "expanded": true
+    },
+    "kopo-528004": {
+      "date": "2019-01-29",
+      "title_before": "빅데이터소프트웨어공학과 넥스엔정보기술과 MOU 및 장학금 전달",
+      "title_after": "빅데이터소프트웨어공학과 넥스엔정보기술과 MOU 및 장학금 전달",
+      "source_chars": 558,
+      "final_body_chars": 642,
+      "expanded": true
+    },
+    "kopo-528003": {
+      "date": "2019-01-29",
+      "title_before": "빅데이터소프트웨어공학과 연구실 워크숍 진행",
+      "title_after": "빅데이터소프트웨어공학과 연구실 워크숍 진행",
+      "source_chars": 266,
+      "final_body_chars": 338,
+      "expanded": true
+    },
+    "kopo-527126": {
+      "date": "2019-01-21",
+      "title_before": "2019 ICNCT 국제학술대회, 학과 교수진 논문 발표",
+      "title_after": "2019 ICNCT 국제학술대회에서 학과 교수진 연구논문 발표",
+      "source_chars": 323,
+      "final_body_chars": 392,
+      "expanded": true
+    },
+    "kopo-522779": {
+      "date": "2018-12-13",
+      "title_before": "빅데이터소프트웨어공학과 1학년 김한결학생, 2018 국제기술봉사 참여",
+      "title_after": "빅데이터소프트웨어공학과 1학년 김한결학생, 2018 국제기술봉사 참여",
+      "source_chars": 187,
+      "final_body_chars": 260,
+      "expanded": true
+    },
+    "kopo-522124": {
+      "date": "2018-12-06",
+      "title_before": "빅데이터소프트웨어공학과 유웨이코 2018년 전국대학(원)생 산업융합 IDEA 경진대회 본선 참여",
+      "title_after": "빅데이터소프트웨어공학과 유웨이코 2018년 전국대학 원생 산업융합 IDEA 경진대회 본선 참여",
+      "source_chars": 328,
+      "final_body_chars": 400,
+      "expanded": true
+    },
+    "kopo-521877": {
+      "date": "2018-12-04",
+      "title_before": "빅데이터소프트웨어공학과 거북목동아리 2018 SW인재페스티벌에 시연 및 입선 수상",
+      "title_after": "빅데이터소프트웨어공학과 거북목동아리 2018 SW인재페스티벌에 시연 및 입선 수상",
+      "source_chars": 308,
+      "final_body_chars": 406,
+      "expanded": true
+    },
+    "kopo-518199": {
+      "date": "2018-11-06",
+      "title_before": "빅데이터소프트웨어공학과 거북목동아리 2018한이음 ICT공모전 선정평가 참석",
+      "title_after": "빅데이터소프트웨어공학과 거북목동아리 2018한이음 ICT공모전 선정평가 참석",
+      "source_chars": 201,
+      "final_body_chars": 273,
+      "expanded": true
+    },
+    "kopo-518197": {
+      "date": "2018-11-06",
+      "title_before": "빅데이터소프트웨어공학과 1학년 이지흠학생, 2018문화데이터박람회 아이디어부문 최우수상 수상",
+      "title_after": "빅데이터소프트웨어공학과 1학년 이지흠학생, 2018문화데이터박람회 아이디어부문 최우수상 수상",
+      "source_chars": 94,
+      "final_body_chars": 94,
+      "expanded": false
+    },
+    "kopo-516897": {
+      "date": "2018-10-30",
+      "title_before": "추계종합학술발표회 및 학부 대학(원)생 작품발표회 참석",
+      "title_after": "추계종합학술발표회 및 학부 대학 원생 작품발표회 참석",
+      "source_chars": 718,
+      "final_body_chars": 787,
+      "expanded": true
+    },
+    "kopo-516851": {
+      "date": "2018-10-30",
+      "title_before": "백제한의원 강홍구 원장 한의학과 데이터 융합 강의",
+      "title_after": "백제한의원 강홍구 원장 한의학과 데이터 융합 강의",
+      "source_chars": 89,
+      "final_body_chars": 89,
+      "expanded": false
+    },
+    "kopo-516833": {
+      "date": "2018-10-30",
+      "title_before": "빅데이터소프트웨어공학과 졸업생 홈커밍데이",
+      "title_after": "졸업생 홈커밍데이, 시스원과 씨엘정보 선배들의 개발 실무 공유",
+      "source_chars": 113,
+      "final_body_chars": 113,
+      "expanded": false
+    },
+    "kopo-516832": {
+      "date": "2018-10-30",
+      "title_before": "뉴스 전문채널 YTN 견학",
+      "title_after": "YTN 방송국 현장 견학, 뉴스 제작과 정보시스템 기술 학습",
+      "source_chars": 109,
+      "final_body_chars": 109,
+      "expanded": false
+    },
+    "kopo-512392": {
+      "date": "2018-10-04",
+      "title_before": "서울시 강서구 중학생들을 위한 직업체험행사에 '빅데이터 전문가' 직업 체험 부스 운영 및 지원",
+      "title_after": "서울시 강서구 중학생들을 위한 직업체험행사에 빅데이터 전문가 직업 체험 부스 운영 및 지원",
+      "source_chars": 137,
+      "final_body_chars": 137,
+      "expanded": false
+    },
+    "kopo-512068": {
+      "date": "2018-10-02",
+      "title_before": "빅데이터소프트웨어공학과 3기 학생 김현기, 학생회장 당선",
+      "title_after": "빅데이터소프트웨어공학과 3기 학생 김현기, 학생회장 당선",
+      "source_chars": 142,
+      "final_body_chars": 142,
+      "expanded": false
+    },
+    "kopo-511067": {
+      "date": "2018-09-26",
+      "title_before": "고용노동부 중소기업 탐방, 이력서·모의면접 실습",
+      "title_after": "고용노동부 중소기업 탐방, 이력서, 모의면접 실습",
+      "source_chars": 186,
+      "final_body_chars": 278,
+      "expanded": true
+    },
+    "kopo-509746": {
+      "date": "2018-09-13",
+      "title_before": "빅데이터소프트웨어공학과, '시스원'에서 인공지능 데이터 활용 서비스 강의",
+      "title_after": "빅데이터소프트웨어공학과, 시스원에서 인공지능 데이터 활용 서비스 강의",
+      "source_chars": 236,
+      "final_body_chars": 308,
+      "expanded": true
+    },
+    "kopo-509708": {
+      "date": "2018-09-13",
+      "title_before": "2018 문화데이터 경진대회, 이지흠 학생 최우수상",
+      "title_after": "2018 문화데이터 경진대회, 이지흠 학생 최우수상",
+      "source_chars": 640,
+      "final_body_chars": 738,
+      "expanded": true
+    },
+    "kopo-507013": {
+      "date": "2018-08-21",
+      "title_before": "빅데이터소프트웨어공학과, 국제학술대회서 최우수 논문상",
+      "title_after": "빅데이터소프트웨어공학과, 국제학술대회서 최우수 논문상",
+      "source_chars": 713,
+      "final_body_chars": 782,
+      "expanded": true
+    },
+    "kopo-504775": {
+      "date": "2018-07-20",
+      "title_before": "바른미래당 김동철 비대위원장 폴리텍대학 빅데이터소프트웨어공학과 방문",
+      "title_after": "바른미래당 김동철 비대위원장 폴리텍대학 빅데이터소프트웨어공학과 방문",
+      "source_chars": 224,
+      "final_body_chars": 296,
+      "expanded": true
+    },
+    "kopo-504258": {
+      "date": "2018-07-13",
+      "title_before": "김영운 학과장, 이협건 교수 몽골 Ulaanbaatar에서 제4회 전자정보통신기술 국제회의 논문 발표",
+      "title_after": "김영운 학과장, 이협건 교수 몽골 Ulaanbaatar에서 제4회 전자정보통신기술 국제회의 논문 발표",
+      "source_chars": 448,
+      "final_body_chars": 517,
+      "expanded": true
+    },
+    "kopo-504250": {
+      "date": "2018-07-13",
+      "title_before": "ICT 학점연계 인턴십 사업, 2017·2018년 연속 선정",
+      "title_after": "ICT 학점연계 인턴십 사업, 2017, 2018년 연속 선정",
+      "source_chars": 622,
+      "final_body_chars": 714,
+      "expanded": true
+    },
+    "kopo-501832": {
+      "date": "2018-06-11",
+      "title_before": "2018 산학연 R&D 과제 선정, 자동차 정비 데이터 분석",
+      "title_after": "2018 산학연 R 및 D 과제 선정, 자동차 정비 데이터 분석",
+      "source_chars": 616,
+      "final_body_chars": 700,
+      "expanded": true
+    },
+    "kopo-501202": {
+      "date": "2018-05-31",
+      "title_before": "교남소망의집을 통한 장애인에 대한 인식 개선교육",
+      "title_after": "교남소망의집을 통한 장애인에 대한 인식 개선교육",
+      "source_chars": 160,
+      "final_body_chars": 233,
+      "expanded": true
+    },
+    "kopo-500990": {
+      "date": "2018-05-29",
+      "title_before": "빅데이터소프트웨어공학과 2018년도 춘계종합학술발표회 및 학부·대학(원)생 작품발표회 참가",
+      "title_after": "빅데이터소프트웨어공학과 2018년도 춘계종합학술발표회 및 학부, 대학 원생 작품발표회 참가",
+      "source_chars": 279,
+      "final_body_chars": 348,
+      "expanded": true
+    },
+    "kopo-500785": {
+      "date": "2018-05-25",
+      "title_before": "폴리텍대 빅데이터소프트웨어공학과, 중소기업벤처부 지원 'R&D 과제' 선정",
+      "title_after": "폴리텍대 빅데이터소프트웨어공학과, 중소기업벤처부 지원 R 및 D 과제 선정",
+      "source_chars": 598,
+      "final_body_chars": 670,
+      "expanded": true
+    },
+    "kopo-500206": {
+      "date": "2018-05-15",
+      "title_before": "폴리텍대 서울강서캠퍼스, 씨엘정보와 기업 맞춤형 취업지원 MOU",
+      "title_after": "폴리텍대 서울강서캠퍼스, 씨엘정보와 기업 맞춤형 취업지원 MOU",
+      "source_chars": 613,
+      "final_body_chars": 697,
+      "expanded": true
+    },
+    "kopo-500205": {
+      "date": "2018-05-15",
+      "title_before": "크리스찬상조, 빅데이터소프트웨어공학과에 장학금 500만원 기탁",
+      "title_after": "크리스찬상조, 빅데이터소프트웨어공학과에 장학금 500만원 기탁",
+      "source_chars": 568,
+      "final_body_chars": 640,
+      "expanded": true
+    },
+    "kopo-499817": {
+      "date": "2018-05-08",
+      "title_before": "경찰청 정보화 시스템 이해 및 취업 특강",
+      "title_after": "경찰청 문구백 부장 특강, 정보시스템 이해와 IT 취업 진로",
+      "source_chars": 153,
+      "final_body_chars": 153,
+      "expanded": false
+    },
+    "kopo-499350": {
+      "date": "2018-04-30",
+      "title_before": "빅데이터소프트웨어공학과 2개 팀, 한국정보산업연합회 주최 2018'ICT 멘토링 공모전' 수상",
+      "title_after": "빅데이터소프트웨어공학과 2개 팀, 한국정보산업연합회 주최 2018ICT 멘토링 공모전 수상",
+      "source_chars": 606,
+      "final_body_chars": 704,
+      "expanded": true
+    },
+    "kopo-499135": {
+      "date": "2018-04-26",
+      "title_before": "이상돈 국회의원 빅데이터 전문학과인 빅데이터소프트웨어공학과 방문",
+      "title_after": "이상돈 국회의원 빅데이터 전문학과인 빅데이터소프트웨어공학과 방문",
+      "source_chars": 155,
+      "final_body_chars": 155,
+      "expanded": false
+    },
+    "kopo-498894": {
+      "date": "2018-04-23",
+      "title_before": "산업통상자원부 이승우 국장 및 고용노동부 고위공무원 빅데이터전문학과인 빅데이터소프트웨어공학과 방문",
+      "title_after": "산업통상자원부 이승우 국장 및 고용노동부 고위공무원 빅데이터전문학과인 빅데이터소프트웨어공학과 방문",
+      "source_chars": 140,
+      "final_body_chars": 140,
+      "expanded": false
+    },
+    "kopo-498290": {
+      "date": "2018-04-12",
+      "title_before": "TNMS로부터 시청률 조사기술 및 분석 특강",
+      "title_after": "TNMS 최태병 본부장 특강, TV 시청률 조사 기술과 데이터 분석",
+      "source_chars": 389,
+      "final_body_chars": 466,
+      "expanded": true
+    },
+    "kopo-497840": {
+      "date": "2018-04-02",
+      "title_before": "용인정보고등학교 관계자들 빅데이터소프트웨어공학과 방문",
+      "title_after": "용인정보고등학교 관계자들 빅데이터소프트웨어공학과 방문",
+      "source_chars": 267,
+      "final_body_chars": 362,
+      "expanded": true
+    },
+    "kopo-497019": {
+      "date": "2018-03-22",
+      "title_before": "금융권에 적용된 블록체인 적용사례 특강",
+      "title_after": "KCC정보통신 변재영 연구원 특강, 금융권 블록체인 적용 사례",
+      "source_chars": 426,
+      "final_body_chars": 503,
+      "expanded": true
+    },
+    "kopo-491736": {
+      "date": "2018-02-01",
+      "title_before": "빅데이터소프트웨어공학과 한국통신학회(KICS)주관 동계종합학술발표회 참가",
+      "title_after": "빅데이터소프트웨어공학과 한국통신학회 KICS주관 동계종합학술발표회 참가",
+      "source_chars": 439,
+      "final_body_chars": 508,
+      "expanded": true
+    },
+    "kopo-490345": {
+      "date": "2018-01-19",
+      "title_before": "빅데이터소프트웨어공학과 빅데이터 전문기업 엑셈 맥스게이지(MaxGuage)특강",
+      "title_after": "빅데이터소프트웨어공학과 빅데이터 전문기업 엑셈 맥스게이지 MaxGuage특강",
+      "source_chars": 428,
+      "final_body_chars": 505,
+      "expanded": true
+    },
+    "kopo-486822": {
+      "date": "2017-12-21",
+      "title_before": "빅데이터소프트웨어공학과 한국공학한림원 주최 2017 소프트웨어 챌린지 우수상 수상",
+      "title_after": "빅데이터소프트웨어공학과 한국공학한림원 주최 2017 소프트웨어 챌린지 우수상 수상",
+      "source_chars": 650,
+      "final_body_chars": 748,
+      "expanded": true
+    },
+    "kopo-486358": {
+      "date": "2017-12-17",
+      "title_before": "빅데이터소프트웨어공학과 아프리카 직업훈련 관계자 방문행사 개최",
+      "title_after": "빅데이터소프트웨어공학과 아프리카 직업훈련 관계자 방문행사 개최",
+      "source_chars": 372,
+      "final_body_chars": 444,
+      "expanded": true
+    },
+    "kopo-485605": {
+      "date": "2017-12-08",
+      "title_before": "빅데이터소프트웨어공학과 한국공학한림원 2017 대학생 소프트웨어 챌린지 본선 대회 참가",
+      "title_after": "빅데이터소프트웨어공학과 한국공학한림원 2017 대학생 소프트웨어 챌린지 본선 대회 참가",
+      "source_chars": 437,
+      "final_body_chars": 509,
+      "expanded": true
+    },
+    "kopo-485394": {
+      "date": "2017-12-06",
+      "title_before": "빅데이터소프트웨어공학과 과학기술정보통신부 주최 2017'SW 동아리 재능기부 챌린지' 3등 수상",
+      "title_after": "2017 SW동아리 재능기부 챌린지 전국 3위 수상",
+      "source_chars": 671,
+      "final_body_chars": 769,
+      "expanded": true
+    },
+    "kopo-483717": {
+      "date": "2017-11-23",
+      "title_before": "빅데이터소프트웨어공학과 농협 주최 공모전 3등 수상",
+      "title_after": "2017 농협 핀테크 아이디어톤, 학과 학생 전국 3위",
+      "source_chars": 760,
+      "final_body_chars": 858,
+      "expanded": true
+    },
+    "kopo-482129": {
+      "date": "2017-11-08",
+      "title_before": "빅데이터소프트웨어공학과 2017년 한국정보전자통신기술학회(등재지) 논문발표 참가",
+      "title_after": "빅데이터소프트웨어공학과 2017년 한국정보전자통신기술학회 등재지 논문발표 참가",
+      "source_chars": 362,
+      "final_body_chars": 431,
+      "expanded": true
+    },
+    "kopo-481777": {
+      "date": "2017-11-07",
+      "title_before": "빅데이터소프트웨어공학과 IT전문기업 시스원 이성화 상무 특별초청 강의",
+      "title_after": "빅데이터소프트웨어공학과 IT전문기업 시스원 이성화 상무 특별초청 강의",
+      "source_chars": 318,
+      "final_body_chars": 395,
+      "expanded": true
+    },
+    "kopo-481308": {
+      "date": "2017-11-02",
+      "title_before": "빅데이터소프트웨어공학과 IT서비스전문기업 시스원(SYSONE) 방문",
+      "title_after": "빅데이터소프트웨어공학과 IT서비스전문기업 시스원 SYSONE 방문",
+      "source_chars": 344,
+      "final_body_chars": 416,
+      "expanded": true
+    },
+    "kopo-480598": {
+      "date": "2017-10-30",
+      "title_before": "빅데이터소프트웨어공학과 한국정보산업연합회(FKII)와 MOU체결",
+      "title_after": "빅데이터소프트웨어공학과 한국정보산업연합회 FKII와 MOU체결",
+      "source_chars": 563,
+      "final_body_chars": 647,
+      "expanded": true
+    },
+    "kopo-479985": {
+      "date": "2017-10-25",
+      "title_before": "빅데이터소프트웨어공학과 1회 졸업생 대상 졸업 작품 전시회",
+      "title_after": "빅데이터소프트웨어공학과 1회 졸업생 대상 졸업 작품 전시회",
+      "source_chars": 186,
+      "final_body_chars": 279,
+      "expanded": true
+    },
+    "kopo-479983": {
+      "date": "2017-10-25",
+      "title_before": "빅데이터소프트웨어공학과 강서구 소재 중,고등학생 진로 체험",
+      "title_after": "빅데이터소프트웨어공학과 강서구 소재 중,고등학생 진로 체험",
+      "source_chars": 235,
+      "final_body_chars": 330,
+      "expanded": true
+    },
+    "kopo-478685": {
+      "date": "2017-10-18",
+      "title_before": "데이터베이스 전문기업 티맥스데이터 티베로 초청 강연",
+      "title_after": "데이터베이스 전문기업 티맥스데이터 티베로 초청 강연",
+      "source_chars": 609,
+      "final_body_chars": 756,
+      "expanded": true
+    },
+    "kopo-478684": {
+      "date": "2017-10-18",
+      "title_before": "빅데이터소프트웨어공학과, 농협 UCC 공모전 입상",
+      "title_after": "빅데이터소프트웨어공학과, 농협 UCC 공모전 입상",
+      "source_chars": 297,
+      "final_body_chars": 395,
+      "expanded": true
+    },
+    "kopo-478683": {
+      "date": "2017-10-18",
+      "title_before": "빅데이터소프트웨어공학과, KCC정보통신 ICT R&D 참여",
+      "title_after": "빅데이터소프트웨어공학과, KCC정보통신 ICT R 및 D 참여",
+      "source_chars": 598,
+      "final_body_chars": 670,
+      "expanded": true
+    },
+    "kopo-475993": {
+      "date": "2017-09-26",
+      "title_before": "빅데이터소프트웨어공학과 '제4회 드림 잡(Dream Job) 페스티벌' 참여",
+      "title_after": "빅데이터소프트웨어공학과 제4회 드림 잡 Dream Job 페스티벌 참여",
+      "source_chars": 661,
+      "final_body_chars": 756,
+      "expanded": true
+    },
+    "kopo-475988": {
+      "date": "2017-09-26",
+      "title_before": "2017 2학기 참人폴리텍 포트폴리오 경진대회 장려상 수상",
+      "title_after": "2017 2학기 참人폴리텍 포트폴리오 경진대회 장려상 수상",
+      "source_chars": 421,
+      "final_body_chars": 519,
+      "expanded": true
+    },
+    "kopo-475984": {
+      "date": "2017-09-26",
+      "title_before": "한국인터넷진흥원 전자거래진흥팀 블록체인(Blockchain) 특강",
+      "title_after": "한국인터넷진흥원 전자거래진흥팀 블록체인 Blockchain 특강",
+      "source_chars": 617,
+      "final_body_chars": 694,
+      "expanded": true
+    },
+    "kopo-474640": {
+      "date": "2017-09-18",
+      "title_before": "빅데이터소프트웨어공학과, 티베로 데이터베이스 환경구축",
+      "title_after": "빅데이터소프트웨어공학과, 티베로 데이터베이스 환경구축",
+      "source_chars": 611,
+      "final_body_chars": 683,
+      "expanded": true
+    },
+    "kopo-474345": {
+      "date": "2017-09-15",
+      "title_before": "빅데이터소프트웨어공학과, 전문대 최초 한국공학한림원 주최 소프트웨어챌린지 본선 진출",
+      "title_after": "빅데이터소프트웨어공학과, 전문대 최초 한국공학한림원 주최 소프트웨어챌린지 본선 진출",
+      "source_chars": 762,
+      "final_body_chars": 834,
+      "expanded": true
+    },
+    "kopo-471961": {
+      "date": "2017-08-28",
+      "title_before": "빅데이터소프트웨어공학과, 농림식품산업 일자리 박람회서 빅데이터 기술 시연",
+      "title_after": "빅데이터소프트웨어공학과, 농림식품산업 일자리 박람회서 빅데이터 기술 시연",
+      "source_chars": 692,
+      "final_body_chars": 791,
+      "expanded": true
+    },
+    "kopo-471648": {
+      "date": "2017-08-25",
+      "title_before": "ICT 학점연계 인턴십, 학과 학생 6명 선정",
+      "title_after": "ICT 학점연계 인턴십, 학과 학생 6명 선정",
+      "source_chars": 656,
+      "final_body_chars": 748,
+      "expanded": true
+    },
+    "kopo-469747": {
+      "date": "2017-08-02",
+      "title_before": "빅데이터소프트웨어공학과, 티맥스소프트와 업무협약",
+      "title_after": "빅데이터소프트웨어공학과, 티맥스소프트와 업무협약",
+      "source_chars": 627,
+      "final_body_chars": 711,
+      "expanded": true
+    },
+    "kopo-469475": {
+      "date": "2017-07-27",
+      "title_before": "빅데이터소프트웨어공학과, 미래창조 과학부 ICT 인턴십 선정",
+      "title_after": "빅데이터소프트웨어공학과, 미래창조 과학부 ICT 인턴십 선정",
+      "source_chars": 672,
+      "final_body_chars": 764,
+      "expanded": true
+    },
+    "kopo-468628": {
+      "date": "2017-07-09",
+      "title_before": "제 1차 4차 산업혁명 대비 벤처창업 아이템 경진대회 수상",
+      "title_after": "제 1차 4차 산업혁명 대비 벤처창업 아이템 경진대회 수상",
+      "source_chars": 283,
+      "final_body_chars": 381,
+      "expanded": true
+    },
+    "kopo-467181": {
+      "date": "2017-06-26",
+      "title_before": "빅데이터소프트웨어공학과 창업경진대회 시상식",
+      "title_after": "학과 창업아이템 경진대회 시상식, 학생 창업 도전 성과",
+      "source_chars": 206,
+      "final_body_chars": 278,
+      "expanded": true
+    },
+    "kopo-466253": {
+      "date": "2017-06-15",
+      "title_before": "제1회 장학금마일리지 선정 학생 발표 - MOU한 IT기업에서 기부한 장학금",
+      "title_after": "제1회 장학금마일리지 선정 학생 발표, MOU한 IT기업에서 기부한 장학금",
+      "source_chars": 134,
+      "final_body_chars": 134,
+      "expanded": false
+    },
+    "kopo-466128": {
+      "date": "2017-06-14",
+      "title_before": "한국폴리텍대 빅데이터소프트웨어공학과 교수진 '이공학개인기초연구지원사업'에 선정",
+      "title_after": "한국폴리텍대 빅데이터소프트웨어공학과 교수진 이공학개인기초연구지원사업에 선정",
+      "source_chars": 731,
+      "final_body_chars": 803,
+      "expanded": true
+    },
+    "kopo-464839": {
+      "date": "2017-06-02",
+      "title_before": "빅데이터소프트웨어공학과 창업경진대회 참가",
+      "title_after": "제1회 창업아이템 경진대회 참가, 학생들의 아이디어 발표",
+      "source_chars": 623,
+      "final_body_chars": 695,
+      "expanded": true
+    },
+    "kopo-464638": {
+      "date": "2017-05-31",
+      "title_before": "빅데이터소프트웨어공학과 YTN 현장 단체 견학",
+      "title_after": "빅데이터소프트웨어공학과 YTN 현장 단체 견학",
+      "source_chars": 246,
+      "final_body_chars": 318,
+      "expanded": true
+    },
+    "kopo-464391": {
+      "date": "2017-05-29",
+      "title_before": "코엑스 - 2017 월드 IT 쇼 (World IT Show 2017) 참관",
+      "title_after": "코엑스, 2017 월드 IT 쇼 World IT Show 2017 참관",
+      "source_chars": 449,
+      "final_body_chars": 521,
+      "expanded": true
+    },
+    "kopo-464124": {
+      "date": "2017-05-26",
+      "title_before": "빅데이터 관련 기술 및 적용사례 특강",
+      "title_after": "윤효근 박사 초청, 빅데이터 기술과 산업 적용 사례 특강",
+      "source_chars": 95,
+      "final_body_chars": 95,
+      "expanded": false
+    },
+    "kopo-463924": {
+      "date": "2017-05-24",
+      "title_before": "빅데이터소프트웨어공학과 멘토 멘티의 날",
+      "title_after": "현직자 멘토 초청 특강과 선후배 교류, 학과 멘토의 날",
+      "source_chars": 108,
+      "final_body_chars": 108,
+      "expanded": false
+    },
+    "kopo-463762": {
+      "date": "2017-05-23",
+      "title_before": "빅데이터소프트웨어공학과 봄맞이 산책",
+      "title_after": "우장산 봄맞이 산책, 학과 학생들의 친목과 교류 활동",
+      "source_chars": 88,
+      "final_body_chars": 88,
+      "expanded": false
+    },
+    "kopo-463357": {
+      "date": "2017-05-21",
+      "title_before": "2017 SW동아리 재능기부 사업 2년 연속 선정",
+      "title_after": "2017 SW동아리 재능기부 사업 2년 연속 선정",
+      "source_chars": 676,
+      "final_body_chars": 774,
+      "expanded": true
+    },
+    "kopo-462836": {
+      "date": "2017-05-17",
+      "title_before": "제6회 학과 봉사활동, 교남소망의집 방문",
+      "title_after": "제6회 학과 봉사활동, 교남소망의집 방문",
+      "source_chars": 157,
+      "final_body_chars": 157,
+      "expanded": false
+    },
+    "kopo-461556": {
+      "date": "2017-05-03",
+      "title_before": "미래창조과학부 주관,'2017 SW동아리 재능기부 챌린지' 참가",
+      "title_after": "미래창조과학부 주관,2017 SW동아리 재능기부 챌린지 참가",
+      "source_chars": 578,
+      "final_body_chars": 651,
+      "expanded": true
+    },
+    "kopo-459871": {
+      "date": "2017-04-14",
+      "title_before": "이아이티서비스(주)와 빅데이터 전문가 양성을 위한 업무협약 체결 및 장학금 전달식 개최",
+      "title_after": "이아이티서비스 주와 빅데이터 전문가 양성을 위한 업무협약 체결 및 장학금 전달식 개최",
+      "source_chars": 594,
+      "final_body_chars": 678,
+      "expanded": true
+    },
+    "kopo-459546": {
+      "date": "2017-04-11",
+      "title_before": "데이터 분석과 소그룹 모임 다과회",
+      "title_after": "1학년과 2학년 교류를 위한 학과 소그룹 모임과 다과회",
+      "source_chars": 179,
+      "final_body_chars": 251,
+      "expanded": true
+    },
+    "kopo-459618": {
+      "date": "2017-03-19",
+      "title_before": "빅데이터소프트웨어공학과 2017 Membership Training",
+      "title_after": "빅데이터소프트웨어공학과 2017 Membership Training",
+      "source_chars": 566,
+      "final_body_chars": 638,
+      "expanded": true
+    },
+    "kopo-454696": {
+      "date": "2017-02-13",
+      "title_before": "숭실대학교 송관호 교수님-서적 기증",
+      "title_after": "숭실대학교 송관호 교수의 인문학과 ICT 서적 기증",
+      "source_chars": 135,
+      "final_body_chars": 135,
+      "expanded": false
+    },
+    "kopo-454182": {
+      "date": "2017-02-09",
+      "title_before": "학과 이전 | 3교육관 -> 본관3층",
+      "title_after": "학과 실습실 이전, 제3교육관에서 본관 3층으로",
+      "source_chars": 128,
+      "final_body_chars": 128,
+      "expanded": false
+    },
+    "kopo-453392": {
+      "date": "2017-02-03",
+      "title_before": "김영운, 이협건 교수-국제학술대회 최우수논문상 수상",
+      "title_after": "2017 ICNCT 국제학술대회, 교수진 최우수논문상",
+      "source_chars": 635,
+      "final_body_chars": 704,
+      "expanded": true
+    },
+    "kopo-448025": {
+      "date": "2016-12-09",
+      "title_before": "강서구청, 학과 봉사활동 감사장 전달",
+      "title_after": "강서구청 감사장 수상, 학과의 지속적인 지역사회 봉사활동",
+      "source_chars": 146,
+      "final_body_chars": 146,
+      "expanded": false
+    },
+    "kopo-448023": {
+      "date": "2016-12-09",
+      "title_before": "전문대 최초 SW동아리 재능기부 챌린지 지원사업 전국 2등 수상 동영상",
+      "title_after": "전문대 최초 SW동아리 재능기부 챌린지 지원사업 전국 2등 수상 동영상",
+      "source_chars": 163,
+      "final_body_chars": 261,
+      "expanded": true
+    },
+    "kopo-448020": {
+      "date": "2016-12-09",
+      "title_before": "2016 SW동아리 재능기부 사업 전국 2위, 슈퍼개발자팀 수상",
+      "title_after": "2016 SW동아리 재능기부 사업 전국 2위, 슈퍼개발자팀 수상",
+      "source_chars": 718,
+      "final_body_chars": 816,
+      "expanded": true
+    },
+    "kopo-448019": {
+      "date": "2016-12-09",
+      "title_before": "'SW동아리 재능기부 챌린지 지원사업' 전국 2등(정보통신기술센터장상 수상)",
+      "title_after": "SW동아리 재능기부 챌린지 지원사업 전국 2등 정보통신기술센터장상 수상",
+      "source_chars": 719,
+      "final_body_chars": 817,
+      "expanded": true
+    },
+    "kopo-446176": {
+      "date": "2016-11-20",
+      "title_before": "2016년 2학기 Charming 폴리텍 데이터 분석과 멘토, 멘티 만남의 장",
+      "title_after": "2016년 2학기 Charming 폴리텍 데이터 분석과 멘토, 멘티 만남의 장",
+      "source_chars": 105,
+      "final_body_chars": 105,
+      "expanded": false
+    },
+    "kopo-446171": {
+      "date": "2016-11-20",
+      "title_before": "폴리텍 엑스포",
+      "title_after": "2016 폴리텍 엑스포, 학과 빅데이터 교육 소개",
+      "source_chars": 134,
+      "final_body_chars": 134,
+      "expanded": false
+    },
+    "kopo-445461": {
+      "date": "2016-11-15",
+      "title_before": "제4회 '교남 소망의 집' 봉사",
+      "title_after": "교남 소망의 집 방문, 네 번째 지역사회 봉사활동과 시설 정리",
+      "source_chars": 502,
+      "final_body_chars": 575,
+      "expanded": true
+    },
+    "kopo-445458": {
+      "date": "2016-11-15",
+      "title_before": "이협건 교수, 한국정보전자통신기술학회 우수논문상 수상",
+      "title_after": "이협건 교수, 한국정보전자통신기술학회 우수논문상 수상",
+      "source_chars": 528,
+      "final_body_chars": 626,
+      "expanded": true
+    },
+    "kopo-445198": {
+      "date": "2016-11-14",
+      "title_before": "2016 김영운 교수 기고, R을 활용한 빅데이터 분석",
+      "title_after": "2016 김영운 교수의 빅데이터 분석 활용과 R 프로그래밍 기고",
+      "source_chars": 748,
+      "final_body_chars": 748,
+      "expanded": false
+    },
+    "kopo-443897": {
+      "date": "2016-10-31",
+      "title_before": "2016 Dream Job 페스티벌, 빅데이터 진로체험 운영",
+      "title_after": "2016 Dream Job 페스티벌, 빅데이터 진로체험 운영",
+      "source_chars": 506,
+      "final_body_chars": 601,
+      "expanded": true
+    },
+    "kopo-443890": {
+      "date": "2016-10-31",
+      "title_before": "제2회 '교남 소망의 집' 봉사",
+      "title_after": "교남 소망의 집에서 컴퓨터 유지보수와 지역사회 봉사활동",
+      "source_chars": 224,
+      "final_body_chars": 297,
+      "expanded": true
+    }
+  }
+}

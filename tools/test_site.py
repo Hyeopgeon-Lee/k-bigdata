@@ -176,7 +176,7 @@ class ActivityPromotionTests(unittest.TestCase):
         self.assertEqual(len(re.findall(r'alt="학과 활동 현장 사진"',self.index)),0)
         recent = sum(re.search(r'<time datetime="(\d{4})-',c).group(1) in ('2025','2026') for c in self.cards)
         self.assertEqual(recent,61)
-        for title in ('새싹 해커톤 대상','엔씨IDS 재직 졸업생','AI·클라우드 실습환경'):
+        for title in ('새싹 해커톤 대상','엔씨IDS 재직 졸업생','AI와 클라우드 교육환경'):
             self.assertIn(title,self.index)
 
     def test_details_have_contextual_navigation_and_consistent_claims(self):
@@ -200,6 +200,40 @@ class ActivityPromotionTests(unittest.TestCase):
                     facts += 1
         self.assertGreaterEqual(related,270)
         self.assertEqual(facts,61)
+
+    def test_all_activity_headlines_follow_single_editorial_punctuation_style(self):
+        bad = re.compile(r'[·•・—–―“”‘’「」『』【】\[\]!?★☆✅✓📌🎉]')
+        for card in self.cards:
+            slug = re.search(r'<h3><a href="/activities/([^/]+)/"',card).group(1)
+            title = unescape(re.search(r'<h3><a href="[^"]+">(.*?)</a></h3>',card,re.S).group(1))
+            story = (OUT/'activities'/slug/'index.html').read_text(encoding='utf-8')
+            with self.subTest(slug=slug):
+                self.assertNotRegex(title,bad,'Titles should use words and commas, preserving technical names')
+                self.assertEqual(title,unescape(re.search(r'<h1>(.*?)</h1>',story,re.S).group(1)))
+                self.assertIn(title,unescape(re.search(r'<title>(.*?)</title>',story,re.S).group(1)))
+                self.assertTrue(14 <= len(title) <= 120)
+
+    def test_enriched_article_content_is_source_grounded(self):
+        # Keep the published-site CI self-contained: no optional bs4 package.
+        enriched = 0
+        for card in self.cards:
+            slug = re.search(r'<h3><a href="/activities/([^/]+)/"',card).group(1)
+            page = (OUT/'activities'/slug/'index.html').read_text(encoding='utf-8')
+            with self.subTest(slug=slug):
+                match = re.search(
+                    r'<div class="activity-content">(.*?)<div class="activity-cta">',
+                    page, re.S)
+                self.assertIsNotNone(match)
+                content = match.group(1)
+                plain = unescape(re.sub(r'<[^>]+>', ' ',content)).strip()
+                self.assertGreater(len(plain),45)
+                notes = re.findall(
+                    r'class="activity-editorial-(?:explainer|context)"',content)
+                if notes:
+                    enriched += 1
+                    self.assertTrue(
+                        '활동에 등장한 기술 이해하기' in content or '전공과 진로의 연결' in content)
+        self.assertGreaterEqual(enriched,200)
 
     def test_filters_are_keyboard_accessible_and_have_real_content(self):
         script = (OUT/'activity-pagination.js').read_text(encoding='utf-8')

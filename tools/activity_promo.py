@@ -113,8 +113,8 @@ def articles() -> dict[str, dict[str, str]]:
         key = slug.group(1)
         label = html.unescape(title.group(1))
         lead = strip_markup(summary.group(1))
-        if key in CURATED:
-            label, lead = CURATED[key]
+        # Read the final edited titles and summaries from the original archive;
+        # never overwrite consistent headlines with earlier promotional drafts.
         result[key] = {
             "title": label, "lead": lead,
             "category": strip_markup(category.group(1)),

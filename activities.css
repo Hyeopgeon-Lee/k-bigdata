@@ -160,3 +160,15 @@
 .activity-tech-tags{display:flex;align-items:center;flex-wrap:wrap;gap:.4rem;margin-bottom:1.6rem}
 .activity-tech-tags>span:first-child{font-size:.82rem;font-weight:760;color:#456985;margin-right:.25rem}
 .activity-tech-chip{background:#eaf2fb;color:#285d88;border-radius:999px;padding:.38rem .65rem;font-size:.78rem;font-weight:760;line-height:1.4}
+
+
+/* Consistent long-form editorial sections, separate from verified event reporting. */
+.activity-editorial-explainer,
+.activity-editorial-context{padding:1.4rem 1.6rem;margin:1.8rem 0 0;border:1px solid #d7e4f1;border-radius:1rem;background:#f8fbfe}
+.activity-editorial-explainer{border-left:4px solid #1b6ca8}
+.activity-editorial-context{background:#f2f7fc}
+.activity-content .activity-editorial-explainer h2,
+.activity-content .activity-editorial-context h2{font-size:clamp(1.1rem,2vw,1.35rem);margin:0 0 .7rem;color:#153e69}
+.activity-content .activity-editorial-explainer p,
+.activity-content .activity-editorial-context p{font-size:.95rem;line-height:1.8;margin:0;color:#344f69}
+@media(max-width:650px){.activity-editorial-explainer,.activity-editorial-context{padding:1.05rem 1.15rem}}
