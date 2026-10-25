@@ -1,0 +1,162 @@
+name: 학과 활동 사진 원본으로 복원
+on:
+  push:
+    branches: [main]
+    paths:
+      - tools/restore_activity_source_images.py
+      - .github/workflows/restore-activity-source-images.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: activity-restore-originals
+  cancel-in-progress: false
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Dependencies
+        run: pip install requests beautifulsoup4 pillow 'opencv-python-headless==4.11.0.86' 'numpy<2'
+      - name: Restore early
+        run: python tools/restore_activity_source_images.py --group early
+      - name: Validate early
+        run: |
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+      - name: Commit early
+        run: |
+          git config user.name "k-bigdata-site-bot"
+          git config user.email "site-bot@users.noreply.github.com"
+          git add activities/ assets/activities/official-original/
+          if ! git diff --cached --quiet; then
+            git commit -m "Restore original unmosaiced department images early"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Restore mid-6_10
+        run: python tools/restore_activity_source_images.py --group mid-6_10
+      - name: Validate mid-6_10
+        run: |
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+      - name: Commit mid-6_10
+        run: |
+          git config user.name "k-bigdata-site-bot"
+          git config user.email "site-bot@users.noreply.github.com"
+          git add activities/ assets/activities/official-original/
+          if ! git diff --cached --quiet; then
+            git commit -m "Restore original unmosaiced department images mid-6_10"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Restore mid-11_15
+        run: python tools/restore_activity_source_images.py --group mid-11_15
+      - name: Validate mid-11_15
+        run: |
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+      - name: Commit mid-11_15
+        run: |
+          git config user.name "k-bigdata-site-bot"
+          git config user.email "site-bot@users.noreply.github.com"
+          git add activities/ assets/activities/official-original/
+          if ! git diff --cached --quiet; then
+            git commit -m "Restore original unmosaiced department images mid-11_15"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Restore mid-16_20
+        run: python tools/restore_activity_source_images.py --group mid-16_20
+      - name: Validate mid-16_20
+        run: |
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+      - name: Commit mid-16_20
+        run: |
+          git config user.name "k-bigdata-site-bot"
+          git config user.email "site-bot@users.noreply.github.com"
+          git add activities/ assets/activities/official-original/
+          if ! git diff --cached --quiet; then
+            git commit -m "Restore original unmosaiced department images mid-16_20"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Restore late-21_24
+        run: python tools/restore_activity_source_images.py --group late-21_24
+      - name: Validate late-21_24
+        run: |
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+      - name: Commit late-21_24
+        run: |
+          git config user.name "k-bigdata-site-bot"
+          git config user.email "site-bot@users.noreply.github.com"
+          git add activities/ assets/activities/official-original/
+          if ! git diff --cached --quiet; then
+            git commit -m "Restore original unmosaiced department images late-21_24"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Restore late-25_28
+        run: python tools/restore_activity_source_images.py --group late-25_28
+      - name: Validate late-25_28
+        run: |
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+      - name: Commit late-25_28
+        run: |
+          git config user.name "k-bigdata-site-bot"
+          git config user.email "site-bot@users.noreply.github.com"
+          git add activities/ assets/activities/official-original/
+          if ! git diff --cached --quiet; then
+            git commit -m "Restore original unmosaiced department images late-25_28"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Restore late-29_32
+        run: python tools/restore_activity_source_images.py --group late-29_32
+      - name: Validate late-29_32
+        run: |
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+      - name: Commit late-29_32
+        run: |
+          git config user.name "k-bigdata-site-bot"
+          git config user.email "site-bot@users.noreply.github.com"
+          git add activities/ assets/activities/official-original/
+          if ! git diff --cached --quiet; then
+            git commit -m "Restore original unmosaiced department images late-29_32"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Verify all KOPO archive image links use source originals
+        run: |
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          root=Path(".")
+          idx=(root/"activities"/"index.html").read_text()
+          assert idx.count('class="activity-card"')==321
+          for path in (root/"activities").rglob("index.html"):
+              if path.parent.name in ("social-data-career-trends","gangseo-job-fair-2026"):continue
+              assert not re.search(r'/assets/activities/official-board/\d+-\d+\.jpg',path.read_text()),path
+          original=list((root/"assets"/"activities"/"official-original").glob("*.jpg"))
+          assert len(original)>450,len(original)
+          print("VERIFIED_UNMOSAICED_SOURCE_IMAGES",len(original))
+          PY
+      - name: Publish changed images and pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run publish.yml --ref main
