@@ -1,0 +1,108 @@
+name: KOPO 공식 학과소식 마지막 12페이지 등록
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/import_kopo_pages_21_32.py'
+      - '.github/workflows/import-kopo-pages-21-32.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: official-archive-21-32
+  cancel-in-progress: false
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 80
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Dependencies
+        run: pip install requests beautifulsoup4 pillow 'opencv-python-headless==4.11.0.86' 'numpy<2'
+      - name: Inventory last 12 official pages
+        run: python tools/import_kopo_pages_21_32.py --scan
+      - name: Import pages 21-24
+        run: python tools/import_kopo_pages_21_32.py --start 21 --end 24
+      - name: Verify pages 21-24
+        run: |
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+      - name: Commit pages 21-24
+        run: |
+          git config user.name "k-bigdata-site-bot"
+          git config user.email "site-bot@users.noreply.github.com"
+          git add data/kopo_official_pages_21_32.json data/kopo_photo_audit_21_32.json activities/index.html tools/build_site.py activities/kopo-*/index.html assets/activities/official-board/
+          if ! git diff --cached --quiet; then
+            git commit -m "Import KOPO news pages 21-24 photos and articles"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Import pages 25-28
+        run: python tools/import_kopo_pages_21_32.py --start 25 --end 28
+      - name: Verify pages 25-28
+        run: |
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+      - name: Commit pages 25-28
+        run: |
+          git config user.name "k-bigdata-site-bot"
+          git config user.email "site-bot@users.noreply.github.com"
+          git add data/kopo_official_pages_21_32.json data/kopo_photo_audit_21_32.json activities/index.html tools/build_site.py activities/kopo-*/index.html assets/activities/official-board/
+          if ! git diff --cached --quiet; then
+            git commit -m "Import KOPO news pages 25-28 photos and articles"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Import pages 29-32
+        run: python tools/import_kopo_pages_21_32.py --start 29 --end 32
+      - name: Verify pages 29-32
+        run: |
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+      - name: Commit pages 29-32
+        run: |
+          git config user.name "k-bigdata-site-bot"
+          git config user.email "site-bot@users.noreply.github.com"
+          git add data/kopo_official_pages_21_32.json data/kopo_photo_audit_21_32.json activities/index.html tools/build_site.py activities/kopo-*/index.html assets/activities/official-board/
+          if ! git diff --cached --quiet; then
+            git commit -m "Import KOPO news pages 29-32 photos and articles"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Final sitemap and gallery verification
+        run: |
+          OFFLINE_BUILD=1 python tools/build_site.py
+          python tools/test_site.py
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          root=Path(".")
+          records=json.loads((root/"data"/"kopo_official_pages_21_32.json").read_text())
+          audit=json.loads((root/"data"/"kopo_photo_audit_21_32.json").read_text())["records"]
+          assert len(records)==len(audit)==120
+          assert (root/"activities"/"index.html").read_text().count('class="activity-card"')==321
+          sitemap=(root/"_site"/"sitemap.xml").read_text()
+          byid={x["id"]:x for x in audit}
+          for row in records:
+              seq=row["id"]
+              assert f"/activities/kopo-{seq}/" in sitemap
+              file=root/"activities"/f"kopo-{seq}"/"index.html"
+              html=file.read_text()
+              assert html.count('class="activity-feature-image official-figure"')==byid[seq]["downloaded"]
+              for i in range(1,byid[seq]["downloaded"]+1):
+                  photo=root/"assets"/"activities"/"official-board"/f"{seq}-{i}.jpg"
+                  assert photo.is_file() and photo.stat().st_size>1000
+          print("ALL_ARCHIVED",len(records),"PHOTOS",sum(x["downloaded"] for x in audit),"MISSING",sum(len(x["failed"])+len(x["unsupported"]) for x in audit))
+          PY
+      - name: Publish final complete archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run publish.yml --ref main
