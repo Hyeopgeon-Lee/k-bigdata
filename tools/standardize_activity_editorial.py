@@ -289,9 +289,11 @@ def update_jsonld(source: str, title: str, lead: str, kind: str) -> str:
 TITLES={}
 LEADS={}
 BASELINE_LEADS = {}
+BASELINE_TITLES = {}
 try:
     _baseline=json.loads((ROOT/"data"/"activity_editorial_full_review_2026-10-25.json").read_text(encoding="utf-8"))
     BASELINE_LEADS={entry["slug"]:entry.get("lead_after","") for entry in _baseline.get("articles",[])}
+    BASELINE_TITLES={entry["slug"]:entry.get("title_after","") for entry in _baseline.get("articles",[])}
 except (FileNotFoundError,ValueError):
     pass
 
@@ -394,10 +396,10 @@ def main():
         if new_page!=original:
             file.write_text(new_page,encoding='utf-8')
             counts['detail_pages_changed']+=1
-        if new_title!=html.unescape(match.group(2)):counts['titles_changed']+=1
-        if new_lead!=source_lead:counts['intros_changed']+=1
+        if new_title!=BASELINE_TITLES.get(slug,html.unescape(match.group(2))):counts['titles_changed']+=1
+        if new_lead!=BASELINE_LEADS.get(slug,source_lead):counts['intros_changed']+=1
         details[slug]={'date':modified_date.group(1) if modified_date else '',
-                       'title_before':html.unescape(match.group(2)),'title_after':new_title,
+                       'title_before':BASELINE_TITLES.get(slug,html.unescape(match.group(2))),'title_after':new_title,
                        'source_chars':before_body_chars,
                        'final_body_chars':len(plaintext(body)),
                        'expanded':bool(re.search(r'class="activity-editorial-(?:context|explainer)"',body))}
