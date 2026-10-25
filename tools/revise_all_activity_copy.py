@@ -389,10 +389,16 @@ def run():
     with ThreadPoolExecutor(max_workers=6,thread_name_prefix="editorial") as pool:
         tasks={name:pool.submit(func,rows) for name,func in ROLES.items()}
         review={name:tasks[name].result() for name in ROLES}
-    data={};stats=Counter();descriptions=set();details=[]
+    data={};stats=Counter();descriptions=set();titles_seen=set();details=[]
     for r in rows:
         slug=r["slug"]
         title=choose_title(r["title"])
+        if title in titles_seen:
+            title=f"{title} ({r['date'].replace('-', '.')})"
+            if title in titles_seen:
+                title=f"{title} · {slug.rsplit('-',1)[-1]}"
+            stats["duplicate_titles_disambiguated"]+=1
+        titles_seen.add(title)
         category=choose_category(r["category"],title)
         lead=choose_lead(r,title)
         desc=make_description(lead,title,r["date"][:4],category)
