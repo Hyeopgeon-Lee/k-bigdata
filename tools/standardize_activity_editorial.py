@@ -169,8 +169,8 @@ def contextual_sections(body: str, category: str, title: str) -> str:
         out=' '.join(expl for _, expl in techs[:2])
         output += '<section class="activity-editorial-explainer"><h2>활동에 등장한 기술 이해하기</h2><p>'+html.escape(out)+'</p></section>'
     if category in TOPIC_CONTEXT and len(text)>=160:
-        output += '<section class="activity-editorial-context"><h2>전공과 진로의 연결</h2><p>'+
-                  html.escape(TOPIC_CONTEXT[category])+'</p></section>'
+        output += ('<section class="activity-editorial-context"><h2>전공과 진로의 연결</h2><p>'
+                   + html.escape(TOPIC_CONTEXT[category]) + '</p></section>')
     return output
 
 def restructure_body(markup: str) -> tuple[str,int]:
