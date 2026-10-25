@@ -41,3 +41,6 @@
 .activity-post-nav{margin-top:2.5rem}.activity-post-nav a{color:#1662ae;font-weight:800}
 .activity-footer a{color:#bdcbd8}
 @media(max-width:750px){.activity-card-grid{grid-template-columns:1fr}.activity-list{padding-bottom:4rem}.activity-hero{padding-top:6.8rem}.activity-feature-image{border-radius:.75rem;margin-top:-.7rem}.activity-content{margin-top:2rem}.activity-cta{padding:1.35rem}.activity-card-body{padding:1.2rem}}
+
+/* official-board styles */
+.official-post-poster{box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;height:100%;padding:2rem;background:linear-gradient(125deg,#071a33,#27639a);color:white}.official-post-poster span{font-size:.72rem;letter-spacing:.13em;color:#d7f9b7;font-weight:800}.official-post-poster strong{font-size:clamp(1.35rem,2.8vw,2rem);line-height:1.48;word-break:keep-all}.official-post-gallery{display:grid;gap:1.2rem}.official-post-gallery .official-figure{margin:0}.official-post-gallery .official-figure:first-child{margin-top:-1.5rem}.official-post-gallery img{max-height:750px;object-fit:contain;background:#e8edf3}
