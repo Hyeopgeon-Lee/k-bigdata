@@ -281,7 +281,7 @@ class ActivityPromotionTests(unittest.TestCase):
         employer = (OUT/'activities'/'kopo-777680'/'index.html').read_text(encoding='utf-8')
         self.assertIn('수상 증빙',award)
         self.assertIn('포트폴리오',award)
-        self.assertIn('채용',teacher)
+        self.assertIn('취업',teacher)
         self.assertIn('포트폴리오',employer)
         self.assertNotIn('취업 보장',award)
         self.assertNotIn('전원 취업',award)
