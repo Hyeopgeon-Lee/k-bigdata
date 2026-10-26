@@ -92,9 +92,20 @@ def enhance_page(page, relative, state, data):
         for key in ('description','twitter:description'): page=meta(page,key,description)
         page=meta(page,'og:description',state['ogDescription'],True)
         page=meta(page,'og:title',title,True); page=meta(page,'twitter:title',title)
-    image=(SITE+'/assets/activities/social-data-career-trends-2026.jpg' if relative.startswith('activities/') else SITE+'/assets/promo/'+image_name)
+    activity_detail = relative.startswith('activities/') and relative != 'activities/index.html'
+    original_image = re.search(r'<meta\s+property="og:image"\s+content="([^"]+)"',page)
+    image=(unescape(original_image[1]) if activity_detail and original_image else
+           SITE+'/assets/activities/social-data-career-trends-2026.jpg' if relative.startswith('activities/') else
+           SITE+'/assets/promo/'+image_name)
     for key in ('og:image','og:image:secure_url'): page=meta(page,key,image,True)
-    for key,value in (('og:image:width','1100' if relative.startswith('activities/') else '1200'),('og:image:height','825' if relative.startswith('activities/') else '630'),('og:image:type','image/jpeg' if relative.startswith('activities/') else 'image/png')): page=meta(page,key,value,True)
+    if activity_detail:
+        # Article photos have different dimensions. Do not describe them using
+        # the archive cover's 1100 x 825 size or substitute that cover photo.
+        page=re.sub(r'<meta\s+[^>]*property="og:image:(?:width|height)"[^>]*>','',page)
+        image_type='image/png' if image.lower().endswith('.png') else 'image/jpeg'
+        page=meta(page,'og:image:type',image_type,True)
+    else:
+        for key,value in (('og:image:width','1100' if relative.startswith('activities/') else '1200'),('og:image:height','825' if relative.startswith('activities/') else '630'),('og:image:type','image/jpeg' if relative.startswith('activities/') else 'image/png')): page=meta(page,key,value,True)
     page=meta(page,'twitter:image',image)
     canonical=re.search(r'<link rel="canonical" href="([^"]+)"',page)
     if canonical:page=meta(page,'og:url',unescape(canonical[1]),True)
@@ -114,7 +125,9 @@ def enhance_page(page, relative, state, data):
     if relative=='index.html':
         webpage={'@context':'https://schema.org','@type':'WebPage','name':state['seoTitle'],'description':state['seoDescription'],'url':SITE+'/','about':{'@type':'EducationalOrganization','name':'한국폴리텍대학 서울강서캠퍼스 빅데이터소프트웨어공학과','url':SITE+'/'}}
         page=page.replace('</head>',f'<script type="application/ld+json">{json_script(webpage)}</script>\n</head>')
-    if relative not in ('index.html','privacy.html','404.html','post.html') and not relative.startswith('insights/'):
+    if (relative not in ('index.html','privacy.html','404.html','post.html')
+            and not relative.startswith('insights/')
+            and not (activity_detail and 'class="activity-cta"' in page)):
         page=page.replace('</main>',conversion_links()+'</main>')
     if '<footer' in page:
         extra=SEO_FOOTER_LINKS

@@ -1,0 +1,1082 @@
+{
+  "reviewed_count": 86,
+  "edited_count": 80,
+  "scope": "article:published_time 기준 2024~2026년 상세 게시물",
+  "review_date": "2026-10-26",
+  "reviewer_perspective": "학과 홍보와 콘텐츠 편집",
+  "edits": [
+    {
+      "slug": "alumni-ha-jae-hyeong-lecture-2026",
+      "status": "edited",
+      "title": "부산대 대학원 진학 졸업생 초청, 학업과 진로 경험 공유",
+      "summary": "7기 졸업생 하재형 선배가 부산대학교 대학원 소프트웨어공학 전공 진학 과정과 대학원 생활을 소개하고, 재학 중 학습과 활동을 진로 계획에 연결한 경험을 나눴습니다.",
+      "date": "2026-08-11",
+      "body_chars_before": 177,
+      "body_chars_after": 568,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "부산대 대학원 진학 졸업생 초청, 학업과 진로 경험 공유",
+      "body_changed": true
+    },
+    {
+      "slug": "department-funding-2025",
+      "status": "edited",
+      "title": "AI와 클라우드 교육환경 고도화, 학과 개편 사업 약 10억 원 확보",
+      "summary": "2025년 학과 개편 사업 선정으로 약 10억 원의 예산을 확보했습니다. GPU 서버·워크스테이션과 실습 공간 개선을 통해 AI·데이터·클라우드 프로젝트 교육을 강화하는 계획입니다.",
+      "date": "2025-11-08",
+      "body_chars_before": 328,
+      "body_chars_after": 633,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "AI와 클라우드 교육환경 고도화, 학과 개편 사업 약 10억 원 확보",
+      "body_changed": true
+    },
+    {
+      "slug": "department-reorganization-2025",
+      "status": "edited",
+      "title": "빅데이터소프트웨어공학과 개편, AI와 클라우드 실습 강화",
+      "summary": "2026학년도 신입생부터 AI·소프트웨어 개발·클라우드 실습을 강화하는 학과 개편 방향을 소개합니다. 데이터 분석에서 웹 서비스 구현과 운영까지 연결하는 교육을 지향합니다.",
+      "date": "2025-05-27",
+      "body_chars_before": 358,
+      "body_chars_after": 690,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "빅데이터소프트웨어공학과 개편, AI와 클라우드 실습 강화",
+      "body_changed": true
+    },
+    {
+      "slug": "dongmyeong-school-vibe-coding-2026",
+      "status": "edited",
+      "title": "동명중학교 학생 대상 AI 바이브코딩 게임 개발 진로체험",
+      "summary": "동명중학교 학생들이 AI와 대화하며 테트리스·스네이크·숫자 야구 게임을 만들었습니다. 프로그램 실행과 오류 수정까지 경험하며 소프트웨어 개발 과정을 체험했습니다.",
+      "date": "2026-07-16",
+      "body_chars_before": 193,
+      "body_chars_after": 630,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "동명중학교 학생 대상 AI 바이브코딩 게임 개발 진로체험",
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-727465",
+      "status": "edited",
+      "title": "여름 축제 풋살 예선, 디지털콘텐츠과와 함께한 학과 응원 현장",
+      "summary": "학과 학생들이 디지털콘텐츠과와의 풋살 예선에서 1대 1 접전 끝에 승부차기까지 경기를 이어갔습니다. 함께 뛰고 응원하며 교류한 여름 축제 현장을 소개합니다.",
+      "date": "2024-05-10",
+      "body_chars_before": 245,
+      "body_chars_after": 437,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "여름 축제 풋살 예선, 디지털콘텐츠과와 함께한 학과 응원 현장",
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-727471",
+      "status": "edited",
+      "title": "Meta Llama3 특강, 파인튜닝과 LangServe로 살펴보는 LLM 활용",
+      "summary": "재학생들이 Meta Llama3를 활용해 대규모 언어모델의 개념과 파인튜닝, LangServe 실습을 경험했습니다. AI 모델을 응용 프로그램에 연결하는 과정을 살펴본 특강입니다.",
+      "date": "2024-06-03",
+      "body_chars_before": 535,
+      "body_chars_after": 508,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "Meta Llama3 특강, 파인튜닝과 LangServe로 살펴보는 LLM 활용",
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-727473",
+      "status": "edited",
+      "title": "Spring Boot 특강, Controller로 익히는 웹 요청과 응답 흐름",
+      "summary": "Spring Boot 개발환경을 구성하고 Controller로 요청·응답 처리를 구현했습니다. 웹 애플리케이션 구조와 프레임워크의 역할을 코드로 살펴본 기초 특강입니다.",
+      "date": "2024-07-03",
+      "body_chars_before": 491,
+      "body_chars_after": 506,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "Spring Boot 특강, Controller로 익히는 웹 요청과 응답 흐름",
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-727474",
+      "status": "edited",
+      "title": "Spring Boot 기초 특강, 회원가입과 로그인 기능 구현 실습",
+      "summary": "Spring Boot 특강 2회차에서 SQL Developer로 테이블을 만들고 회원가입·로그인 기능을 구현했습니다. 데이터 저장과 화면의 동작을 연결하며 웹 개발의 실행 흐름을 익혔습니다.",
+      "date": "2024-07-03",
+      "body_chars_before": 348,
+      "body_chars_after": 507,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "Spring Boot 기초 특강, 회원가입과 로그인 기능 구현 실습",
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-727475",
+      "status": "edited",
+      "title": "퀴즈톡 앱 UI/UX 개선 프로젝트, 미래내일 일경험 사업 설명회",
+      "summary": "미래내일 일경험 사업 설명회에서 퀴즈톡 서비스와 UI/UX 개선 과제를 소개했습니다. 학생들이 기업의 요구를 바탕으로 팀 프로젝트와 전문가 코칭을 경험하는 참여 과정입니다.",
+      "date": "2024-07-03",
+      "body_chars_before": 477,
+      "body_chars_after": 493,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "퀴즈톡 앱 UI/UX 개선 프로젝트, 미래내일 일경험 사업 설명회",
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-734730",
+      "status": "edited",
+      "title": "HIVE 파일 형식별 성능 비교 연구, 추계학술대회 우수논문상 수상",
+      "summary": "교수진과 재학생이 함께 수행한 HIVE 성능 비교 연구가 우수논문상을 받았습니다. 시퀀스파일·ORC·Parquet에 따른 대용량 데이터 조회 효율을 실험한 논문입니다.",
+      "date": "2024-10-28",
+      "body_chars_before": 1019,
+      "body_chars_after": 539,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "한국정보전자통신기술학회 추계학술대회, 우수논문상 수상",
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-738808",
+      "status": "edited",
+      "title": "제8회 K-PaaS 공모전 동상, AI 활용 치매 예방 서비스 제안",
+      "summary": "김지헌·김소영·이시현 학생팀이 AI를 활용한 치매 조기 진단 및 예방 서비스를 주제로 K-PaaS 공모전 동상을 받았습니다. LLM과 공공데이터를 연결한 학생 프로젝트입니다.",
+      "date": "2024-12-20",
+      "body_chars_before": 1144,
+      "body_chars_after": 513,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "빅데이터소프트웨어공학과, 제8회 K-PaaS 공모전 동상 수상",
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-740753",
+      "status": "edited",
+      "title": "2025 ICT 학점연계 인턴십 참여 학과 선정, 기업 실무 경험의 기회",
+      "summary": "학과가 2025년 ICT 학점연계 인턴십 참여 대상으로 선정됐습니다. ICT 기업에서 실무 경험을 쌓으며 학점을 인정받는 프로그램을 통해 전공 학습과 현장 경험의 연결을 지원합니다.",
+      "date": "2025-01-20",
+      "body_chars_before": 324,
+      "body_chars_after": 503,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "2025 ICT 학점연계 인턴십 참여 학과 선정, 기업 실무 경험의 기회",
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-745968",
+      "status": "edited",
+      "title": "작곡가 박해운 초청 특강, 한류와 미디어 데이터를 함께 읽다",
+      "summary": "작곡가이자 한류문화연구소 이사인 박해운 강사가 한류 문화와 미디어 데이터의 관계를 소개했습니다. 문화 확산 사례를 통해 데이터 분석의 활용 범위를 살펴봤습니다.",
+      "date": "2025-03-26",
+      "body_chars_before": 357,
+      "body_chars_after": 503,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "작곡가 박해운 초청 특강, 한류와 미디어 데이터를 함께 읽다",
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-746370",
+      "status": "edited",
+      "title": "KB데이타시스템 졸업생 특강, 데이터엔지니어의 업무와 취업 준비",
+      "summary": "KB데이타시스템 데이터엔지니어로 일하는 양원석 졸업생이 후배들을 만났습니다. 직무 소개와 함께 포트폴리오, 공모전·자격증 준비, 재학 당시의 학습 경험을 나눴습니다.",
+      "date": "2025-04-01",
+      "body_chars_before": 187,
+      "body_chars_after": 628,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "KB데이타시스템 졸업생 특강, 데이터엔지니어의 업무와 취업 준비",
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-746516",
+      "status": "edited",
+      "title": "2학년 선배 주도 Java 멘토링, if 조건문으로 익히는 프로그램 분기",
+      "summary": "2학년 학생들이 신입생을 위해 Java if 조건문 멘토링을 진행했습니다. 후배들은 코드를 직접 작성하고 질문하며 조건에 따라 프로그램의 동작이 달라지는 원리를 익혔습니다.",
+      "date": "2025-04-02",
+      "body_chars_before": 580,
+      "body_chars_after": 462,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "2학년 선배 주도 Java 멘토링, if 조건문으로 익히는 프로그램 분기",
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-752594",
+      "status": "edited",
+      "title": "AI 전문가와 인사담당자 초청, 2학년 취업 실무 교육",
+      "summary": "2학년 학생들이 이틀 동안 현직 개발자·인사담당자·AI 전문가와 취업을 준비했습니다. 자기소개·면접, 프롬프트 설계, 이력서와 포트폴리오 구성을 함께 다뤘습니다.",
+      "date": "2025-07-03",
+      "body_chars_before": 403,
+      "body_chars_after": 493,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "AI 전문가와 인사담당자 초청, 2학년 취업 실무 교육",
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-757516",
+      "status": "edited",
+      "title": "오케스트로와 업무협약, K-PaaS와 AI 클라우드 인재 양성 협력",
+      "summary": "클라우드 전문기업 오케스트로와 교육과정·공동연구·인턴십 및 채용 연계 지원을 위한 업무협약을 맺었습니다. K-PaaS와 AI·클라우드 네이티브 교육의 산학협력 기반을 넓혔습니다.",
+      "date": "2025-09-11",
+      "body_chars_before": 751,
+      "body_chars_after": 498,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "㈜오케스트로와 K-PaaS, AI, 클라우드 인재 양성을 위한 MOU 체결",
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-758194",
+      "status": "edited",
+      "title": "전남 공공데이터 공모전 장려상, 생활 편의 서비스 전남와따 개발",
+      "summary": "2학년 학생팀이 공공데이터 기반 생활 편의 서비스 전남와따로 전라남도 공모전 장려상과 상금 150만 원을 받았습니다. 데이터 활용부터 프론트엔드·백엔드 구현까지 수행한 작품입니다.",
+      "date": "2025-09-16",
+      "body_chars_before": 880,
+      "body_chars_after": 524,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "전남 공공, 빅데이터 공모전 장려상 수상., 상금 150만원 쾌거",
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-758416",
+      "status": "edited",
+      "title": "오케스트로 김홍준 상무 특강, 소버린 클라우드와 AI 전환 전략",
+      "summary": "오케스트로 김홍준 상무가 데이터 주권과 소버린 클라우드 네이티브 전략을 소개했습니다. DevOps·MSA와 AI·클라우드 인재 양성의 관계를 살펴본 산업체 특강입니다.",
+      "date": "2025-09-18",
+      "body_chars_before": 460,
+      "body_chars_after": 527,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "오케스트로 김홍준 상무 특강, 소버린 클라우드와 AI 전환 전략",
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-759557",
+      "status": "edited",
+      "title": "AX 시대 IT 직무의 변화, 시스원 손병홍 이사 실무 특강",
+      "summary": "시스원 손병홍 이사가 AI 전환과 기업의 IT 기술 적용 사례를 소개했습니다. 학생들은 클라우드·AI·보안·데이터의 연결과 현장에서 요구하는 인재상을 살펴봤습니다.",
+      "date": "2025-09-30",
+      "body_chars_before": 367,
+      "body_chars_after": 493,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "AX 시대 IT 직무의 변화, 시스원 손병홍 이사 실무 특강",
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-762734",
+      "status": "edited",
+      "title": "2025 서울시 일자리박람회, 2학년의 직무 탐색과 취업 상담",
+      "summary": "2학년 학생들이 서울시 일자리박람회에서 이력서·자기소개서 컨설팅과 취업 멘토링에 참여했습니다. 기업의 채용정보를 확인하며 자신의 지원 준비를 점검했습니다.",
+      "date": "2025-11-07",
+      "body_chars_before": 791,
+      "body_chars_after": 483,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "2025 서울시 일자리박람회, 2학년의 직무 탐색과 취업 상담",
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-762738",
+      "status": "edited",
+      "title": "2025 서울시 일자리박람회, 1학년과 함께한 SNS 분석 체험 부스",
+      "summary": "교수진과 1학년 학생들이 DDP 서울시 일자리박람회에서 AI 인사이트랩 부스를 운영했습니다. SNS 데이터를 분석하고 결과를 시각화하며 방문객에게 전공 기술을 설명했습니다.",
+      "date": "2025-11-07",
+      "body_chars_before": 656,
+      "body_chars_after": 616,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "2025 서울시 일자리박람회, 1학년과 함께한 SNS 분석 체험 부스",
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-764079",
+      "status": "edited",
+      "title": "AI 산업 동향부터 자기소개서까지, 취업역량 강화 특강",
+      "summary": "AI·빅데이터 기업의 기술 동향과 인재 요구를 살펴보고 이력서·자기소개서 작성법을 다뤘습니다. 프로젝트와 문제 해결 경험을 취업 준비에 연결하는 특강입니다.",
+      "date": "2025-11-24",
+      "body_chars_before": 431,
+      "body_chars_after": 484,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "AI 산업 동향부터 자기소개서까지, 취업역량 강화 특강",
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-773180",
+      "status": "edited",
+      "title": "SQL 퀴즈 특강, 질의 작성과 문제 해결 과정을 함께 배우다",
+      "summary": "학생들이 SQL 퀴즈를 직접 풀고 풀이 과정을 확인하며 질의 작성 원리를 익혔습니다. 자주 쓰는 문법과 실수하기 쉬운 부분을 함께 살펴본 데이터베이스 기초 특강입니다.",
+      "date": "2026-03-27",
+      "body_chars_before": 535,
+      "body_chars_after": 490,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "SQL 퀴즈 특강, 질의 작성과 문제 해결 과정을 함께 배우다",
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-773576",
+      "status": "edited",
+      "title": "엔씨IDS 재직 졸업생 초청, 개발자 취업 준비와 성장 경험",
+      "summary": "엔씨IDS에 재직 중인 이재훈 졸업생이 전공 학습과 프로젝트, 취업 준비 경험을 나눴습니다. 재학생들은 선배의 경로를 통해 개발 직무와 학과에서의 준비를 연결해 살펴봤습니다.",
+      "date": "2026-04-02",
+      "body_chars_before": 458,
+      "body_chars_after": 522,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "엔씨IDS 재직 졸업생 초청, 개발자 취업 준비와 성장 경험",
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-776799",
+      "status": "edited",
+      "title": "2026 명랑운동회 피구와 줄다리기 1위, 함께 만든 학과의 성과",
+      "summary": "2026 서울강서캠퍼스 명랑운동회에서 학과가 피구와 줄다리기 두 종목 1위를 차지했습니다. 학생들이 함께 경기에 참여하고 응원하며 단합한 현장을 전합니다.",
+      "date": "2026-05-26",
+      "body_chars_before": 470,
+      "body_chars_after": 454,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "2026 명랑운동회 피구와 줄다리기 1위, 함께 만든 학과의 성과",
+      "body_changed": true
+    },
+    {
+      "slug": "kt-researcher-career-lecture-2026",
+      "status": "edited",
+      "title": "KT 현직자 초청, 빅데이터와 소프트웨어 개발 직무 특강",
+      "summary": "KT 현직자와 함께 빅데이터·소프트웨어 개발 업무를 살펴보고, 포트폴리오 구성부터 입사지원과 면접 준비까지 재학생의 취업 준비 방향을 짚었습니다.",
+      "date": "2026-06-10",
+      "body_chars_before": 167,
+      "body_chars_after": 647,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "KT 현직자 초청, 빅데이터와 소프트웨어 개발 직무 특강",
+      "body_changed": true
+    },
+    {
+      "slug": "public-vibe-coding-class-2026",
+      "status": "edited",
+      "title": "일반인 대상 생성형 AI 활용 Python 바이브코딩 실습 교육",
+      "summary": "일반인 참가자들이 AI에 아이디어를 설명하고 코드를 수정하며 Python 게임을 만들었습니다. 데이터 실습까지 경험하며 생성형 AI를 창작과 분석에 활용하는 방법을 살펴봤습니다.",
+      "date": "2026-08-11",
+      "body_chars_before": 273,
+      "body_chars_after": 655,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "일반인 대상 생성형 AI 활용 Python 바이브코딩 실습 교육",
+      "body_changed": true
+    },
+    {
+      "slug": "sesac-hackathon-grand-prize-2025",
+      "status": "edited",
+      "title": "2025 서울시 새싹 해커톤 대상 수상, AI 서비스 구현 성과",
+      "summary": "학과 학생팀이 2025 새싹 해커톤에서 서울시 대상을 수상했습니다. 무박 2일의 본선에서 AI 아이디어를 웹·앱 서비스로 구현하며 프로젝트의 실용성과 완성도를 평가받았습니다.",
+      "date": "2025-12-17",
+      "body_chars_before": 475,
+      "body_chars_after": 495,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "2025 서울시 새싹 해커톤 대상 수상, AI 서비스 구현 성과",
+      "body_changed": true
+    },
+    {
+      "slug": "teacher-ai-llm-workshop-2026",
+      "status": "edited",
+      "title": "고교 교사 대상 Python과 LLM 기반 인공지능 실습 연수",
+      "summary": "고교 교사를 대상으로 Python 데이터 분석과 이미지 분류, 얼굴 인식, 업무 자동화를 실습했습니다. AI 모델을 실행하고 교육 업무에 활용하는 과정을 폭넓게 다뤘습니다.",
+      "date": "2026-08-11",
+      "body_chars_before": 344,
+      "body_chars_after": 650,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "고교 교사 대상 Python과 LLM 기반 인공지능 실습 연수",
+      "body_changed": true
+    },
+    {
+      "slug": "teacher-generative-ai-r-training-2026",
+      "status": "edited",
+      "title": "고교 교사 대상 생성형 AI와 R 데이터 분석 실습 연수",
+      "summary": "고교 교사들이 15시간의 연수에서 Gemini·NotebookLM 활용과 R 데이터 분석을 실습했습니다. 공공·소셜데이터를 지도와 워드클라우드로 표현하며 교육자료 활용 방안을 살펴봤습니다.",
+      "date": "2026-08-11",
+      "body_chars_before": 280,
+      "body_chars_after": 662,
+      "changes": [
+        "활동별 소제목과 문단 재작성",
+        "제목과 소개문 검토",
+        "title, description, OG, Twitter, Article JSON-LD 동기화"
+      ],
+      "evidence": "기존 상세 본문과 소개문에 보존된 활동 사실. 기술 설명·교육 의미는 활동 맥락을 설명하는 편집 문장으로 추가했습니다.",
+      "original_title": "고교 교사 대상 생성형 AI와 R 데이터 분석 실습 연수",
+      "body_changed": true
+    },
+    {
+      "slug": "gangseo-job-fair-2026",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "2026 강서구 취업박람회 참여, 2학년 학생들의 IT 직무 탐색",
+      "summary": "2학년 학생들이 9월 30일 강서구 취업박람회에 참여해 채용기업과 소프트웨어 개발·엔지니어링 직무를 살펴봤습니다. 전공 프로젝트를 취업 준비와 연결하는 현장 탐색 활동입니다.",
+      "body_chars_before": 1296,
+      "body_chars_after": 1216,
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-711758",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "K-PaaS 공모전 2년 연속 대상, AI 실종자 찾기 서비스",
+      "summary": "학생들이 AI로 과거 사진의 현재 얼굴을 예측하는 실종자·해외 입양자 찾기 서비스를 개발해 K-PaaS 공모전에서 2년 연속 대상(과기정통부 장관상)을 수상했습니다.",
+      "body_chars_before": 1000,
+      "body_chars_after": 929,
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-727464",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "LangChain 실무 특강, AI 시인과 PDF 질의응답 챗봇 구현",
+      "summary": "LangChain으로 AI 시인과 PDF 문서 질의응답 챗봇을 구현했습니다. 대규모 언어모델을 실제 애플리케이션에 연결하며 생성형 AI 서비스의 구조를 익힌 특강입니다.",
+      "body_chars_before": 709,
+      "body_chars_after": 709,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-727466",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "공유캠퍼스 고교생 AI 실습, 추천 서비스와 뉴스 읽기 비서 만들기",
+      "summary": "한서고·세현고·공항고·명덕여고 학생들이 공유캠퍼스 AI 실습에 참여했습니다. Python으로 추천 서비스와 뉴스 읽기 AI 비서를 만들며 전공 기술을 체험했습니다.",
+      "body_chars_before": 786,
+      "body_chars_after": 786,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-727467",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "카카오엔터테인먼트 개발자 초청, Spring Framework 실무 특강",
+      "summary": "카카오엔터테인먼트 손성용 시니어 개발자가 Spring의 핵심 원칙과 Spring Boot 활용을 소개했습니다. 서비스 아키텍처와 현업 적용 사례를 함께 살펴본 특강입니다.",
+      "body_chars_before": 528,
+      "body_chars_after": 528,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-727468",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "방과후 컴퓨터와 코딩지도사 교육과정 수료식, 여성 재취업 지원",
+      "summary": "방과후 컴퓨터·코딩지도사 과정의 수료식을 진행했습니다. 스크래치·엔트리, 언플러그드 코딩, 아두이노 IoT 실습을 통해 여성의 재취업을 위한 교육 역량을 지원한 과정입니다.",
+      "body_chars_before": 459,
+      "body_chars_after": 459,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-727469",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "2024 KB굿잡 취업박람회, 학과 홍보부스 운영",
+      "summary": "코엑스 KB굿잡 취업박람회에서 학과의 AI·데이터·클라우드 교육을 소개했습니다. 방문객과 졸업 후 진로, 수업 내용, 전공의 활용 분야를 이야기한 홍보 현장입니다.",
+      "body_chars_before": 806,
+      "body_chars_after": 806,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-727476",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "서울 강서양천 고교생, R, 소셜데이터 분석 진로체험",
+      "summary": "한서고·세현고·공항고·명덕여고 학생들이 R로 제주도 방문객과 월급 수준 등 공공데이터를 분석했습니다. 소셜미디어 분석까지 경험한 2024 공유캠퍼스 진로체험입니다.",
+      "body_chars_before": 502,
+      "body_chars_after": 502,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-727478",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "Spring Boot 실무 특강, MariaDB 연동, 웹 개발 실습",
+      "summary": "이틀간의 Spring Boot 특강에서 MariaDB 설치와 공지사항 웹 페이지 구현을 실습했습니다. 개발환경 구성부터 프레임워크 구조까지 백엔드 개발의 기본 흐름을 익혔습니다.",
+      "body_chars_before": 579,
+      "body_chars_after": 579,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-734721",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "고교 교원 대상 생성형 AI 실습 연수, Llama 3.1 활용",
+      "summary": "고교 교사들이 TensorFlow 모델, OpenCV·Tesseract 이미지 인식, Llama 3.1 기반 생성형 AI를 실습했습니다. 직접 코드를 실행하며 수업에 활용할 기술을 접한 직무연수입니다.",
+      "body_chars_before": 701,
+      "body_chars_after": 701,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-734725",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "인문학과 빅데이터 융합, 데이터 기술의 활용 범위 특강",
+      "summary": "이성수 큐버스랩 고문이 미디어 산업의 변화와 빅데이터 활용을 소개했습니다. 인문학적 사고가 데이터를 해석하고 의미를 찾는 데 어떤 역할을 하는지 살펴봤습니다.",
+      "body_chars_before": 782,
+      "body_chars_after": 782,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-734727",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "로지스올시스템즈 박수진 졸업생 초청 취업 특강",
+      "summary": "소프트웨어 개발자로 활동하는 박수진 졸업생이 취업 준비와 실무 경험을 나눴습니다. 이력서·포트폴리오 구성, 면접 준비, 전공 기술의 현장 활용을 다룬 특강입니다.",
+      "body_chars_before": 712,
+      "body_chars_after": 712,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-734728",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "코웨이 재직 졸업생 황윤영, SW 개발 업무와 취업 준비 특강",
+      "summary": "코웨이 소프트웨어 개발자 황윤영 졸업생이 업무와 프로젝트 경험을 소개했습니다. 숭실대학교 대학원 석사 과정과 실무에서의 협업·문제 해결 경험을 후배들과 나눴습니다.",
+      "body_chars_before": 713,
+      "body_chars_after": 713,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-734729",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "시스원 취업 설명회, 소프트웨어 개발과 클라우드 인프라 직무 탐색",
+      "summary": "시스원 손병홍 이사가 연구소 소프트웨어 개발과 클라우드 인프라 직군을 소개했습니다. 학생들은 기업의 기술 사례와 직무에서 필요한 역량을 함께 살펴봤습니다.",
+      "body_chars_before": 797,
+      "body_chars_after": 797,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-734731",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "퀴즈톡앱 UI/UX 개선 및 신규 서비스 개발 경진대회",
+      "summary": "학생들이 퀴즈톡 앱의 UI/UX 개선과 신규 기능을 제안하는 프로젝트에 참여했습니다. 김소영·이수민 학생이 우승한 경진대회를 통해 실제 서비스의 요구를 살펴봤습니다.",
+      "body_chars_before": 1002,
+      "body_chars_after": 871,
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-738804",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "ACK 2024 논문경진대회 동상 수상, 맵리듀스 데이터 압축 연구",
+      "summary": "김원집·김하윤 학생과 이협건·김영운 교수가 공동 연구한 데이터 압축 방식별 맵리듀스 성능 비교 논문이 ACK 2024 논문경진대회에서 동상을 수상했습니다.",
+      "body_chars_before": 648,
+      "body_chars_after": 580,
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-746591",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "2025 ICT 한이음 드림업 공모전, 학과 프로젝트 2팀 선정",
+      "summary": "2025 ICT 한이음 드림업 공모전에서 학과 1·2학년 학생이 참여한 ‘곁봄’과 ‘메르핸드’ 프로젝트가 함께 선정됐습니다. AI·OCR·수어 학습 기술을 활용한 아이디어입니다.",
+      "body_chars_before": 973,
+      "body_chars_after": 863,
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-746968",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "선후배 Java 멘토링, 반복문 작성과 제어 흐름 실습",
+      "summary": "2025년 4월 8일, 2학년 선배들이 1학년 학생들을 위해 Java의 for·while·do-while 반복문을 예제로 설명하고 함께 실습했습니다.",
+      "body_chars_before": 746,
+      "body_chars_after": 663,
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-747615",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "선후배 Java 멘토링, 클래스와 객체부터 캡슐화까지",
+      "summary": "2학년 선배들이 1학년에게 Java의 클래스·객체, 생성자와 캡슐화를 설명했습니다. 직접 준비한 예제와 질문을 통해 객체지향 프로그래밍의 기초를 익힌 멘토링입니다.",
+      "body_chars_before": 754,
+      "body_chars_after": 673,
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-748474",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "한국정보처리학회 논문지에 졸업생 우수논문 게재",
+      "summary": "졸업생의 로그 데이터 처리 연구가 한국정보처리학회 TKIPS 논문지에 게재됐습니다. 하둡 분산 환경에서 패턴화 압축을 적용해 자원 사용과 처리 성능을 분석한 연구입니다.",
+      "body_chars_before": 545,
+      "body_chars_after": 545,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-748848",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "서울 4개 고등학교 대상 빅데이터 진로체험 프로그램 운영",
+      "summary": "서울 4개 고등학교 학생들이 R로 데이터 타입, 도수분포표, 상관계수를 실습했습니다. 학과가 기획·운영한 공유캠퍼스 프로그램에서 데이터 분석의 기초를 체험했습니다.",
+      "body_chars_before": 719,
+      "body_chars_after": 719,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-749925",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "KB굿잡 취업박람회에서 소셜 빅데이터 체험 부스 운영",
+      "summary": "KB굿잡 취업박람회에서 페이스북·인스타그램 소셜데이터 분석 체험 부스를 운영했습니다. 방문객들은 감성 분석과 키워드 시각화를 통해 데이터 분석의 쓰임을 살펴봤습니다.",
+      "body_chars_before": 937,
+      "body_chars_after": 814,
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-749927",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "KB굿잡 취업박람회 참여, 2학년의 지원서와 면접 준비",
+      "summary": "2학년 학생들이 KB굿잡 취업박람회에서 기업 채용정보를 살펴보고 이력서·자기소개서 클리닉과 모의면접에 참여했습니다. 관심 직무와 지원 준비를 함께 점검한 활동입니다.",
+      "body_chars_before": 691,
+      "body_chars_after": 609,
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-750066",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "2학년 선배 주도 멘토링, Rocky Linux와 MariaDB 개발환경 구축",
+      "summary": "2학년 선배들이 Rocky Linux 9 설치부터 MariaDB 설정, IntelliJ 연동까지 실습을 지도했습니다. 1학년 학생들이 실제 개발환경을 구성하며 질문하고 배우는 멘토링입니다.",
+      "body_chars_before": 716,
+      "body_chars_after": 608,
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-750361",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "방과후 컴퓨터와 코딩지도사 수료식, 12주간의 실습 교육 마무리",
+      "summary": "12주간 OA 활용과 아동 코딩, 수업 설계를 배운 교육생들이 방과후 컴퓨터·코딩지도사 과정을 수료했습니다. 경력단절여성의 재취업을 지원한 실습 중심 교육입니다.",
+      "body_chars_before": 770,
+      "body_chars_after": 770,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-750362",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "방과후 코딩지도사 수료생 간담회, 교육 경험과 다음 준비 나누기",
+      "summary": "방과후 컴퓨터·코딩지도사 수료식 후 교육생과 학장·학과장이 간담회를 가졌습니다. 12주간의 실습 경험과 교육과정 개선, 향후 취업 연계에 관한 의견을 나눴습니다.",
+      "body_chars_before": 700,
+      "body_chars_after": 700,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-750383",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "교수진 공동연구, WebAssembly 기반 OpenCV 성능 최적화 발표",
+      "summary": "이협건·김영운 교수가 WebAssembly를 활용한 OpenCV 최적화 연구를 발표했습니다. 직접 빌드한 모듈과 OpenCV.js의 실행 속도·메모리 사용을 비교한 웹 컴퓨터비전 연구입니다.",
+      "body_chars_before": 678,
+      "body_chars_after": 678,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-750981",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "선후배 개발 멘토링, Spring Boot와 MariaDB 연동 실습",
+      "summary": "2학년 선배들이 1학년 후배에게 Spring Boot·MariaDB 연동, MyBatis 기반 DB 연결과 Controller·View 구조를 지도했습니다.",
+      "body_chars_before": 794,
+      "body_chars_after": 710,
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-752596",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "2학년 선배가 지도한 Spring Boot, MyBatis 개발 실습",
+      "summary": "2학년 선배들이 1학년을 위해 사흘간 Spring Boot 실습을 준비했습니다. 게시판과 회원가입·로그인, MyBatis·MariaDB 연동을 직접 구현한 학생 주도 멘토링입니다.",
+      "body_chars_before": 815,
+      "body_chars_after": 729,
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-753242",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "ICIECT 2025 논문 발표, WasmEdge 기반 경량 LLM 서버 연구",
+      "summary": "이협건 교수가 ICIECT 2025에서 WasmEdge 기반 경량 LLM API 서버 연구를 발표했습니다. AI 모델 서버를 클라우드에 배포하는 구조와 구현 사례를 소개했습니다.",
+      "body_chars_before": 576,
+      "body_chars_after": 576,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-753243",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "ICIECT 2025 논문 발표, 퀴즈 플랫폼 데이터 분석 자동화 연구",
+      "summary": "김영운 교수가 ICIECT 2025에서 지능형 소프트웨어 로봇을 활용한 분석 자동화 연구를 발표했습니다. 퀴즈형 학습 플랫폼의 데이터를 처리하는 기술을 제안한 논문입니다.",
+      "body_chars_before": 499,
+      "body_chars_after": 499,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-753629",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "고교 교원 R 연수, 데이터 분석과 워드클라우드 실습",
+      "summary": "고교 교사들이 R로 미세먼지·주문 트렌드 등 데이터를 분석하고 뉴스 워드클라우드를 만들었습니다. 교수진과 재학생 보조강사가 함께한 데이터 분석 실습 연수입니다.",
+      "body_chars_before": 615,
+      "body_chars_after": 615,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-753631",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "고교생 4주 AI 진로체험, Python 기초부터 이미지 인식까지",
+      "summary": "서울 4개 고등학교 학생들이 4주간 Python 기반 AI 코딩을 체험하는 프로그램을 운영했습니다. 교수진과 재학생 멘토가 기초 문법부터 이미지 인식·자연어처리 학습을 도왔습니다.",
+      "body_chars_before": 680,
+      "body_chars_after": 680,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-761428",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "제12회 Dream Job, 중학생의 AI 소셜데이터 분석 체험",
+      "summary": "제12회 Dream Job에서 중학생들이 SNS·뉴스 데이터를 수집하고 키워드·감정·트렌드를 분석했습니다. 익숙한 온라인 자료로 AI와 데이터 분야를 접한 진로체험입니다.",
+      "body_chars_before": 678,
+      "body_chars_after": 678,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-761430",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "학부모 진로 Job, 부모와 자녀가 함께한 AI 데이터 분석 체험",
+      "summary": "학부모와 자녀가 함께 SNS 데이터를 수집하고 AI로 키워드와 감정 흐름을 분석했습니다. 제8회 학부모 진로 Job에서 데이터 기술과 미래 진로를 함께 살펴본 활동입니다.",
+      "body_chars_before": 710,
+      "body_chars_after": 710,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-762210",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "2025 프로젝트경진대회 우수상과 장려상, AI와 클라우드 작품",
+      "summary": "2025년 프로젝트경진대회에서 학과 학생들이 AI·클라우드 기반 모의투자 프로그램으로 우수상, 소비 데이터 시각화 스마트 가계부로 장려상을 수상했습니다.",
+      "body_chars_before": 560,
+      "body_chars_after": 498,
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-762213",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "고등학생 AI 진로체험, 언어모델과 음성 및 이미지 처리 실습",
+      "summary": "강서·양천 지역 고등학생을 대상으로 Llama3, 음성 변환, 문자인식, OpenCV 얼굴 인식을 다루는 교육을 마련했습니다. 여러 AI 기능을 직접 살펴보는 진로체험 과정입니다.",
+      "body_chars_before": 639,
+      "body_chars_after": 639,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-762378",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "고등학생 빅데이터 진로체험, R로 공공데이터 수집과 시각화",
+      "summary": "강서·양천 지역 고등학생을 대상으로 R 기반 공공데이터 실습을 마련했습니다. 데이터를 수집하고 분석·시각화하는 흐름을 통해 빅데이터 분야의 학습을 접하는 프로그램입니다.",
+      "body_chars_before": 513,
+      "body_chars_after": 513,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-762843",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "산학 공동연구 논문, 한국정보전자통신기술학회 논문지 게재",
+      "summary": "교수진과 베라타스커넥트의 디지털트윈 공동연구가 학술지에 게재됐습니다. 도산대로와 동대문을 재현해 옥외광고의 유형·입지에 따른 소비자 반응을 분석했습니다.",
+      "body_chars_before": 710,
+      "body_chars_after": 710,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-763327",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "ACK 2025 논문경진대회 동상, 비전언어모델 기반 얼굴 초해상도 연구",
+      "summary": "2학년 김태승 학생이 비전언어모델 기반 얼굴 초해상도 연구로 ACK 2025 논문경진대회 동상을 받았습니다. 최신 AI 기술을 주제로 연구하고 결과를 발표한 성과입니다.",
+      "body_chars_before": 706,
+      "body_chars_after": 655,
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-764159",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "2025 한이음 드림업 공모전 창의도전형 장려상 수상",
+      "summary": "문현규·정선진·김예가·양준모·최준영 학생팀이 2025 한이음 드림업 공모전 창의도전형 장려상을 수상했습니다. 팀 프로젝트의 결과를 외부 공모전에서 선보인 성과입니다.",
+      "body_chars_before": 800,
+      "body_chars_after": 672,
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-765207",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "졸업생 멘토링, 대학원 진학과 일과 학업의 병행 경험",
+      "summary": "IT 군장교 복무와 대학원 학업을 병행한 졸업생이 후배들에게 진로 경험을 전했습니다. 대학원 선택과 시간 관리, 일과 학습을 함께 이어가는 방법을 나눈 멘토링입니다.",
+      "body_chars_before": 612,
+      "body_chars_after": 612,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-765578",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "2025 서울시 새싹 해커톤 본선 진출, 학생팀의 AI 서비스 기획",
+      "summary": "학과 1학년과 2학년 학생팀이 2025년 새싹 해커톤 본선에 진출했습니다. AI 기반 서비스의 기획과 구현을 중심으로 대회에 참여한 활동입니다.",
+      "body_chars_before": 940,
+      "body_chars_after": 808,
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-765955",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "EBS와 강서양천교육지원청 학습전략설명회 진로 특강 참여",
+      "summary": "이협건 교수가 EBS·강서양천교육지원청 설명회에서 AI·빅데이터 진로 특강을 진행했습니다. 고교생과 학부모에게 활용 사례, 관련 직무, 전공 선택의 기준을 소개했습니다.",
+      "body_chars_before": 606,
+      "body_chars_after": 606,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-770067",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "졸업생이 전하는 AI 에이전트 구현, LangChain과 LangGraph 특강",
+      "summary": "9기 졸업생 김태승 강사가 LangChain·LangGraph·LangSmith를 활용한 AI 에이전트 구현을 소개했습니다. 상태 관리와 조건 분기, 실행 로그 추적까지 다룬 심화 특강입니다.",
+      "body_chars_before": 800,
+      "body_chars_after": 800,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-770073",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "에이전시프로 기술지도, Python과 OpenCV 영상처리 활용",
+      "summary": "김영운 교수가 에이전시프로에 Python·OpenCV 영상처리 기술지도를 진행했습니다. 이미지·영상 데이터 처리와 전처리·시각화를 코드 실습으로 다룬 산학협력 활동입니다.",
+      "body_chars_before": 666,
+      "body_chars_after": 666,
+      "body_changed": false
+    },
+    {
+      "slug": "kopo-775378",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "KB 취업박람회에서 선보인 소셜데이터 AI 분석 체험",
+      "summary": "2학년 학생들이 2026 KB 취업박람회에서 소셜데이터 AI 분석 체험을 운영했습니다. 방문객에게 키워드·해시태그 분석을 안내하며 전공 기술의 활용을 설명했습니다.",
+      "body_chars_before": 963,
+      "body_chars_after": 844,
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-775379",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "2026 KB 취업박람회, 2학년의 채용 탐색과 체험 부스 참여",
+      "summary": "2학년 학생들이 2026 KB 취업박람회에서 기업의 직무·채용정보를 살펴봤습니다. 소셜데이터 체험 부스의 안내와 방문객 응대에도 참여하며 전공 지식을 현장에서 활용했습니다.",
+      "body_chars_before": 819,
+      "body_chars_after": 757,
+      "body_changed": true
+    },
+    {
+      "slug": "kopo-777680",
+      "changes": [
+        "홍보 에이전트의 추가 제목·요약·활동 의미 초안 반영"
+      ],
+      "title": "효성ITX 이주현 팀장 특강, 기업이 원하는 IT 인재와 직무 역량",
+      "summary": "효성ITX 이주현 팀장이 AI·빅데이터·클라우드 동향과 신입 개발자의 역량을 소개했습니다. 프로젝트를 통한 문제 해결, 협업과 소통, 지속적인 학습의 중요성을 살펴봤습니다.",
+      "body_chars_before": 585,
+      "body_chars_after": 585,
+      "body_changed": false
+    }
+  ],
+  "notes": [
+    "새 수상·실적·참여자·인용을 추가하지 않았습니다.",
+    "사진과 링크, 게시일을 보존했습니다.",
+    "카드 제목·요약은 edits 배열로 제공하며 공용 목록은 담당자가 통합합니다."
+  ],
+  "completed_by": "전문 관점별 병렬 검토 결과를 대표 에이전트가 적용하고 검증",
+  "baseline_commit": "c8aab8f89fb8603adc80c83f33f82c55e62ff896"
+}

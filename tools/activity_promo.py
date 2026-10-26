@@ -141,14 +141,15 @@ def apply_cards(source: str) -> str:
         record = records[slug]
         item = item.replace('alt="학과 활동 현장 사진"',
                             'alt="'+esc(record["title"]+" 관련 현장 사진")+'"')
-        if slug not in CURATED:
-            return item
         item = re.sub(r'(<h3><a href="[^"]+">).*?(</a></h3>)',
                       lambda m:m.group(1)+esc(record["title"])+m.group(2),item,count=1,flags=re.S)
         item = re.sub(r'(</h3><p>).*?(</p>)',
                       lambda m:m.group(1)+esc(record["lead"])+m.group(2),item,count=1,flags=re.S)
         item = re.sub(r'(\baria-label=")[^"]*(")',
                       lambda m:m.group(1)+esc(record["title"]+" 자세히 보기")+m.group(2),item,count=1)
+        if 'class="official-post-poster"' in item:
+            item = re.sub(r'(<strong>).*?(</strong>)',
+                          lambda m:m.group(1)+esc(record["title"])+m.group(2),item,count=1,flags=re.S)
         return item
     return CARD.sub(change, source)
 
@@ -183,15 +184,20 @@ def archive_page(source: str) -> str:
     source = source.replace('진로체험, 행사와 현장 활동을 통해 데이터와 AI가 실제 세상과 만나는 순간을 전합니다.',
                             '수상·프로젝트·현직자 특강·취업 준비까지, 학생들의 실제 활동과 성장 이야기를 소개합니다.',1)
     source = source.replace('<h2>학과 활동 소식</h2>', '<h2>전체 학과 활동</h2>',1)
+    actions = ('<div class="activity-hero-actions">'
+               '<a href="#activity-archive">활동 찾아보기 ↓</a>'
+               '<a href="/projects/">학생 프로젝트 보기 →</a></div>')
+    source = re.sub(r'(<p class="activity-lead">.*?</p>)',
+                    lambda m:m.group(1)+actions,source,count=1,flags=re.S)
     source = source.replace('<section class="activity-list">',
-                            featured_section(source)+'\n<section class="activity-list">',1)
+                            featured_section(source)+'\n<section class="activity-list" id="activity-archive">',1)
     def change_schema(match):
         data = json.loads(match.group(1))
         if data.get("@type") != "CollectionPage":
             return match.group(0)
         for entry in data.get("mainEntity",{}).get("itemListElement",[]):
             slug = entry.get("url","").rstrip("/").rsplit("/",1)[-1]
-            if slug in CURATED:
+            if slug in articles():
                 entry["name"] = articles()[slug]["title"]
         return '<script type="application/ld+json">'+json.dumps(data,ensure_ascii=False,separators=(",",":")).replace("<","\\u003c")+'</script>'
     source = re.sub(r'<script type="application/ld\+json">(.*?)</script>',change_schema,source,count=1,flags=re.S)
@@ -216,7 +222,12 @@ def detail_page(source: str, slug: str) -> str:
         raise ValueError("Unexpected detail slug "+slug)
     original_images = re.findall(r'<img\b[^>]*\bsrc="([^"]+)"', source)
     original_urls = re.findall(r'\bhref="([^"]+)"', source)
-    if slug in CURATED:
+    # The detail introduction is edited independently of the shorter card copy.
+    # Keep it as the source for the page and its sharing metadata.
+    headline = re.search(r'<h1>(.*?)</h1>',source,re.S)
+    introduction = re.search(r'<p class="activity-lead">(.*?)</p>',source,re.S)
+    if headline and introduction:
+        rec = {**rec, "title": strip_markup(headline[1]), "lead": strip_markup(introduction[1])}
         source = replace_text_tag(source,"h1",rec["title"])
         source = replace_text_tag(source,"title",rec["title"]+" | 빅데이터소프트웨어공학과")
         source = re.sub(r'(<p class="activity-lead">).*?(</p>)',
@@ -278,6 +289,14 @@ def detail_page(source: str, slug: str) -> str:
     related_markup = related(slug,rec["category"],rec["date"])
     if related_markup:
         source = source.replace('<div class="activity-cta">',related_markup+'<div class="activity-cta">',1)
+    # Keep the next steps together in the article's existing call to action.
+    cta_links = re.search(r'<div class="activity-cta-links">(.*?)</div>',source,re.S)
+    if cta_links:
+        missing_links = ''.join('<a href="'+path+'">'+label+' →</a>'
+            for path,label in (('/projects/','학생 프로젝트'),('/employment/','졸업생 취업현황'),
+                               ('/admission/2027/','2027 입학안내'))
+            if 'href="'+path+'"' not in cta_links[1])
+        source = source[:cta_links.end(1)] + missing_links + source[cta_links.end(1):]
     if original_images != re.findall(r'<img\b[^>]*\bsrc="([^"]+)"', source):
         raise ValueError("Image source changed for "+slug)
     current_urls = re.findall(r'\bhref="([^"]+)"', source)

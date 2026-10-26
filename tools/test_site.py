@@ -255,6 +255,33 @@ class ActivityPromotionTests(unittest.TestCase):
                 self.assertEqual(footer.group(0),expected.group(0))
                 self.assertNotIn('class="article-footer',content)
 
+    def test_activity_sharing_uses_each_story_photo_and_introduction(self):
+        for card in self.cards:
+            slug = re.search(r'<h3><a href="/activities/([^/]+)/"',card).group(1)
+            raw = (ROOT/'activities'/slug/'index.html').read_text(encoding='utf-8')
+            built = (OUT/'activities'/slug/'index.html').read_text(encoding='utf-8')
+            source_page, page = Page(raw), Page(built)
+            with self.subTest(slug=slug):
+                expected = source_page.find('meta','property','og:image')[0]['content']
+                self.assertEqual(page.find('meta','property','og:image')[0]['content'],expected)
+                self.assertEqual(page.find('meta','name','twitter:image')[0]['content'],expected)
+                lead = unescape(re.search(r'<p class="activity-lead">(.*?)</p>',raw,re.S)[1])
+                self.assertEqual(page.find('meta','name','description')[0]['content'],lead)
+                self.assertEqual(page.find('meta','property','og:description')[0]['content'],lead)
+
+    def test_activity_navigation_has_one_group_of_next_steps(self):
+        self.assertIn('href="#activity-archive"',self.index)
+        self.assertIn('id="activity-archive"',self.index)
+        for card in self.cards:
+            slug = re.search(r'<h3><a href="/activities/([^/]+)/"',card).group(1)
+            page = (OUT/'activities'/slug/'index.html').read_text(encoding='utf-8')
+            with self.subTest(slug=slug):
+                self.assertEqual(page.count('class="activity-cta"'),1)
+                self.assertNotIn('class="journey-links"',page)
+                links = re.search(r'<div class="activity-cta-links">(.*?)</div>',page,re.S)[1]
+                for path in ('/projects/','/employment/','/admission/2027/'):
+                    self.assertIn('href="'+path+'"',links)
+
     def test_mobile_activity_pagination_stays_on_one_row(self):
         script = (OUT/'activity-pagination.js').read_text(encoding='utf-8')
         css = (OUT/'activities.css').read_text(encoding='utf-8')
@@ -265,8 +292,9 @@ class ActivityPromotionTests(unittest.TestCase):
         self.assertIn('overflow-x:auto',css)
         self.assertIn('body.activity-page{padding-bottom:0}',css)
 
-    def test_career_relevance_is_specific_and_employment_oriented(self):
-        # Generic AI boilerplate used in past editorial passes must not return.
+    def test_activity_narratives_have_substance_without_repeated_coaching(self):
+        # Check source narratives so navigation/related links cannot hide a
+        # nearly empty article. No article is required to carry career advice.
         stale = (
             '수상 결과와 함께 작품의 문제 정의',
             '산업 현장 사례는 교과목에서 배우는 기술',
@@ -277,33 +305,15 @@ class ActivityPromotionTests(unittest.TestCase):
             '지역사회 활동은 기술적 지식뿐 아니라',
             '프로젝트에서는 구현 결과뿐 아니라 요구사항',
         )
-        careers = []
-        no_context = 0
         for card in self.cards:
             slug = re.search(r'<h3><a href="/activities/([^/]+)/"', card).group(1)
-            page = (OUT/'activities'/slug/'index.html').read_text(encoding='utf-8')
-            sections = re.findall(
-                r'<section class="activity-editorial-context">\s*'
-                r'<h2>전공과 진로의 연결</h2>\s*<p>(.*?)</p>\s*</section>',
-                page, re.S)
+            page = (ROOT/'activities'/slug/'index.html').read_text(encoding='utf-8')
+            content = re.search(r'<div class="activity-content">(.*?)<div class="activity-cta">',page,re.S)[1]
+            value = re.sub(r'\s+',' ',unescape(re.sub(r'<[^>]+>',' ',content))).strip()
             with self.subTest(slug=slug):
-                self.assertLessEqual(len(sections), 1)
-                if not sections:
-                    no_context += 1
-                    continue
-                value = unescape(re.sub(r'<[^>]+>', '',sections[0])).strip()
-                self.assertGreaterEqual(len(value),95)
-                self.assertLessEqual(len(value),550)
-                self.assertTrue(any(word in value for word in (
-                    '취업','포트폴리오','직무','채용','면접','자기소개서'
-                )), 'Career value must be concrete')
+                self.assertGreaterEqual(len(value),250,'Article needs a substantive narrative')
                 for generic in stale:
                     self.assertNotIn(generic, value)
-                self.assertFalse(value.endswith('도움이 됩니다.'))
-                careers.append(value)
-        self.assertGreaterEqual(len(careers),5)
-        self.assertGreaterEqual(no_context,1)
-        self.assertEqual(len(careers),len(set(careers)))
 
     def test_career_sections_only_for_student_led_activities(self):
         for card in self.cards:
@@ -328,8 +338,8 @@ class ActivityPromotionTests(unittest.TestCase):
         award = (OUT/'activities'/'sesac-hackathon-grand-prize-2025'/'index.html').read_text(encoding='utf-8')
         teacher = (OUT/'activities'/'teacher-ai-llm-workshop-2026'/'index.html').read_text(encoding='utf-8')
         employer = (OUT/'activities'/'kopo-777680'/'index.html').read_text(encoding='utf-8')
-        self.assertIn('수상 증빙',award)
-        self.assertIn('포트폴리오',award)
+        self.assertIn('서울시 대상',award)
+        self.assertIn('AI 기반 서비스',award)
         self.assertNotIn('전공과 진로의 연결',teacher)
         self.assertNotIn('전공과 진로의 연결',employer)
         self.assertNotIn('취업 보장',award)

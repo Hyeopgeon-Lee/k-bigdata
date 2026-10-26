@@ -120,7 +120,7 @@
     if (!mode) return;
     const url = new URL(location.href);
     for (const name of ['q','category','year','sort','page']) url.searchParams.delete(name);
-    if (state.query) url.searchParams.set('q',state.query);
+    if (state.query.trim()) url.searchParams.set('q',state.query.trim());
     if (state.category !== 'all') url.searchParams.set('category',state.category);
     if (state.year !== 'all') url.searchParams.set('year',state.year);
     if (state.sort !== 'new') url.searchParams.set('sort',state.sort);
@@ -141,6 +141,11 @@
     span.textContent='…';span.setAttribute('aria-hidden','true');pageButtons.append(span);
   }
   function draw(scroll = false, historyMode = '') {
+    // Filtering can remove several screens of featured stories above the form.
+    // Keep the controls at the same viewport position while the user is typing.
+    const toolbarRect = toolbar.getBoundingClientRect();
+    const keepToolbarPosition = !scroll && Boolean(historyMode) &&
+      toolbarRect.bottom > 0 && toolbarRect.top < window.innerHeight;
     searchInput.value = state.query;
     categorySelect.value = state.category;
     yearSelect.value = state.year;
@@ -189,15 +194,21 @@
       pageButton('다음',state.page+1,false,state.page===total);
     }
     status.textContent = '전체 '+cards.length+'건 중 '+matches.length+'건 · '+state.page+' / '+total+'페이지';
-    const filtering = Boolean(state.query) || state.category !== 'all' || state.year !== 'all' || state.sort !== 'new';
+    const filtering = Boolean(state.query.trim()) || state.category !== 'all' || state.year !== 'all' || state.sort !== 'new';
+    const featuredChanged = featured && featured.hidden !== filtering;
     if (featured) featured.hidden = filtering;
     clearFilters.hidden = !filtering;
     matchHint.textContent = filtering ? '조건에 맞는 활동 ' + matches.length + '건' : '2016년부터 이어진 학과 활동 ' + cards.length + '건';
     if (headingCount) headingCount.textContent = filtering ? '검색 결과 ' + matches.length + '건' : '2016–2026 · 전체 ' + cards.length + '건';
     writeURL(historyMode);
-    if (scroll) (toolbar||grid).scrollIntoView({behavior:reduceMotion?'auto':'smooth',block:'start'});
+    if (scroll) {
+      toolbar.scrollIntoView({behavior:reduceMotion || featuredChanged ? 'instant' : 'smooth',block:'start'});
+    } else if (keepToolbarPosition) {
+      window.scrollBy({top:toolbar.getBoundingClientRect().top-toolbarRect.top,behavior:'instant'});
+    }
   }
-  searchInput.addEventListener('input',()=>{state.query=safe(searchInput.value);state.page=1;draw(false,'replace');});
+  // Preserve a trailing space while typing so multi-word searches are possible.
+  searchInput.addEventListener('input',()=>{state.query=searchInput.value.slice(0,80);state.page=1;draw(false,'replace');});
   categorySelect.addEventListener('change',()=>{state.category=categorySelect.value;state.page=1;draw(false,'replace');});
   yearSelect.addEventListener('change',()=>{state.year=yearSelect.value;state.page=1;draw(false,'replace');});
   sortSelect.addEventListener('change',()=>{state.sort=sortSelect.value;state.page=1;draw(false,'replace');});
