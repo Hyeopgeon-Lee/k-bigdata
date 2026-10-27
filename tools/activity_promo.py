@@ -12,6 +12,7 @@ import re
 from pathlib import Path
 from functools import lru_cache
 from admission_build import SEO_FOOTER_LINKS
+from activity_sort import sort_activity_archive
 
 ROOT = Path(__file__).resolve().parents[1]
 URL = "https://ai.k-bigdata.kr"
@@ -325,7 +326,9 @@ def use_home_footer(source: str) -> str:
 
 def enhance_activity_page(source: str, relative: str) -> str:
     if relative == "activities/index.html":
-        return use_home_footer(archive_page(source))
+        # Keep visible cards and CollectionPage ItemList in the same newest-first
+        # order after all editorial transformations have finished.
+        return sort_activity_archive(use_home_footer(archive_page(source)))
     m = ACTIVITY.fullmatch(relative)
     if m:
         return use_home_footer(detail_page(source,m.group(1)))

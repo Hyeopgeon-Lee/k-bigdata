@@ -20,7 +20,7 @@ from urllib.request import urlopen
 from admission_build import load_admissions, state_at, enhance_page, round_cards, reorder_home, json_script
 from employment_build import load_snapshot, inject as inject_employment
 from activity_sort import sort_activity_archive
-from activity_promo import enhance_activity_page
+from activity_promo import articles, enhance_activity_page
 from normalize_department_activity_names import normalize_text
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -581,6 +581,13 @@ def write_sitemap(posts: list[dict]) -> None:
         (f"{SITE_URL}/{relative_url}", max(git_last_modified(source_path), git_last_modified('data/admissions.json'), git_last_modified('tools/admission_build.py')) if relative_url in ('','admission/2027/') else git_last_modified(source_path))
         for relative_url, source_path in STATIC_PAGES
     ]
+    # Historical URLs are enumerated above. Include newly published archive
+    # cards without requiring a manually maintained extra sitemap entry.
+    listed = {relative_url for relative_url, _ in STATIC_PAGES}
+    for slug in articles():
+        relative_url = f"activities/{slug}/"
+        if relative_url not in listed:
+            urls.append((f"{SITE_URL}/{relative_url}", git_last_modified(f"activities/{slug}/index.html")))
     if posts:
         urls.append((f"{SITE_URL}/insights/", max(p.get('lastModified',p['date']) for p in posts)))
     urls.extend((post_url(post), post.get("lastModified", post["date"])) for post in posts)
