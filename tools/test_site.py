@@ -38,7 +38,7 @@ class SiteTests(unittest.TestCase):
             self.assertIn(state['announcement'],page)
         self.assertEqual(len(data['rounds']),3)
     def test_all_required_urls_and_no_duplicates(self):
-        for path in ('','admission/2027/','projects/','employment/','ai-software/','data-analysis/','backend-software/','seoul-it-college/','career-portfolio/','insights/','activities/','activities/social-data-career-trends/','activities/gangseo-job-fair-2026/'):
+        for path in ('','admission/2027/','projects/','employment/','ai-software/','data-analysis/','backend-software/','seoul-it-college/','career-portfolio/','insights/','activities/','activities/social-data-career-trends/','activities/gangseo-job-fair-2026/','activities/project-presentation-2026/'):
             self.assertIn(HOST+'/'+path,self.urls)
         self.assertEqual(len(self.urls),len(set(self.urls)))
         for entry in self.map.getroot():self.assertRegex(entry.find('{http://www.sitemaps.org/schemas/sitemap/0.9}lastmod').text,r'^\d{4}-\d{2}-\d{2}$')
@@ -121,12 +121,16 @@ class SiteTests(unittest.TestCase):
         """All active activity cards are sorted across the entire pagination range."""
         source=(OUT/'activities/index.html').read_text(encoding='utf-8')
         cards=re.findall(r'<article class="activity-card">.*?</article>',source,re.S)
-        self.assertEqual(len(cards),284)
+        source=(ROOT/'activities/index.html').read_text(encoding='utf-8')
+        source_cards=re.findall(r'<article class="activity-card">.*?</article>',source,re.S)
+        self.assertEqual(len(cards),len(source_cards))
+        self.assertGreaterEqual(len(cards),285)
         dates=[re.search(r'<time datetime="(\d{4}-\d{2}-\d{2})"',c)[1] for c in cards]
         self.assertEqual(dates,sorted(dates,reverse=True))
         urls=[re.search(r'<h3><a href="(/activities/[^"]+/)"',c)[1] for c in cards]
         self.assertEqual(len(urls),len(set(urls)))
-        self.assertEqual(dates[0],'2026-10-25')
+        self.assertEqual(dates[0],'2026-10-27')
+        self.assertEqual(urls[0],'/activities/project-presentation-2026/')
         self.assertEqual(dates[-1],'2016-10-31')
         script=re.search(r'<script type="application/ld\+json">(.*?)</script>',source,re.S)
         self.assertIsNotNone(script)
@@ -150,9 +154,9 @@ class ActivityPromotionTests(unittest.TestCase):
         cls.source_index = (ROOT/'activities/index.html').read_text(encoding='utf-8')
         cls.source_cards = re.findall(r'<article class="activity-card">.*?</article>',cls.source_index,re.S)
 
-    def test_all_284_urls_dates_media_preserved(self):
-        self.assertEqual(len(self.cards),284)
-        self.assertEqual(len(self.source_cards),284)
+    def test_all_urls_dates_media_preserved(self):
+        self.assertEqual(len(self.cards),len(self.source_cards))
+        self.assertGreaterEqual(len(self.cards),285)
         def indexed(cards):
             return {re.search(r'<h3><a href="/activities/([^/]+)/"',c).group(1):c for c in cards}
         before,after = indexed(self.source_cards),indexed(self.cards)
@@ -176,7 +180,8 @@ class ActivityPromotionTests(unittest.TestCase):
         self.assertIn('전체 학과 활동',self.index)
         self.assertEqual(len(re.findall(r'alt="학과 활동 현장 사진"',self.index)),0)
         recent = sum(re.search(r'<time datetime="(\d{4})-',c).group(1) in ('2025','2026') for c in self.cards)
-        self.assertEqual(recent,61)
+        source_recent = sum(re.search(r'<time datetime="(\d{4})-',c).group(1) in ('2025','2026') for c in self.source_cards)
+        self.assertEqual(recent,source_recent)
         for title in ('새싹 해커톤 대상','엔씨IDS 재직 졸업생','AI와 클라우드 교육환경'):
             self.assertIn(title,self.index)
 

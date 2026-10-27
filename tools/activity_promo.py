@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fact-grounded promotional presentation of 284 historic department activities.
+"""Fact-grounded promotional presentation of department activities.
 
 Runs on the built static site, not on source posts. Source media, URLs, event dates
 and credited people remain unchanged. Editorial revisions are explicitly curated;
@@ -103,7 +103,8 @@ def strip_markup(value: str) -> str:
 def articles() -> dict[str, dict[str, str]]:
     result = {}
     text = (ROOT / "activities/index.html").read_text(encoding="utf-8")
-    for card in CARD.findall(text):
+    cards = CARD.findall(text)
+    for card in cards:
         slug = re.search(r'<h3><a href="/activities/([^/]+)/"', card)
         title = re.search(r'<h3><a href="[^"]+">(.*?)</a></h3>', card, re.S)
         summary = re.search(r'</h3><p>(.*?)</p>', card, re.S)
@@ -121,8 +122,8 @@ def articles() -> dict[str, dict[str, str]]:
             "category": strip_markup(category.group(1)),
             "date": date.group(1),
         }
-    if len(result) != 284:
-        raise ValueError(f"Expected 284 article cards, got {len(result)}")
+    if not result or len(result) != len(cards):
+        raise ValueError("Activity archive is empty or contains duplicate article slugs")
     return result
 
 def replace_text_tag(source: str, tag: str, value: str) -> str:
