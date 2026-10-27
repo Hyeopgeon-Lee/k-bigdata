@@ -121,8 +121,8 @@ class SiteTests(unittest.TestCase):
         """All active activity cards are sorted across the entire pagination range."""
         source=(OUT/'activities/index.html').read_text(encoding='utf-8')
         cards=re.findall(r'<article class="activity-card">.*?</article>',source,re.S)
-        source=(ROOT/'activities/index.html').read_text(encoding='utf-8')
-        source_cards=re.findall(r'<article class="activity-card">.*?</article>',source,re.S)
+        source_archive=(ROOT/'activities/index.html').read_text(encoding='utf-8')
+        source_cards=re.findall(r'<article class="activity-card">.*?</article>',source_archive,re.S)
         self.assertEqual(len(cards),len(source_cards))
         self.assertGreaterEqual(len(cards),285)
         dates=[re.search(r'<time datetime="(\d{4}-\d{2}-\d{2})"',c)[1] for c in cards]
