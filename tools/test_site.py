@@ -129,7 +129,7 @@ class SiteTests(unittest.TestCase):
         self.assertEqual(dates,sorted(dates,reverse=True))
         urls=[re.search(r'<h3><a href="(/activities/[^"]+/)"',c)[1] for c in cards]
         self.assertEqual(len(urls),len(set(urls)))
-        self.assertEqual(dates[0],'2026-10-27')
+        self.assertEqual(dates[0],'2026-10-28')
         self.assertEqual(urls[0],'/activities/agencypro-sql-tuning-2026/')
         self.assertEqual(dates[-1],'2016-10-31')
         script=re.search(r'<script type="application/ld\+json">(.*?)</script>',source,re.S)
