@@ -38,7 +38,7 @@ class SiteTests(unittest.TestCase):
             self.assertIn(state['announcement'],page)
         self.assertEqual(len(data['rounds']),3)
     def test_all_required_urls_and_no_duplicates(self):
-        for path in ('','admission/2027/','projects/','employment/','ai-software/','data-analysis/','backend-software/','seoul-it-college/','career-portfolio/','insights/','activities/','activities/social-data-career-trends/','activities/gangseo-job-fair-2026/','activities/project-presentation-2026/','activities/agencypro-sql-tuning-2026/'):
+        for path in ('','admission/2027/','projects/','employment/','ai-software/','data-analysis/','backend-software/','seoul-it-college/','career-portfolio/','insights/','activities/','activities/social-data-career-trends/','activities/gangseo-job-fair-2026/','activities/project-presentation-2026/','activities/agencypro-sql-tuning-2026/','activities/agencypro-seo-jung-ik-lecture-2026/'):
             self.assertIn(HOST+'/'+path,self.urls)
         self.assertEqual(len(self.urls),len(set(self.urls)))
         for entry in self.map.getroot():self.assertRegex(entry.find('{http://www.sitemaps.org/schemas/sitemap/0.9}lastmod').text,r'^\d{4}-\d{2}-\d{2}$')
@@ -130,7 +130,7 @@ class SiteTests(unittest.TestCase):
         urls=[re.search(r'<h3><a href="(/activities/[^"]+/)"',c)[1] for c in cards]
         self.assertEqual(len(urls),len(set(urls)))
         self.assertEqual(dates[0],'2026-10-28')
-        self.assertEqual(urls[0],'/activities/agencypro-sql-tuning-2026/')
+        self.assertEqual(urls[0],'/activities/agencypro-seo-jung-ik-lecture-2026/')
         self.assertEqual(dates[-1],'2016-10-31')
         script=re.search(r'<script type="application/ld\+json">(.*?)</script>',source,re.S)
         self.assertIsNotNone(script)
