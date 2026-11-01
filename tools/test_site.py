@@ -129,7 +129,8 @@ class SiteTests(unittest.TestCase):
         self.assertEqual(dates,sorted(dates,reverse=True))
         urls=[re.search(r'<h3><a href="(/activities/[^"]+/)"',c)[1] for c in cards]
         self.assertEqual(len(urls),len(set(urls)))
-        self.assertEqual(dates[0],'2026-10-28')
+        # Future activity posts may legitimately be newer than the original October entries.
+        self.assertGreaterEqual(dates[0], '2026-10-28')
         # Do not pin the first card to a specific article: newly published same-day
         # articles are valid newest-first entries when their dates match.
         self.assertIn('/activities/agencypro-seo-jung-ik-lecture-2026/', urls)
