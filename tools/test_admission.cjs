@@ -9,6 +9,7 @@ assert.equal(data.seatsCampusTotal,93);
 assert.equal(Object.values(data.seatsOtherDepartments).reduce((sum,n)=>sum+n,0),93);
 assert.match(getState(new Date('2026-11-02T12:00:00+09:00')).seats,/14명/);
 assert.match(getState(new Date('2026-11-02T12:00:00+09:00')).seats,/정원 내·외 합산/);
+assert.doesNotMatch(getState(new Date('2026-11-02T12:00:00+09:00')).capacityNote,/미달|부족|미충원|변경/);
 assert.ok(!data.applyUrl.includes('5041044'), '수시1차 전용 URL을 수시2차에 연결하면 안 됩니다');
 const at=s=>getState(new Date(s));
 for(const [date,phase,name] of [
