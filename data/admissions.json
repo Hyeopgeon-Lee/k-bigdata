@@ -39,8 +39,7 @@
       "seats": 14,
       "socialImage": "og-admission-2027-susi2.png",
       "seatsBasis": "정원 내·외 합산",
-      "seatsRevision": "수시1차 등록 미달 반영",
-      "seatsSource": "2026-11-02 학과 제공 변경 모집인원"
+      "seatsSource": "2026-11-02 학과 제공 수시2차 모집인원"
     },
     {
       "id": "regular",
@@ -55,7 +54,7 @@
     }
   ],
   "seatsVerifiedOn": "2026-11-02",
-  "seatsNote": "2026년 11월 2일 학과 제공 변경 모집인원입니다. 수시1차 등록 미달에 따른 수시2차 변경분이며 정원 내·외 합산 기준입니다. 기존 최초 모집요강과 차이가 있을 수 있습니다.",
+  "seatsNote": "2026년 11월 2일 학과에서 제공한 수시2차 모집인원이며 정원 내·외 합산 기준입니다. 전형 일정과 지원자격은 공식 모집요강을 확인하세요.",
   "seatsSourceType": "department-provided",
   "seatsOtherDepartments": {
     "디지털콘텐츠과": 17,
