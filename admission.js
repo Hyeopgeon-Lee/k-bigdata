@@ -36,6 +36,7 @@
       button: format(data.cta[status], name), href: open ? data.applyUrl : round ? data.admissionUrl : data.guideUrl,
       period, pending, interview: round ? fullDate(round.interview) : '공식 입학 공지 확인',
       result: round ? fullDate(round.result) : '공식 입학 공지 확인', seats: round ? `${name} ${round.seats}명${round.seatsBasis ? ` (${round.seatsBasis})` : ''}` : '공식 입학 공지 확인',
+      capacityNote: round?.id==='susi2' ? '※ 수시1차 등록 미달 반영 변경 모집인원 · 정원 내·외 합산 (2026.11.02 학과 제공)' : '',
       start: round ? shortDate(round.start) : '—', end: round ? shortDate(round.end) : '—',
       seoTitle: format(data.seoTitle, name), seoDescription: format(data.seoDescription, name),
       ogDescription: format(data.ogDescription, name).replace('{period}', period),
