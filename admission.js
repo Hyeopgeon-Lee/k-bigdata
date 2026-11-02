@@ -35,7 +35,7 @@
       announcement: round ? (open ? `${Number(round.end.slice(5,7))}월 ${Number(round.end.slice(8))}일 ${round.deadlineTime} 마감` : `${Number(round.start.slice(5,7))}월 ${Number(round.start.slice(8))}일 원서접수 시작`) : '추가모집 및 입학 공지 확인',
       button: format(data.cta[status], name), href: open ? data.applyUrl : round ? data.admissionUrl : data.guideUrl,
       period, pending, interview: round ? fullDate(round.interview) : '공식 입학 공지 확인',
-      result: round ? fullDate(round.result) : '공식 입학 공지 확인', seats: round ? `${name} ${round.seats}명` : '공식 입학 공지 확인',
+      result: round ? fullDate(round.result) : '공식 입학 공지 확인', seats: round ? `${name} ${round.seats}명${round.seatsBasis ? ` (${round.seatsBasis})` : ''}` : '공식 입학 공지 확인',
       start: round ? shortDate(round.start) : '—', end: round ? shortDate(round.end) : '—',
       seoTitle: format(data.seoTitle, name), seoDescription: format(data.seoDescription, name),
       ogDescription: format(data.ogDescription, name).replace('{period}', period),
