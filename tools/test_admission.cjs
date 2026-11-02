@@ -4,6 +4,12 @@ const vm = require('node:vm');
 const path = require('node:path');
 const admissions = require('../admission.js');
 const {getState,update,rounds,roundStatus,data}=admissions;
+assert.equal(rounds.find(r=>r.id==='susi2').seats,14);
+assert.equal(data.seatsCampusTotal,93);
+assert.equal(Object.values(data.seatsOtherDepartments).reduce((sum,n)=>sum+n,0),93);
+assert.match(at('2026-11-02T12:00:00+09:00').seats,/14명/);
+assert.match(at('2026-11-02T12:00:00+09:00').seats,/정원 내·외 합산/);
+assert.ok(!data.applyUrl.includes('5041044'), '수시1차 전용 URL을 수시2차에 연결하면 안 됩니다');
 const at=s=>getState(new Date(s));
 for(const [date,phase,name] of [
  ['2026-09-06T23:59:59+09:00','upcoming','수시1차'],['2026-09-07T00:00:00+09:00','open','수시1차'],
@@ -24,10 +30,10 @@ assert.equal(at('2026-12-03T12:00:00+09:00').pending,'수시2차 최초 합격�
 assert.equal(at('2027-01-28T12:00:00+09:00').pending,'정시모집 최초 합격자 발표 2027.02.04');
 assert.equal(roundStatus(rounds[0],new Date('2026-10-14T12:00:00+09:00')),'INTERVIEW');
 assert.equal(roundStatus(rounds[0],new Date('2026-10-15T12:00:00+09:00')),'RESULT_WAIT');
-assert.match(at('2026-11-11T12:00:00+09:00').href,/5041044/);
+assert.match(at('2026-11-11T12:00:00+09:00').href,/menu=1714/);
 const field={getAttribute:()=> 'name',textContent:''};const link={setAttribute(k,v){this[k]=v;}};const pending={};
 const doc={querySelectorAll(s){return s==='[data-admission]'?[field]:s==='[data-admission-link]'?[link]:s==='[data-admission-pending]'?[pending]:[];}};
-update(doc,new Date('2026-09-16T12:00:00+09:00'));assert.match(link.href,/5041044/);
+update(doc,new Date('2026-09-16T12:00:00+09:00'));assert.match(link.href,/menu=1714/);
 update(doc,new Date('2026-10-02T12:00:00+09:00'));assert.equal(link.href,'/admission/2027/');assert.equal(field.textContent,'수시2차');assert.equal(pending.hidden,false);
 update(doc,new Date('2026-11-11T12:00:00+09:00'));assert.match(link.textContent,/수시2차 원서접수/);assert.equal(pending.hidden,true);
 // Browser and build use exactly the same data/state engine.

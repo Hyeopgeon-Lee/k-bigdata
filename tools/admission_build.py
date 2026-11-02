@@ -144,7 +144,7 @@ def round_cards(data, state):
     cards=[]
     for r in data['rounds']:
         status='접수중' if r['id']==state['roundId'] and state['status']=='OPEN' else '예정' if r['start']>datetime.fromisoformat(os.environ.get('BUILD_TIME') or datetime.now(KST).isoformat()).astimezone(KST).date().isoformat() else '접수 종료'
-        cards.append(f'<article class="round-card" id="{r["id"]}"><span class="round-status" data-round-status="{r["id"]}" data-status="{ "open" if status=="접수중" else "upcoming" if status=="예정" else "closed" }">{status}</span><h3>{r["name"]}</h3><dl><div><dt>원서접수</dt><dd>{r["start"].replace("-",".")} ~<br>{r["end"].replace("-",".")} {r["deadlineTime"]}</dd></div><div><dt>모집인원</dt><dd>{r["seats"]}명</dd></div><div><dt>면접</dt><dd>{r["interview"].replace("-",".")}</dd></div><div><dt>최초 발표</dt><dd>{r["result"].replace("-",".")}</dd></div></dl><a href="{escape(data["guideUrl"],quote=True)}" target="_blank" rel="noopener noreferrer">공식 모집요강 확인 ↗</a></article>')
+        cards.append(f'<article class="round-card" id="{r["id"]}"><span class="round-status" data-round-status="{r["id"]}" data-status="{ "open" if status=="접수중" else "upcoming" if status=="예정" else "closed" }">{status}</span><h3>{r["name"]}</h3><dl><div><dt>원서접수</dt><dd>{r["start"].replace("-",".")} ~<br>{r["end"].replace("-",".")} {r["deadlineTime"]}</dd></div><div><dt>모집인원</dt><dd>{r["seats"]}명{ " (정원 내·외 합산 · 수시1차 등록 미달 반영)" if r["id"]=="susi2" else "" }</dd></div><div><dt>면접</dt><dd>{r["interview"].replace("-",".")}</dd></div><div><dt>최초 발표</dt><dd>{r["result"].replace("-",".")}</dd></div></dl><a href="{escape(data["guideUrl"],quote=True)}" target="_blank" rel="noopener noreferrer">공식 모집요강 확인 ↗</a></article>')
     return ''.join(cards)
 
 def reorder_home(page):

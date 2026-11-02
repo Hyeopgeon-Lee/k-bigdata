@@ -53,7 +53,7 @@ GitHub Actions는 글 검증과 배포만 담당합니다. 수동 실행은 기�
 
 - [학과 공식 홈페이지](https://www.kopo.ac.kr/kangseo/content.do?menu=1547)
 - [2027학년도 모집요강](https://kopo.ac.kr/kangseo/content.do?menu=321)
-- [온라인 원서접수](https://apply.jinhakapply.com/Notice/5041044/A)
+- [인터넷원서접수 안내](https://www.kopo.ac.kr/kangseo/content.do?menu=1714) (수시2차 직접 접수 URL은 별도 확인 전까지 사용하지 않음)
 - [입학 상담 오픈채팅](https://open.kakao.com/o/gEd0JIad)
 
 > 입학 일정과 전형 기준은 대학 사정에 따라 바뀔 수 있으므로 공식 모집요강을 우선합니다.
@@ -77,3 +77,7 @@ python tools/test_site.py
 ```
 
 날짜 시뮬레이션: `BUILD_TIME=2026-11-11T00:00:00+09:00`; 외부 API 없는 재현 테스트: `OFFLINE_BUILD=1`. 테스트 실패 시 배포하지 않습니다. IndexNow는 배포된 sitemap을 읽어 URL/공개 key를 검증하고 429·5xx·연결 실패를 재시도합니다.
+
+## 수시2차 변경 모집인원 (2026-11-02)
+
+수시1차 등록 미달 반영으로 학과 제공 수시2차 변경 인원을 적용했습니다. **정원 내·외 합산** 기준으로 빅데이터소프트웨어공학과 14명, 캠퍼스 6개 학과 합계 93명(디지털콘텐츠 17/보건의료정보 8/빅데이터SW 14/사이버보안 11/주얼리디자인 22/패션디자인 21)입니다. 기존 모집요강 PDF의 최초 계획인원과 다르며, 데이터의 `seatsSourceType`은 학과 제공을 뜻합니다. 원서접수 일정은 기존 모집요강 기준이며 교육정원 30명과 수시2차 변경 모집인원 14명은 다른 지표입니다.
