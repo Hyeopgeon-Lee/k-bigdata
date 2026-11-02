@@ -314,3 +314,7 @@ button, input { font: inherit; }
   .activity-home-tag{margin-top:1rem}
   .activity-home-actions{gap:.75rem;margin-top:1.2rem}
 }
+
+/* Admission seat counts updated after first-round under-enrollment. */
+.admission-quota-note{display:block;margin:-.45rem 0 1.15rem;font-size:.9rem;line-height:1.6;color:#f0f7ff}
+.admission-quota-note:empty{display:none}
