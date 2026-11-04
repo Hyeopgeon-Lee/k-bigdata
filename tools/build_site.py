@@ -22,6 +22,7 @@ from employment_build import load_snapshot, inject as inject_employment
 from activity_sort import sort_activity_archive
 from activity_promo import articles, enhance_activity_page
 from normalize_department_activity_names import normalize_text
+from assemble_education_video import assemble_education_video
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "_site"
@@ -666,6 +667,7 @@ def main() -> None:
     posts = load_posts()
     template = Template(TEMPLATE_FILE.read_text(encoding="utf-8"))
     copy_public_files()
+    assemble_education_video()
     for post in posts:
         target = OUTPUT / "insights" / post["slug"] / "index.html"
         target.parent.mkdir(parents=True, exist_ok=True)

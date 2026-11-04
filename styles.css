@@ -318,3 +318,19 @@ button, input { font: inherit; }
 /* Admission seat counts updated after first-round under-enrollment. */
 .admission-quota-note{display:block;margin:-.45rem 0 1.15rem;font-size:.9rem;line-height:1.6;color:#f0f7ff}
 .admission-quota-note:empty{display:none}
+
+
+/* 교육과정 소개 영상: PC 좌우 2단, 모바일 세로 1단 */
+.education-intro-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,360px);gap:clamp(2rem,6vw,6rem);align-items:center;margin-bottom:clamp(4rem,8vw,7rem);padding:clamp(1.6rem,4vw,3.5rem);background:linear-gradient(135deg,#f1f7ff,#eaf4fa 70%,#eefbed);border:1px solid #dbe8f4;border-radius:1.5rem}
+.education-intro-copy{min-width:0}
+.education-intro-copy h2{margin:.55rem 0 1.35rem;font-size:clamp(2rem,4vw,3.4rem);line-height:1.25;letter-spacing:-.05em;color:var(--navy-900);word-break:keep-all}
+.education-intro-copy h2 em{font-style:normal;color:#1268f3}
+.education-intro-lead{max-width:590px;color:#435571;font-size:clamp(1rem,1.55vw,1.12rem);line-height:1.85;word-break:keep-all}
+.education-intro-tags{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.6rem 0 1.9rem;padding:0;list-style:none}
+.education-intro-tags li{padding:.45rem .85rem;background:#fff;border:1px solid #cbdff0;border-radius:999px;color:#245176;font-size:.88rem;font-weight:700}
+.education-intro-link{display:inline-flex;align-items:center;gap:.5rem;color:#0758be;font-weight:800;text-decoration:underline;text-underline-offset:4px}
+.education-intro-player{min-width:0;width:100%;max-width:360px;margin-inline:auto}
+.education-intro-player video{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:contain;border-radius:1.15rem;background:#071a33;box-shadow:0 18px 50px rgba(7,26,51,.2)}
+.education-intro-player p{margin:.75rem 0 0;text-align:center;font-size:.8rem;color:#556b83}
+@media(max-width:860px){.education-intro-layout{grid-template-columns:1fr;gap:2rem}.education-intro-player{max-width:340px}}
+@media(max-width:640px){.education-intro-layout{padding:1.4rem 1.05rem;border-radius:1rem;margin-bottom:3rem}.education-intro-copy h2{font-size:clamp(1.9rem,7vw,2.65rem)}.education-intro-tags{gap:.4rem;margin:1.25rem 0}.education-intro-tags li{font-size:.8rem;padding:.35rem .7rem}.education-intro-player{max-width:330px}.education-intro-player p{font-size:.73rem}}
