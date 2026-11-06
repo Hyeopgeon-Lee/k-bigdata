@@ -43,9 +43,9 @@ class SiteTests(unittest.TestCase):
         guide=(OUT/'guide.css').read_text(encoding='utf-8')
         self.assertIn('<nav class="breadcrumb" aria-label="현재 위치">',page)
         self.assertIn('<a href="/">학과 홈</a><span>/</span><span>2027 입학안내</span>',page)
-        self.assertRegex(guide, r'\\.breadcrumb\\s*\\{[^}]*flex-wrap:\\s*nowrap;')
-        self.assertRegex(guide, r'\\.breadcrumb\\s*\\{[^}]*align-items:\\s*center;')
-        self.assertRegex(guide, r'\\.breadcrumb\\s*>\\s*a,\\s*\\.breadcrumb\\s*>\\s*span\\s*\\{[^}]*min-height:\\s*44px;')
+        self.assertRegex(guide, r'\.breadcrumb\s*\{[^}]*flex-wrap:\s*nowrap;')
+        self.assertRegex(guide, r'\.breadcrumb\s*\{[^}]*align-items:\s*center;')
+        self.assertRegex(guide, r'\.breadcrumb\s*>\s*a,\s*\.breadcrumb\s*>\s*span\s*\{[^}]*min-height:\s*44px;')
 
     def test_admission_copy_does_not_expose_enrollment_shortfalls(self):
         for path in ('index.html', 'admission/2027/index.html'):
