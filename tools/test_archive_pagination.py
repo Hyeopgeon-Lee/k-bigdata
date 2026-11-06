@@ -66,6 +66,46 @@ class OptimizedArchiveTests(unittest.TestCase):
         self.assertIn('DEPARTMENT INTRODUCTION',homepage)
         self.assertNotIn('campus-film-title" hidden',homepage)
 
+    def test_mobile_lcp_media_and_font_are_optimized(self):
+        home=(OUT/'index.html').read_text(encoding='utf-8')
+        activities=(OUT/'activities/index.html').read_text(encoding='utf-8')
+        admission=(OUT/'admission/2027/index.html').read_text(encoding='utf-8')
+        for page in (home, activities, admission):
+            self.assertNotIn('pretendardvariable-dynamic-subset.css', page)
+            self.assertIn('/site-refresh.css', page)
+        self.assertIn('poster="/assets/media/education-overview-cover.webp"',home)
+        self.assertTrue((OUT/'assets/media/education-overview-cover.webp').is_file())
+        self.assertLess(
+            (OUT/'assets/media/education-overview-cover.webp').stat().st_size,
+            (OUT/'assets/media/education-overview-cover.png').stat().st_size,
+        )
+        self.assertRegex(activities, r'<section class="activity-featured"')
+        section=re.search(r'<section class="activity-featured"[^>]*>(.*?)</section>',activities,re.S)
+        self.assertIsNotNone(section)
+        feature_imgs=re.findall(r'<img\b[^>]*>',section.group(1))
+        self.assertEqual(len(feature_imgs),3)
+        self.assertIn('loading="eager"',feature_imgs[0])
+        self.assertIn('fetchpriority="high"',feature_imgs[0])
+        for img in feature_imgs:
+            self.assertIn('srcset=',img)
+            urls=re.findall(r'(/assets/activities/featured-webp/[\w-]+\.webp)',img)
+            self.assertGreaterEqual(len(set(urls)),2)
+            for url in set(urls):
+                self.assertTrue((OUT/url.lstrip('/')).is_file(),url)
+            self.assertRegex(img, r'\bwidth="\d+"')
+            self.assertRegex(img, r'\bheight="\d+"')
+
+    def test_readable_mobile_color_and_touch_rules(self):
+        css=(OUT/'site-refresh.css').read_text(encoding='utf-8')
+        for selector in ('.project-path p', '.schedule li > span',
+                         '.site-footer .copyright', '.site-footer .footer-info a',
+                         '.activity-list-heading > span', '.learning-card .semester',
+                         '.guide-section .official-note.dark-note',
+                         '.activity-card .activity-read-more'):
+            self.assertIn(selector,css)
+        self.assertIn('min-height: 44px',css)
+        self.assertIn('text-decoration: underline',css)
+
     def test_no_internal_edits_published(self):
         for path in ('data','reports','tools','.github'):
             self.assertFalse((OUT/path).exists(),path)

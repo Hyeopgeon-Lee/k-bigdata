@@ -81,6 +81,9 @@ class FAQReader(HTMLParser):
             self.items.append(self.current); self.current=None
 
 def enhance_page(page, relative, state, data):
+    # Remove render-blocking third-party font CSS; use stable system fonts.
+    page = re.sub(r'<link[^>]*https://cdn\.jsdelivr\.net/gh/orioncactus/pretendard/[^>]*>\s*', '', page, flags=re.I)
+    page = re.sub(r'<link[^>]*href="https://cdn\.jsdelivr\.net"[^>]*>\s*', '', page, flags=re.I)
     page = re.sub(r'<nav class="main-nav"[^>]*>.*?</nav>', lambda _:nav(),page,flags=re.S)
     if 'site-refresh.css' not in page:
         page = page.replace('</head>', '<link rel="stylesheet" href="/site-refresh.css" />\n</head>')
