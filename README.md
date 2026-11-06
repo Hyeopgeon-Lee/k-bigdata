@@ -30,6 +30,7 @@
 
 - 원본: `department-campus-a-v11.mp4` (170.37초 / 1920×1080 / H.264 + AAC / 약 18.2MB)
 - 배치 경로: `assets/media/department-campus-a-v11.mp4` (파일 이름과 경로를 정확히 유지)
+- 커버 이미지: `assets/media/department-campus-cover.webp` (1600×900, WebP). 해당 파일이 정상 배포된 경우 자동으로 새 커버를 사용하고, 파일이 없으면 기존 `og-projects.png` 커버를 유지합니다.
 - 사용자 동작: 직접 재생, `controls`·`playsinline`·`preload="none"`, 자동 재생 없음
 - 안전장치: `campus-film.js`가 동영상 URL을 HEAD 확인한 뒤 재생 영역을 노출하므로 파일이 없거나 서버 오류가 발생하면 깨진 플레이어가 표시되지 않음
 - 성과 추적: GA4 `department_video_play`, `department_video_complete` 이벤트. 학생의 개인정보를 수집하지 않음
