@@ -130,6 +130,8 @@ class OptimizedArchiveTests(unittest.TestCase):
         self.assertIn('학과 홈</a>',page)
         self.assertIn('2027 입학안내</span>',page)
         self.assertIn('.guide-page .breadcrumb > span',css)
+        self.assertIn('flex-wrap: nowrap;',css)
+        self.assertIn('white-space: nowrap;',css)
         self.assertIn('align-items: center;',css)
         self.assertIn('.site-header .main-nav > a',css)
         self.assertIn('@media (min-width: 1101px)',css)
