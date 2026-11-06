@@ -150,3 +150,64 @@ body, button, input, select, textarea {
   .activity-page .activity-search, .activity-page .activity-select-wrap { font-size: .875rem; }
   .news-activity-card time { font-size: .9rem; }
 }
+
+
+/* Keep the admission breadcrumb on one visual baseline.
+   Previously only the "학과 홈" link had a 44px touch target; the separator
+   and current-page spans remained top-aligned in the flex row. */
+.guide-page .breadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  column-gap: .45rem;
+  row-gap: 0;
+}
+.guide-page .breadcrumb > a,
+.guide-page .breadcrumb > span {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  min-height: 44px;
+  line-height: 1.4;
+}
+
+/* Match the brand and primary navigation to the same header centerline.
+   The desktop menu must never inherit dropdown padding or wrap into two rows. */
+.site-header .header-inner { align-items: center; }
+@media (min-width: 1101px) {
+  .site-header .main-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    align-self: center;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    padding: 0;
+    max-height: none;
+    overflow: visible;
+  }
+  .site-header .main-nav > a {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    min-height: 44px;
+    line-height: 1.25;
+  }
+}
+@media (max-width: 1100px) {
+  /* The scrollable vertical menu is only active in hamburger mode. */
+  .site-header .main-nav.open {
+    display: flex;
+    align-items: stretch;
+  }
+  .site-header .main-nav > a {
+    display: flex;
+    min-height: 48px;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .site-header .main-nav .nav-cta { justify-content: center; }
+}

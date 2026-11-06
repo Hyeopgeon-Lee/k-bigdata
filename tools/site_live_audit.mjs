@@ -65,6 +65,24 @@ for(const profile of profiles){
       const nav=document.querySelector('.main-nav');
       const cta=document.querySelector('.nav-cta');
       const box=el=>{if(!el)return null;const r=el.getBoundingClientRect();return {x:Math.round(r.x),y:Math.round(r.y),width:Math.round(r.width),height:Math.round(r.height)};};
+      const midY = el => {
+        if (!el) return null;
+        const r=el.getBoundingClientRect();
+        return (r.top+r.bottom)/2;
+      };
+      // Range rectangles measure the actual glyph line, not just the 44px hitbox.
+      const textMidY = el => {
+        if (!el) return null;
+        const range=document.createRange();
+        range.selectNodeContents(el);
+        const r=range.getBoundingClientRect();
+        return (r.top+r.bottom)/2;
+      };
+      const breadcrumbItems=[...document.querySelectorAll('.breadcrumb > a, .breadcrumb > span')];
+      const breadcrumbTextCenters=breadcrumbItems.map(textMidY).filter(Number.isFinite);
+      const navItems=[...nav?.querySelectorAll('a')||[]];
+      const navCenters=navItems.map(midY).filter(Number.isFinite);
+      const spread=items=>items.length>1?Math.max(...items)-Math.min(...items):0;
       const all=[...document.querySelectorAll('a,button,summary,input,select')];
       const touch=all.filter(el=>{
         const s=getComputedStyle(el),r=el.getBoundingClientRect();
@@ -82,6 +100,8 @@ for(const profile of profiles){
         headings:{h1:document.querySelectorAll('h1').length,h2:document.querySelectorAll('h2').length},
         navLinks:[...nav?.querySelectorAll('a')||[]].map(x=>({text:x.textContent.trim(),url:x.getAttribute('href')})),
         navBox:box(nav),headerBox:box(header),ctaBox:box(cta),
+        breadcrumbTextBaselineSpreadPx:spread(breadcrumbTextCenters),
+        navLinkCenterSpreadPx:spread(navCenters),
         mainSections:document.querySelectorAll('main>section').length,
         activitiesCount:document.querySelectorAll('article.activity-card').length,
         videoPoster:document.querySelector('#campus-film video')?.poster||null,
@@ -91,6 +111,10 @@ for(const profile of profiles){
       };
     });
     if(record.visual.overflowPx>2)record.issues.push('Horizontal overflow '+record.visual.overflowPx+'px');
+    if(route.name==='admission' && record.visual.breadcrumbTextBaselineSpreadPx>3)
+      record.issues.push('Admission breadcrumb not aligned: '+record.visual.breadcrumbTextBaselineSpreadPx.toFixed(1)+'px');
+    if(profile.name==='desktop' && record.visual.navLinkCenterSpreadPx>3)
+      record.issues.push('Desktop header navigation misaligned: '+record.visual.navLinkCenterSpreadPx.toFixed(1)+'px');
     if(record.visual.headings.h1!==1)record.issues.push('H1 count '+record.visual.headings.h1);
     if(record.httpStatus!==200)record.issues.push('HTTP '+record.httpStatus);
     if(route.name==='home'&&record.visual.mainSections!==7)record.issues.push('Home sections expected 7, found '+record.visual.mainSections);

@@ -123,6 +123,18 @@ class OptimizedArchiveTests(unittest.TestCase):
             for src in variants:
                 self.assertTrue((OUT/src.lstrip('/')).is_file(),src)
 
+    def test_admission_breadcrumb_and_header_alignment_styles(self):
+        page=(OUT/'admission/2027/index.html').read_text(encoding='utf-8')
+        css=(OUT/'site-refresh.css').read_text(encoding='utf-8')
+        self.assertIn('class="breadcrumb"',page)
+        self.assertIn('학과 홈</a>',page)
+        self.assertIn('2027 입학안내</span>',page)
+        self.assertIn('.guide-page .breadcrumb > span',css)
+        self.assertIn('align-items: center;',css)
+        self.assertIn('.site-header .main-nav > a',css)
+        self.assertIn('@media (min-width: 1101px)',css)
+        self.assertIn('@media (max-width: 1100px)',css)
+
     def test_readable_mobile_color_and_touch_rules(self):
         css=(OUT/'site-refresh.css').read_text(encoding='utf-8')
         for selector in ('.project-path p', '.schedule li > span',
