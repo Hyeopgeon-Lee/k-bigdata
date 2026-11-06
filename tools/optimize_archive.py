@@ -217,11 +217,53 @@ def add_sitemap(total: int) -> None:
         manifest.write_text(json.dumps(m,ensure_ascii=False,indent=2),encoding='utf-8')
 
 
+def optimize_first_screen_images() -> list[str]:
+    """Generate smaller WebP assets inside the publish artifact, keeping originals."""
+    from PIL import Image
+
+    converted = []
+    hero=OUT/'assets/hero-ai-lab.png'
+    target=OUT/'assets/hero-ai-lab.webp'
+    with Image.open(hero) as picture:
+        picture = picture.convert('RGB')
+        picture.thumbnail((1920, 1200), Image.Resampling.LANCZOS)
+        picture.save(target, 'WEBP', quality=83, method=6)
+    if target.stat().st_size < hero.stat().st_size:
+        stylesheet=OUT/'styles.css'
+        css=stylesheet.read_text(encoding='utf-8')
+        old='url("assets/hero-ai-lab.png")'
+        if old not in css:
+            raise ValueError("Hero image CSS reference changed")
+        stylesheet.write_text(css.replace(old,'url("assets/hero-ai-lab.webp")'), encoding='utf-8')
+        converted.append(f"hero {hero.stat().st_size}→{target.stat().st_size}")
+    else:
+        target.unlink(missing_ok=True)
+
+    award=OUT/'assets/activities/official-original/766164-1.jpg'
+    award_target=OUT/'assets/activities/achievement-sesac-2025.webp'
+    if award.is_file():
+        with Image.open(award) as picture:
+            picture=picture.convert('RGB')
+            picture.thumbnail((1200, 900), Image.Resampling.LANCZOS)
+            picture.save(award_target,'WEBP',quality=82,method=6)
+        if award_target.stat().st_size < award.stat().st_size:
+            home=OUT/'index.html'
+            data=home.read_text(encoding='utf-8')
+            source='/assets/activities/official-original/766164-1.jpg'
+            if source in data:
+                home.write_text(data.replace(source,'/assets/activities/achievement-sesac-2025.webp',1),encoding='utf-8')
+                converted.append(f"award {award.stat().st_size}→{award_target.stat().st_size}")
+        else:
+            award_target.unlink(missing_ok=True)
+    return converted
+
+
 def main() -> None:
     repaired=enrich_images()
     cards,pages=paginate()
+    converted=optimize_first_screen_images()
     add_sitemap(pages)
-    print(f"Optimized archive: {cards} cards across {pages} static pages, {repaired} image dimensions restored")
+    print(f"Optimized archive: {cards} cards across {pages} static pages, {repaired} image dimensions restored; media: {converted}")
 
 
 if __name__ == '__main__':
