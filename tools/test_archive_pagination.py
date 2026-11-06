@@ -99,7 +99,7 @@ class OptimizedArchiveTests(unittest.TestCase):
         page=(OUT/'activities/index.html').read_text(encoding='utf-8')
         self.assertEqual(page.count('rel="preload" as="image"'),1)
         self.assertIn('imagesrcset="/assets/activities/featured-webp/',page)
-        grid=re.search(r'<div class="activity-card-grid">(.*?)</div></div></section>',page,re.S)
+        grid=re.search(r'<div class="activity-card-grid">(.*?)</div>\s*<nav class="archive-static-pagination"',page,re.S)
         self.assertIsNotNone(grid)
         cards=CARD.findall(grid.group(1))
         self.assertEqual(len(cards),PER_PAGE)
