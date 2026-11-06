@@ -81,13 +81,12 @@
         renderedDay = today;
       }
     };
+    const hasStaticHome = () => Boolean(root.document.body?.getAttribute?.('data-admission-rendered-day'));
+    const check = () => { if (hasStaticHome()) sync(); else if (!root.document.hidden) update(); };
     const start = () => {
       renderedDay = root.document.body?.getAttribute?.('data-admission-rendered-day') || null;
-      sync();
-      root.setInterval(() => {
-        if (renderedDay) sync(); // Only compares dates for static homepage state.
-        else update();         // All other pages retain the existing live update.
-      }, 30000);
+      check();
+      root.setInterval(check, 30000);
       if (renderedDay) {
         // Correct a stale CTA before the first pointer interaction at midnight.
         root.document.addEventListener('pointerdown', sync, {capture:true, passive:true});
@@ -96,7 +95,7 @@
     };
     if (root.document.readyState === 'loading') root.document.addEventListener('DOMContentLoaded', start);
     else start();
-    root.document.addEventListener('visibilitychange', () => { if (!root.document.hidden) sync(); });
-    root.addEventListener?.('pageshow', sync);
+    root.document.addEventListener('visibilitychange', check);
+    root.addEventListener?.('pageshow', check);
   }
 })(typeof window !== 'undefined' ? window : globalThis);
