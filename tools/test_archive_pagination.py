@@ -128,7 +128,7 @@ class OptimizedArchiveTests(unittest.TestCase):
 
     def test_home_noncritical_work_is_deferred(self):
         home=(OUT/'index.html').read_text(encoding='utf-8')
-        self.assertRegex(home, r'<body data-admission-rendered-day="\\d{4}-\\d{2}-\\d{2}"')
+        self.assertRegex(home, r'<body data-admission-rendered-day="\d{4}-\d{2}-\d{2}"')
         admission=(OUT/'admission.js').read_text(encoding='utf-8')
         self.assertIn('data-admission-rendered-day', admission)
         self.assertIn("root.setInterval(check, 30000)", admission)
