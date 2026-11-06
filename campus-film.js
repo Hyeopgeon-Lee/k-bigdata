@@ -8,7 +8,8 @@
   if (!section || !player || !source) return;
   source.src = '/assets/media/department-campus-a-v11.mp4';
   player.preload = 'none';
-  player.load();
+  // Native controls load the MP4 on demand; calling load() eagerly triggers a
+  // range request on Chrome even with preload=none.
   let started = false, completed = false;
   player.addEventListener('play', () => {
     if (started) return;
