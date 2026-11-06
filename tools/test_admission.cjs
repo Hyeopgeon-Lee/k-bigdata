@@ -40,4 +40,27 @@ update(doc,new Date('2026-11-11T12:00:00+09:00'));assert.match(link.textContent,
 // Browser and build use exactly the same data/state engine.
 const ctx={ADMISSIONS_DATA:data};vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../admission.js'),'utf8'),ctx);
 for(const time of ['2026-10-03T06:00:00+09:00','2026-11-11T00:00:00+09:00','2027-01-23T00:00:00+09:00'])assert.equal(JSON.stringify(ctx.Admissions.getState(new Date(time))),JSON.stringify(at(time)));
+// Homepage HTML already carries the KST-day admission snapshot. Verify it
+// skips all initial DOM writes, while stale and non-home pages remain live.
+function homeHydrationTest(renderedDay) {
+  let writes=0;const listeners={};let timer;
+  const doc={
+    body:{getAttribute:key=>key==='data-admission-rendered-day'?renderedDay:null},
+    hidden:false,readyState:'complete',location:{pathname:'/'},
+    querySelectorAll:()=>{writes++;return [];},
+    addEventListener:(event,fn)=>{listeners[event]=fn;}
+  };
+  const window={document:doc,ADMISSIONS_DATA:data,
+    setInterval(fn){timer=fn;return 1;},addEventListener(){}};
+  vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../admission.js'),'utf8'),{window,URL,Date});
+  const initial=writes;timer();return {initial,afterTick:writes,listeners};
+}
+const koreaToday=new Date(Date.now()+9*3600000).toISOString().slice(0,10);
+const fresh=homeHydrationTest(koreaToday);
+assert.equal(fresh.initial,0,'fresh homepage must not rehydrate server-rendered admission fields');
+assert.equal(fresh.afterTick,0,'same KST day must not rehydrate on timer');
+assert.ok(homeHydrationTest('2001-01-01').initial>=5,'stale homepage must immediately update');
+const other=homeHydrationTest(null);
+assert.ok(other.afterTick>other.initial,'non-home pages must still update every 30 seconds');
+
 console.log('Admission JSON, KST boundaries, round transitions, pending states, browser/build parity and DOM binding passed.');
