@@ -20,7 +20,7 @@ function harness(narrow,complete=true){
   return {handlers,timers,nodes};
 }
 const mobile=harness(true);
-assert.equal(mobile.timers[0].delay,2100);
+assert.equal(mobile.timers[0].delay,1300);
 assert.equal(mobile.nodes.length,0,'mobile analytics must not block first paint');
 mobile.handlers.pointerdown();
 assert.equal(mobile.nodes.length,1,'interaction must trigger analytics immediately');
@@ -36,7 +36,7 @@ assert.equal(desktop.nodes.length,1);
 const delayed=harness(true,false);
 assert.equal(delayed.timers.length,0);
 delayed.handlers.load();
-assert.equal(delayed.timers[0].delay,2100);
+assert.equal(delayed.timers[0].delay,1300);
 delayed.timers[0].fn();
 assert.equal(delayed.nodes.length,1);
 console.log('Homepage GA4 loader preserves one-time install, interaction priority and desktop behavior.');
