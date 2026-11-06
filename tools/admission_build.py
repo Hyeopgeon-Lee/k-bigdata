@@ -57,11 +57,12 @@ def bind_state(page, state, data):
     return page
 
 def nav():
+    # One consistent, task-based navigation across the homepage and all subpages.
     return ('<nav class="main-nav" id="main-navigation" aria-label="주요 메뉴">'
         '<a href="/#major">학과소개</a><a href="/#roadmap">교육과정</a>'
-        '<a href="/projects/">학생작품</a><a href="/activities/">학과활동</a><a href="/employment/">취업·성과</a>'
-        '<a href="/admission/2027/">입학안내</a>'
-        '<a class="nav-cta" href="https://open.kakao.com/o/gEd0JIad" target="_blank" rel="noopener noreferrer">입학상담 ↗</a></nav>')
+        '<a href="/#outcomes">학생성과</a><a href="/employment/">취업·진로</a>'
+        '<a href="/activities/">학과소식</a>'
+        '<a class="nav-cta" href="/admission/2027/">입학안내 →</a></nav>')
 
 def conversion_links():
     return '<section class="journey-links" aria-label="지원 전 확인할 정보"><div class="container"><h2>학생의 결과를 확인하고, 입학을 준비하세요.</h2><p><a href="/projects/">학생 프로젝트</a> → <a href="/employment/">졸업생 취업현황</a> → <a href="/admission/2027/">2027 입학안내</a></p></div></section>'
@@ -81,6 +82,8 @@ class FAQReader(HTMLParser):
 
 def enhance_page(page, relative, state, data):
     page = re.sub(r'<nav class="main-nav"[^>]*>.*?</nav>', lambda _:nav(),page,flags=re.S)
+    if 'site-refresh.css' not in page:
+        page = page.replace('</head>', '<link rel="stylesheet" href="/site-refresh.css" />\n</head>')
     image_name = ('og-insights.png' if relative.startswith('insights/') or relative=='post.html' else
                   'og-projects.png' if relative.startswith('projects/') else
                   'og-employment.png' if relative.startswith('employment/') else 'og-department.png')
@@ -148,29 +151,15 @@ def round_cards(data, state):
     return ''.join(cards)
 
 def reorder_home(page):
-    # Capture top-level main sections via balanced HTML tags rather than nested regex.
-    main=re.search(r'(<main id="main">)(.*?)(</main>)',page,re.S)
-    content=main[2]; sections=[]; depth=0; start=0
-    for m in re.finditer(r'</?section\b[^>]*>',content):
-        if m[0].startswith('</'):
-            depth-=1
-            if depth==0: sections.append(content[start:m.end()])
-        else:
-            if depth==0:start=m.start()
-            depth+=1
-    def rank(s):
-        # Introduction flow: hero → why our major → department film → student proof
-        # → alumni and awards → learning roadmap → admissions.
-        if 'class="hero"' in s:return 0
-        if 'id="major"' in s:return 1
-        if 'id="campus-film"' in s:return 2
-        if 'id="projects"' in s:return 3
-        if 'id="activities"' in s:return 4
-        if 'employment-preview"' in s:return 5
-        if 'achievements-section' in s:return 6
-        if 'id="roadmap"' in s:return 7
-        if 'id="guides"' in s:return 8
-        if 'id="admission"' in s:return 9
-        if 'faq-section' in s:return 10
-        return 11
-    return page[:main.start(2)]+'\n'.join(sorted(sections,key=rank))+page[main.end(2):]
+    """Keep the explicit editor-owned section order; fail closed if the homepage drifts.
+
+    Historical automatic ranking made deployed ordering differ from index.html,
+    so layout changes were difficult to review and regression-test.
+    """
+    required = ['id="major"', 'id="campus-film"', 'id="roadmap"',
+                'id="projects"', 'id="outcomes"', 'id="activities"',
+                'id="admission"']
+    positions = [page.find(token) for token in required]
+    if -1 in positions or positions != sorted(positions):
+        raise ValueError("Homepage visitor journey is missing or out of order")
+    return page
