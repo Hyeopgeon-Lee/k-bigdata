@@ -435,7 +435,7 @@ def defer_home_video_covers() -> int:
         html=html.replace(old,f'data-lazy-poster="{cover}"',1)
     if 'lazy-video-poster.js' in html:
         raise ValueError("Lazy poster script already inserted")
-    html=html.replace('</head>','<script defer src="/lazy-video-poster.js"></script>\\n</head>',1)
+    html=html.replace('</head>','<script defer src="/lazy-video-poster.js"></script>\n</head>',1)
     path.write_text(html,encoding='utf-8')
     return len(covers)
 
