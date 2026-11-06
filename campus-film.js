@@ -1,44 +1,27 @@
-/* Campus representative film: reveal only after the actual MP4 is publicly available. */
+/* Always-visible, layout-stable department introduction film.
+   The site owns both the MP4 and WebP cover, so extra HEAD requests are unnecessary. */
 (() => {
   'use strict';
   const section = document.getElementById('campus-film');
   const player = section?.querySelector('video');
   const source = player?.querySelector('source');
   if (!section || !player || !source) return;
-
-  const videoUrl = '/assets/media/department-campus-a-v11.mp4';
-  // Preserve the existing poster until the uploaded custom cover is deployed.
-  const coverUrl = '/assets/media/department-campus-cover.webp';
-  fetch(coverUrl, { method: 'HEAD' })
-    .then(response => {
-      if (response.ok && (response.headers.get('content-type') || '').startsWith('image/')) {
-        player.poster = coverUrl;
-      }
-    })
-    .catch(() => { /* Keep the existing fallback cover. */ });
-  fetch(videoUrl, { method: 'HEAD' })
-    .then(response => {
-      const contentType = response.headers.get('content-type') || '';
-      if (!response.ok || contentType.includes('text/html')) return;
-      source.src = videoUrl;
-      section.hidden = false;
-      player.load();
-
-      let started = false;
-      let completed = false;
-      player.addEventListener('play', () => {
-        if (!started) {
-          started = true;
-          window.gtag?.('event', 'department_video_play', { video_id: 'campus_film_v11' });
-        }
-      });
-      player.addEventListener('ended', () => {
-        if (!completed) {
-          completed = true;
-          window.gtag?.('event', 'department_video_complete', { video_id: 'campus_film_v11' });
-        }
-      });
-      player.addEventListener('error', () => { section.hidden = true; });
-    })
-    .catch(() => { /* No unfinished or broken player should be displayed. */ });
+  source.src = '/assets/media/department-campus-a-v11.mp4';
+  player.preload = 'none';
+  player.load();
+  let started = false, completed = false;
+  player.addEventListener('play', () => {
+    if (started) return;
+    started = true;
+    window.gtag?.('event', 'department_video_play', {video_id:'campus_film_v11'});
+  });
+  player.addEventListener('ended', () => {
+    if (completed) return;
+    completed = true;
+    window.gtag?.('event', 'department_video_complete', {video_id:'campus_film_v11'});
+  });
+  player.addEventListener('error', () => {
+    const caption = section.querySelector('.campus-film-caption');
+    if (caption) caption.textContent = '영상 재생에 문제가 발생했습니다. 학과 소개와 입학안내는 위 링크에서 확인해 주세요.';
+  });
 })();
