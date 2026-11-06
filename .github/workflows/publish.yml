@@ -37,6 +37,7 @@ jobs:
           python tools/test_insights.py
           node tools/test_admission.cjs
           node tools/test_analytics.cjs
+          node tools/test_analytics_loader.cjs
           node tools/test_lazy_video_poster.cjs
       - uses: actions/configure-pages@v5
       - name: 모집정보·검색 콘텐츠 정적 빌드
