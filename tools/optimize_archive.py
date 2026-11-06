@@ -420,6 +420,26 @@ def optimize_education_cover() -> tuple[int, int]:
     return before, after
 
 
+def defer_home_video_covers() -> int:
+    """Do not compete with hero H1 for below-the-fold video poster downloads."""
+    path=OUT/'index.html'
+    html=path.read_text(encoding='utf-8')
+    covers=(
+        '/assets/media/department-campus-cover.webp',
+        '/assets/media/education-overview-cover.webp',
+    )
+    for cover in covers:
+        old=f'poster="{cover}"'
+        if html.count(old)!=1:
+            raise ValueError(f"Expected one homepage video poster: {cover}")
+        html=html.replace(old,f'data-lazy-poster="{cover}"',1)
+    if 'lazy-video-poster.js' in html:
+        raise ValueError("Lazy poster script already inserted")
+    html=html.replace('</head>','<script defer src="/lazy-video-poster.js"></script>\n</head>',1)
+    path.write_text(html,encoding='utf-8')
+    return len(covers)
+
+
 def main() -> None:
     repaired=enrich_images()
     cards,pages=paginate()
@@ -427,6 +447,7 @@ def main() -> None:
     featured, featured_bytes=optimize_featured_images()
     cards_optimized, cards_saved=optimize_first_page_cards()
     cover_before, cover_after=optimize_education_cover()
+    deferred_covers=defer_home_video_covers()
     add_sitemap(pages)
     print(f"Optimized archive: {cards} cards across {pages} static pages, "
           f"{repaired} image dimensions restored; media: {converted}; "

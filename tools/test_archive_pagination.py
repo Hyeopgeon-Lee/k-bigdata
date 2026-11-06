@@ -73,7 +73,15 @@ class OptimizedArchiveTests(unittest.TestCase):
         for page in (home, activities, admission):
             self.assertNotIn('pretendardvariable-dynamic-subset.css', page)
             self.assertIn('/site-refresh.css', page)
-        self.assertIn('poster="/assets/media/education-overview-cover.webp"',home)
+        self.assertIn('data-lazy-poster="/assets/media/education-overview-cover.webp"',home)
+        self.assertIn('data-lazy-poster="/assets/media/department-campus-cover.webp"',home)
+        self.assertEqual(home.count('data-lazy-poster='),2)
+        self.assertIn('<script defer src="/lazy-video-poster.js"></script>',home)
+        loader=(OUT/'lazy-video-poster.js').read_text(encoding='utf-8')
+        self.assertIn("rootMargin:'80px 0px'",loader)
+        self.assertIn('IntersectionObserver',loader)
+        self.assertIn('video.poster = url',loader)
+        self.assertIn('/assets/media/education-overview.mp4',home)
         self.assertTrue((OUT/'assets/media/education-overview-cover.webp').is_file())
         self.assertLess(
             (OUT/'assets/media/education-overview-cover.webp').stat().st_size,
