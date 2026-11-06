@@ -159,15 +159,18 @@ def reorder_home(page):
             if depth==0:start=m.start()
             depth+=1
     def rank(s):
+        # Introduction flow: hero → why our major → department film → student proof
+        # → alumni and awards → learning roadmap → admissions.
         if 'class="hero"' in s:return 0
-        if 'id="activities"' in s:return 1
-        if 'id="projects"' in s:return 1
-        if 'employment-preview"' in s:return 2
-        if 'achievements-section' in s:return 3
-        if 'id="major"' in s:return 4
-        if 'id="roadmap"' in s:return 5
-        if 'id="guides"' in s:return 6
-        if 'id="admission"' in s:return 7
-        if 'faq-section' in s:return 8
-        return 9
+        if 'id="major"' in s:return 1
+        if 'id="campus-film"' in s:return 2
+        if 'id="projects"' in s:return 3
+        if 'id="activities"' in s:return 4
+        if 'employment-preview"' in s:return 5
+        if 'achievements-section' in s:return 6
+        if 'id="roadmap"' in s:return 7
+        if 'id="guides"' in s:return 8
+        if 'id="admission"' in s:return 9
+        if 'faq-section' in s:return 10
+        return 11
     return page[:main.start(2)]+'\n'.join(sorted(sections,key=rank))+page[main.end(2):]
