@@ -212,3 +212,18 @@ body, button, input, select, textarea {
   }
   .site-header .main-nav .nav-cta { justify-content: center; }
 }
+
+/* Department film: poster tap has an explicit play target; native controls remain available. */
+.campus-film-player { position: relative; }
+.campus-film-play { display: none; }
+.campus-film-player.is-interactive:not(.is-started) .campus-film-play {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  display: flex; align-items: center; justify-content: center; gap: .55rem;
+  min-height: 60px; padding: .85rem 1.2rem; border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.7); color: #fff;
+  background: rgba(3,20,41,.90); font-size: 1.05rem; font-weight: 800;
+  box-shadow: 0 8px 30px rgba(0,0,0,.28); cursor: pointer;
+  z-index: 2;
+}
+.campus-film-play:focus-visible { outline: 3px solid #39dbff; outline-offset: 3px; }
+.campus-film-caption a { color: #cbff3d; text-decoration: underline; text-underline-offset: .2em; }
