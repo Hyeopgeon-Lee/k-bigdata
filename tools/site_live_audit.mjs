@@ -103,7 +103,7 @@ for(const profile of profiles){
       const result=await page.evaluate(async()=>window.axe.run(document,{runOnly:{type:'tag',
          values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}}));
       record.axe=result.violations.map(x=>({id:x.id,impact:x.impact,description:x.description,
-         affectedNodes:x.nodes.length,samples:x.nodes.slice(0,2).map(n=>n.target.join(' ').slice(0,140))}));
+         affectedNodes:x.nodes.length,samples:x.nodes.slice(0,3).map(n=>({selector:n.target.join(' ').slice(0,140), failure:n.failureSummary?.slice(0,330), contrast:n.any?.[0]?.data}))}));
       record.axeIncomplete=result.incomplete.length;
       if(route.name==='home'&&profile.name==='mobile'){
         const menu=page.locator('.menu-toggle');
@@ -151,6 +151,11 @@ for(const profile of profiles){
     }
     if(record.jsErrors.length||record.httpErrors.length)record.issues.push('JS/runtime or same-origin HTTP errors');
   }catch(err){record.issues.push('Audit could not complete: '+String(err).slice(0,550));failures.push(record.profile+'/'+record.route);}
+  if (profile.name==='desktop'||profile.name==='mobile') {
+    console.log('ACCESSIBILITY_DETAILS',JSON.stringify({profile:record.profile,route:record.route,violations:record.axe}));
+    console.log('UI_DETAILS',JSON.stringify({profile:record.profile,route:record.route,visual:record.visual,
+      menu:record.mobileNav,search:record.search,gaRequests:record.requestedGaEvents}));
+  }
   OUT.browsers.push(record);
   console.log('BROWSER',JSON.stringify({profile:record.profile,route:record.route,http:record.httpStatus,
     overflow:record.visual?.overflowPx,sections:record.visual?.mainSections,archiveCards:record.visual?.activitiesCount,
