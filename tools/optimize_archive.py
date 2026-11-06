@@ -179,7 +179,12 @@ def paginate() -> tuple[int, int]:
         json.dumps(items, ensure_ascii=False, separators=(',', ':')), encoding="utf-8")
     for page_no in range(1,total+1):
         begin=(page_no-1)*PAGE_SIZE
-        chosen=cards[begin:begin+PAGE_SIZE]
+        # The archive originally marked some below-the-fold JPEGs eager,
+        # competing with the featured LCP image on mobile networks.
+        chosen=[
+            re.sub(r'(<img\b[^>]*?)\bloading="eager"', r'\1loading="lazy"', card)
+            for card in cards[begin:begin+PAGE_SIZE]
+        ]
         view=items[begin:begin+PAGE_SIZE]
         content=original[:m.start(2)] + '\n'.join(chosen) + \
             m.group(3).replace('</div></section>',pagination(page_no,total)+'</div></section>',1) + \
@@ -315,8 +320,77 @@ def optimize_featured_images() -> tuple[int, int]:
     if count < 3:
         raise ValueError(f"Expected at least 3 featured activity images; found {count}")
     html = html[:section.start(2)] + content + html[section.end(2):]
+    first = re.search(r'<img\b[^>]*fetchpriority="high"[^>]*>', content)
+    if first:
+        preload = (
+            '<link rel="preload" as="image"'
+            f' href="{attr(first.group(0), "src")}"'
+            f' imagesrcset="{attr(first.group(0), "srcset")}"'
+            f' imagesizes="{attr(first.group(0), "sizes")}"'
+            ' fetchpriority="high">'
+        )
+        html = html.replace('</head>', preload + '\n</head>', 1)
     page.write_text(html, encoding='utf-8')
     return count, bytes_saved
+
+
+def optimize_first_page_cards() -> tuple[int, int]:
+    """Use responsive WebP thumbnails for the first 12 archive cards only."""
+    from PIL import Image
+
+    page = OUT / 'activities/index.html'
+    html = page.read_text(encoding='utf-8')
+    # paginate() already inserted the static navigation between grid and section ends.
+    grid = re.search(
+        r'(<div class="activity-card-grid">)(.*?)(</div>\s*<nav class="archive-static-pagination")',
+        html, re.S
+    )
+    if not grid:
+        raise ValueError("Published activity grid missing")
+    media_dir = OUT / 'assets/activities/card-webp'
+    media_dir.mkdir(parents=True, exist_ok=True)
+    processed = 0
+    saved = 0
+
+    def optimize_card(match: re.Match) -> str:
+        nonlocal processed, saved
+        card = match.group(0)
+        img_match = IMG.search(card)
+        if not img_match:
+            return card
+        original_tag = img_match.group(0)
+        source = attr(original_tag, 'src')
+        if not source.startswith('/assets/'):
+            return card
+        file = OUT / source.lstrip('/')
+        if not file.is_file():
+            raise ValueError(f"Archive image missing: {source}")
+        digest = hashlib.sha256(source.encode('utf-8')).hexdigest()[:12]
+        sizes = []
+        with Image.open(file) as opened:
+            image = opened.convert('RGB')
+            for width in (480, 960):
+                thumb = image.copy()
+                thumb.thumbnail((width, width * 2), Image.Resampling.LANCZOS)
+                destination = media_dir / f'{digest}-{width}.webp'
+                thumb.save(destination, 'WEBP', quality=78, method=6)
+                sizes.append((width, destination.stat().st_size, '/assets/activities/card-webp/' + destination.name))
+        thumbnail = re.sub(r'\bsrc="[^"]+"', 'src="' + sizes[1][2] + '"', original_tag, count=1)
+        thumbnail = thumbnail[:-1] + (
+            f' srcset="{sizes[0][2]} 480w, {sizes[1][2]} 960w"'
+            ' sizes="(max-width: 700px) calc(100vw - 24px), (max-width: 1100px) 46vw, 33vw">'
+        )
+        thumbnail = thumbnail.replace('loading="eager"', 'loading="lazy"')
+        processed += 1
+        saved += max(0, file.stat().st_size - sizes[1][1])
+        return card.replace(original_tag, thumbnail, 1)
+
+    optimized = CARD.sub(optimize_card, grid.group(2))
+    if processed != PAGE_SIZE:
+        raise ValueError(f"Expected {PAGE_SIZE} first-page archive images, found {processed}")
+    html = html[:grid.start(2)] + optimized + html[grid.end(2):]
+    page.write_text(html, encoding='utf-8')
+    return processed, saved
 
 
 def optimize_education_cover() -> tuple[int, int]:
@@ -351,6 +425,7 @@ def main() -> None:
     cards,pages=paginate()
     converted=optimize_first_screen_images()
     featured, featured_bytes=optimize_featured_images()
+    cards_optimized, cards_saved=optimize_first_page_cards()
     cover_before, cover_after=optimize_education_cover()
     add_sitemap(pages)
     print(f"Optimized archive: {cards} cards across {pages} static pages, "
