@@ -1,0 +1,38 @@
+name: 실서비스 UX·접근성·Lighthouse 심층 검증
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'tools/site_live_audit.mjs'
+      - '.github/workflows/site-live-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  live-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: 브라우저·접근성·성능 측정 패키지 설치
+        run: npm install --no-save --no-package-lock playwright-core@1.56.1 axe-core@4.11.0 lighthouse@12.8.2
+      - name: Google Chrome 존재 확인
+        run: |
+          which google-chrome || which google-chrome-stable || which chromium
+          node --check tools/site_live_audit.mjs
+      - name: 실제 PC·모바일 화면·WCAG·GA4 이벤트·Lighthouse 측정
+        run: node tools/site_live_audit.mjs
+      - name: 진단 JSON·전체 화면 캡처·Lighthouse 결과 보관
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-live-audit
+          path: artifacts/site-live-audit/
+          retention-days: 14
+          if-no-files-found: warn
