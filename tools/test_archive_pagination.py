@@ -95,6 +95,26 @@ class OptimizedArchiveTests(unittest.TestCase):
             self.assertRegex(img, r'\bwidth="\d+"')
             self.assertRegex(img, r'\bheight="\d+"')
 
+    def test_archive_card_thumbnails_and_feature_preload(self):
+        page=(OUT/'activities/index.html').read_text(encoding='utf-8')
+        self.assertEqual(page.count('rel="preload" as="image"'),1)
+        self.assertIn('imagesrcset="/assets/activities/featured-webp/',page)
+        grid=re.search(r'<div class="activity-card-grid">(.*?)</div></div></section>',page,re.S)
+        self.assertIsNotNone(grid)
+        cards=CARD.findall(grid.group(1))
+        self.assertEqual(len(cards),PER_PAGE)
+        for card in cards:
+            img=re.search(r'<img\b[^>]*>',card)
+            self.assertIsNotNone(img)
+            tag=img.group(0)
+            self.assertIn('loading="lazy"',tag)
+            self.assertNotIn('loading="eager"',tag)
+            self.assertIn('srcset=',tag)
+            variants=set(re.findall(r'/assets/activities/card-webp/[\w-]+\.webp',tag))
+            self.assertGreaterEqual(len(variants),2)
+            for src in variants:
+                self.assertTrue((OUT/src.lstrip('/')).is_file(),src)
+
     def test_readable_mobile_color_and_touch_rules(self):
         css=(OUT/'site-refresh.css').read_text(encoding='utf-8')
         for selector in ('.project-path p', '.schedule li > span',
