@@ -95,6 +95,33 @@ for(const profile of profiles){
     if(record.httpStatus!==200)record.issues.push('HTTP '+record.httpStatus);
     if(route.name==='home'&&record.visual.mainSections!==7)record.issues.push('Home sections expected 7, found '+record.visual.mainSections);
     if(route.name==='activities'&&record.visual.activitiesCount>12)record.issues.push('Archive cards exceeded 12');
+    if(route.name==='admission'){
+      record.breadcrumb=await page.evaluate(()=>{
+        const nav=document.querySelector('nav.breadcrumb');
+        if(!nav)return null;
+        const parts=[...nav.children].map(el=>{
+          const r=el.getBoundingClientRect();
+          return {text:el.textContent.trim(),top:r.top,bottom:r.bottom,
+            centerY:(r.top+r.bottom)/2,left:r.left,right:r.right,height:r.height};
+        });
+        const navBox=nav.getBoundingClientRect();
+        return {parts,navWidth:navBox.width,viewport:innerWidth,
+          flexWrap:getComputedStyle(nav).flexWrap,
+          maxCenterDifference:parts.length?Math.max(...parts.map(p=>p.centerY))-Math.min(...parts.map(p=>p.centerY)):0};
+      });
+      if(!record.breadcrumb||record.breadcrumb.parts.length!==3)
+        record.issues.push('Admission breadcrumb structure missing');
+      else {
+        if(record.breadcrumb.maxCenterDifference>2)
+          record.issues.push('Admission breadcrumb not baseline-aligned');
+        if(record.breadcrumb.parts.some(p=>p.right>record.breadcrumb.viewport+2))
+          record.issues.push('Admission breadcrumb overflows viewport');
+        if(record.breadcrumb.parts[0].height<43)
+          record.issues.push('Admission breadcrumb home link tap height below 44px');
+        if(record.breadcrumb.flexWrap!=='nowrap')
+          record.issues.push('Admission breadcrumb is allowed to wrap');
+      }
+    }
     if(profile.name==='desktop'||profile.name==='mobile'){
       const screenshot=profile.name+'-'+route.name+'.png';
       await page.screenshot({path:path.join(ROOT,screenshot),fullPage:true,animations:'disabled',timeout:45000});
