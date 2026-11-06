@@ -53,6 +53,11 @@ class OptimizedArchiveTests(unittest.TestCase):
         positions=[homepage.index(x) for x in order]
         self.assertEqual(positions,sorted(positions))
         self.assertIn('site-refresh.css',homepage)
+        self.assertTrue((OUT/'assets/hero-ai-lab.webp').is_file())
+        self.assertIn('url("assets/hero-ai-lab.webp")',(OUT/'styles.css').read_text(encoding='utf-8'))
+        self.assertLess((OUT/'assets/hero-ai-lab.webp').stat().st_size,(OUT/'assets/hero-ai-lab.png').stat().st_size)
+        self.assertIn('GENERATED_ACTIVITY_HOME_START',homepage)
+        self.assertEqual(homepage.count('class="news-activity-card"'),3)
         self.assertIn('nav-cta',homepage)
         self.assertIn('id="guides"',homepage)
         self.assertIn('id="stories"',homepage)
