@@ -127,6 +127,12 @@ def enhance_page(page, relative, state, data):
         page=page.replace('</head>',f'<script type="application/ld+json">{json_script(breadcrumb)}</script>\n</head>')
     page=bind_state(page,state,data)
     if relative=='index.html':
+        # Only the homepage postpones the large GA4 library. analytics.js still
+        # initializes the event queue immediately; admissions pages are unchanged.
+        eager_ga='<script async src="https://www.googletagmanager.com/gtag/js?id=G-WN99333WLX"></script>'
+        if page.count(eager_ga)!=1:
+            raise ValueError("Homepage GA4 boot tag changed")
+        page=page.replace(eager_ga,'<script defer src="/analytics-loader.js"></script>',1)
         # Build-time admission values are already rendered into the homepage.
         # Clients only rehydrate if the Korea-local date changes after build.
         build_instant=datetime.fromisoformat(os.environ.get('BUILD_TIME') or datetime.now(KST).isoformat())
