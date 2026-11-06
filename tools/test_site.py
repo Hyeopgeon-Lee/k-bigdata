@@ -87,6 +87,33 @@ class SiteTests(unittest.TestCase):
                 with self.subTest(url=url,link=value):
                     self.assertTrue(target.is_file(),str(target))
                     if parsed.fragment and target.suffix=='.html':self.assertIn(f'id="{parsed.fragment}"',target.read_text(encoding='utf-8'))
+    def test_optional_campus_film(self):
+        """The promotional film is visible only after an actual media upload."""
+        home=(OUT/'index.html').read_text(encoding='utf-8')
+        self.assertIn('id="campus-film"',home)
+        self.assertIn('id="campus-film-title"',home)
+        self.assertIn('campus-film.js',home)
+        film=re.search(r'<section class="section campus-film-section".*?</section>',home,re.S)
+        self.assertIsNotNone(film)
+        self.assertIn(' hidden>',film[0])
+        self.assertIn('controls playsinline preload="none"',film[0])
+        self.assertNotIn(' autoplay',film[0])
+        self.assertIn('/assets/promo/og-projects.png',film[0])
+        self.assertIn('href="/projects/"',film[0])
+        self.assertIn('href="/admission/2027/"',film[0])
+        script=(OUT/'campus-film.js').read_text(encoding='utf-8')
+        self.assertIn("method: 'HEAD'",script)
+        self.assertIn("response.ok",script)
+        self.assertIn("section.hidden = false",script)
+        self.assertIn("section.hidden = true",script)
+        self.assertIn("department_video_play",script)
+        self.assertIn("department_video_complete",script)
+        movie=OUT/'assets/media/department-campus-a-v11.mp4'
+        if movie.is_file():
+            self.assertGreater(movie.stat().st_size, 1_000_000)
+            with movie.open('rb') as media:
+                self.assertEqual(media.read(8)[4:8], b'ftyp')
+
     def test_feed_xml_and_body(self):
         rss=ET.parse(OUT/'feed.xml');items=rss.findall('./channel/item');self.assertTrue(items)
         for item in items:
