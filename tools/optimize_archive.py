@@ -258,12 +258,105 @@ def optimize_first_screen_images() -> list[str]:
     return converted
 
 
+def optimize_featured_images() -> tuple[int, int]:
+    """Create responsive archive-feature WebPs and prioritize the first LCP image."""
+    from PIL import Image
+
+    page = OUT / 'activities/index.html'
+    html = page.read_text(encoding='utf-8')
+    pattern = re.compile(r'(<section class="activity-featured"[^>]*>)(.*?)(</section>)', re.S)
+    section = pattern.search(html)
+    if not section:
+        raise ValueError("Featured activity section disappeared from the archive")
+    directory = OUT / 'assets/activities/featured-webp'
+    directory.mkdir(parents=True, exist_ok=True)
+    count = 0
+    bytes_saved = 0
+
+    def optimize_tag(match: re.Match) -> str:
+        nonlocal count, bytes_saved
+        tag = match.group(0)
+        source = attr(tag, 'src')
+        if not source.startswith('/assets/'):
+            return tag
+        original = OUT / source.lstrip('/')
+        if not original.is_file():
+            raise ValueError(f"Missing featured activity image: {source}")
+        digest = hashlib.sha256(source.encode('utf-8')).hexdigest()[:12]
+        variants = []
+        with Image.open(original) as image:
+            picture = image.convert('RGB')
+            w, h = picture.size
+            for width in (480, 960):
+                variant = picture.copy()
+                variant.thumbnail((width, width * 2), Image.Resampling.LANCZOS)
+                file = directory / f'{digest}-{width}.webp'
+                variant.save(file, 'WEBP', quality=79, method=6)
+                variants.append((width, file, file.stat().st_size))
+        small, large = variants
+        small_url = '/assets/activities/featured-webp/' + small[1].name
+        large_url = '/assets/activities/featured-webp/' + large[1].name
+        tag = re.sub(r'\bsrc="[^"]+"', 'src="' + large_url + '"', tag, count=1)
+        tag = tag[:-1] + (f' srcset="{small_url} 480w, {large_url} 960w"'
+                    ' sizes="(max-width: 700px) calc(100vw - 24px), (max-width: 1100px) 46vw, 34vw"') + '>'
+        if ' width=' not in tag:
+            tag = tag[:-1] + f' width="{w}"' + '>'
+        if ' height=' not in tag:
+            tag = tag[:-1] + f' height="{h}"' + '>'
+        if count == 0:
+            tag = tag.replace('loading="lazy"', 'loading="eager" fetchpriority="high"')
+            if 'fetchpriority=' not in tag:
+                tag = tag[:-1] + ' loading="eager" fetchpriority="high">'
+        count += 1
+        bytes_saved += max(0, original.stat().st_size - large[2])
+        return tag
+
+    content = IMG.sub(optimize_tag, section.group(2))
+    if count < 3:
+        raise ValueError(f"Expected at least 3 featured activity images; found {count}")
+    html = html[:section.start(2)] + content + html[section.end(2):]
+    page.write_text(html, encoding='utf-8')
+    return count, bytes_saved
+
+
+def optimize_education_cover() -> tuple[int, int]:
+    """Avoid downloading a full-resolution PNG just to display a video poster."""
+    from PIL import Image
+
+    original = OUT / 'assets/media/education-overview-cover.png'
+    target = OUT / 'assets/media/education-overview-cover.webp'
+    with Image.open(original) as image:
+        poster = image.convert('RGB')
+        poster.thumbnail((900, 1600), Image.Resampling.LANCZOS)
+        poster.save(target, 'WEBP', quality=80, method=6)
+    before = original.stat().st_size
+    after = target.stat().st_size
+    if after >= before:
+        target.unlink(missing_ok=True)
+        return before, before
+    home = OUT / 'index.html'
+    html = home.read_text(encoding='utf-8')
+    old = 'poster="/assets/media/education-overview-cover.png"'
+    if old not in html:
+        raise ValueError("Education video cover reference changed")
+    home.write_text(
+        html.replace(old, 'poster="/assets/media/education-overview-cover.webp"', 1),
+        encoding='utf-8'
+    )
+    return before, after
+
+
 def main() -> None:
     repaired=enrich_images()
     cards,pages=paginate()
     converted=optimize_first_screen_images()
+    featured, featured_bytes=optimize_featured_images()
+    cover_before, cover_after=optimize_education_cover()
     add_sitemap(pages)
-    print(f"Optimized archive: {cards} cards across {pages} static pages, {repaired} image dimensions restored; media: {converted}")
+    print(f"Optimized archive: {cards} cards across {pages} static pages, "
+          f"{repaired} image dimensions restored; media: {converted}; "
+          f"featured images {featured}, savings up to {featured_bytes} bytes; "
+          f"education poster {cover_before}→{cover_after} bytes")
 
 
 if __name__ == '__main__':
