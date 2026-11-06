@@ -24,9 +24,9 @@
 - 글별 `BlogPosting` 구조화 데이터, 자동 사이트맵과 RSS
 
 
-## 학생 작품 대표 영상 (v11)
+## 학과 소개 대표 영상 (v11)
 
-메인 홈페이지의 **STUDENT PROJECT SHOWCASE**는 학생 프로젝트 목록 다음, 학과 수상 성과 소개 앞에 표시되는 16:9 영상 영역입니다. 49초 교육 소개 영상은 별도로 유지합니다.
+메인 홈페이지의 **DEPARTMENT INTRODUCTION**은 학과 경쟁력 다음, 학생 프로젝트 목록 앞에 표시되는 16:9 학과 종합 소개 영상입니다. 교육과정, 프로젝트, 수상 성과 및 진로를 함께 보여줍니다. 49초 교육 소개 영상은 별도로 유지합니다.
 
 - 원본: `department-campus-a-v11.mp4` (170.37초 / 1920×1080 / H.264 + AAC / 약 18.2MB)
 - 배치 경로: `assets/media/department-campus-a-v11.mp4` (파일 이름과 경로를 정확히 유지)
@@ -34,7 +34,7 @@
 - 사용자 동작: 직접 재생, `controls`·`playsinline`·`preload="none"`, 자동 재생 없음
 - 안전장치: `campus-film.js`가 동영상 URL을 HEAD 확인한 뒤 재생 영역을 노출하므로 파일이 없거나 서버 오류가 발생하면 깨진 플레이어가 표시되지 않음
 - 성과 추적: GA4 `department_video_play`, `department_video_complete` 이벤트. 학생의 개인정보를 수집하지 않음
-- 연계: 학생작품 `/projects/`, 입학안내 `/admission/2027/`
+- 연계: 교육과정 `/#roadmap`, 입학안내 `/admission/2027/`; 학생 프로젝트는 바로 다음 홈 섹션에서 확인
 
 원본 영상은 이 대화 첨부 파일이므로 저장소 연결만으로 자동 업로드되지 않습니다. 파일 업로드는 GitHub 저장소의 `assets/media/` 폴더에서 **Add file → Upload files**로 해당 MP4를 선택하고 `main`에 커밋하면 됩니다. MP4가 게시되면 별도 코드 수정 없이 영상 영역이 자동으로 노출됩니다. 기존 GitHub Actions는 저장소 자산을 `_site`로 복사해 Pages에 배포합니다.
 
