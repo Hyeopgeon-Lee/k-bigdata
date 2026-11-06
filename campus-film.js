@@ -7,6 +7,15 @@
   if (!section || !player || !source) return;
 
   const videoUrl = '/assets/media/department-campus-a-v11.mp4';
+  // Preserve the existing poster until the uploaded custom cover is deployed.
+  const coverUrl = '/assets/media/department-campus-cover.webp';
+  fetch(coverUrl, { method: 'HEAD' })
+    .then(response => {
+      if (response.ok && (response.headers.get('content-type') || '').startsWith('image/')) {
+        player.poster = coverUrl;
+      }
+    })
+    .catch(() => { /* Keep the existing fallback cover. */ });
   fetch(videoUrl, { method: 'HEAD' })
     .then(response => {
       const contentType = response.headers.get('content-type') || '';
