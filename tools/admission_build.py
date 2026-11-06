@@ -126,13 +126,15 @@ def enhance_page(page, relative, state, data):
         breadcrumb={'@context':'https://schema.org','@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':1,'name':'학과 홈','item':SITE+'/'},{'@type':'ListItem','position':2,'name':'AI·IT 인사이트','item':SITE+'/insights/'},{'@type':'ListItem','position':3,'name':unescape(title[1]).split(' | ')[0],'item':unescape(canonical[1])}]}
         page=page.replace('</head>',f'<script type="application/ld+json">{json_script(breadcrumb)}</script>\n</head>')
     page=bind_state(page,state,data)
-    if relative=='index.html':
-        # Only the homepage postpones the large GA4 library. analytics.js still
-        # initializes the event queue immediately; admissions pages are unchanged.
+    if relative in ('index.html','admission/2027/index.html'):
+        # GA4 analytics.js immediately queues click and page-view events.
+        # Loading the larger external tag after initial paint reduces competition
+        # with the hero text on both mobile entry pages.
         eager_ga='<script async src="https://www.googletagmanager.com/gtag/js?id=G-WN99333WLX"></script>'
         if page.count(eager_ga)!=1:
-            raise ValueError("Homepage GA4 boot tag changed")
+            raise ValueError("Landing page GA4 boot tag changed")
         page=page.replace(eager_ga,'<script defer src="/analytics-loader.js"></script>',1)
+    if relative=='index.html':
         # Build-time admission values are already rendered into the homepage.
         # Clients only rehydrate if the Korea-local date changes after build.
         build_instant=datetime.fromisoformat(os.environ.get('BUILD_TIME') or datetime.now(KST).isoformat())

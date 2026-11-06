@@ -37,6 +37,19 @@ class SiteTests(unittest.TestCase):
             self.assertNotIn('og-share-2027-susi1.png',page)
             self.assertIn(state['announcement'],page)
         self.assertEqual(len(data['rounds']),3)
+    def test_mobile_landing_analytics_loader(self):
+        """Both entry pages queue events before the external GA4 script loads."""
+        loader=(OUT/'analytics-loader.js').read_text(encoding='utf-8')
+        self.assertIn('pointerdown',loader)
+        self.assertIn('keydown',loader)
+        self.assertIn('setTimeout(start',loader)
+        for route in ('index.html','admission/2027/index.html'):
+            html=(OUT/route).read_text(encoding='utf-8')
+            self.assertEqual(html.count('<script defer src="/analytics-loader.js"></script>'),1)
+            self.assertNotIn('<script async src="https://www.googletagmanager.com/gtag/js',html)
+            self.assertIn('analytics.js',html)
+            self.assertIn('admission.js',html)
+
     def test_admission_breadcrumb_single_row_mobile(self):
         """Prevent the 44px home link from vertically displacing the path."""
         page=(OUT/'admission/2027/index.html').read_text(encoding='utf-8')
