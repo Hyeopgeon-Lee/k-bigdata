@@ -88,31 +88,26 @@ class SiteTests(unittest.TestCase):
                     self.assertTrue(target.is_file(),str(target))
                     if parsed.fragment and target.suffix=='.html':self.assertIn(f'id="{parsed.fragment}"',target.read_text(encoding='utf-8'))
     def test_optional_campus_film(self):
-        """The promotional film is visible only after an actual media upload."""
+        """The representative film has stable layout and a readable fallback."""
         home=(OUT/'index.html').read_text(encoding='utf-8')
-        self.assertIn('id="campus-film"',home)
-        self.assertLess(home.index('id="major"'), home.index('id="campus-film"'))
-        self.assertLess(home.index('id="campus-film"'), home.index('id="projects"'))
+        ids=['id="major"','id="campus-film"','id="roadmap"','id="projects"',
+             'id="outcomes"','id="activities"','id="admission"']
+        self.assertEqual([home.index(i) for i in ids],sorted(home.index(i) for i in ids))
         self.assertIn('DEPARTMENT INTRODUCTION · 2 MIN 50 SEC',home)
         self.assertIn('우리 학과를 영상으로 만나보세요.',home)
-        self.assertNotIn('STUDENT PROJECT SHOWCASE · 2 MIN 50 SEC',home)
         self.assertIn('id="campus-film-title"',home)
         self.assertIn('campus-film.js',home)
         film=re.search(r'<section class="section campus-film-section".*?</section>',home,re.S)
         self.assertIsNotNone(film)
-        self.assertIn(' hidden>',film[0])
+        self.assertNotIn(' hidden>',film[0])
         self.assertIn('controls playsinline preload="none"',film[0])
         self.assertNotIn(' autoplay',film[0])
         self.assertIn('/assets/media/department-campus-cover.webp',film[0])
         self.assertIn('href="#roadmap"',film[0])
         self.assertIn('href="/admission/2027/"',film[0])
         script=(OUT/'campus-film.js').read_text(encoding='utf-8')
-        self.assertIn("method: 'HEAD'",script)
-        self.assertIn("response.ok",script)
-        self.assertIn("section.hidden = false",script)
-        self.assertIn("section.hidden = true",script)
-        self.assertIn("department-campus-cover.webp",script)
-        self.assertIn("player.poster = coverUrl",script)
+        self.assertNotIn("method: 'HEAD'",script)
+        self.assertIn("player.preload = 'none'",script)
         self.assertIn("department_video_play",script)
         self.assertIn("department_video_complete",script)
         movie=OUT/'assets/media/department-campus-a-v11.mp4'
@@ -335,11 +330,13 @@ class ActivityPromotionTests(unittest.TestCase):
         script = (OUT/'activity-pagination.js').read_text(encoding='utf-8')
         css = (OUT/'activities.css').read_text(encoding='utf-8')
         self.assertIn("matchMedia('(max-width: 640px)')",script)
-        self.assertIn('start = end = state.page',script)
-        self.assertIn("compact ? 3 : 5",script)
+        self.assertIn('const PAGE_SIZE=12',script)
+        self.assertIn('grid.replaceChildren(',script)
+        self.assertIn('archive-static-pagination',script)
         self.assertIn('.activity-page-buttons{display:flex;align-items:center;justify-content:center;flex-wrap:nowrap',css)
         self.assertIn('overflow-x:auto',css)
         self.assertIn('body.activity-page{padding-bottom:0}',css)
+        self.assertIn('.archive-page-links',css)
 
     def test_activity_narratives_have_substance_without_repeated_coaching(self):
         # Check source narratives so navigation/related links cannot hide a
@@ -397,12 +394,12 @@ class ActivityPromotionTests(unittest.TestCase):
     def test_filters_are_keyboard_accessible_and_have_real_content(self):
         script = (OUT/'activity-pagination.js').read_text(encoding='utf-8')
         stylesheet = (OUT/'activities.css').read_text(encoding='utf-8')
-        for token in ("type = 'search'","addSelect('연도'","addSelect('활동 분야'",
-                      "setAttribute('aria-pressed'","addEventListener('popstate'",
-                      "PAGE_SIZE = 12"):
+        for token in ('type="search"','<span>연도</span>','<span>분야</span>',
+                      'aria-live','activity-index.json','const PAGE_SIZE=12',
+                      'grid.replaceChildren(', 'document.createElement'):
             self.assertIn(token,script)
         for rule in ('.activity-toolbar','.activity-featured-grid',
-                     '.activity-related','.activity-featured[hidden]'):
+                     '.activity-related','.archive-page-links'):
             self.assertIn(rule,stylesheet)
 
 if __name__=='__main__':unittest.main()
