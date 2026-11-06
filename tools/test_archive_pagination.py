@@ -126,6 +126,19 @@ class OptimizedArchiveTests(unittest.TestCase):
         self.assertIn('min-height: 44px',css)
         self.assertIn('text-decoration: underline',css)
 
+    def test_home_noncritical_work_is_deferred(self):
+        home=(OUT/'index.html').read_text(encoding='utf-8')
+        self.assertRegex(home, r'<body data-admission-rendered-day="\d{4}-\d{2}-\d{2}"')
+        admission=(OUT/'admission.js').read_text(encoding='utf-8')
+        self.assertIn('data-admission-rendered-day', admission)
+        self.assertIn("root.setInterval(check, 30000)", admission)
+        careers=(OUT/'employment-preview.js').read_text(encoding='utf-8')
+        self.assertIn('IntersectionObserver', careers)
+        self.assertIn("rootMargin: '250px 0px'", careers)
+        film=(OUT/'campus-film.js').read_text(encoding='utf-8')
+        self.assertNotIn('player.load();', film)
+        self.assertIn("player.preload = 'none'", film)
+
     def test_no_internal_edits_published(self):
         for path in ('data','reports','tools','.github'):
             self.assertFalse((OUT/path).exists(),path)
