@@ -126,6 +126,12 @@ def enhance_page(page, relative, state, data):
         breadcrumb={'@context':'https://schema.org','@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':1,'name':'학과 홈','item':SITE+'/'},{'@type':'ListItem','position':2,'name':'AI·IT 인사이트','item':SITE+'/insights/'},{'@type':'ListItem','position':3,'name':unescape(title[1]).split(' | ')[0],'item':unescape(canonical[1])}]}
         page=page.replace('</head>',f'<script type="application/ld+json">{json_script(breadcrumb)}</script>\n</head>')
     page=bind_state(page,state,data)
+    if relative=='index.html':
+        # Build-time admission values are already rendered into the homepage.
+        # Clients only rehydrate if the Korea-local date changes after build.
+        build_instant=datetime.fromisoformat(os.environ.get('BUILD_TIME') or datetime.now(KST).isoformat())
+        rendered_day=build_instant.astimezone(KST).date().isoformat()
+        page=page.replace('<body>', f'<body data-admission-rendered-day="{rendered_day}">', 1)
     if relative=='admission/2027/index.html' and state['phase']=='upcoming':
         page=page.replace('href="/admission/2027/" data-admission-phase=', 'href="#schedule" data-admission-phase=')
     if relative=='index.html':
