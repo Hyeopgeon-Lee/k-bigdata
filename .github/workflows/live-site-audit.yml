@@ -1,0 +1,64 @@
+name: Live website UX accessibility and Lighthouse audit
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'tools/audit-live-site.cjs'
+      - '.github/workflows/live-site-audit.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      AUDIT_URL: https://ai.k-bigdata.kr
+      AUDIT_OUT: audit-output
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install audit tools
+        run: |
+          npm install --no-save playwright@1.56.1 @axe-core/playwright@4.10.2 lighthouse@12.8.2
+          npx playwright install chromium --with-deps
+      - name: Actual browser rendering and WCAG checks
+        run: node tools/audit-live-site.cjs
+      - name: Desktop Lighthouse
+        if: always()
+        run: |
+          npx lighthouse "$AUDIT_URL/" --chrome-flags="--headless=new --no-sandbox --disable-dev-shm-usage" --preset=desktop --only-categories=performance,accessibility,best-practices,seo --output=json --output=html --output-path=./audit-output/lighthouse-desktop --quiet || echo "Desktop Lighthouse error" | tee audit-output/lighthouse-desktop-error.txt
+      - name: Mobile Lighthouse
+        if: always()
+        run: |
+          npx lighthouse "$AUDIT_URL/" --chrome-flags="--headless=new --no-sandbox --disable-dev-shm-usage" --form-factor=mobile --screenEmulation.mobile=true --only-categories=performance,accessibility,best-practices,seo --output=json --output=html --output-path=./audit-output/lighthouse-mobile --quiet || echo "Mobile Lighthouse error" | tee audit-output/lighthouse-mobile-error.txt
+      - name: Summarize Lighthouse results
+        if: always()
+        run: |
+          node - <<'NODE'
+          const fs=require('fs'),path=require('path');
+          const result={};
+          for(const target of ['desktop','mobile']){
+            const filename=path.join('audit-output',`lighthouse-${target}.report.json`);
+            if(!fs.existsSync(filename)){result[target]={error:'report not produced'};continue;}
+            try{
+              const r=JSON.parse(fs.readFileSync(filename,'utf8'));
+              const keys=['first-contentful-paint','largest-contentful-paint','speed-index','total-blocking-time','cumulative-layout-shift','interaction-to-next-paint'];
+              result[target]={categories:Object.fromEntries(Object.entries(r.categories||{}).map(([k,v])=>[k,Math.round(v.score*100)])),metrics:Object.fromEntries(keys.map(k=>[k,{value:r.audits[k]?.numericValue,display:r.audits[k]?.displayValue}])),warnings:r.runWarnings};
+            }catch(e){result[target]={error:e.message}}
+          }
+          fs.writeFileSync('audit-output/lighthouse-summary.json',JSON.stringify(result,null,2));
+          console.log(JSON.stringify(result,null,2));
+          NODE
+      - name: Publish screenshots and machine-readable report as workflow artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-site-audit-20261106
+          path: audit-output/
+          retention-days: 30
