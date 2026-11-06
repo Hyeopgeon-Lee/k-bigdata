@@ -29,6 +29,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: 최적화 이미지 생성 라이브러리
+        run: python -m pip install Pillow==11.3.0
       - name: 기존 글·입시 검증
         run: |
           python tools/generate_post.py --check
