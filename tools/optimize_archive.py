@@ -340,7 +340,11 @@ def optimize_first_page_cards() -> tuple[int, int]:
 
     page = OUT / 'activities/index.html'
     html = page.read_text(encoding='utf-8')
-    grid = GRID.search(html)
+    # paginate() already inserted the static navigation between grid and section ends.
+    grid = re.search(
+        r'(<div class="activity-card-grid">)(.*?)(</div>\s*<nav class="archive-static-pagination")',
+        html, re.S
+    )
     if not grid:
         raise ValueError("Published activity grid missing")
     media_dir = OUT / 'assets/activities/card-webp'
