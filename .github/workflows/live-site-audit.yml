@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   audit:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     env:
       AUDIT_URL: https://ai.k-bigdata.kr
@@ -23,6 +23,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Prepare audit directory
+        run: mkdir -p audit-output
       - name: Install audit tools
         run: |
           npm install --no-save playwright@1.56.1 @axe-core/playwright@4.10.2 lighthouse@12.8.2
