@@ -106,6 +106,8 @@ class SiteTests(unittest.TestCase):
         self.assertIn("response.ok",script)
         self.assertIn("section.hidden = false",script)
         self.assertIn("section.hidden = true",script)
+        self.assertIn("department-campus-cover.webp",script)
+        self.assertIn("player.poster = coverUrl",script)
         self.assertIn("department_video_play",script)
         self.assertIn("department_video_complete",script)
         movie=OUT/'assets/media/department-campus-a-v11.mp4'
