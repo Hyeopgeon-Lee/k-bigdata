@@ -33,7 +33,7 @@ SITE_URL = "https://ai.k-bigdata.kr"
 DEPARTMENT = "한국폴리텍대학 서울강서캠퍼스 빅데이터소프트웨어공학과"
 SOCIAL_IMAGE = f"{SITE_URL}/assets/promo/og-insights.png"
 KST = timezone(timedelta(hours=9))
-EXCLUDED = {".git", ".github", ".idea", "_site", "tools"}
+EXCLUDED = {".git", ".github", ".idea", "_site", "tools", "data", "reports"}
 STATIC_PAGES = (
     ("", "index.html"),
     ("ai-software/", "ai-software/index.html"),
