@@ -2,9 +2,7 @@
   'use strict';
   const API = 'https://script.google.com/macros/s/AKfycbwMMOwofSybWFy3BYmPi9ol_VQsi_WFfjnEzvnrxUF4ncDZ5TQeS8tcRyOXcgCbgVU4/exec';
   const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
-  document.addEventListener('DOMContentLoaded', async () => {
-    const root = document.querySelector('#employment-preview-list');
-    if (!root) return;
+  async function loadPreview(root) {
     try {
       const response = await fetch(`${API}?action=careerPublic`, { headers: { Accept: 'application/json' } });
       const result = await response.json();
@@ -15,5 +13,18 @@
       // Retain server-rendered public examples when the live API is unavailable.
       if (!root.querySelector('.employment-mini-card')) root.innerHTML = '<p class="employment-loading">취업현황은 전체 페이지에서 확인해 주세요.</p>';
     }
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const root = document.querySelector('#employment-preview-list');
+    if (!root) return;
+    // Static public examples are already server-rendered. Fetch the optional
+    // live GAS data only when the career section approaches the viewport.
+    if (!('IntersectionObserver' in window)) { loadPreview(root); return; }
+    const observer = new IntersectionObserver((entries, watcher) => {
+      if (!entries.some(entry => entry.isIntersecting)) return;
+      watcher.disconnect();
+      loadPreview(root);
+    }, {rootMargin: '250px 0px'});
+    observer.observe(root);
   });
 })();
