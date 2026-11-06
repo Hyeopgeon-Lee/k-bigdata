@@ -334,3 +334,28 @@ button, input { font: inherit; }
 .education-intro-player p{margin:.75rem 0 0;text-align:center;font-size:.8rem;color:#556b83}
 @media(max-width:860px){.education-intro-layout{grid-template-columns:1fr;gap:2rem}.education-intro-player{max-width:340px}}
 @media(max-width:640px){.education-intro-layout{padding:1.4rem 1.05rem;border-radius:1rem;margin-bottom:3rem}.education-intro-copy h2{font-size:clamp(1.9rem,7vw,2.65rem)}.education-intro-tags{gap:.4rem;margin:1.25rem 0}.education-intro-tags li{font-size:.8rem;padding:.35rem .7rem}.education-intro-player{max-width:330px}.education-intro-player p{font-size:.73rem}}
+
+
+/* Representative student projects film (16:9) */
+.campus-film-section { overflow:hidden; background:linear-gradient(145deg,#06182e 0%,#0b284b 100%); color:#fff; }
+.campus-film-section[hidden] { display:none !important; }
+.campus-film-head { display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1.5rem; margin-bottom:2rem; }
+.campus-film-copy { max-width:730px; }
+.campus-film-head .section-kicker { color:var(--lime-400); margin-bottom:.9rem; }
+.campus-film-head h2 { margin:0; font-size:clamp(2.1rem,4.8vw,3.5rem); line-height:1.18; letter-spacing:-.045em; }
+.campus-film-head h2 em { color:var(--cyan-400); font-style:normal; }
+.campus-film-lead { margin:1.2rem 0 0; max-width:680px; color:rgba(255,255,255,.76); font-size:1rem; }
+.campus-film-links { display:flex; flex-wrap:wrap; gap:.65rem; align-items:center; }
+.campus-film-links a { display:inline-flex; align-items:center; min-height:44px; padding:.7rem 1.05rem; border:1px solid rgba(255,255,255,.25); border-radius:.7rem; background:rgba(255,255,255,.06); color:#fff; font-weight:750; }
+.campus-film-links a:first-child { color:var(--navy-950); background:var(--lime-400); border-color:var(--lime-400); }
+.campus-film-links a:focus-visible { outline:3px solid var(--cyan-400); outline-offset:3px; }
+.campus-film-player { width:100%; max-width:1120px; margin-inline:auto; aspect-ratio:16/9; border-radius:1.25rem; overflow:hidden; border:1px solid rgba(255,255,255,.14); background:#020914; box-shadow:0 24px 60px rgba(0,0,0,.27); }
+.campus-film-player video { display:block; width:100%; height:100%; aspect-ratio:16/9; object-fit:contain; background:#020914; }
+.campus-film-caption { margin:1rem 0 0; text-align:center; font-size:.88rem; color:rgba(255,255,255,.67); }
+@media (max-width:720px) {
+  .campus-film-head { align-items:stretch; }
+  .campus-film-links { width:100%; }
+  .campus-film-links a { flex:1; justify-content:center; text-align:center; font-size:.9rem; }
+  .campus-film-player { border-radius:.75rem; }
+  .campus-film-caption { text-align:left; }
+}
