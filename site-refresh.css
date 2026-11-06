@@ -110,3 +110,43 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   html { scroll-behavior: auto; }
   .news-activity-card { transition: none; }
 }
+
+
+/* Post-release WCAG AA and mobile legibility repairs (2026-11-06).
+   The published page uses a Korean system-font stack; no blocking CDN font. */
+:root { --muted: #53627a; }
+body, button, input, select, textarea {
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+    "Malgun Gothic", "Noto Sans CJK KR", system-ui, sans-serif;
+}
+.brand { min-height: 44px; }
+.brand small { font-size: .76rem; color: #d4dfef; }
+.project-path p { color: #4e6076; }
+.outcomes-section .section-heading > p:last-child { color: #4e6076; }
+.schedule li > span { color: #c6d6ea; font-size: .88rem; }
+.schedule li small { color: #c6d6ea; }
+.site-footer .footer-info p { color: #c6d3e3; font-size: .875rem; }
+.site-footer .footer-info a { color: #ffffff; text-decoration: underline; text-underline-offset: .15em; font-weight: 680; }
+.site-footer .copyright { color: #b9c9df; font-size: .85rem; }
+.site-footer .footer-links a, .site-footer .seo-footer-links a { color: #d9e5f4; }
+.activity-list-heading > span { color: #4e6076; }
+.guide-section-head > p, .guide-section.surface .guide-section-head > p { color: #4f6075; }
+.learning-card .semester { color: #1051a0; font-size: .88rem; }
+.guide-section .official-note.dark-note, .guide-section .official-note.dark-note a {
+  color: #4d5e73; font-size: .875rem;
+}
+.official-note.dark-note a { text-decoration: underline; text-underline-offset: .2em; }
+/* Text links remain in flow, but their click area meets the 44px target. */
+.project-path > a, .outcomes-highlight-copy > a,
+.outcomes-careers-title > a, .news-top > a, .activity-read-more,
+.activity-breadcrumb > a, .breadcrumb > a, .guide-actions .text-link,
+.official-note a, .admission-card > a, .site-footer a {
+  display: inline-flex; align-items: center; min-height: 44px;
+}
+.activity-card .activity-read-more { min-height: 44px; padding-block: .35rem; }
+@media (max-width: 700px) {
+  .brand small { font-size: .75rem; }
+  .activity-page .activity-card-meta { font-size: .875rem; }
+  .activity-page .activity-search, .activity-page .activity-select-wrap { font-size: .875rem; }
+  .news-activity-card time { font-size: .9rem; }
+}
