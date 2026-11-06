@@ -69,8 +69,34 @@
   root.Admissions = {getState, update, rounds, roundStatus, data};
   if (typeof module !== 'undefined' && module.exports) module.exports = root.Admissions;
   if (root.document) {
-    const start = () => { update(); root.setInterval(() => update(), 30000); };
-    if (root.document.readyState === 'loading') root.document.addEventListener('DOMContentLoaded', start); else start();
-    root.document.addEventListener('visibilitychange', () => { if (!root.document.hidden) update(); });
+    // The homepage is fully populated during the static build. Hydrating its
+    // many data-admission nodes again on every load causes avoidable main-thread
+    // work on lower-powered phones. Compare the KST day before updating.
+    let renderedDay = null;
+    const sync = () => {
+      if (root.document.hidden) return;
+      const today = koreaDay(new Date());
+      if (!renderedDay || today !== renderedDay) {
+        update();
+        renderedDay = today;
+      }
+    };
+    const start = () => {
+      renderedDay = root.document.body?.getAttribute?.('data-admission-rendered-day') || null;
+      sync();
+      root.setInterval(() => {
+        if (renderedDay) sync(); // Only compares dates for static homepage state.
+        else update();         // All other pages retain the existing live update.
+      }, 30000);
+      if (renderedDay) {
+        // Correct a stale CTA before the first pointer interaction at midnight.
+        root.document.addEventListener('pointerdown', sync, {capture:true, passive:true});
+        root.document.addEventListener('keydown', sync, true);
+      }
+    };
+    if (root.document.readyState === 'loading') root.document.addEventListener('DOMContentLoaded', start);
+    else start();
+    root.document.addEventListener('visibilitychange', () => { if (!root.document.hidden) sync(); });
+    root.addEventListener?.('pageshow', sync);
   }
 })(typeof window !== 'undefined' ? window : globalThis);
