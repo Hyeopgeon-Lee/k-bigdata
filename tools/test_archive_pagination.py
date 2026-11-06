@@ -39,7 +39,11 @@ class OptimizedArchiveTests(unittest.TestCase):
             if page>1:
                 self.assertIn(f'<link rel="canonical" href="https://ai.k-bigdata.kr/activities/page/{page}/"',content)
                 self.assertIn(f'학과 활동 · {page}페이지',content)
-        self.assertEqual(received,slugs(original))
+        # The build deliberately publishes newest-first, which can differ from
+        # the hand-maintained source archive. Preserve every URL and the
+        # generated search-index order rather than asserting source order.
+        self.assertEqual(received,[entry['url'] for entry in records])
+        self.assertEqual(set(received),expected)
         self.assertLess((OUT/'activities/index.html').stat().st_size,130_000)
 
     def test_visitor_journey_stable(self):
