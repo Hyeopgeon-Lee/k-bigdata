@@ -11,7 +11,7 @@ import shutil
 import subprocess
 from datetime import date, datetime, time, timedelta, timezone
 from email.utils import format_datetime
-from html import escape
+from html import escape, unescape
 from pathlib import Path
 from string import Template
 from xml.sax.saxutils import escape as xml_escape
@@ -33,7 +33,7 @@ SITE_URL = "https://ai.k-bigdata.kr"
 DEPARTMENT = "한국폴리텍대학 서울강서캠퍼스 빅데이터소프트웨어공학과"
 SOCIAL_IMAGE = f"{SITE_URL}/assets/promo/og-insights.png"
 KST = timezone(timedelta(hours=9))
-EXCLUDED = {".git", ".github", ".idea", "_site", "tools"}
+EXCLUDED = {".git", ".github", ".idea", "_site", "tools", "data", "reports"}
 STATIC_PAGES = (
     ("", "index.html"),
     ("ai-software/", "ai-software/index.html"),
@@ -543,6 +543,40 @@ def render_story_cards(posts: list[dict], limit: int | None = 6) -> str:
     return "\n            ".join(cards)
 
 
+def render_latest_activities(limit: int = 3) -> str:
+    """Show the latest real student/campus activities; no hard-coded news drift."""
+    raw = (ROOT / "activities/index.html").read_text(encoding="utf-8")
+    candidates = []
+    for order, card in enumerate(re.findall(r'<article class="activity-card">.*?</article>', raw, re.S)):
+        match = re.search(r'<h3><a href="(/activities/[^"]+/)">(.*?)</a></h3><p>(.*?)</p>', card, re.S)
+        when = re.search(r'<time datetime="(\d{4}-\d{2}-\d{2})"', card)
+        if not match or not when:
+            continue
+        href, raw_title, raw_summary = match.groups()
+        if not (ROOT / href.lstrip('/') / 'index.html').is_file():
+            continue
+        clean = lambda text: unescape(re.sub(r'<[^>]+>', ' ', text)).strip()
+        title = clean(raw_title)
+        summary = clean(raw_summary)
+        if not title:
+            continue
+        candidates.append((when.group(1), order, href, title, summary))
+    candidates.sort(key=lambda row: (row[0], -row[1]), reverse=True)
+    if len(candidates) < limit:
+        raise ValueError("Not enough published activities for homepage")
+    output = []
+    for dt, _, href, title, summary in candidates[:limit]:
+        concise_title = title if len(title) <= 37 else title[:36].rstrip() + '…'
+        concise_summary = summary if len(summary) <= 77 else summary[:76].rstrip() + '…'
+        output.append(
+            f'<a class="news-activity-card" href="{html(href)}">'
+            f'<time datetime="{html(dt)}">{html(dt.replace("-", "."))}</time>'
+            f'<strong>{html(concise_title)}</strong>'
+            f'<span>{html(concise_summary)}</span><b>자세히 보기 →</b></a>'
+        )
+    return '\n            '.join(output)
+
+
 def update_home(posts: list[dict]) -> None:
     home_file = OUTPUT / "index.html"
     home = home_file.read_text(encoding="utf-8")
@@ -553,6 +587,13 @@ def update_home(posts: list[dict]) -> None:
     )
     if count != 1:
         raise ValueError("Homepage story marker was not found exactly once")
+    activity_pattern = re.compile(r"(<!-- GENERATED_ACTIVITY_HOME_START -->).*?(<!-- GENERATED_ACTIVITY_HOME_END -->)", re.DOTALL)
+    home, activity_count = activity_pattern.subn(
+        lambda match: match.group(1) + "\n            " + render_latest_activities(3) + "\n            " + match.group(2),
+        home,
+    )
+    if activity_count != 1:
+        raise ValueError("Homepage latest activity marker was not found exactly once")
     home_file.write_text(home, encoding="utf-8")
 
 

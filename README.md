@@ -26,17 +26,30 @@
 
 ## 학과 소개 대표 영상 (v11)
 
-메인 홈페이지의 **DEPARTMENT INTRODUCTION**은 학과 경쟁력 다음, 학생 프로젝트 목록 앞에 표시되는 16:9 학과 종합 소개 영상입니다. 교육과정, 프로젝트, 수상 성과 및 진로를 함께 보여줍니다. 49초 교육 소개 영상은 별도로 유지합니다.
+메인 홈페이지의 **DEPARTMENT INTRODUCTION**은 히어로 안내 다음에 표시되는 16:9 학과 종합 소개 영상입니다. 교육과정, 프로젝트, 수상 성과 및 진로를 함께 보여줍니다. 49초 교육 소개 영상은 별도로 유지합니다.
 
 - 원본: `department-campus-a-v11.mp4` (170.37초 / 1920×1080 / H.264 + AAC / 약 18.2MB)
 - 배치 경로: `assets/media/department-campus-a-v11.mp4` (파일 이름과 경로를 정확히 유지)
-- 커버 이미지: `assets/media/department-campus-cover.webp` (1600×900, WebP). 해당 파일이 정상 배포된 경우 자동으로 새 커버를 사용하고, 파일이 없으면 기존 `og-projects.png` 커버를 유지합니다.
+- 커버 이미지: `assets/media/department-campus-cover.webp` (1600×900, WebP). 영상 영역은 처음부터 표시되며, `preload=none`으로 클릭 전 MP4 다운로드를 최소화합니다.
 - 사용자 동작: 직접 재생, `controls`·`playsinline`·`preload="none"`, 자동 재생 없음
-- 안전장치: `campus-film.js`가 동영상 URL을 HEAD 확인한 뒤 재생 영역을 노출하므로 파일이 없거나 서버 오류가 발생하면 깨진 플레이어가 표시되지 않음
+- 재생 오류 처리: `campus-film.js`가 영상 재생 실패 시 안내 문구를 표시하며 빈 자리 이동이 발생하지 않도록 합니다.
 - 성과 추적: GA4 `department_video_play`, `department_video_complete` 이벤트. 학생의 개인정보를 수집하지 않음
 - 연계: 교육과정 `/#roadmap`, 입학안내 `/admission/2027/`; 학생 프로젝트는 바로 다음 홈 섹션에서 확인
 
-원본 영상은 이 대화 첨부 파일이므로 저장소 연결만으로 자동 업로드되지 않습니다. 파일 업로드는 GitHub 저장소의 `assets/media/` 폴더에서 **Add file → Upload files**로 해당 MP4를 선택하고 `main`에 커밋하면 됩니다. MP4가 게시되면 별도 코드 수정 없이 영상 영역이 자동으로 노출됩니다. 기존 GitHub Actions는 저장소 자산을 `_site`로 복사해 Pages에 배포합니다.
+영상과 커버 이미지는 이미 `assets/media/`에 등록돼 있습니다. 파일 교체 시 같은 파일명을 유지하고 `main`에 커밋하면 배포가 갱신됩니다.
+
+## 2026-11 가독성·콘텐츠 탐색 개편
+
+- 메인: 학과 한눈에 보기 → 학과 소개 영상 → 교육과정 → 학생 프로젝트 → 성과와 진로 → 최근 학과 소식 → 입학안내, **7개 상위 섹션**으로 통합
+- 모든 페이지의 상단 메뉴: 학과소개·교육과정·학생성과·취업·진로·학과소식 + 입학안내 CTA. 전공별 상세 가이드 5개는 교육과정 하위에 유지
+- 모바일 UX: `site-refresh.css`에서 본문 글자, 섹션 간격, 메뉴 높이, 44px 클릭 영역을 공통 관리
+- 메인 최근 소식: `tools/build_site.py`가 학과 활동 게시글을 날짜순으로 읽어 **최근 3건** 자동 갱신
+- 학과 활동: 원본 `activities/index.html`과 상세글 URL은 유지. 빌드 후 `tools/optimize_archive.py`가 공개 아카이브를 **12건/페이지**로 분할해 `/activities/page/2/` 이후 경로를 만듦. `/assets/data/activity-index.json`에는 검색에 필요한 공개 항목만 생성
+- 이미지: 배포 시 원본을 보존하면서 히어로/성과 WebP를 생성하고, 상세 게시글의 누락된 이미지 치수를 채움
+- 공개 자산: `data/`, `reports/`, `tools/`, `.github/` 등 내부 편집·분석 파일은 GitHub Pages 배포물에 포함하지 않음
+- 검증 순서: 기존 입시·SEO·전체 290건 콘텐츠 테스트 → 공개 목록 분할 및 이미지 최적화 → 페이지 누락·URL 보존·모바일 구조 테스트. 별도 PR QA 워크플로도 적용
+
+`_site/`는 자동 생성 결과이므로 수동 수정하지 않습니다. 유지보수 시 `index.html`, `site-refresh.css`, `activities/index.html`과 `tools/`의 빌드 스크립트를 수정해야 합니다.
 
 ## 자동 발행
 

@@ -1,0 +1,112 @@
+/* Academic department website refresh · 2026-11.
+   Readable, mobile-first enhancements; existing design tokens remain supported. */
+:root { --container: min(1120px, calc(100% - 2.5rem)); }
+html { scroll-padding-top: 5.75rem; }
+body { line-height: 1.7; }
+#major, #campus-film, #roadmap, #guides, #projects, #outcomes,
+#employment-preview, #activities, #stories, #admission, #faq-title { scroll-margin-top: 5.75rem; }
+.section { padding-block: clamp(3.75rem, 6vw, 5.5rem); }
+.section-heading { max-width: 760px; }
+.section-heading h2, .activity-home-copy h2 { font-size: clamp(2rem, 4vw, 3.1rem); line-height: 1.2; letter-spacing: -.047em; }
+.section-heading > p:last-child, .campus-film-lead { font-size: clamp(.98rem, 1.1vw, 1.05rem); line-height: 1.75; }
+.section-kicker { font-size: .86rem; letter-spacing: .09em; margin-bottom: .75rem; }
+.main-nav { gap: clamp(.65rem, 1.15vw, 1.15rem); font-size: .91rem; }
+.main-nav a { min-height: 44px; display: inline-flex; align-items: center; }
+.main-nav .nav-cta { font-weight: 850; }
+.button { min-height: 46px; }
+a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 3px solid #39dbff; outline-offset: 3px;
+}
+.campus-film-section { padding-block: clamp(3.5rem, 6vw, 5rem); }
+.campus-film-head h2 { font-size: clamp(2rem, 4vw, 3.1rem); }
+.campus-film-links a { line-height: 1.4; }
+.campus-film-player { aspect-ratio: 16/9; }
+.education-intro-layout { gap: clamp(2rem, 4vw, 4rem); }
+.roadmap-layout { padding-top: clamp(2.5rem, 4vw, 4rem); }
+.compact-guides { margin-top: clamp(2.2rem, 4vw, 3.6rem); padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.compact-guides-heading { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: .5rem 1.5rem; margin-bottom: 1rem; }
+.compact-guides h3 { margin: 0; font-size: clamp(1.16rem, 2.5vw, 1.5rem); line-height: 1.35; }
+.compact-guides p { margin: 0; color: var(--muted); font-size: .94rem; }
+.compact-guide-links { display: flex; flex-wrap: wrap; gap: .65rem; }
+.compact-guide-links a { display: inline-flex; align-items: center; min-height: 44px; padding: .62rem 1rem; border-radius: 999px; color: #154c85; background: #edf4fc; border: 1px solid #d7e4f1; font-weight: 750; font-size: .94rem; }
+.compact-guide-links a:hover { background: #deebfd; }
+#projects .project-paths { margin-top: 1.5rem; }
+#projects .project-path { padding: clamp(1.25rem, 2.2vw, 1.85rem); }
+.outcomes-section { background: #f3f7fb; }
+.outcomes-heading { margin-bottom: 2rem; }
+.outcomes-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 1.1rem; }
+.outcomes-highlight { display: grid; grid-template-columns: 47% 1fr; gap: 1.35rem; overflow: hidden; background: white; border: 1px solid #e1e9f2; border-radius: 1.15rem; }
+.outcomes-highlight-photo { display: block; min-height: 230px; overflow: hidden; }
+.outcomes-highlight-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.outcomes-highlight-copy { align-self: center; padding: 1.35rem 1.35rem 1.35rem 0; }
+.outcomes-highlight-copy > span { font-size: .86rem; color: #2369a9; font-weight: 800; }
+.outcomes-highlight-copy h3 { margin: .55rem 0 .65rem; line-height: 1.35; font-size: clamp(1.22rem, 2vw, 1.6rem); }
+.outcomes-highlight-copy p { color: #52627a; margin: 0 0 1rem; font-size: .98rem; }
+.outcomes-highlight-copy > a { color: #145eb1; text-decoration: underline; text-underline-offset: 3px; font-weight: 800; }
+.outcomes-awards { background: white; border: 1px solid #e1e9f2; border-radius: 1.15rem; padding: 1.5rem; display: flex; flex-direction: column; }
+.outcomes-awards h3 { margin: 0 0 .7rem; font-size: 1.2rem; }
+.outcomes-awards ul { list-style: none; padding: 0; margin: 0; }
+.outcomes-awards li { display: grid; gap: .15rem; border-bottom: 1px solid #e6edf4; padding: .8rem 0; font-size: .91rem; }
+.outcomes-awards li span { color: #566a7e; }
+.outcomes-awards a { display: inline-flex; margin-top: auto; padding-top: 1.15rem; color: #145eb1; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
+.outcomes-careers { margin-top: 1.75rem; }
+.outcomes-careers-title { display: flex; align-items: end; justify-content: space-between; flex-wrap: wrap; gap: .75rem; margin-bottom: 1.2rem; }
+.outcomes-careers-title h3 { margin: 0; font-size: clamp(1.35rem, 2.4vw, 1.85rem); line-height: 1.3; }
+.outcomes-careers-title p { margin-bottom: .5rem; }
+.outcomes-careers-title > a { color: #145eb1; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
+.outcomes-careers .employment-preview-grid { margin-top: 0; }
+.outcomes-careers .employment-mini-card { min-height: 145px; }
+.news-section { background: white; }
+.news-top { display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: .7rem 1.2rem; margin-bottom: 1.3rem; }
+.news-top .section-heading > p:last-child { margin-top: .55rem; }
+.news-top .stories-more { margin: 0; white-space: normal; }
+.news-activity-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.news-activity-card { display: flex; flex-direction: column; min-height: 196px; padding: 1.35rem; gap: .45rem; background: #f5f8fc; border: 1px solid #dce6f0; border-radius: 1rem; color: var(--ink); transition: background .2s ease; }
+.news-activity-card:hover { background: #eaf2fc; }
+.news-activity-card time { font-size: .89rem; font-weight: 750; color: #2369a9; }
+.news-activity-card strong { font-size: 1.12rem; line-height: 1.4; }
+.news-activity-card span { font-size: .96rem; color: #52647b; }
+.news-activity-card b { font-size: .91rem; color: #155ca4; margin-top: auto; padding-top: .65rem; }
+.news-insights { margin-top: clamp(2.4rem, 5vw, 4.2rem); padding-top: 1.55rem; border-top: 1px solid var(--line); }
+.news-insights h3 { margin: .25rem 0 0; font-size: clamp(1.25rem, 2.6vw, 1.8rem); line-height: 1.35; }
+.news-insights .story-grid { margin-top: 1rem; }
+.admission-section { padding-bottom: clamp(3.5rem, 5vw, 4.5rem); }
+.admission-section > .faq-section { margin-top: 3rem; padding: 2.25rem 0 0; background: transparent; border-top: 1px solid rgba(255,255,255,.22); color: #fff; }
+.admission-section .faq-section .section-kicker { color: var(--lime-400); }
+.admission-section .faq-section .section-heading h2 { color: #fff; font-size: clamp(1.8rem, 3vw, 2.35rem); }
+.admission-section .faq-list details { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); }
+.admission-section .faq-list details summary { color: white; }
+.admission-section .faq-list details p { color: #e5ecf4; }
+@media (max-width: 1100px) {
+  .main-nav { max-height: calc(100dvh - 5rem); overflow-y: auto; overscroll-behavior: contain; padding-bottom: calc(1.5rem + env(safe-area-inset-bottom)); }
+  .main-nav > a { min-height: 48px; }
+}
+@media (max-width: 860px) {
+  .outcomes-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+  :root { --container: calc(100% - 1.4rem); }
+  .section { padding-block: 3.6rem; }
+  .section-heading h2 { font-size: clamp(1.9rem, 7vw, 2.6rem); line-height: 1.25; }
+  .section-kicker { font-size: .84rem; }
+  .main-nav { max-height: calc(100dvh - 4.4rem); }
+  .campus-film-head h2 { font-size: clamp(1.85rem, 7vw, 2.55rem); }
+  .campus-film-links { flex-direction: column; align-items: stretch; }
+  .campus-film-links a { width: 100%; justify-content: center; font-size: .96rem; }
+  .compact-guide-links a { font-size: .94rem; }
+  .outcomes-highlight { grid-template-columns: 1fr; gap: 0; }
+  .outcomes-highlight-photo { min-height: 0; aspect-ratio: 16/9; }
+  .outcomes-highlight-copy { padding: 1.2rem; }
+  .outcomes-awards { padding: 1.2rem; }
+  .outcomes-careers .employment-preview-grid { grid-template-columns: 1fr; }
+  .news-activity-grid { grid-template-columns: 1fr; gap: .75rem; }
+  .news-activity-card { min-height: 0; padding: 1.2rem; }
+  .news-insights .story-grid { grid-template-columns: 1fr; }
+  .admission-section > .faq-section { margin-top: 2.2rem; padding-top: 1.5rem; }
+  .admission-section .faq-layout { grid-template-columns: 1fr; }
+  .mobile-apply { bottom: calc(.55rem + env(safe-area-inset-bottom)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .news-activity-card { transition: none; }
+}

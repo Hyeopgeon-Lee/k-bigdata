@@ -225,3 +225,27 @@
     max-width:100%;overflow-x:auto;overflow-y:hidden
   }
 }
+
+/* True static activity pagination: only 12 cards per initial HTML page. */
+.archive-static-pagination { display:grid; justify-items:center; gap:.8rem; margin:2.25rem auto 0; }
+.archive-static-pagination[hidden], .activity-pagination[hidden] { display:none!important; }
+.archive-static-pagination > p { margin:0; color:#51687e; font-size:.94rem; font-weight:750; }
+.archive-page-links { display:flex; flex-wrap:wrap; justify-content:center; gap:.4rem; max-width:100%; }
+.archive-page-links a { display:inline-flex; align-items:center; justify-content:center; min-width:44px; min-height:44px; padding:.55rem .7rem; border:1px solid #c5d5e6; border-radius:.65rem; color:#174c84; background:#fff; font-weight:780; }
+.archive-page-links a[aria-current="page"] { color:#fff; background:#123f72; border-color:#123f72; }
+.archive-page-links a:hover { background:#eaf3ff; }
+.archive-page-links a[aria-current="page"]:hover { background:#123f72; }
+.archive-page-links a:focus-visible { outline:3px solid #1268f3; outline-offset:2px; }
+.activity-toolbar-compact { margin-block:1rem 1.5rem; }
+.activity-toolbar-compact input, .activity-toolbar-compact select { min-height:44px; font-size:1rem; }
+.activity-toolbar-compact .activity-match-hint { font-size:.94rem; }
+.activity-toolbar-compact .activity-clear-filters { min-height:44px; }
+@media(max-width:640px) {
+  .activity-toolbar-compact { padding:1rem; }
+  .activity-toolbar-fields { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .activity-toolbar-fields .activity-search { grid-column:1/-1; }
+  .archive-page-links { gap:.28rem; }
+  .archive-page-links a { min-width:44px; padding:.5rem .55rem; font-size:.88rem; }
+  .activity-card-body p { font-size:.95rem; }
+  .activity-card h3 { font-size:1.12rem; }
+}

@@ -1,0 +1,55 @@
+name: 학과 홈페이지 UX·성능 회귀 검증
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'styles.css'
+      - 'site-refresh.css'
+      - 'activities.css'
+      - 'activity-pagination.js'
+      - 'campus-film.js'
+      - 'tools/**'
+      - '.github/workflows/publish.yml'
+      - '.github/workflows/site-refresh-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: 최적화 이미지 생성 라이브러리
+        run: python -m pip install Pillow==11.3.0
+      - name: 기존 콘텐츠·입시·분석 회귀 검증
+        run: |
+          python tools/generate_post.py --check
+          python tools/test_insights.py
+          node tools/test_admission.cjs
+          node tools/test_analytics.cjs
+      - name: 사이트 빌드
+        env:
+          OFFLINE_BUILD: '1'
+        run: python tools/build_site.py
+      - name: 원본 콘텐츠·링크·SEO 회귀 검사
+        run: python tools/test_site.py
+      - name: 프런트엔드 JavaScript 문법 검사
+        run: |
+          node --check activity-pagination.js
+          node --check campus-film.js
+          node --check script.js
+      - name: 활동 목록 페이지 분리
+        run: python tools/optimize_archive.py
+      - name: 배포 결과 검증
+        run: python tools/test_archive_pagination.py
