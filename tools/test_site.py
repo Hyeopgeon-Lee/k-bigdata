@@ -126,6 +126,8 @@ class SiteTests(unittest.TestCase):
         self.assertIn('controls playsinline preload="none"',film[0])
         self.assertNotIn(' autoplay',film[0])
         self.assertIn('/assets/media/department-campus-cover.webp',film[0])
+        self.assertIn('<source src="/assets/media/department-campus-a-v11.mp4" type="video/mp4" />',film[0])
+        self.assertIn('class="campus-film-play"',film[0])
         self.assertIn('href="#roadmap"',film[0])
         self.assertIn('href="/admission/2027/"',film[0])
         script=(OUT/'campus-film.js').read_text(encoding='utf-8')
