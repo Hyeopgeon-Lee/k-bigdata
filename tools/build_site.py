@@ -392,6 +392,27 @@ def install_full_resolution_ddp_photos() -> None:
         (folder / (name + ".jpg")).write_bytes(payload)
 
 
+def install_ddp_event_video() -> None:
+    """Restore the original 1080x1920 silent MP4 without resizing or recompression.
+
+    Split base64 sources avoid large-media transfer limits; only the decoded
+    video is published. SHA-256 ensures an exact reconstruction.
+    """
+    target = OUTPUT / "assets" / "activities" / "ddp-seoul-jobfair-2026-demo.mp4"
+    target.parent.mkdir(parents=True, exist_ok=True)
+    digest = hashlib.sha256()
+    with target.open("wb") as output:
+        for part in range(12):
+            source = ROOT / "data" / "ddp-job-fair-2026-video" / f"part{part:02d}.txt"
+            encoded = "".join(source.read_text(encoding="ascii").split())
+            block = base64.b64decode(encoded, validate=True)
+            digest.update(block)
+            output.write(block)
+    if digest.hexdigest() != "c4d5e874569855e50b5e077735c3b45487e3a4fb14ac415f7640ce670a3319e1":
+        target.unlink(missing_ok=True)
+        raise ValueError("DDP event video failed source integrity verification")
+
+
 def post_url(post: dict) -> str:
     return f"{SITE_URL}/insights/{post['slug']}/"
 
@@ -733,6 +754,7 @@ def main() -> None:
     template = Template(TEMPLATE_FILE.read_text(encoding="utf-8"))
     copy_public_files()
     install_full_resolution_ddp_photos()
+    install_ddp_event_video()
     assemble_education_video()
     for post in posts:
         target = OUTPUT / "insights" / post["slug"] / "index.html"
