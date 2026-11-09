@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import base64
 import hashlib
 import os
 import re
@@ -44,6 +45,7 @@ STATIC_PAGES = (
     ("employment/", "employment/index.html"),
     ("projects/", "projects/index.html"),
     ("activities/", "activities/index.html"),
+    ("activities/seoul-job-fair-ddp-2026/", "activities/seoul-job-fair-ddp-2026/index.html"),
     ("activities/startup-career-lecture-2026/", "activities/startup-career-lecture-2026/index.html"),
     ("activities/highschool-vibecoding-data-2026/", "activities/highschool-vibecoding-data-2026/index.html"),
     ("activities/sesac-hackathon-grand-prize-2025/", "activities/sesac-hackathon-grand-prize-2025/index.html"),
@@ -366,6 +368,28 @@ def copy_public_files() -> None:
             shutil.copytree(item, target)
         else:
             shutil.copy2(item, target)
+
+
+def install_full_resolution_ddp_photos() -> None:
+    """Publish untouched 1536x1152 JPEG originals from base64 source files.
+
+    The archive keeps the original bytes as source-controlled text so the
+    static-site build can restore them without recompression or resizing.
+    """
+    images = (
+        ("ddp-seoul-jobfair-2026-year1", 433738,
+         "a47d897908bdf38e3c7c52d9107d79cd9e6eb350d405f92860bb915756f2220c"),
+        ("ddp-seoul-jobfair-2026-year2", 492844,
+         "98ee7b019adca4667d5ee40887d5c85bcabea07e6b5e6bc71edf4a9ca8fefc47"),
+    )
+    folder = OUTPUT / "assets" / "activities"
+    folder.mkdir(parents=True, exist_ok=True)
+    for name, byte_count, sha256 in images:
+        source = ROOT / "data" / (name + ".jpg.b64")
+        payload = base64.b64decode(source.read_text(encoding="ascii").strip(), validate=True)
+        if len(payload) != byte_count or hashlib.sha256(payload).hexdigest() != sha256:
+            raise ValueError(f"Original event photo failed integrity check: {name}")
+        (folder / (name + ".jpg")).write_bytes(payload)
 
 
 def post_url(post: dict) -> str:
@@ -708,6 +732,7 @@ def main() -> None:
     posts = load_posts()
     template = Template(TEMPLATE_FILE.read_text(encoding="utf-8"))
     copy_public_files()
+    install_full_resolution_ddp_photos()
     assemble_education_video()
     for post in posts:
         target = OUTPUT / "insights" / post["slug"] / "index.html"
