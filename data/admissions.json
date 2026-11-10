@@ -1,7 +1,7 @@
 {
   "year": 2027,
   "timezone": "Asia/Seoul",
-  "verifiedOn": "2026-11-02",
+  "verifiedOn": "2026-11-10",
   "sourceUrl": "https://www.kopo.ac.kr/cmm/fms/Download.do?atchFileId=FILE_000000000452216&fileSn=0",
   "guideUrl": "https://www.kopo.ac.kr/kangseo/content.do?menu=321",
   "admissionUrl": "/admission/2027/",
@@ -36,10 +36,10 @@
       "deadlineTime": "23:59",
       "interview": "2026-12-02",
       "result": "2026-12-17",
-      "seats": 14,
+      "seats": 11,
       "socialImage": "og-admission-2027-susi2.png",
       "seatsBasis": "정원 내·외 합산",
-      "seatsSource": "2026-11-02 학과 제공 수시2차 모집인원"
+      "seatsSource": "2026-11-10 학과 제공 수시2차 정정 인원(정시 제외)"
     },
     {
       "id": "regular",
@@ -53,16 +53,16 @@
       "socialImage": "og-admission-2027-regular.png"
     }
   ],
-  "seatsVerifiedOn": "2026-11-02",
-  "seatsNote": "2026년 11월 2일 학과에서 제공한 수시2차 모집인원이며 정원 내·외 합산 기준입니다. 전형 일정과 지원자격은 공식 모집요강을 확인하세요.",
+  "seatsVerifiedOn": "2026-11-10",
+  "seatsNote": "2026년 11월 10일 학과에서 제공한 정정 자료 기준 수시2차 모집인원입니다. 정원 내·외 합산이며, 종전 수치는 정시 모집인원이 포함되어 있어 제외하였습니다. 전형 일정과 지원자격은 공식 모집요강을 확인하세요.",
   "seatsSourceType": "department-provided",
   "seatsOtherDepartments": {
-    "디지털콘텐츠과": 17,
-    "보건의료정보과": 8,
-    "빅데이터소프트웨어공학과": 14,
-    "사이버보안과": 11,
+    "디지털콘텐츠과": 12,
+    "보건의료정보과": 5,
+    "빅데이터소프트웨어공학과": 11,
+    "사이버보안과": 7,
     "주얼리디자인과": 22,
-    "패션디자인과": 21
+    "패션디자인과": 19
   },
-  "seatsCampusTotal": 93
+  "seatsCampusTotal": 76
 }
