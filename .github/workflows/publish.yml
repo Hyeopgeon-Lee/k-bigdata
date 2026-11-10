@@ -58,6 +58,27 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: 오래된 Pages 배포 잠금 해제 확인
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OLD_PAGES_SHA: 9dd16a0a66fc7673cf3d05f1612374533a2582c6
+        run: |
+          set -euo pipefail
+          api_path="repos/${GITHUB_REPOSITORY}/pages/deployments/${OLD_PAGES_SHA}"
+          if status="$(gh api "$api_path" --jq '.status' 2>&1)"; then
+            echo "Earlier Pages deployment status: $status"
+            case "$status" in
+              succeed|failed|canceled|cancelled)
+                echo "Older deployment is already finished"
+                ;;
+              *)
+                echo "Cancelling stalled older Pages deployment: $OLD_PAGES_SHA"
+                gh api -X POST "$api_path/cancel"
+                ;;
+            esac
+          else
+            echo "::warning::Pages status query unavailable: $status"
+          fi
       - name: GitHub Pages 게시
         id: deployment
         uses: actions/deploy-pages@v4
