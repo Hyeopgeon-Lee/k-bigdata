@@ -65,7 +65,7 @@ class SiteTests(unittest.TestCase):
             content=(OUT/path).read_text(encoding='utf-8')
             for phrase in ('수시1차 등록 미달', '등록 미달 반영', '미충원', '모집 저조'):
                 self.assertNotIn(phrase, content, f'{path}: {phrase}')
-        self.assertIn('14명', (OUT/'admission/2027/index.html').read_text(encoding='utf-8'))
+        self.assertIn('11명', (OUT/'admission/2027/index.html').read_text(encoding='utf-8'))
     def test_all_required_urls_and_no_duplicates(self):
         for path in ('','admission/2027/','projects/','employment/','ai-software/','data-analysis/','backend-software/','seoul-it-college/','career-portfolio/','insights/','activities/','activities/social-data-career-trends/','activities/gangseo-job-fair-2026/','activities/project-presentation-2026/','activities/agencypro-sql-tuning-2026/','activities/agencypro-seo-jung-ik-lecture-2026/'):
             self.assertIn(HOST+'/'+path,self.urls)
