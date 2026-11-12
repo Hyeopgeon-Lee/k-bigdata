@@ -31,12 +31,13 @@ assert.equal(at('2026-12-03T12:00:00+09:00').pending,'수시2차 최초 합격�
 assert.equal(at('2027-01-28T12:00:00+09:00').pending,'정시모집 최초 합격자 발표 2027.02.04');
 assert.equal(roundStatus(rounds[0],new Date('2026-10-14T12:00:00+09:00')),'INTERVIEW');
 assert.equal(roundStatus(rounds[0],new Date('2026-10-15T12:00:00+09:00')),'RESULT_WAIT');
-assert.match(at('2026-11-11T12:00:00+09:00').href,/menu=1714/);
+assert.equal(at('2026-11-11T12:00:00+09:00').href,'https://apply.jinhakapply.com/Notice/5041045/A');
+assert.match(at('2027-01-04T12:00:00+09:00').href,/menu=1714/); // 정시는 아직 전용 접수 URL 미확인
 const field={getAttribute:()=> 'name',textContent:''};const link={setAttribute(k,v){this[k]=v;}};const pending={};
 const doc={querySelectorAll(s){return s==='[data-admission]'?[field]:s==='[data-admission-link]'?[link]:s==='[data-admission-pending]'?[pending]:[];}};
 update(doc,new Date('2026-09-16T12:00:00+09:00'));assert.match(link.href,/menu=1714/);
 update(doc,new Date('2026-10-02T12:00:00+09:00'));assert.equal(link.href,'/admission/2027/');assert.equal(field.textContent,'수시2차');assert.equal(pending.hidden,false);
-update(doc,new Date('2026-11-11T12:00:00+09:00'));assert.match(link.textContent,/수시2차 원서접수/);assert.equal(pending.hidden,true);
+update(doc,new Date('2026-11-11T12:00:00+09:00'));assert.equal(link.href,'https://apply.jinhakapply.com/Notice/5041045/A');assert.match(link.textContent,/수시2차 원서접수/);assert.equal(pending.hidden,true);
 // Browser and build use exactly the same data/state engine.
 const ctx={ADMISSIONS_DATA:data};vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../admission.js'),'utf8'),ctx);
 for(const time of ['2026-10-03T06:00:00+09:00','2026-11-11T00:00:00+09:00','2027-01-23T00:00:00+09:00'])assert.equal(JSON.stringify(ctx.Admissions.getState(new Date(time))),JSON.stringify(at(time)));
