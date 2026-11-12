@@ -81,7 +81,8 @@ GitHub Actions는 글 검증과 배포만 담당합니다. 수동 실행은 기�
 
 - [학과 공식 홈페이지](https://www.kopo.ac.kr/kangseo/content.do?menu=1547)
 - [2027학년도 모집요강](https://kopo.ac.kr/kangseo/content.do?menu=321)
-- [인터넷원서접수 안내](https://www.kopo.ac.kr/kangseo/content.do?menu=1714) (수시2차 직접 접수 URL은 별도 확인 전까지 사용하지 않음)
+- [수시2차 원서접수 바로가기](https://apply.jinhakapply.com/Notice/5041045/A) (2026.11.11~11.27, 수시2차 전용)
+- [학교 인터넷원서접수 안내](https://www.kopo.ac.kr/kangseo/content.do?menu=1714) (다른 전형 및 공식 안내 확인)
 - [입학 상담 오픈채팅](https://open.kakao.com/o/gEd0JIad)
 
 > 입학 일정과 전형 기준은 대학 사정에 따라 바뀔 수 있으므로 공식 모집요강을 우선합니다.
