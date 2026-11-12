@@ -13,7 +13,7 @@
   "ogDescription": "학생 작품과 졸업생 취업현황으로 확인하는 2년제 대학 학위과정. 2027학년도 {round} · {period}",
   "cta": {
     "UPCOMING": "{round} 모집일정",
-    "OPEN": "{round} 원서접수 안내",
+    "OPEN": "{round} 원서접수 바로가기",
     "CLOSED": "추가모집·입학 공지 확인"
   },
   "rounds": [
@@ -39,7 +39,8 @@
       "seats": 11,
       "socialImage": "og-admission-2027-susi2.png",
       "seatsBasis": "정원 내·외 합산",
-      "seatsSource": "2026-11-10 학과 제공 수시2차 정정 인원(정시 제외)"
+      "seatsSource": "2026-11-10 학과 제공 수시2차 정정 인원(정시 제외)",
+      "applyUrl": "https://apply.jinhakapply.com/Notice/5041045/A"
     },
     {
       "id": "regular",
