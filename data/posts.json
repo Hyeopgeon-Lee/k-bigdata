@@ -1,5 +1,243 @@
 [
   {
+    "slug": "2026-11-13-query-observability-system-tables",
+    "date": "2026-11-13",
+    "tag": "SQL · OBSERVABILITY · DATA ENGINEERING",
+    "title": "느린 SQL은 어떻게 찾을까? 쿼리 실행 기록을 다시 SQL로 분석하는 관찰 가능성",
+    "excerpt": "Amazon Athena의 새 query_executions 시스템 테이블을 출발점으로 쿼리 비용·지연·오류·감사 기록을 데이터로 다루는 원리와 Python·SQL·Java·AI·클라우드 실습을 설명합니다.",
+    "source": "AWS Big Data Blog · Amazon Athena User Guide",
+    "sourceUrl": "https://aws.amazon.com/blogs/big-data/amazon-athena-introduces-system-tables-for-query-execution-observability/",
+    "references": [
+      {
+        "title": "AWS Big Data Blog — Amazon Athena introduces system tables for query execution observability",
+        "url": "https://aws.amazon.com/blogs/big-data/amazon-athena-introduces-system-tables-for-query-execution-observability/"
+      },
+      {
+        "title": "Amazon Athena User Guide — Use Athena system tables",
+        "url": "https://docs.aws.amazon.com/athena/latest/ug/athena-system-tables.html"
+      },
+      {
+        "title": "Amazon Athena User Guide — query_executions",
+        "url": "https://docs.aws.amazon.com/athena/latest/ug/athena-system-table-query-executions.html"
+      },
+      {
+        "title": "Amazon Athena User Guide — Log and monitor Athena",
+        "url": "https://docs.aws.amazon.com/athena/latest/ug/security-logging-monitoring.html"
+      }
+    ],
+    "editorialVersion": 2,
+    "sections": [
+      {
+        "heading": "1. 데이터베이스를 운영하려면 결과뿐 아니라 쿼리의 행동을 봐야 한다",
+        "paragraphs": [
+          "SQL 결과가 맞더라도 운영이 건강하다는 뜻은 아닙니다. 같은 결과를 얻기 위해 갑자기 10배 많은 데이터를 읽거나, 대기 시간이 길어지거나, 특정 사용자의 실패가 반복될 수 있습니다. 이런 변화를 찾으려면 개별 쿼리 화면을 하나씩 여는 대신 실행 기록 전체를 분석 가능한 데이터로 만들어야 합니다.",
+          "AWS는 2026년 11월 9일 Amazon Athena의 첫 시스템 테이블인 `query_executions`를 소개했습니다. 기능 자체의 릴리스 노트 날짜는 11월 6일이며, 계정과 리전에서 기능을 켜면 완료된 쿼리의 식별자·사용자·워크그룹·시간·스캔 바이트·상태·오류 같은 메타데이터가 몇 분 안에 쌓입니다. 이 기록을 다시 SQL로 조회해 비용, 성능, 감사, 운영 상태를 분석할 수 있습니다.",
+          "관찰 가능성은 단순 로그 보관과 다릅니다. 질문을 먼저 정하고 그 질문에 답할 수 있는 구조화된 신호를 연결하는 일입니다. ‘어느 팀의 스캔량이 늘었는가’, ‘실행 시간보다 대기 시간이 늘었는가’, ‘시스템 오류와 사용자 문법 오류 중 무엇이 증가했는가’를 구분해야 조치도 달라집니다."
+        ],
+        "references": [
+          {
+            "title": "AWS Big Data Blog — Amazon Athena introduces system tables for query execution observability",
+            "url": "https://aws.amazon.com/blogs/big-data/amazon-athena-introduces-system-tables-for-query-execution-observability/"
+          },
+          {
+            "title": "Amazon Athena release notes",
+            "url": "https://docs.aws.amazon.com/athena/latest/ug/release-notes.html"
+          }
+        ]
+      },
+      {
+        "heading": "2. query_executions 한 행은 쿼리 한 번의 생애를 요약한다",
+        "paragraphs": [
+          "공식 문서에 따르면 `query_executions`에는 계정과 리전의 모든 워크그룹에서 완료된 쿼리마다 한 행이 기록됩니다. `SUCCEEDED`, `FAILED`, `CANCELLED`처럼 최종 상태가 되어야 기록되며 `QUEUED`나 `RUNNING` 중에는 아직 행이 생기지 않습니다. 따라서 실시간 실행 제어보다는 완료 후 분석과 추세 관찰에 적합합니다.",
+          "주요 필드는 실행 ID, 제출 시각, 사용자 주체, 워크그룹, 카탈로그와 데이터베이스, 접근한 테이블, 실행·계획·대기 시간, 스캔한 데이터 크기, 상태와 오류 정보입니다. 한 행 안에서도 시간은 여러 단계로 나뉩니다. 전체 시간이 늘었다고 곧바로 SQL 계산이 느려졌다고 결론 내리지 말고 대기, 계획, 실행 중 어느 구간이 변했는지 확인해야 합니다.",
+          "시스템 테이블은 현재 단일 AWS 계정과 단일 리전 범위로 지원됩니다. 여러 계정·리전을 한 화면에서 보려면 별도의 읽기·집계 구조가 필요합니다. 또한 시스템 테이블을 조회하는 SQL에도 표준 Athena 쿼리 요금이 적용되므로 시간 파티션을 제한하고 필요한 열만 읽는 습관이 중요합니다."
+        ],
+        "table": {
+          "headers": [
+            "관찰 신호",
+            "대표 필드",
+            "답할 수 있는 질문",
+            "주의할 해석"
+          ],
+          "rows": [
+            [
+              "사용량",
+              "work_group_name, principal_arn",
+              "누가 얼마나 사용했나",
+              "사용자 수 증가와 낭비를 구분"
+            ],
+            [
+              "비용 근사",
+              "data_scanned_size",
+              "어느 팀이 많이 스캔했나",
+              "리전별 실제 단가와 기타 비용은 별도"
+            ],
+            [
+              "성능",
+              "total_execution_duration",
+              "느린 쿼리는 무엇인가",
+              "평균만으로 꼬리 지연을 숨기지 않기"
+            ],
+            [
+              "대기",
+              "query_queue_time_duration",
+              "용량 압력이 있는가",
+              "쿼리 계산 시간과 분리"
+            ],
+            [
+              "안정성",
+              "state_enum, error_category_enum",
+              "실패가 왜 늘었나",
+              "사용자 오류와 시스템 오류 분리"
+            ],
+            [
+              "감사",
+              "tables_accessed, submission_date_time",
+              "누가 어떤 표를 읽었나",
+              "접근 권한과 보존 정책 확인"
+            ]
+          ]
+        },
+        "references": [
+          {
+            "title": "Amazon Athena User Guide — query_executions",
+            "url": "https://docs.aws.amazon.com/athena/latest/ug/athena-system-table-query-executions.html"
+          },
+          {
+            "title": "Amazon Athena User Guide — Use Athena system tables",
+            "url": "https://docs.aws.amazon.com/athena/latest/ug/athena-system-tables.html"
+          }
+        ]
+      },
+      {
+        "heading": "3. 저장 흐름을 알면 무엇을 믿고 무엇을 보완할지 보인다",
+        "paragraphs": [
+          "기능을 켜면 Athena가 계정과 리전에 서비스 관리형 S3 Tables 버킷과 네임스페이스를 준비하고 실행 메타데이터를 Apache Iceberg 형식으로 저장합니다. AWS Glue Data Catalog에 등록되므로 Athena뿐 아니라 호환되는 분석 도구에서도 읽을 수 있습니다. 압축, 스냅샷 관리, 파티셔닝 같은 표 유지 작업은 서비스가 처리합니다.",
+          "데이터 흐름은 `사용자 또는 애플리케이션이 SQL 제출 → Athena 실행 → 최종 상태 도달 → 실행 메타데이터 게시 → Iceberg 시스템 테이블 → SQL·대시보드·알림·AI 분석`으로 볼 수 있습니다. 쿼리 원문과 사용자 식별 정보가 들어갈 수 있으므로 시스템 테이블 자체도 민감한 운영 데이터입니다. 읽기 권한, 암호화, 보존 기간, 감사 로그를 설계해야 합니다.",
+          "이 표가 모든 관찰 도구를 대체하지는 않습니다. 실행 중 상태와 즉시 경보에는 CloudWatch 지표가 더 맞을 수 있고, API 호출 감사에는 CloudTrail이 필요합니다. 시스템 테이블은 쿼리 단위의 장기 비교와 조인에 강합니다. 서로 다른 신호를 같은 것으로 취급하지 않고 목적에 맞게 결합하는 것이 중요합니다."
+        ],
+        "code": "SQL 제출\n  ↓\nAthena 실행: QUEUED → RUNNING → 최종 상태\n  ↓ 완료 후 몇 분 안에 게시\nquery_executions (S3 Tables · Apache Iceberg)\n  ├─ SQL 집계와 비용 분석\n  ├─ 대시보드와 이상 탐지\n  └─ 읽기 전용 AI 분석\n\n보완 신호: CloudWatch 지표 · CloudTrail 감사",
+        "references": [
+          {
+            "title": "Amazon Athena User Guide — Use Athena system tables",
+            "url": "https://docs.aws.amazon.com/athena/latest/ug/athena-system-tables.html"
+          },
+          {
+            "title": "Amazon Athena User Guide — Log and monitor Athena",
+            "url": "https://docs.aws.amazon.com/athena/latest/ug/security-logging-monitoring.html"
+          }
+        ]
+      },
+      {
+        "heading": "4. 평균 하나보다 분포와 비교 기준이 더 중요하다",
+        "paragraphs": [
+          "느린 쿼리를 찾을 때 전체 평균만 보면 일부 매우 느린 실행이나 워크그룹별 차이가 가려집니다. 일별 쿼리 수와 평균뿐 아니라 중앙값, 95백분위수, 최대값을 함께 보고 지난주와 이번 주처럼 같은 조건을 비교해야 합니다. 쿼리 수가 급증한 날의 총 스캔량과 개별 쿼리 효율도 따로 봅니다.",
+          "비용은 `data_scanned_size`를 팀·사용자·워크그룹별로 합산해 상대적인 기여도를 볼 수 있습니다. 다만 바이트를 금액으로 바꾸려면 실행 리전과 당시 가격을 적용해야 하며 예약 용량 등 다른 과금 구조를 섞어 단정하면 안 됩니다. 먼저 스캔량이라는 측정값과 비용이라는 계산값을 분리합니다.",
+          "실패율도 분모가 필요합니다. 실패 건수만 늘었더라도 전체 쿼리 수가 더 크게 늘었다면 비율은 낮아질 수 있습니다. 시스템 오류, 사용자 오류, 취소를 나눠야 플랫폼 문제와 SQL 학습 문제를 다르게 대응할 수 있습니다."
+        ],
+        "code": "SELECT\n  work_group_name,\n  COUNT(*) AS query_count,\n  APPROX_PERCENTILE(total_execution_duration, 0.95) / 1000.0 AS p95_seconds,\n  ROUND(SUM(data_scanned_size) / POWER(1024.0, 3), 2) AS scanned_gb\nFROM \"s3tablescatalog/aws-athena\".\"metadata\".\"query_executions\"\nWHERE submission_date_time >= CURRENT_DATE - INTERVAL '7' DAY\n  AND state_enum = 'SUCCEEDED'\nGROUP BY work_group_name\nORDER BY scanned_gb DESC;"
+      },
+      {
+        "heading": "5. Python과 SQL 실습은 원시 기록에서 설명 가능한 지표를 만든다",
+        "paragraphs": [
+          "수업용 실습에서는 실제 클라우드 계정이 없어도 익명화한 샘플 CSV나 Parquet로 시작할 수 있습니다. Python에서 시간 단위를 밀리초에서 초로 바꾸고, 사용자 식별자를 해시 처리하며, 결측값과 중복 실행 ID를 검사합니다. 처리 전후 행 수와 제외 이유를 기록해 정제 과정이 재현되게 합니다.",
+          "SQL에서는 일별 실행량, 워크그룹별 스캔량, p50·p95 지연, 오류 범주별 실패율을 계산합니다. 같은 쿼리를 정규화한 지문으로 묶으면 리터럴 값만 다른 반복 쿼리의 성능 변화를 볼 수 있습니다. 그러나 단순 정규식 지문은 SQL 방언과 중첩 구조를 잘못 처리할 수 있으므로 파서 기반 방식과 결과를 비교합니다.",
+          "평가 기준은 그래프의 모양보다 계산의 정확성과 설명 가능성입니다. 시간대, 단위, 분모, 제외 조건, 익명화 방식을 명시했는지 확인합니다. 샘플 데이터를 인위적으로 바꿔 쿼리 수 증가, 대기 시간 증가, 스캔량 증가가 각각 지표에 올바르게 반영되는지 자동 테스트합니다."
+        ],
+        "bullets": [
+          "Python: 스키마 검증, 단위 변환, 익명화, 중복 제거",
+          "SQL: 시간대별 집계, 백분위수, 실패율, 전주 대비 변화",
+          "테스트: 작은 고정 데이터로 예상 결과를 먼저 작성",
+          "보고: 측정값·계산값·추정값을 서로 다른 열로 표시",
+          "한계: 지연 게시, 계정·리전 범위, 쿼리 비용을 함께 기록"
+        ]
+      },
+      {
+        "heading": "6. Java 서비스는 조회 API와 경보 상태를 안정적으로 연결한다",
+        "paragraphs": [
+          "Java로 운영 API를 만든다면 대시보드가 시스템 테이블을 무제한 조회하지 않도록 기간, 워크그룹, 최대 행 수를 검증합니다. 자주 쓰는 집계는 예약 작업으로 계산해 요약 테이블에 저장하고, 요청마다 쿼리 원문 전체를 반환하지 않습니다. 사용자 권한에 따라 식별자와 SQL 미리보기를 가립니다.",
+          "경보는 `OPEN`, `ACKNOWLEDGED`, `INVESTIGATING`, `RESOLVED` 상태로 관리하고 같은 원인의 반복 신호는 하나의 사건으로 묶습니다. 예를 들어 p95 지연 상승과 대기 시간 상승이 함께 나타나면 용량 압력 후보로, 실행 시간만 상승하면 쿼리 또는 데이터 변화 후보로 분류합니다. 이것은 조사 우선순위 제안이지 원인 확정이 아닙니다.",
+          "예약 집계가 실패하거나 늦게 도착한 데이터가 있으면 마지막 성공 시각과 데이터 완전성을 API 응답에 포함합니다. 지표가 오래됐는데도 정상처럼 표시하는 것이 가장 위험합니다. Java 테스트에서는 권한 없는 조회, 빈 기간, 중복 경보, 늦은 데이터 보정, 시간대 경계를 검증합니다."
+        ],
+        "code": "GET /observability/query-health?workgroup=student-lab&period=7d\n{\n  \"asOf\": \"2026-11-13T05:55:00+09:00\",\n  \"completeness\": \"COMPLETE_THROUGH_AS_OF\",\n  \"queryCount\": 1280,\n  \"p95Seconds\": 8.4,\n  \"scannedGb\": 392.1,\n  \"openAlerts\": 2\n}"
+      },
+      {
+        "heading": "7. AI는 SQL을 대신 쓰는 도구보다 근거를 따라가는 분석 보조로 설계한다",
+        "paragraphs": [
+          "공식 발표는 시스템 테이블을 MCP 호환 AI 에이전트와 연결해 자연어 질문을 SQL로 바꾸는 활용도 소개합니다. 이때 에이전트에는 Athena·Glue·시스템 테이블에 대한 읽기 전용 최소 권한이면 충분하다고 설명합니다. 쓰기나 관리 권한을 함께 주지 않고, 생성한 SQL과 실행 기록을 감사할 수 있어야 합니다.",
+          "AI에게 ‘왜 느려졌어?’라고 묻기 전에 기간, 워크그룹, 비교 기준, 제외할 오류를 명시합니다. AI 응답에는 실행한 SQL, 사용한 열, 데이터 기준 시각, 결과 행 수를 붙입니다. 상관관계를 원인으로 표현하지 않도록 ‘관찰된 변화’, ‘가능한 설명’, ‘추가 확인’을 분리합니다.",
+          "평가는 답변 문장보다 재현성을 중심으로 합니다. 같은 질문에 생성된 SQL이 파티션을 제한하는지, 올바른 분모를 쓰는지, 읽기 전용인지, 수동 계산과 일치하는지 확인합니다. 민감한 SQL 원문이나 사용자 ARN이 모델 입력과 로그에 과도하게 노출되지 않도록 마스킹 정책도 시험합니다."
+        ],
+        "table": {
+          "headers": [
+            "단계",
+            "자동화 가능한 일",
+            "사람이 확인할 일",
+            "실패 방지 장치"
+          ],
+          "rows": [
+            [
+              "질문 해석",
+              "기간·지표 후보 추출",
+              "질문의 실제 목적",
+              "모호하면 실행 전 확인"
+            ],
+            [
+              "SQL 생성",
+              "집계·필터 초안",
+              "스키마와 분모",
+              "읽기 전용·기간 제한"
+            ],
+            [
+              "결과 설명",
+              "변화 요약",
+              "원인 주장 가능 여부",
+              "근거 SQL과 기준 시각 표시"
+            ],
+            [
+              "조치 제안",
+              "최적화 후보 나열",
+              "적용 우선순위와 위험",
+              "자동 변경 금지"
+            ],
+            [
+              "평가",
+              "정답 데이터 비교",
+              "오탐·누락 분석",
+              "회귀 테스트와 감사 로그"
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "8. 2주 프로젝트는 ‘관측-설명-검증’의 닫힌 흐름을 만든다",
+        "paragraphs": [
+          "첫 주에는 익명화된 `query_executions` 샘플을 준비하고 Python 품질 검사와 SQL 지표를 구현합니다. 정상 기간과 이상 기간을 인위적으로 만들어 스캔량, 실행 시간, 대기 시간, 실패율 변화가 서로 다른 그래프로 나타나는지 확인합니다. 각 지표에 단위, 분모, 기준 시각, 데이터 범위를 붙입니다.",
+          "둘째 주에는 Java 조회 API와 경보 상태 관리를 만들고 간단한 웹 대시보드 또는 보고서를 연결합니다. AI를 추가한다면 사용자가 선택한 지표와 기간 안에서만 읽기 전용 SQL을 생성하게 합니다. AI가 낸 설명은 고정 SQL의 결과와 대조하고, 틀린 설명 사례도 평가 자료로 남깁니다.",
+          "최종 평가는 대시보드가 화려한지가 아니라 이상을 구분해 설명할 수 있는지 봅니다. 스캔량만 증가한 상황, 대기 시간만 증가한 상황, 사용자 오류가 증가한 상황을 정확히 분리해야 합니다. 모든 조치는 ‘자동 적용’이 아니라 근거가 연결된 제안으로 남겨야 관찰 가능성이 안전한 운영 판단으로 이어집니다."
+        ],
+        "bullets": [
+          "원시 실행 기록의 스키마와 개인정보 위험을 설명했는가",
+          "평균과 p95, 건수와 비율을 구분했는가",
+          "측정값과 비용 추정값을 분리했는가",
+          "Python·SQL·Java 결과를 고정 테스트로 검증했는가",
+          "AI가 실행한 SQL과 근거를 재현할 수 있는가",
+          "지연 게시와 계정·리전 범위의 한계를 보고했는가"
+        ]
+      }
+    ],
+    "connection": "Python으로 실행 기록의 품질과 익명화를 처리하고 SQL로 비용·지연·오류 지표를 계산합니다. Java API는 권한별 조회와 경보 상태를 관리하며, AI는 읽기 전용 SQL과 근거가 있는 설명을 제안합니다. 클라우드에서는 Athena·S3 Tables·Glue·CloudWatch·CloudTrail의 서로 다른 관찰 신호를 목적에 맞게 연결합니다.",
+    "learningPoints": [
+      "쿼리 실행 기록을 관찰 가능성 데이터로 보는 이유를 설명할 수 있는가",
+      "실행·계획·대기 시간과 스캔량·실패율을 구분할 수 있는가",
+      "평균과 백분위수, 건수와 비율의 차이를 올바르게 적용할 수 있는가",
+      "Python 정제와 SQL 집계의 정확성을 고정 데이터로 검증할 수 있는가",
+      "Java API에서 권한·기준 시각·데이터 완전성을 표현할 수 있는가",
+      "AI가 생성한 분석 SQL을 최소 권한과 재현성 기준으로 평가할 수 있는가"
+    ],
+    "projectPrompt": "익명화된 쿼리 실행 기록으로 관찰 가능성 미니 플랫폼을 만드세요. Python 품질 검사, SQL 비용·성능·오류 지표, Java 조회·경보 API를 연결하고 서로 다른 이상 시나리오를 자동 테스트하세요. AI는 기간이 제한된 읽기 전용 SQL과 근거 설명에만 사용하며, 측정값·추정값·조치 제안을 명확히 구분하세요."
+  },
+  {
     "slug": "2026-11-11-pr-trust-boundary",
     "date": "2026-11-11",
     "tag": "GITHUB ACTIONS · CI SECURITY · TRUST BOUNDARY",
