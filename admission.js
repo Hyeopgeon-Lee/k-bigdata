@@ -33,7 +33,7 @@
     return {status, phase:status.toLowerCase(), roundId: round?.id || 'closed', name, title: `${data.year}학년도 ${name}`,
       countdown: round ? (open ? (days === 0 ? `오늘 ${round.deadlineTime} 접수 마감` : `접수 마감 D-${days}`) : `${name} 접수 시작 D-${days}`) : `${data.year}학년도 정규모집 종료`,
       announcement: round ? (open ? `${Number(round.end.slice(5,7))}월 ${Number(round.end.slice(8))}일 ${round.deadlineTime} 마감` : `${Number(round.start.slice(5,7))}월 ${Number(round.start.slice(8))}일 원서접수 시작`) : '추가모집 및 입학 공지 확인',
-      button: format(data.cta[status], name), href: open ? data.applyUrl : round ? data.admissionUrl : data.guideUrl,
+      button: format(data.cta[status], name), href: open ? (round.applyUrl || data.applyUrl) : round ? data.admissionUrl : data.guideUrl,
       period, pending, interview: round ? fullDate(round.interview) : '공식 입학 공지 확인',
       result: round ? fullDate(round.result) : '공식 입학 공지 확인', seats: round ? `${name} ${round.seats}명${round.seatsBasis ? ` (${round.seatsBasis})` : ''}` : '공식 입학 공지 확인',
       capacityNote: round?.id==='susi2' ? '※ 정원 내·외 합산 · 2026.11.10 학과 제공 정정 모집인원' : '',
