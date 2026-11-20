@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#071a33">
+  <meta name="description" content="한국폴리텍대학 서울강서캠퍼스 빅데이터소프트웨어공학과 본관 3층의 3D 가상투어. 엘리베이터에서 출발해 8316호 빅데이터실습실과 8317호 휴게실을 걸어보세요.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ai.k-bigdata.kr/tour/">
+  <meta property="og:title" content="3D 학과 투어 | 빅데이터소프트웨어공학과">
+  <meta property="og:description" content="본관 3층 엘리베이터에서 출발하는 가상 캠퍼스 투어">
+  <meta property="og:image" content="https://ai.k-bigdata.kr/assets/promo/og-department.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="3D 학과 투어 | 빅데이터소프트웨어공학과">
+  <meta name="twitter:description" content="빅데이터실습실과 휴게실을 직접 둘러보세요.">
+  <meta name="twitter:image" content="https://ai.k-bigdata.kr/assets/promo/og-department.png">
+  <link rel="canonical" href="https://ai.k-bigdata.kr/tour/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/site-refresh.css">
+  <link rel="stylesheet" href="/tour/tour.css">
+  <title>3D 학과 투어 | 빅데이터소프트웨어공학과</title>
+</head>
+<body>
+  <a class="skip-link" href="#tour-ui">투어 조작 메뉴로 이동</a>
+  <div id="viewport" aria-label="본관 3층 3D 가상 캠퍼스" role="img"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="loader" id="loader" role="status" aria-live="polite"><div class="loader-mark">B<span>·</span>SW</div><div class="loader-rule"><i></i></div><p>본관 3층을 준비하고 있습니다</p></div>
+  <div id="tour-ui" class="tour-ui">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="학과 홈페이지로 돌아가기"><span class="brand-icon">AI</span><span><strong>BIGDATA SOFTWARE</strong><small>POLYTECH VIRTUAL CAMPUS</small></span></a>
+      <span class="top-middle">SEOUL GANGSEO <span class="top-divider"></span> MAIN BUILDING · 3F</span>
+      <div class="top-actions"><button type="button" id="btn-help" class="glass-button">이용 안내</button><a class="glass-button home-button" href="/">학과 홈페이지 <span aria-hidden="true">↗</span></a></div>
+    </header>
+    <section class="intro" id="intro" aria-labelledby="intro-title">
+      <p class="eyebrow">INTERACTIVE CAMPUS EXPERIENCE <span class="spark"></span> 3F DIGITAL TWIN PREVIEW</p>
+      <h1 id="intro-title">교실을 넘어,<br><em>미래를 걷다.</em></h1>
+      <p>엘리베이터 문이 열리면 학과 투어가 시작됩니다.<br>실제 도면과 현장 사진을 바탕으로 구성한 3D 공간을 둘러보세요.</p>
+      <div class="intro-actions"><button class="primary-button" type="button" id="btn-start">투어 시작하기 <span>→</span></button><button class="secondary-button" type="button" id="btn-guide">자동 안내 보기 <span>↗</span></button></div>
+      <span class="intro-note">시제품 · 구조와 크기는 추후 실측 보정 · 현재 8316호와 8317호를 체험할 수 있습니다.</span>
+    </section>
+    <aside class="location-panel" id="location-panel" aria-label="현재 위치와 바로 이동">
+      <p class="panel-kicker">YOU ARE HERE <span class="status-dot"></span> LIVE TOUR</p>
+      <h2 id="location-name">본관 3층 · 엘리베이터</h2><p id="location-desc">문이 열리면 복도를 따라 이동해 보세요.</p>
+      <div class="location-divider"></div>
+      <button type="button" class="goto" data-dest="lobby"><span class="goto-index">01</span><span>엘리베이터 · 학과 복도</span><span>↗</span></button>
+      <button type="button" class="goto" data-dest="8316"><span class="goto-index">02</span><span>8316 · 빅데이터실습실</span><span>↗</span></button>
+      <button type="button" class="goto" data-dest="8317"><span class="goto-index">03</span><span>8317 · 휴게실</span><span>↗</span></button>
+      <p class="map-disclaimer">실내 3D 구조는 사진 기반 시제품입니다.</p>
+    </aside>
+    <aside class="mini-map" id="map-panel" aria-label="3층 간이 배치도">
+      <div class="map-title"><strong>3F FLOOR GUIDE</strong><button type="button" id="btn-map-hide" aria-label="지도 닫기">×</button></div>
+      <div class="map-graphic">
+        <div class="map-hall"></div><button class="map-room room-lab" data-dest="8316">8316<span>BIG DATA</span></button><button class="map-room room-lounge" data-dest="8317">8317<span>LOUNGE</span></button><button class="map-room room-elevator" data-dest="lobby">ELEV<span>START</span></button><div class="map-pin" id="map-pin"></div>
+      </div>
+      <p>호실을 선택하면 해당 공간까지 안내합니다.</p>
+    </aside>
+    <div class="bottom-bar">
+      <div class="controls-hint"><span class="key">W</span><span class="key">A</span><span class="key">S</span><span class="key">D</span> <span>이동</span><span class="hint-divider"></span><span class="mouse-symbol">◎</span><span>화면을 드래그해 둘러보기</span></div>
+      <div class="bottom-actions"><button id="btn-tour" type="button">자동 투어</button><button id="btn-map" type="button">⌗ <span>층별 지도</span></button><button id="btn-reset" type="button">↺ <span>처음으로</span></button></div>
+    </div>
+    <div class="crosshair" id="crosshair" aria-hidden="true"><span></span></div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="action-prompt" id="action-prompt"><span class="prompt-key">E</span><span id="prompt-label">문 열기</span></div>
+    <div class="mobile-controller" id="mobile-controller"><div id="joy-base" class="joy-base"><div id="joy-stick" class="joy-stick"></div></div><div class="touch-guide">왼쪽 이동 · 오른쪽 화면 회전</div><button id="btn-mobile-action" type="button" class="mobile-action">열기</button></div>
+  </div>
+  <dialog id="detail-dialog" class="detail-dialog" aria-labelledby="dialog-title">
+    <button type="button" id="dialog-close" class="dialog-close" aria-label="닫기">×</button>
+    <p class="panel-kicker" id="dialog-tag">INTERACTIVE SPOT</p><h2 id="dialog-title">공간 안내</h2><p id="dialog-text"></p><div id="dialog-extra"></div><button type="button" id="dialog-done" class="primary-button">투어 계속하기 →</button>
+  </dialog>
+  <dialog id="help-dialog" class="detail-dialog" aria-labelledby="help-title"><button type="button" id="help-close" class="dialog-close" aria-label="닫기">×</button><p class="panel-kicker">HOW TO EXPLORE</p><h2 id="help-title">투어 이용 안내</h2><p>PC에서는 W·A·S·D 키로 이동하고 화면을 드래그하여 시야를 회전할 수 있습니다. 문 근처에서 E를 누르거나 문을 클릭하면 열립니다. 모바일에서는 왼쪽 조이스틱으로 움직이고 화면 오른쪽을 드래그해 방향을 바꿉니다.</p><p>우측 하단 지도와 왼쪽 장소 메뉴를 이용하면 주요 공간으로 안내받을 수 있습니다.</p><button type="button" id="help-done" class="primary-button">확인 →</button></dialog>
+  <div id="fallback" class="fallback" hidden><h1>3D 장면을 열 수 없습니다</h1><p>이 브라우저의 WebGL 지원 또는 네트워크 상태를 확인해 주세요. 학과 홈페이지에서도 시설 정보를 볼 수 있습니다.</p><a href="/">학과 홈페이지로 이동 ↗</a></div>
+  <script type="module" src="/tour/tour.js"></script>
+</body>
+</html>
