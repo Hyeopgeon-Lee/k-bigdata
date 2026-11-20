@@ -61,7 +61,7 @@ def nav():
     return ('<nav class="main-nav" id="main-navigation" aria-label="주요 메뉴">'
         '<a href="/#major">학과소개</a><a href="/#roadmap">교육과정</a>'
         '<a href="/#outcomes">학생성과</a><a href="/employment/">취업·진로</a>'
-        '<a href="/activities/">학과소식</a>'
+        '<a href="/activities/">학과소식</a><a href="/tour/">3D 학과 투어</a>'
         '<a class="nav-cta" href="/admission/2027/">입학안내 →</a></nav>')
 
 def conversion_links():
