@@ -194,8 +194,8 @@ export function createWorld(T) {
 
   // 8317 lounge at the curved end of the east wing, actual furniture/colors reflected.
   const loungeZ=-14.00, loungeX=9.0;
-  box(6.12,-.11,-14,8.35,.21,10.7,solid(0xb9bfc1,.94));
-  box(6.12,3.53,-14,8.35,.12,10.7,solid(0x806f70));
+  box(7.73,-.11,-14,11.50,.21,11.1,solid(0xb9bfc1,.94));
+  box(7.73,3.53,-14,11.50,.12,11.1,solid(0x806f70));
   box(5.83,1.76,-19.48,7.5,3.50,.17,mat.plaster);
   box(5.83,1.76,-8.55,7.5,3.50,.17,mat.plaster);
   segmentedWall(2.2,-19.48,-8.55,[[-15.43,-12.62]],mat.plaster);
