@@ -37,6 +37,7 @@ KST = timezone(timedelta(hours=9))
 EXCLUDED = {".git", ".github", ".idea", "_site", "tools", "data", "reports"}
 STATIC_PAGES = (
     ("", "index.html"),
+    ("tour/", "tour/index.html"),
     ("ai-software/", "ai-software/index.html"),
     ("data-analysis/", "data-analysis/index.html"),
     ("backend-software/", "backend-software/index.html"),
@@ -773,6 +774,8 @@ def main() -> None:
     for page in OUTPUT.rglob('*.html'):
         if page.name.startswith(('google','naver')):continue
         relative=page.relative_to(OUTPUT).as_posix()
+        if relative.startswith('tour/'):
+            continue  # Preserve the self-contained 3D app without standard-site HTML rewriting.
         content=page.read_text(encoding='utf-8')
         if relative=='index.html':content=reorder_home(content)
         built = enhance_page(content,relative,state,data)
