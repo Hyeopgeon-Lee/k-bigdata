@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#071a33">
   <meta name="description" content="한국폴리텍대학 서울강서캠퍼스 빅데이터소프트웨어공학과 본관 3층의 3D 가상투어. 엘리베이터에서 출발해 8316호 빅데이터실습실과 8317호 휴게실을 걸어보세요.">
   <meta property="og:type" content="website">
@@ -16,8 +17,7 @@
   <meta name="twitter:image" content="https://ai.k-bigdata.kr/assets/promo/og-department.png">
   <link rel="canonical" href="https://ai.k-bigdata.kr/tour/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/site-refresh.css">
-  <link rel="stylesheet" href="/tour/tour.css">
+    <link rel="stylesheet" href="/tour/tour.css">
   <title>3D 학과 투어 | 빅데이터소프트웨어공학과</title>
 </head>
 <body>
@@ -68,7 +68,8 @@
     <p class="panel-kicker" id="dialog-tag">INTERACTIVE SPOT</p><h2 id="dialog-title">공간 안내</h2><p id="dialog-text"></p><div id="dialog-extra"></div><button type="button" id="dialog-done" class="primary-button">투어 계속하기 →</button>
   </dialog>
   <dialog id="help-dialog" class="detail-dialog" aria-labelledby="help-title"><button type="button" id="help-close" class="dialog-close" aria-label="닫기">×</button><p class="panel-kicker">HOW TO EXPLORE</p><h2 id="help-title">투어 이용 안내</h2><p>PC에서는 W·A·S·D 키로 이동하고 화면을 드래그하여 시야를 회전할 수 있습니다. 문 근처에서 E를 누르거나 문을 클릭하면 열립니다. 모바일에서는 왼쪽 조이스틱으로 움직이고 화면 오른쪽을 드래그해 방향을 바꿉니다.</p><p>우측 하단 지도와 왼쪽 장소 메뉴를 이용하면 주요 공간으로 안내받을 수 있습니다.</p><button type="button" id="help-done" class="primary-button">확인 →</button></dialog>
-  <div id="fallback" class="fallback" hidden><h1>3D 장면을 열 수 없습니다</h1><p>이 브라우저의 WebGL 지원 또는 네트워크 상태를 확인해 주세요. 학과 홈페이지에서도 시설 정보를 볼 수 있습니다.</p><a href="/">학과 홈페이지로 이동 ↗</a></div>
+  <div id="fallback" class="fallback" hidden><h2>3D 장면을 열 수 없습니다</h2><p>이 브라우저의 WebGL 지원 또는 네트워크 상태를 확인해 주세요. 학과 홈페이지에서도 시설 정보를 볼 수 있습니다.</p><a href="/">학과 홈페이지로 이동 ↗</a></div>
   <script type="module" src="/tour/tour.js"></script>
+  <script>setTimeout(function(){if(!window.tourReady){document.getElementById("loader").classList.add("gone");document.getElementById("fallback").hidden=false;}},15000)</script>
 </body>
 </html>
