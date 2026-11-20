@@ -39,6 +39,8 @@ jobs:
           node tools/test_analytics.cjs
           node tools/test_analytics_loader.cjs
           node tools/test_lazy_video_poster.cjs
+          node --check tour/world.js
+          node --check tour/tour.js
       - uses: actions/configure-pages@v5
       - name: 모집정보·검색 콘텐츠 정적 빌드
         run: python tools/build_site.py
