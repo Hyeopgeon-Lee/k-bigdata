@@ -1,5 +1,190 @@
 [
   {
+    "slug": "2026-11-27-document-extraction-grounding",
+    "date": "2026-11-27",
+    "tag": "DOCUMENT AI · DATA QUALITY · HUMAN REVIEW",
+    "title": "AI가 문서에서 찾은 값은 어디에 있을까? 원본 위치와 신뢰 점수로 검증하는 문서 추출",
+    "excerpt": "Amazon Textract Insights 발표를 계기로 혼합 문서 분리, 필드 추출, 페이지 근거, 신뢰 점수, 사람 검토를 연결하고 Python·SQL·Java·AI·클라우드 학습 실습을 설계합니다.",
+    "source": "AWS 공식 발표와 Amazon Textract 개발자 문서",
+    "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/announcing-amazon-textract-insights-verifiable-generative-ai-for-documents/",
+    "references": [
+      {
+        "title": "AWS Blog — Announcing Amazon Textract Insights",
+        "url": "https://aws.amazon.com/blogs/machine-learning/announcing-amazon-textract-insights-verifiable-generative-ai-for-documents/"
+      },
+      {
+        "title": "Amazon Textract — How Insights works",
+        "url": "https://docs.aws.amazon.com/textract/latest/dg/insights-how-it-works.html"
+      },
+      {
+        "title": "Amazon Textract — Confidence score best practice",
+        "url": "https://docs.aws.amazon.com/textract/latest/dg/insights-confidence-score-best-practice.html"
+      },
+      {
+        "title": "Amazon Textract — Extraction results",
+        "url": "https://docs.aws.amazon.com/textract/latest/dg/insights-extraction-results.html"
+      },
+      {
+        "title": "AWS What's New — Textract Insights GA",
+        "url": "https://aws.amazon.com/about-aws/whats-new/2026/11/textract-insights-ga/"
+      }
+    ],
+    "editorialVersion": 2,
+    "sections": [
+      {
+        "heading": "1. 문서에서 값을 찾는 일은 텍스트 인식만으로 끝나지 않는다",
+        "paragraphs": [
+          "영수증과 신청서가 섞인 PDF를 생각해 봅시다. 글자를 모두 읽어도 어떤 숫자가 결제 총액이고 어느 날짜가 신청일인지 알려면 문서 종류와 필드 의미를 알아야 합니다. 같은 이름의 항목이 여러 장에 나타나면 어느 페이지에서 가져왔는지도 남겨야 합니다. 추출 결과가 업무 데이터가 되는 순간, 값뿐 아니라 그 값을 확인할 원본 위치가 필요합니다.",
+          "AWS는 2026년 11월 20일 Amazon Textract Insights의 정식 출시를 발표했습니다. 자연어로 필요한 필드를 설명한 청사진을 만들고 단일 문서나 여러 문서가 섞인 묶음을 제출하면 구조화된 결과를 받는 기능입니다. 발표와 개발자 문서는 필드별 신뢰 점수 및 페이지 위치를 함께 제공한다고 설명합니다. 이 글에서는 그 흐름을 일반적인 문서 AI 품질 설계 문제로 살펴봅니다.",
+          "문서가 정확히 읽혔다는 주장과 사람이 확인할 수 있다는 주장은 다릅니다. 페이지 근거가 있으면 검토자는 원본을 빠르게 대조할 수 있지만, 근거 좌표가 있다는 이유만으로 추출 값이 참이 되는 것은 아닙니다. 값의 정확성은 별도 정답 자료와 검토 절차로 평가해야 합니다."
+        ],
+        "references": [
+          {
+            "title": "AWS Blog — Announcing Amazon Textract Insights",
+            "url": "https://aws.amazon.com/blogs/machine-learning/announcing-amazon-textract-insights-verifiable-generative-ai-for-documents/"
+          }
+        ]
+      },
+      {
+        "heading": "2. 입력부터 결과까지 데이터가 이동하는 경로",
+        "paragraphs": [
+          "공식 흐름은 청사진 정의, 프로젝트 구성, S3 문서 제출, 비동기 분석, 결과 저장과 검토로 이어집니다. 청사진은 JSON Schema 형태이며 각 필드에 찾을 내용의 자연어 설명과 추론 유형을 지정합니다. 혼합 묶음에서는 예상 문서 유형의 청사진을 프로젝트에 추가하고 분리를 켜면 하위 문서로 나눈 뒤 맞는 청사진을 적용합니다.",
+          "결과에는 추출 값과 설명 정보가 대응합니다. 원본 S3 위치, 문서 유형, 필드 값, 신뢰 점수, 페이지와 경계 상자 위치를 연결해 두면 화면에서 값을 클릭했을 때 해당 부분을 강조할 수 있습니다. 개발자 문서는 일반 내용 추출과 청사진 기반 사용자 지정 추출을 구분하므로, 실습에서는 어떤 출력이 어느 경로에서 나온 것인지 먼저 확인해야 합니다.",
+          "서비스가 비동기적으로 처리하므로 요청을 보냈다는 사실과 결과가 준비됐다는 사실을 분리해야 합니다. 접수 ID를 보관하고 완료·실패를 확인한 뒤 결과 파일을 가져옵니다. 중복 제출과 재시도에도 같은 문서를 두 번 정산하지 않도록 문서 해시와 작업 ID를 함께 기록하는 설계가 필요합니다."
+        ],
+        "code": "S3 원본 문서 → 비동기 분석 요청 → 문서 분리·유형 매칭\n→ 청사진별 필드 추출 → 값 + 신뢰 점수 + 페이지·좌표\n→ 규칙 검사 → 사람 검토 → 승인된 업무 데이터"
+      },
+      {
+        "heading": "3. 직접 읽은 필드와 해석한 필드를 구분한다",
+        "paragraphs": [
+          "발표는 원본에 명시된 값을 읽는 필드와 문맥에서 유도한 필드를 구분합니다. 이름이나 날짜처럼 글자로 직접 있는 값과 여러 문장을 종합해 판단한 값은 검증 방법이 다릅니다. 후자에는 사람의 해석이 끼어들기 쉬우므로 화면과 데이터베이스에서 추론 유형을 숨기지 않는 편이 좋습니다.",
+          "예를 들어 ‘납부 금액’은 문서에 여러 금액이 있으면 잘못 선택될 수 있습니다. 청사진 설명에는 세금 전 금액인지 최종 결제액인지, 통화와 단위가 무엇인지 구체적으로 적습니다. 수업용 실습에서는 서로 다른 설명을 넣고 동일한 검증 문서에서 결과가 어떻게 바뀌는지 비교할 수 있습니다. 이는 실습 제안이며 특정 설정이 정확도를 높인다고 검증된 사실은 아닙니다.",
+          "문서 유형 분류가 잘못되면 뒤의 필드 추출도 잘못될 수 있습니다. 평가에서 분리 정확도, 유형 매칭, 필드 값 정확도, 근거 위치 정확도를 별개로 측정해야 원인을 찾습니다. 표면상 최종 값 하나만 맞는지 보면 중간 단계의 결함을 놓칩니다."
+        ],
+        "table": {
+          "headers": [
+            "단계",
+            "확인 질문",
+            "오류 사례",
+            "평가 단위"
+          ],
+          "rows": [
+            [
+              "문서 분리",
+              "한 묶음의 경계가 맞는가",
+              "두 영수증이 한 문서로 합쳐짐",
+              "문서 경계"
+            ],
+            [
+              "유형 매칭",
+              "올바른 청사진인가",
+              "계약서를 영수증으로 분류",
+              "문서 유형"
+            ],
+            [
+              "명시 필드",
+              "페이지에 적힌 값인가",
+              "소계와 총액 혼동",
+              "값과 좌표"
+            ],
+            [
+              "추론 필드",
+              "해석 근거가 충분한가",
+              "문맥 없이 상태 단정",
+              "근거와 사람 판정"
+            ],
+            [
+              "업무 반영",
+              "검토가 완료됐는가",
+              "낮은 확신 값을 자동 승인",
+              "승인 이력"
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "4. 신뢰 점수는 검토 대상을 정하는 신호다",
+        "paragraphs": [
+          "Amazon Textract 문서는 청사진 기반 추출의 점수를 0에서 1 사이의 추정값으로 설명합니다. 높은 점수가 값의 정확성을 보증하지 않고 낮은 점수가 틀렸음을 확정하지도 않습니다. 다른 Textract API는 0에서 100 범위를 사용할 수 있으므로 서로 다른 결과를 합칠 때 점수 스케일을 확인해야 합니다.",
+          "검토 임계값을 0.8로 정했다고 해서 모든 문서에서 80% 정확하다는 뜻은 아닙니다. 대표 표본에 정답을 붙이고 점수 구간별 실제 오류율을 살펴야 합니다. 통화, 날짜, 식별번호처럼 틀렸을 때 영향이 다른 필드는 임계값을 다르게 두거나 항상 사람이 확인할 수 있습니다. 이를 결정하는 기준은 프로젝트 요구와 시험 자료에서 나와야 합니다.",
+          "실습에서는 자동 수용, 보류, 강제 검토의 세 구간을 설정한 뒤 수동 검토량과 놓친 오류 수의 관계를 그립니다. 근거 페이지가 비어 있거나 값이 원본의 강조 영역과 맞지 않으면 점수가 높아도 보류합니다. 임계값 변경 전후 결과를 같은 검증 자료에 적용해야 비교가 가능합니다."
+        ],
+        "references": [
+          {
+            "title": "Amazon Textract — Confidence score best practice",
+            "url": "https://docs.aws.amazon.com/textract/latest/dg/insights-confidence-score-best-practice.html"
+          },
+          {
+            "title": "Amazon Textract — Extraction results",
+            "url": "https://docs.aws.amazon.com/textract/latest/dg/insights-extraction-results.html"
+          }
+        ]
+      },
+      {
+        "heading": "5. Python과 SQL로 추출 품질을 재현 가능하게 측정한다",
+        "paragraphs": [
+          "Python 실습은 공개된 지원 언어의 샘플 문서를 사용합니다. 결과 JSON을 읽어 문서 ID, 필드 이름, 값, 점수, 페이지, 좌표를 긴 형태의 표로 변환합니다. 정답 표와 필드별로 연결하고 공백·날짜 형식만 정규화한 비교와 원문 그대로의 비교를 모두 남깁니다. 정규화 규칙이 잘못된 숫자까지 같게 만들지 않도록 시험합니다.",
+          "SQL에는 `document`, `field_result`, `grounding`, `review_decision`을 분리해 저장합니다. 문서 버전과 청사진 버전, 실행 시각을 넣으면 설정이 바뀐 뒤 같은 문서의 결과를 비교할 수 있습니다. 개인 정보가 담긴 원문과 정답을 모든 분석자에게 개방하지 않고, 집계에는 익명 ID를 사용합니다.",
+          "평가 쿼리는 필드별 정확도와 검토율을 함께 출력합니다. 전체 정확도만 보면 흔한 필드가 드문 필드의 문제를 가릴 수 있습니다. 분리 오류가 발생한 문서를 따로 묶고, 신뢰 점수 구간별 실제 정답률도 계산합니다. 샘플이 적다면 그 한계를 명시하고 실제 운영 정확도를 주장하지 않습니다."
+        ],
+        "code": "SELECT field_name, COUNT(*) AS checked,\n       AVG(CASE WHEN normalized_value = truth_value THEN 1.0 ELSE 0.0 END) AS accuracy,\n       AVG(CASE WHEN review_required THEN 1.0 ELSE 0.0 END) AS review_rate\nFROM evaluation_results\nGROUP BY field_name\nORDER BY field_name;"
+      },
+      {
+        "heading": "6. Java 서비스는 검토와 업무 반영의 상태를 관리한다",
+        "paragraphs": [
+          "Java API에서는 업로드 접수, 비동기 작업 진행, 결과 수신, 필드 검토, 최종 승인 상태를 명시합니다. 문서 전체가 한 번에 승인되는 경우와 일부 필드만 수정되는 경우를 나눕니다. 한 필드가 수정되면 원래 추출 값, 수정 값, 검토자, 수정 이유와 시각을 함께 남겨야 나중에 결과를 재현할 수 있습니다.",
+          "화면에서 각 값 옆에 점수와 원본 페이지 미리보기를 제시합니다. 좌표를 클릭하면 해당 영역으로 이동하고, 위치가 실제 값과 다르면 ‘근거 불일치’로 표시합니다. 최종 업무 테이블에는 승인된 값만 반영하며, 비동기 결과가 늦게 도착해 이미 승인된 값을 덮어쓰지 않도록 버전과 상태 조건을 검사합니다.",
+          "재시도 요청에는 멱등 키를 사용하고 원본 파일의 해시를 검증합니다. 문서 권한은 업로드, 검토, 승인, 감사 조회를 분리합니다. 이런 서비스 설계는 학습용 제안이며 Textract가 자동으로 제공하는 승인 시스템이라고 해석하면 안 됩니다."
+        ],
+        "code": "RECEIVED → PROCESSING → READY_FOR_REVIEW → APPROVED\n                         ↘ FAILED      ↘ NEEDS_CORRECTION\n\nPATCH /documents/{id}/fields/{name}/review\n{ decision, correctedValue?, evidencePage, reviewerNote }"
+      },
+      {
+        "heading": "7. 클라우드와 AI의 경계 및 지원 범위를 확인한다",
+        "paragraphs": [
+          "공식 발표에 따르면 Insights는 PDF, PNG, JPEG, TIFF를 입력으로 받으며 영어·프랑스어·독일어·이탈리아어·포르투갈어·스페인어 문서를 처리합니다. 한국어는 이 발표의 지원 언어에 포함되지 않습니다. 따라서 한국어 학과 서류에 바로 적용할 수 있다고 안내하면 부정확합니다. 공개 지원 언어 샘플을 사용하거나 한국어 지원이 검증된 다른 방법을 별도로 조사해야 합니다.",
+          "Insights는 같은 서비스의 Textract Core 기능과 지역 범위도 다릅니다. 공식 발표는 Core가 추가 지역에서 제공되더라도 Insights가 그 지역에 제공되는 것은 아니라고 명시합니다. 리전 가용성, 데이터 처리 지역, 암호화 키, 원본·결과 S3 버킷 권한과 페이지당 요금은 실제 배포 전에 공식 문서로 다시 확인해야 합니다.",
+          "생성형 AI 추출 결과의 점수와 위치는 검토 근거입니다. 민감한 신청서나 신분증을 실습에 쓰지 않고 공개 자료 또는 합성 문서를 사용합니다. AI에게 자유 형식 요약을 맡긴다면 요약 결과에도 원본 페이지 링크를 요구하고, 검증할 수 없는 주장과 누락 필드를 따로 표시합니다."
+        ],
+        "references": [
+          {
+            "title": "AWS Blog — Announcing Amazon Textract Insights",
+            "url": "https://aws.amazon.com/blogs/machine-learning/announcing-amazon-textract-insights-verifiable-generative-ai-for-documents/"
+          },
+          {
+            "title": "AWS What's New — Textract Insights GA",
+            "url": "https://aws.amazon.com/about-aws/whats-new/2026/11/textract-insights-ga/"
+          }
+        ]
+      },
+      {
+        "heading": "8. 2주 실습은 값·근거·검토 비용을 함께 평가한다",
+        "paragraphs": [
+          "첫 주에는 지원 언어의 공개 문서와 합성 영수증을 준비하고 필드 청사진, 정답 표, 평가 기준을 만듭니다. 문서 유형이 섞인 묶음과 단일 파일을 나눠 제출하고 Python으로 결과를 구조화합니다. 원본 좌표와 값이 맞는지 사람이 샘플을 직접 확인합니다. 계정이나 비용이 없다면 미리 저장한 예시 JSON으로 같은 평가 파이프라인을 구현할 수 있습니다.",
+          "둘째 주에는 SQL 품질 집계와 Java 검토 API를 연결하고 임계값을 여러 개 적용합니다. 자동 수용 비율이 늘 때 미검출 오류가 어떻게 변하는지, 유형 매칭 오류가 어떤 필드에 전파되는지 비교합니다. 점수가 높은 오답, 점수가 낮은 정답, 근거 좌표가 맞지 않는 사례를 별도 시험으로 포함합니다.",
+          "최종 보고서는 필드 정확도, 문서 분리 정확도, 사람 검토율, 근거 확인 가능 비율, 처리 시간과 비용을 함께 보여줍니다. 이 수치는 실습 자료에 대한 결과로만 해석하며 다른 문서 종류나 한국어 자료에 일반화하지 않습니다. 문서 AI를 이해하는 핵심은 빠른 자동 처리와 사람이 확인할 수 있는 근거를 함께 설계하는 것입니다."
+        ],
+        "bullets": [
+          "값과 원본 페이지·좌표를 연결했는가",
+          "신뢰 점수와 실제 정답률을 구분했는가",
+          "문서 분리·유형·필드 오류를 따로 측정했는가",
+          "검토자 수정과 승인 이력을 보존했는가",
+          "지원 언어·지역·비용 한계를 명시했는가",
+          "실습 제안과 공식 기능을 구별했는가"
+        ]
+      }
+    ],
+    "connection": "Python은 추출 JSON과 정답을 비교하고, SQL은 필드별 정확도·검토율을 집계합니다. Java는 비동기 작업과 검토·승인 상태를 관리하며 AI는 청사진 설명과 추출 결과를 다룹니다. 클라우드 학습에서는 S3 입력·출력, 권한, 암호화, 지원 언어·지역과 처리 비용을 확인합니다.",
+    "learningPoints": [
+      "문서 분리·유형 매칭·필드 추출의 차이를 설명할 수 있는가",
+      "값·점수·페이지 좌표의 데이터 흐름을 그릴 수 있는가",
+      "신뢰 점수와 실제 정확도를 구분할 수 있는가",
+      "Python과 SQL로 필드별 품질을 재현할 수 있는가",
+      "Java로 검토·수정·승인 상태를 관리할 수 있는가",
+      "지원 언어와 지역 제한을 확인하고 실습 범위를 정할 수 있는가"
+    ],
+    "projectPrompt": "지원 언어의 공개 또는 합성 문서를 대상으로 추출 값과 원본 페이지를 함께 보여주는 검토 도구를 만드세요. Python 결과 파서, SQL 품질 집계, Java 검토 API를 연결하고 임계값별 자동 수용률과 놓친 오류를 비교하세요. 한국어 지원이나 성능은 검증하지 않은 채 주장하지 마세요."
+  },
+  {
     "slug": "2026-11-18-agent-host-protocol-session-continuity",
     "date": "2026-11-18",
     "tag": "AI AGENT · DISTRIBUTED SYSTEMS · PROTOCOL",
