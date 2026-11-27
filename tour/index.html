@@ -34,9 +34,9 @@
     <section class="intro" id="intro" aria-labelledby="intro-title">
       <p class="eyebrow">INTERACTIVE CAMPUS EXPERIENCE <span class="spark"></span> 3F DIGITAL TWIN PREVIEW</p>
       <h1 id="intro-title">교실을 넘어,<br><em>미래를 걷다.</em></h1>
-      <p>엘리베이터 문이 열리면 학과 투어가 시작됩니다.<br>실제 도면과 현장 사진을 바탕으로 구성한 3D 공간을 둘러보세요.</p>
+      <p>엘리베이터 문이 열리면 학과 투어가 시작됩니다.<br>실제 건축 도면과 11월 27일 촬영한 두 개의 현장 영상을 바탕으로 복도와 실습 공간을 다시 구성했습니다.</p>
       <div class="intro-actions"><button class="primary-button" type="button" id="btn-start">투어 시작하기 <span>→</span></button><button class="secondary-button" type="button" id="btn-guide">자동 안내 보기 <span>↗</span></button></div>
-      <span class="intro-note">시제품 · 구조와 크기는 추후 실측 보정 · 현재 8316호와 8317호를 체험할 수 있습니다.</span>
+      <span class="intro-note">실제 촬영 영상 기반 2차 시제품 · 실측 전 공간 치수는 보정 예정 · 8316호·8317호 입장 가능</span>
     </section>
     <aside class="location-panel" id="location-panel" aria-label="현재 위치와 바로 이동">
       <p class="panel-kicker">YOU ARE HERE <span class="status-dot"></span> LIVE TOUR</p>
@@ -50,9 +50,9 @@
     <aside class="mini-map" id="map-panel" aria-label="3층 간이 배치도">
       <div class="map-title"><strong>3F FLOOR GUIDE</strong><button type="button" id="btn-map-hide" aria-label="지도 닫기">×</button></div>
       <div class="map-graphic">
-        <div class="map-hall"></div><button class="map-room room-lab" data-dest="8316">8316<span>BIG DATA</span></button><button class="map-room room-lounge" data-dest="8317">8317<span>LOUNGE</span></button><button class="map-room room-elevator" data-dest="lobby">ELEV<span>START</span></button><div class="map-pin" id="map-pin"></div>
+        <div class="map-lobby"></div><div class="map-right-corridor"></div><div class="map-hall"></div><button class="map-room room-lab" data-dest="8316">8316<span>BIG DATA</span></button><button class="map-room room-lounge" data-dest="8317">8317<span>LOUNGE</span></button><div class="map-aux room-ai">8320</div><div class="map-aux room-meet-a">8319</div><div class="map-aux room-meet-b">8318</div><button class="map-room room-elevator" data-dest="lobby">ELEV<span>START</span></button><div class="map-pin" id="map-pin"></div>
       </div>
-      <p>호실을 선택하면 해당 공간까지 안내합니다.</p>
+      <p>11월 27일 영상의 실제 동선을 따라 이동합니다.</p>
     </aside>
     <div class="bottom-bar">
       <div class="controls-hint"><span class="key">W</span><span class="key">A</span><span class="key">S</span><span class="key">D</span> <span>이동</span><span class="hint-divider"></span><span class="mouse-symbol">◎</span><span>화면을 드래그해 둘러보기</span></div>
@@ -69,7 +69,7 @@
   </dialog>
   <dialog id="help-dialog" class="detail-dialog" aria-labelledby="help-title"><button type="button" id="help-close" class="dialog-close" aria-label="닫기">×</button><p class="panel-kicker">HOW TO EXPLORE</p><h2 id="help-title">투어 이용 안내</h2><p>PC에서는 W·A·S·D 키로 이동하고 화면을 드래그하여 시야를 회전할 수 있습니다. 문 근처에서 E를 누르거나 문을 클릭하면 열립니다. 모바일에서는 왼쪽 조이스틱으로 움직이고 화면 오른쪽을 드래그해 방향을 바꿉니다.</p><p>우측 하단 지도와 왼쪽 장소 메뉴를 이용하면 주요 공간으로 안내받을 수 있습니다.</p><button type="button" id="help-done" class="primary-button">확인 →</button></dialog>
   <div id="fallback" class="fallback" hidden><h2>3D 장면을 열 수 없습니다</h2><p>이 브라우저의 WebGL 지원 또는 네트워크 상태를 확인해 주세요. 학과 홈페이지에서도 시설 정보를 볼 수 있습니다.</p><a href="/">학과 홈페이지로 이동 ↗</a></div>
-  <script type="module" src="/tour/tour.js"></script>
+  <script type="module" src="/tour/tour-v2.js"></script>
   <script>setTimeout(function(){if(!window.tourReady){document.getElementById("loader").classList.add("gone");document.getElementById("fallback").hidden=false;}},15000)</script>
 </body>
 </html>
