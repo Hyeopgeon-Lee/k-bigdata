@@ -31,3 +31,5 @@
 .room-ai{top:52%;height:27%}.room-meet-a{top:41%;height:11%}.room-meet-b{top:28%;height:13%}
 .map-pin{z-index:3}
 @media(max-width:700px){.intro h1{font-size:clamp(38px,10vw,61px)}}
+
+.glb-model-link{display:block;color:var(--lime);font-size:11px;font-weight:800;margin-top:10px;padding:10px 5px;border-radius:5px;text-decoration:underline;text-underline-offset:3px}.glb-model-link:hover{background:rgba(137,248,255,.12)}
