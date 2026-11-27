@@ -322,13 +322,13 @@ export function buildVideoWorld(T) {
  };
  function region(x,z){
    if(x>=-4.01 && x<=.38 && z>=3.02 && z<7.99)return 'elevator';
-   if(x>-1.33&&x<8.35&&z>17.35&&z<36.72)return '8316';
-   if(x>12.07&&x<22.25&&z>33.4&&z<42.3)return '8317';
+   if(x>-1.33&&x<8.395&&z>17.35&&z<36.72)return '8316';
+   if(x>12.01&&x<22.25&&z>33.4&&z<42.3)return '8317';
    if(x>12.05&&x<20.45&&z>29.2&&z<33.4)return '8318';
    if(x>12.05&&x<20.45&&z>25.1&&z<29.2)return '8319';
    if(x>12.05&&x<20.45&&z>7.7&&z<25.1)return '8320';
-   if(x>8.40&&x<11.99&&z>2.95&&z<40)return 'corridor';
-   if(x>-15.1&&x<15.3&&z>-1.99&&z<2.96)return 'lobby';
+   if(x>8.39&&x<12.035&&z>2.95&&z<40)return 'corridor';
+   if(x>-15.1&&x<15.3&&z>-1.99&&z<3.08)return 'lobby';
    return 'outside';
  }
  const routes={
