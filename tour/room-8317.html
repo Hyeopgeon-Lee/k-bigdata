@@ -55,11 +55,14 @@ for(const [x,z] of [[0,0],[2,2],[-3,-2]]){
 const control=new OrbitControls(camera,renderer.domElement);
 control.enableDamping=true;control.dampingFactor=.055;control.minDistance=2.5;control.maxDistance=31;
 control.maxPolarAngle=Math.PI*.49;control.target.set(0,1.30,0);
+let model=null;
+function cutaway(){ if(!model)return; for(const name of ['8317_roof','8317_taupe']){const part=model.getObjectByName(name);if(part)part.visible=false;} }
 function view(x,y,z,tx=0,ty=1.2,tz=0){camera.position.set(x,y,z);control.target.set(tx,ty,tz);control.update();}
 view(12.7,10.1,13.5);
 new GLTFLoader().load('/tour/models/room-8317.glb',g=>{
  g.scene.traverse(n=>{if(n.isMesh)n.receiveShadow=false});
  scene.add(g.scene);
+ model=g.scene;cutaway();
  document.getElementById('loading').classList.add('hidden');
 },undefined,err=>{
  console.error(err);
