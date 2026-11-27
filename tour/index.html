@@ -35,8 +35,8 @@
       <p class="eyebrow">INTERACTIVE CAMPUS EXPERIENCE <span class="spark"></span> 3F DIGITAL TWIN PREVIEW</p>
       <h1 id="intro-title">교실을 넘어,<br><em>미래를 걷다.</em></h1>
       <p>엘리베이터 문이 열리면 학과 투어가 시작됩니다.<br>실제 건축 도면과 11월 27일 촬영한 두 개의 현장 영상을 바탕으로 복도와 실습 공간을 다시 구성했습니다.</p>
-      <div class="intro-actions"><button class="primary-button" type="button" id="btn-start">투어 시작하기 <span>→</span></button><button class="secondary-button" type="button" id="btn-guide">자동 안내 보기 <span>↗</span></button><a class="secondary-button" href="/tour/room-8317.html">8317호 3D 모델 보기 <span>↗</span></a></div>
-      <span class="intro-note">8317호 독립 GLB 3D 모델 적용 · 실측 전 공간 치수 보정 예정 · 8316호·8317호 입장 가능</span>
+      <div class="intro-actions"><button class="primary-button" type="button" id="btn-start">투어 시작하기 <span>→</span></button><button class="secondary-button" type="button" id="btn-guide">자동 안내 보기 <span>↗</span></button><a class="secondary-button" href="/tour/room-8317.html">8317호 3D 모델 보기 <span>↗</span></a><a class="secondary-button" href="/tour/room-8318.html">8318호 3D 모델 보기 <span>↗</span></a></div>
+      <span class="intro-note">8317·8318호 독립 GLB 모델 적용 · 8318호는 예정 가구 배치 시안 · 실측 치수 보정 예정</span>
     </section>
     <aside class="location-panel" id="location-panel" aria-label="현재 위치와 바로 이동">
       <p class="panel-kicker">YOU ARE HERE <span class="status-dot"></span> LIVE TOUR</p>
@@ -44,13 +44,13 @@
       <div class="location-divider"></div>
       <button type="button" class="goto" data-dest="lobby"><span class="goto-index">01</span><span>엘리베이터 · 학과 복도</span><span>↗</span></button>
       <button type="button" class="goto" data-dest="8316"><span class="goto-index">02</span><span>8316 · 빅데이터실습실</span><span>↗</span></button>
-      <button type="button" class="goto" data-dest="8317"><span class="goto-index">03</span><span>8317 · 휴게실</span><span>↗</span></button>
-      <p class="map-disclaimer">8317호에 독립 GLB 모델을 불러옵니다.</p><a class="glb-model-link" href="/tour/room-8317.html">8317호 모델 360° 확인 ↗</a>
+      <button type="button" class="goto" data-dest="8317"><span class="goto-index">03</span><span>8317 · 휴게실</span><span>↗</span></button><button type="button" class="goto" data-dest="8318"><span class="goto-index">04</span><span>8318 · 회의실</span><span>↗</span></button>
+      <p class="map-disclaimer">8317·8318호에 독립 GLB 모델을 불러옵니다.</p><a class="glb-model-link" href="/tour/room-8317.html">8317호 모델 360° 확인 ↗</a><a class="glb-model-link" href="/tour/room-8318.html">8318호 모델 360° 확인 ↗</a>
     </aside>
     <aside class="mini-map" id="map-panel" aria-label="3층 간이 배치도">
       <div class="map-title"><strong>3F FLOOR GUIDE</strong><button type="button" id="btn-map-hide" aria-label="지도 닫기">×</button></div>
       <div class="map-graphic">
-        <div class="map-lobby"></div><div class="map-right-corridor"></div><div class="map-hall"></div><button class="map-room room-lab" data-dest="8316">8316<span>BIG DATA</span></button><button class="map-room room-lounge" data-dest="8317">8317<span>LOUNGE</span></button><div class="map-aux room-ai">8320</div><div class="map-aux room-meet-a">8319</div><div class="map-aux room-meet-b">8318</div><button class="map-room room-elevator" data-dest="lobby">ELEV<span>START</span></button><div class="map-pin" id="map-pin"></div>
+        <div class="map-lobby"></div><div class="map-right-corridor"></div><div class="map-hall"></div><button class="map-room room-lab" data-dest="8316">8316<span>BIG DATA</span></button><button class="map-room room-lounge" data-dest="8317">8317<span>LOUNGE</span></button><div class="map-aux room-ai">8320</div><div class="map-aux room-meet-a">8319</div><button type="button" class="map-aux room-meet-b" data-dest="8318">8318</button><button class="map-room room-elevator" data-dest="lobby">ELEV<span>START</span></button><div class="map-pin" id="map-pin"></div>
       </div>
       <p>11월 27일 영상의 실제 동선을 따라 이동합니다.</p>
     </aside>
