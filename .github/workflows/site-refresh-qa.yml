@@ -57,7 +57,10 @@ jobs:
       - name: 사이트 빌드
         env:
           OFFLINE_BUILD: '1'
-        run: python tools/build_site.py
+        run: |
+          python tools/build_site.py
+          test -s _site/tour/models/room-8317.glb
+          test -s _site/tour/room-8317.html
       - name: 원본 콘텐츠·링크·SEO 회귀 검사
         run: python tools/test_site.py
       - name: 프런트엔드 JavaScript 문법 검사
