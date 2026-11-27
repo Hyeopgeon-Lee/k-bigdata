@@ -50,7 +50,10 @@ jobs:
           node --check tour/tour-v2.js
       - uses: actions/configure-pages@v5
       - name: 모집정보·검색 콘텐츠 정적 빌드
-        run: python tools/build_site.py
+        run: |
+          python tools/build_site.py
+          test -s _site/tour/models/room-8317.glb
+          test -s _site/tour/room-8317.html
       - name: SEO·RSS·개인정보·링크 검사 (실패 시 배포 중단)
         run: python tools/test_site.py
       - name: 모바일 활동 목록 12건 단위 정적 분할 및 이미지 치수 보완
