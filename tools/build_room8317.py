@@ -14,6 +14,7 @@ ROOT=Path(__file__).resolve().parent.parent / 'tour' / 'models'
 ROOT.mkdir(parents=True,exist_ok=True)
 materials = {
  'paint': ('#F0EEE9',.90,.0),
+ 'roof': ('#EEEDE9',.92,0),
  'wall': ('#ECE9E3',.89,.0),
  'wallwood': ('#C1AA8E',.79,0),
  'wood': ('#BE986D',.62,.03),
@@ -92,7 +93,7 @@ cube('8317|grey porcelain floor',0,-.085,0,10.0,.17,9.5,'floor')
 for x in np.arange(-4.7,5.0,.92):cube('tile-seam-long',float(x),.002,0,.012,.004,9.2,'grout')
 for z in np.arange(-4.6,4.7,.92):cube('tile-seam-cross',0,.002,float(z),9.8,.004,.012,'grout')
 # White plaster ceiling, recessed warm-taupe main center panel, linear/recessed luminaries
-cube('8317|ceiling',0,3.48,0,10,.15,9.5,'paint')
+cube('8317|ceiling',0,3.48,0,10,.15,9.5,'roof')
 cube('8317|taupe ceiling inset',.05,3.34,0,7.8,.17,7.35,'taupe')
 for xx in (-3.82,3.92):cube('cove warm lighting',xx,3.29,0,.055,.055,7.48,'emissive')
 for zz in (-3.7,3.7):cube('cove warm lighting',0,3.29,zz,7.88,.055,.055,'emissive')
