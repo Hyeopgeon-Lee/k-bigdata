@@ -38,6 +38,7 @@ EXCLUDED = {".git", ".github", ".idea", "_site", "tools", "data", "reports"}
 STATIC_PAGES = (
     ("", "index.html"),
     ("tour/", "tour/index.html"),
+    ("tour/room-8318.html", "tour/room-8318.html"),
     ("ai-software/", "ai-software/index.html"),
     ("data-analysis/", "data-analysis/index.html"),
     ("backend-software/", "backend-software/index.html"),
