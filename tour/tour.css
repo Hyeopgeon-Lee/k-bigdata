@@ -16,3 +16,18 @@
 
 /* Landscape phones need touch controls even when the viewport is wider than 700px. */
 @media (pointer:coarse) and (min-width:701px){.mobile-controller{display:block;position:absolute;left:18px;right:18px;bottom:74px;height:112px;pointer-events:none!important;transform:translateY(200px);transition:transform .4s}.touring .mobile-controller{transform:translateY(0)}.joy-base{position:absolute;left:8px;bottom:5px;width:96px;height:96px;border:1px solid rgba(222,250,255,.4);border-radius:50%;background:rgba(5,23,40,.46);touch-action:none;pointer-events:auto}.joy-stick{position:absolute;width:42px;height:42px;left:26px;top:26px;border-radius:50%;background:rgba(114,219,248,.42);border:1px solid rgba(255,255,255,.5)}.mobile-action{position:absolute;right:8px;bottom:26px;min-width:68px;height:45px;border:0;border-radius:26px;background:var(--lime);color:#091723;font-weight:900;pointer-events:auto}.touch-guide{position:absolute;left:119px;bottom:45px;font-size:10px;color:#c8dce8}.controls-hint,.crosshair{display:none}}
+
+/* 2026-11-27: video-matched L-shaped floor guide, with left-hand 8316 and
+   right-hand 8317 at the northern end of the east-wing corridor. */
+.map-graphic{height:234px;background:#112638;overflow:hidden}
+.map-lobby{position:absolute;left:7%;bottom:9%;width:69%;height:9%;border:1px solid #89aaba;background:#627680}
+.map-right-corridor{position:absolute;left:57%;top:8%;width:11%;height:80%;border:1px solid #87bac9;background:#566f7d}
+.map-hall{display:none}
+.map-graphic .map-room{z-index:2}
+.map-graphic .room-elevator{left:21%;top:78%;width:23%;height:14%;font-size:9px}
+.map-graphic .room-lab{left:9%;top:20%;width:48%;height:42%;background:#154761}
+.map-graphic .room-lounge{right:2%;top:8%;width:30%;height:20%;border-radius:4px 22px 22px 4px;background:#184d5b}
+.map-aux{position:absolute;right:2%;width:29%;font-size:9px;color:#9abfca;text-align:center;padding:6px 0;border:1px solid rgba(125,180,201,.3);background:rgba(20,61,78,.45)}
+.room-ai{top:52%;height:27%}.room-meet-a{top:41%;height:11%}.room-meet-b{top:28%;height:13%}
+.map-pin{z-index:3}
+@media(max-width:700px){.intro h1{font-size:clamp(38px,10vw,61px)}}
