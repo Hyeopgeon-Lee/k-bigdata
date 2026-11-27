@@ -44,6 +44,8 @@ parts=[]
 
 def add(name,mesh,mat):
  color,rough,metal=materials[mat]
+ if any(label in name for label in ['glass door mullion','folding transparent door leaf','folding door top rail','folding door lower rail','vertical latch handle','glass entrance top header','glass entrance lower sill']):
+  return  # A movable entrance door is supplied by the interactive web scene.
  mesh.visual=TextureVisuals(material=PBRMaterial(name=mat,baseColorFactor=rgba(color),metallicFactor=metal,roughnessFactor=rough,doubleSided=True))
  mesh.metadata['room']='8317'
  parts.append((name,mesh,mat))
