@@ -207,7 +207,15 @@ export function buildVideoWorld(T) {
     {id:'8319',name:'회의실',a:25.1,b:29.2,door:27.25},
     {id:'8318',name:'회의실',a:29.2,b:33.4,door:31.25}
  ];
+ // 8318 geometry and its planned furniture are supplied by an external GLB.
+ // Avoid overlapping duplicate walls, ceiling and conference table.
  for(const s of sections){
+   if(s.id==='8318'){
+     openingDoor('room-'+s.id,s.id+'호 '+s.name,eastX0,s.door,'x',1.40,true);
+     label(s.id+' · '+s.name,11.89,2.95,s.door+1.8,1.96,Math.PI/2,'#f2f4f4','#274969',54);
+     light(16.25,31.3,3.3);
+     continue;
+   }
    cube(16.25,-.085,(s.a+s.b)/2,8.47,.17,s.b-s.a,M.labFloor);
    cube(16.25,3.49,(s.a+s.b)/2,8.47,.12,s.b-s.a,M.white);
    wall(eastX0,s.a,eastX1,s.a);wall(eastX0,s.b,eastX1,s.b);
@@ -218,12 +226,11 @@ export function buildVideoWorld(T) {
    label(s.id+' · '+s.name,11.89,2.95,s.door+1.8,1.96,Math.PI/2,'#f2f4f4','#274969',54);
    ceilingPanel(16.4,(s.a+s.b)/2,2.3,.5);
  }
- // Meeting room furniture planned, not delivered in supplied photos.
- for(const s of sections.filter(x=>x.id!=='8320')){
+ // Meeting furniture for 8319 remains provisional; 8318 uses its own GLB.
+ for(const s of sections.filter(x=>x.id==='8319')){
    const mz=(s.a+s.b)/2;
    const table=mesh(new T.CylinderGeometry(1.21,1.21,.075,48),M.desk,16.4,.82,mz);
    table.scale.set(1.85,1,.80);
-   // 4 + 4 + 1 + 1, compact room size approximated until measurements.
    for(const side of [-1,1])for(const k of [-1.4,-.46,.46,1.4]){
      cube(16.4+k,.50,mz+side*1.18,.41,.17,.38,M.blue);
      cube(16.4+k,.87,mz+side*1.37,.42,.54,.12,M.blue);
@@ -233,11 +240,13 @@ export function buildVideoWorld(T) {
      cube(16.4+k*2.33,.84,mz,.12,.55,.45,M.blue);
    }
    cube(16.5,2.06,s.b-.13,4.0,1.46,.06,M.white);
-   if(s.id==='8318'){
-     cube(16.5,3.26,s.b-.22,4.15,.15,.26,M.metal);
-     cube(16.5,3.10,mz,.32,.24,.58,M.black);
-   }
  }
+ hotspot('8318-board','8318호 매립형 화이트보드',
+  '회의실 한쪽 벽에 설치된 대형 흰색 매립형 필기용 화이트보드입니다.',
+  16.25,2.05,29.36,5.0,1.45,.28,'detail');
+ hotspot('8318-screen','8318호 전동 스크린',
+  '8318호에만 설치되는 천장형 전동스크린과 빔프로젝터입니다. 화면을 클릭해 스크린을 올리고 내릴 수 있습니다.',
+  20.09,2.23,31.3,.30,2.01,2.83,'screen-toggle');
  // 8320: visible computer screens and realistic simple workstation silhouettes.
  for(const z of [10.9,13.7,16.5,19.3,22.1])
    for(const x of [13.8,16.4,19.0]) workstation(x,z);
@@ -279,7 +288,7 @@ export function buildVideoWorld(T) {
    if(x>12.05&&x<20.45&&z>29.2&&z<33.4)return '8318';
    if(x>12.05&&x<20.45&&z>25.1&&z<29.2)return '8319';
    if(x>12.05&&x<20.45&&z>7.7&&z<25.1)return '8320';
-   if(x>8.39&&x<12.035&&z>2.95&&z<40)return 'corridor';
+   if(x>8.39&&x<12.08&&z>2.95&&z<40)return 'corridor';
    if(x>-15.1&&x<15.3&&z>-1.99&&z<3.08)return 'lobby';
    return 'outside';
  }
