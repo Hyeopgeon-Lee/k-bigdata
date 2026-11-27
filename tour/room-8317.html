@@ -56,7 +56,16 @@ const control=new OrbitControls(camera,renderer.domElement);
 control.enableDamping=true;control.dampingFactor=.055;control.minDistance=2.5;control.maxDistance=31;
 control.maxPolarAngle=Math.PI*.49;control.target.set(0,1.30,0);
 let model=null;
-function cutaway(){ if(!model)return; for(const name of ['8317_roof','8317_taupe']){const part=model.getObjectByName(name);if(part)part.visible=false;} }
+function cutaway(mode='open'){
+ if(!model)return;
+ for(const name of ['8317_roof','8317_taupe']){
+   const part=model.getObjectByName(name);if(part)part.visible=false;
+ }
+ // Full cutaway reveals furniture from all sides; entrance mode keeps walls.
+ for(const name of ['8317_wall','8317_paint','8317_wallwood']){
+   const part=model.getObjectByName(name);if(part)part.visible=(mode==='entrance');
+ }
+}
 function view(x,y,z,tx=0,ty=1.2,tz=0){camera.position.set(x,y,z);control.target.set(tx,ty,tz);control.update();}
 view(12.7,10.1,13.5);
 new GLTFLoader().load('/tour/models/room-8317.glb',g=>{
@@ -69,10 +78,10 @@ new GLTFLoader().load('/tour/models/room-8317.glb',g=>{
  const load=document.getElementById('loading');
  load.textContent='3D 모델 로딩에 실패했습니다. 네트워크 상태를 확인하거나 새로고침해 주세요.';
 });
-document.getElementById('perspective').onclick=()=>view(12.7,10.1,13.5);
-document.getElementById('entrance').onclick=()=>view(-9,1.7,.2,2.0,1.4,.0);
-document.getElementById('bench').onclick=()=>view(7.6,4.7,8.1,2.8,.8,0);
-document.getElementById('tv').onclick=()=>view(-1.2,3.5,7,-2.5,1.5,2.8);
+document.getElementById('perspective').onclick=()=>{cutaway();view(12.7,10.1,13.5)};
+document.getElementById('entrance').onclick=()=>{cutaway('entrance');view(-9,1.7,.2,2.0,1.4,.0)};
+document.getElementById('bench').onclick=()=>{cutaway();view(7.6,4.7,8.1,2.8,.8,0)};
+document.getElementById('tv').onclick=()=>{cutaway();view(-1.2,3.5,7,-2.5,1.5,2.8)};
 addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
 function animate(){requestAnimationFrame(animate);control.update();renderer.render(scene,camera)}animate();
 </script>
