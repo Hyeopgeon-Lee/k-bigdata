@@ -82,7 +82,7 @@ def annular(name,cx,cz,rx_outer,rz_outer,rx_inner,rz_inner,ang0,ang1,y0,y1,mat,s
   a,b,c,d=p,p+1,p+3,p+2
   faces.extend([[a,b,c],[a,c,d]])
  m=trimesh.Trimesh(vertices=np.array(vs),faces=np.array(faces),process=False)
- m.fix_normals();add(name,m,mat)
+ add(name,m,mat)  # Double-sided material; no SciPy-required normal repair.
 
 def oriented_box(name,x,y,z,sx,sy,sz,angle,mat):
  m=trimesh.creation.box(extents=[sx,sy,sz]);m.apply_transform(trimesh.transformations.rotation_matrix(angle,[0,1,0]));m.apply_translation([x,y,z]);add(name,m,mat)
