@@ -47,6 +47,8 @@ jobs:
           node tools/test_lazy_video_poster.cjs
           node --check tour/world.js
           node --check tour/tour.js
+          node --check tour/world-v2.js
+          node --check tour/tour-v2.js
       - name: 사이트 빌드
         env:
           OFFLINE_BUILD: '1'
