@@ -1,4 +1,5 @@
-import * as T from 'https://cdn.jsdelivr.net/npm/three@0.174.0/build/three.module.js';
+import * as T from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import {buildVideoWorld} from './world-v2.js';
 const $=id=>document.getElementById(id);
 const viewport=$('viewport'),loader=$('loader'),intro=$('intro'),map=$('map-panel');
@@ -265,6 +266,28 @@ function init(){
    camera.position.set(-1.8,1.64,5.43);
    yaw=0;pitch=0;clock=new T.Clock();
    world=buildVideoWorld(T);
+   // Load authored independent GLB asset. Entrance at local x=-4.95 maps
+   // to world x=12.03. Its exterior, furniture and lighting are in the file.
+   const roomLoader=new GLTFLoader();
+   roomLoader.load('/tour/models/room-8317.glb',
+     (gltf)=>{
+       const room=gltf.scene;
+       room.name='ROOM_8317_IMPORTED_GLB';
+       room.position.set(17.0,0,37.8);
+       room.traverse((node)=>{
+         if(node.isMesh){node.castShadow=false;node.receiveShadow=true;}
+       });
+       world.scene.add(room);
+       window.room8317ModelLoaded=true;
+       status('8317호 독립 GLB 3D 모델 로딩 완료',2600);
+     },
+     undefined,
+     (error)=>{
+       console.error('8317 GLB failed to load',error);
+       window.room8317ModelLoaded=false;
+       status('8317호 3D 모델을 불러올 수 없습니다. 새로고침해 주세요.',6500);
+     });
+   
    events();updateHUD();
    const params=new URLSearchParams(location.search);
    if(params.get('room')==='8316'||params.get('room')==='8317')setTimeout(()=>guide(params.get('room')),1100);
