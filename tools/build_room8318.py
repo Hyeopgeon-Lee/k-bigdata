@@ -99,6 +99,13 @@ box('rear wall wood dado',4.08,.43,0,.08,.82,W-.19,'woodwall')
 # Large white porcelain writing board built into wall, 5m-long horizontal display.
 box('recessed whiteboard shadow gasket',-.18,2.06,-1.96,5.08,1.55,.015,'darkmetal')
 box('recessed whiteboard glazed porcelain',-.18,2.06,-1.944,4.99,1.47,.015,'whiteboard')
+# A WHITEBOARD is a fixed writing surface, NOT a second projector screen.
+# Four recessed edge reveals, aluminum marker tray and two markers clarify the role.
+box('writing board frame top',-.18,2.816,-1.923,5.08,.027,.044,'silver')
+box('writing board frame left',-2.735,2.06,-1.923,.027,1.57,.044,'silver')
+box('writing board frame right',2.375,2.06,-1.923,.027,1.57,.044,'silver')
+box('whiteboard blue marker',-1.88,1.314,-1.86,.18,.023,.020,'darkmetal')
+box('whiteboard eraser',-1.46,1.324,-1.85,.19,.04,.09,'chairback')
 box('board bottom chalk rail',-.18,1.29,-1.92,5.12,.047,.10,'silver')
 # Roof and ceiling acoustic modular tiles (cutaway visor toggled by the standalone viewer).
 box('8318 ceiling panel',0,3.48,0,L,.12,W,'ceiling',separate=True)
@@ -109,7 +116,8 @@ for x in (-2.63,.08,2.68):
  box('ceiling rectangular light diffuser',x,3.307,.35,1.44,.021,.41,'light')
 box('ceiling cassette AC',.92,3.24,-.79,.85,.15,.75,'projector')
 for i in range(6):box('ceiling AC grille',.62+i*.115,3.15,-.79,.020,.012,.52,'silver')
-# Large motorized electric screen on the wall OPPOSITE door (+X), behind it rear windows.
+# Exactly ONE motorized PROJECTION SCREEN, on wall opposite entrance (+X).
+# The whiteboard on the side wall is a fixed writing board, not another screen.
 box('motorized screen top rail',3.91,3.22,0,.22,.19,3.10,'silver')
 box('motorized screen slotted front',3.78,3.145,0,.031,.050,3.02,'darkmetal')
 # A separate deployable screen mesh, hidden by default via GLTFLoader, revealed on demand.
@@ -167,6 +175,11 @@ for z,yaw in [(-1.20,math.pi),(1.20,0.0)]:
 chair(-2.83,0,-math.pi/2)
 chair(2.78,0,math.pi/2)
 assert chair_count==10
+# Invariant: one retractable projection fabric panel, one ceiling projector,
+# one separate built-in writing whiteboard. Check against accidental duplicates.
+assert len([p for p in parts if p[0]=='8318_projector_screen_lowered'])==1
+assert len([p for p in parts if p[0]=='overhead beam projector'])==1
+assert len([p for p in parts if p[0]=='recessed whiteboard glazed porcelain'])==1
 
 # Simple non-PBR photo-based light represented by baked neutral material colors, no GPU requirement.
 # Preserve screen as a standalone mesh for toggling; other meshes merge by material.
@@ -189,6 +202,8 @@ report={
  'room':'8318','geometryMeshes':len(loaded.geometry),
  'sourceParts':len(parts),'triangles':triangles,'glb_bytes':output.stat().st_size,
  'chairs':chair_count,'tableSeats':'4 + 4 + 1 + 1',
+ 'projectionScreenCount':1,'projectorCount':1,'writingWhiteboardCount':1,
+ 'projectionScreenDefault':'raised',
  'features':['large oval oak 10-seater meeting table','two rows of 4 chairs plus end chairs','built-in ceramic whiteboard','overhead projector','motorized screen opposite entrance','frosted partition','window and roller blinds'],
  'dataProvenance':'user-supplied empty-room photos and room instructions; approximate dimensions; conceptual future furniture',
  'surveyed':False,'source':'manual reconstructed 3D mesh, not a scanned model'
