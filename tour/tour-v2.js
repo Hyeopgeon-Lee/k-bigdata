@@ -53,6 +53,7 @@ function openDoorsFor(destination){
  if(destination==='8316'){world.open('lab-front');world.open('lab-rear');}
  if(destination==='8317')world.open('lounge');
  if(destination==='8318')world.open('room-8318');
+ if(destination==='8319')world.open('room-8319');
 }
 function clearRoute(){route=[];routeIndex=0;routeNext=null;$('btn-tour').textContent='자동 투어';}
 function waypoint(x,z){return new T.Vector3(x,1.64,z);}
@@ -68,6 +69,9 @@ function routeFromNow(destination){
  }else if(zone==='8318'){
     world.open('room-8318');
     waypoints.push(waypoint(12.8,31.25),waypoint(10.18,31.25));
+  }else if(zone==='8319'){
+    world.open('room-8319');
+    waypoints.push(waypoint(12.8,27.25),waypoint(10.18,27.25));
   }else if(zone==='elevator'){
    waypoints.push(waypoint(-1.8,3.3),waypoint(-1.8,.65),waypoint(10.18,.65));
  }else if(zone==='lobby'){
@@ -75,13 +79,19 @@ function routeFromNow(destination){
  }else{
    waypoints.push(waypoint(10.18,camera.position.z));
  }
- const corridorZ=(zone==='8316')?21.35:(zone==='8317'?37.8:(zone==='8318'?31.25:Math.max(.65,camera.position.z)));
+ const corridorZ=(zone==='8316')?21.35:(zone==='8317'?37.8:(zone==='8318'?31.25:(zone==='8319'?27.25:Math.max(.65,camera.position.z))));
  if(destination==='8316'){
    if(corridorZ!==21.35)waypoints.push(waypoint(10.18,21.35));
    waypoints.push(waypoint(9.7,21.35),waypoint(8.0,21.35),waypoint(6.35,21.35),waypoint(5.1,22.0));
  }else if(destination==='8317'){
    if(corridorZ!==37.8)waypoints.push(waypoint(10.18,37.8));
    waypoints.push(waypoint(11.1,37.8),waypoint(13.4,37.8),waypoint(16.2,37.8));
+ }else if(destination==='8318'){
+   if(corridorZ!==31.25)waypoints.push(waypoint(10.18,31.25));
+   waypoints.push(waypoint(11.3,31.25),waypoint(12.9,31.25),waypoint(15.5,31.25));
+ }else if(destination==='8319'){
+   if(corridorZ!==27.25)waypoints.push(waypoint(10.18,27.25));
+   waypoints.push(waypoint(11.3,27.25),waypoint(12.9,27.25),waypoint(15.5,27.25));
  }else{
    if(corridorZ!==.65)waypoints.push(waypoint(10.18,.65));
    waypoints.push(waypoint(2.6,.65),waypoint(-1.80,1.2),waypoint(-1.8,4.65));
@@ -93,7 +103,7 @@ function guide(dest='8316',then=null) {
  route=routeFromNow(dest);routeIndex=0;routeNext=then;
  map.classList.remove('open');
  $('btn-tour').textContent='자동 안내 중단';
- status(dest==='8316'?'8316호 실습실로 이동합니다.':dest==='8317'?'8317호 휴게실로 이동합니다.':dest==='8318'?'8318호 회의실로 이동합니다.':'엘리베이터로 돌아갑니다.');
+ status(dest==='8316'?'8316호 실습실로 이동합니다.':dest==='8317'?'8317호 휴게실로 이동합니다.':dest==='8318'?'8318호 회의실로 이동합니다.':dest==='8319'?'8319호 회의실로 이동합니다.':'엘리베이터로 돌아갑니다.');
 }
 function updateRoute(dt){
  if(!route.length)return;
@@ -122,6 +132,7 @@ function canMove(nx,nz,px,pz){
  }
  if(pair.has('8317')&&pair.has('corridor'))return world.doors.lounge.open>.72&&Math.abs(nz-37.8)<1.19;
   if(pair.has('8318')&&pair.has('corridor'))return world.doors['room-8318'].open>.72&&Math.abs(nz-31.25)<.68;
+ if(pair.has('8319')&&pair.has('corridor'))return world.doors['room-8319'].open>.72&&Math.abs(nz-27.25)<.68;
  if(pair.has('lobby')&&pair.has('corridor'))return true;
  // Meeting rooms and 8320 are visible through glazing but not fully implemented in this release.
  return false;
@@ -152,7 +163,8 @@ function nearest(){
 function action(){
  if(nearDoor){world.open(nearDoor.id);status('출입문이 열렸습니다. 안으로 이동해 보세요.',1500);return;}
  if(activeRoom==='8316')details('8316호 빅데이터실습실','30석의 PC 실습실로, 2인용 책상 15개를 3열×5줄로 배치했습니다. 전면에는 전동 스크린과 벽면 매립형 도자기 화이트보드가 있습니다.','ROOM 8316');
- if(activeRoom==='8318')details('8318호 회의실','10인용 타원형 원목 회의탁자(4+4+1+1)와 대형 매립형 화이트보드, 천장 빔프로젝터 및 전동 스크린이 설치되는 공간입니다. 가구 배치는 계획 시안입니다.','ROOM 8318');
+ if(activeRoom==='8319')details('8319호 회의실','8318호와 같은 디자인의 10인용 타원형 원목 회의탁자·의자 10개·매립형 필기 화이트보드를 갖춘 회의실입니다. 8319호에는 빔프로젝터와 전동 스크린이 없습니다.','ROOM 8319');
+  if(activeRoom==='8318')details('8318호 회의실','10인용 타원형 원목 회의탁자(4+4+1+1)와 대형 매립형 화이트보드, 천장 빔프로젝터 및 전동 스크린이 설치되는 공간입니다. 가구 배치는 계획 시안입니다.','ROOM 8318');
   if(activeRoom==='8317')details('8317호 휴게실','학생이 노트북을 사용하거나 쉬는 공간입니다. 곡선 벽면의 매립 좌석 아래 콘센트, 노란 의자, 75인치 스탠드 스마트 TV, 냉장고·전자레인지가 있습니다.','ROOM 8317');
 }
 function details(title,description,tag='FACILITY INFORMATION',kind='detail',url=null){
@@ -325,9 +337,24 @@ function init(){
         window.room8318ModelLoaded=false;
         status('8318호 3D 모델을 불러오지 못했습니다.',5000);
       });
+    roomLoader.load('/tour/models/room-8319.glb',
+      (gltf)=>{
+        const room=gltf.scene;
+        room.name='ROOM_8319_IMPORTED_GLB';
+        room.position.set(16.25,0,27.15);
+        room.traverse(node=>{if(node.isMesh){node.castShadow=false;node.receiveShadow=true;}});
+        world.scene.add(room);
+        window.room8319ModelLoaded=true;
+      },
+      undefined,
+      (error)=>{
+        console.error('8319 GLB loading failed',error);
+        window.room8319ModelLoaded=false;
+        status('8319호 3D 모델을 불러오지 못했습니다.',5000);
+      });
    events();updateHUD();
    const params=new URLSearchParams(location.search);
-   if(['8316','8317','8318'].includes(params.get('room')))setTimeout(()=>guide(params.get('room')),1100);
+   if(['8316','8317','8318','8319'].includes(params.get('room')))setTimeout(()=>guide(params.get('room')),1100);
    window.tourReady=true;loader.classList.add('gone');setTimeout(()=>loader.remove(),750);
    requestAnimationFrame(render);
  }catch(err){fail(err)}

@@ -36,6 +36,8 @@ jobs:
           python -m pip install 'trimesh==4.11.1' 'numpy>=1.26,<3'
           python tools/build_room8317.py
           python tools/build_room8318.py
+          python tools/build_room8319.py
+          python -c "import json; a=json.load(open('tour/models/room-8318-quality.json')); b=json.load(open('tour/models/room-8319-quality.json')); assert (a['chairs'],b['chairs'])==(10,10); assert (a['projectionScreenCount'],b['projectionScreenCount'])==(1,0); assert (a['projectorCount'],b['projectorCount'])==(1,0); assert (a['writingWhiteboardCount'],b['writingWhiteboardCount'])==(1,1)"
           python -c "import trimesh; s=trimesh.load('tour/models/room-8318.glb',force='scene'); assert len(s.geometry)>=18; assert sum(len(m.faces) for m in s.geometry.values()) > 3500; import json; d=json.load(open('tour/models/room-8318-quality.json')); assert (d['projectionScreenCount'],d['projectorCount'],d['writingWhiteboardCount']) == (1,1,1)"
           python -c "import trimesh; s=trimesh.load('tour/models/room-8317.glb',force='scene'); assert len(s.geometry)>=15; assert sum(len(m.faces) for m in s.geometry.values()) > 5000"
       - name: 기존 글·입시 검증
@@ -58,6 +60,8 @@ jobs:
           test -s _site/tour/room-8317.html
           test -s _site/tour/models/room-8318.glb
           test -s _site/tour/room-8318.html
+          test -s _site/tour/models/room-8319.glb
+          test -s _site/tour/room-8319.html
       - name: SEO·RSS·개인정보·링크 검사 (실패 시 배포 중단)
         run: python tools/test_site.py
       - name: 모바일 활동 목록 12건 단위 정적 분할 및 이미지 치수 보완

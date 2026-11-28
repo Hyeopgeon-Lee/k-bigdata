@@ -210,7 +210,7 @@ export function buildVideoWorld(T) {
  // 8318 geometry and its planned furniture are supplied by an external GLB.
  // Avoid overlapping duplicate walls, ceiling and conference table.
  for(const s of sections){
-   if(s.id==='8318'){
+   if(s.id==='8318'||s.id==='8319'){
      openingDoor('room-'+s.id,s.id+'호 '+s.name,eastX0,s.door,'x',1.40,true);
      label(s.id+' · '+s.name,11.89,2.95,s.door+1.8,1.96,Math.PI/2,'#f2f4f4','#274969',54);
      light(16.25,31.3,3.3);
@@ -226,21 +226,11 @@ export function buildVideoWorld(T) {
    label(s.id+' · '+s.name,11.89,2.95,s.door+1.8,1.96,Math.PI/2,'#f2f4f4','#274969',54);
    ceilingPanel(16.4,(s.a+s.b)/2,2.3,.5);
  }
- // Meeting furniture for 8319 remains provisional; 8318 uses its own GLB.
- for(const s of sections.filter(x=>x.id==='8319')){
-   const mz=(s.a+s.b)/2;
-   const table=mesh(new T.CylinderGeometry(1.21,1.21,.075,48),M.desk,16.4,.82,mz);
-   table.scale.set(1.85,1,.80);
-   for(const side of [-1,1])for(const k of [-1.4,-.46,.46,1.4]){
-     cube(16.4+k,.50,mz+side*1.18,.41,.17,.38,M.blue);
-     cube(16.4+k,.87,mz+side*1.37,.42,.54,.12,M.blue);
-   }
-   for(const k of [-1,1]){
-     cube(16.4+k*2.08,.48,mz,.4,.14,.42,M.blue);
-     cube(16.4+k*2.33,.84,mz,.12,.55,.45,M.blue);
-   }
-   cube(16.5,2.06,s.b-.13,4.0,1.46,.06,M.white);
- }
+ // 8318 and 8319 rooms use matching independent high-detail GLB geometry.
+ // No placeholder desks, chairs, walls or ceilings remain for these rooms.
+ hotspot('8319-board','8319호 매립형 필기용 화이트보드',
+  '8319호에는 흰색 필기용 화이트보드가 1개 있으며, 빔프로젝터와 전동 영사 스크린은 없습니다.',
+  16.25,2.05,25.25,4.8,1.45,.22,'detail');
  hotspot('8318-board','8318호 매립형 화이트보드',
   '회의실 한쪽 벽에 설치된 대형 흰색 매립형 필기용 화이트보드입니다.',
   16.25,2.05,29.36,5.0,1.45,.28,'detail');

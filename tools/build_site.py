@@ -39,6 +39,7 @@ STATIC_PAGES = (
     ("", "index.html"),
     ("tour/", "tour/index.html"),
     ("tour/room-8318.html", "tour/room-8318.html"),
+    ("tour/room-8319.html", "tour/room-8319.html"),
     ("ai-software/", "ai-software/index.html"),
     ("data-analysis/", "data-analysis/index.html"),
     ("backend-software/", "backend-software/index.html"),
