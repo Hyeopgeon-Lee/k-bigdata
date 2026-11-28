@@ -22,6 +22,9 @@ colors={
     'woodwall':('#BBA385',.81,0), 'woodtrim':('#9B8267',.67,0),
     'tableoak':('#C7A178',.57,0), 'tableedge':('#A98058',.63,0),
     'grain':('#B18A60',.7,0), 'underbase':('#AC805B',.72,0),
+    'woodhighlight':('#E4C39C',.44,0), 'walnut':('#725138',.60,0),
+    'fabricshadow':('#354955',.95,0), 'fabricstitch':('#9FB2B9',.92,0),
+    'brushedbrass':('#BDA579',.34,.68), 'warmled':('#FFF0D4',.17,0),
     'chair':('#4C5D66',.91,0), 'chairback':('#52646D',.86,0),
     'chairmetal':('#566570',.35,.65), 'rubber':('#252C34',.91,0),
     'screen':('#F8F9F8',.3,0), 'whiteboard':('#F8F9F7',.20,0),
@@ -93,10 +96,11 @@ box('entrance transom',-4.20,3.19,0,.15,.50,1.47,'plaster')
 # Light wood doorway surrounds match corridor photo; no duplicate swinging leaf.
 for z in (-.74,.74):box('light wood door jamb',-4.25,1.65,z,.19,3.30,.12,'woodwall')
 box('light wood door top lintel',-4.25,3.31,0,.19,.19,1.62,'woodwall')
-# Wood wainscot on lower wall (board area has wall flush finish, don't obscure board).
+# Warm oak wainscot and natural finish on lower wall; do not obscure the writing surface.
 box('west wall wood dado',0,.43,-1.97,L-.22,.82,.080,'woodwall')
 box('rear wall wood dado',4.08,.43,0,.08,.82,W-.19,'woodwall')
-# Large white porcelain writing board built into wall, 5m-long horizontal display.
+# Large fixed recessed PORCELAIN WRITING WHITEBOARD on side wall (not a second projection screen).
+# The 8318 and 8319 writing-board geometry and finish are exactly shared.
 box('recessed whiteboard shadow gasket',-.18,2.06,-1.96,5.08,1.55,.015,'darkmetal')
 box('recessed whiteboard glazed porcelain',-.18,2.06,-1.944,4.99,1.47,.015,'whiteboard')
 # A WHITEBOARD is a fixed writing surface, NOT a second projector screen.
@@ -131,6 +135,7 @@ cylinder('projector front lens',-.148,3.005,0,.075,.047,'lens',24,axis='x')
 # Dedicated power/control panel near door.
 box('room switch panel',-4.03,1.30,-1.26,.024,.20,.16,'socket')
 box('wall socket below whiteboard',-2.57,.36,-1.97,.020,.16,.20,'socket')
+# Shared premium meeting design: warm honey oak, subtle bevel and cable access.
 # 10-person wide oval oak conference table in wood colour matching student desks.
 # 4 seats along each long side, one at each end.
 # Oval solid wood tabletop: 4.25m long, 1.38m wide, bevel-like second inset edge.
@@ -148,6 +153,8 @@ for i in range(16):
     box('oak length grain',-.04,.819,z,segment_length,.002,.006,'grain')
 # Small cable management central table port for laptops.
 box('in-desk conference cable lid',-.02,.825,0,.48,.007,.16,'darkmetal')
+box('premium meeting table chamfer highlight',-.04,.841,0,3.46,.007,.022,'woodhighlight')
+box('integrated power socket accent',.035,.839,.055,.11,.007,.018,'brushedbrass')
 box('flush cable access face',-.02,.829,0,.42,.006,.09,'silver')
 # Chair design is conceptual; no chair photograph was provided at time of modelling.
 # 10 full 3D movable office chairs around oval table, facing the centre.
@@ -161,6 +168,10 @@ def chair(cx,cz,yaw):
   oriented_box(f'8318 chair {chair_count:02d} {label}',x,dy,z,sx,sy,sz,yaw,material)
  oriented('seat cushion',0,.52,0,.52,.115,.49,'chair')
  oriented('back lumbar cushion',0,.94,.285,.50,.72,.11,'chairback')
+ oriented('seat piped front edge',0,.467,-.24,.48,.014,.020,'fabricshadow')
+ oriented('seat upholstery highlight',0,.585,-.06,.42,.007,.25,'chairback')
+ oriented('back central vertical upholstery seam',0,.99,.349,.013,.58,.009,'fabricstitch')
+ oriented('back top piping',0,1.293,.349,.43,.014,.016,'fabricshadow')
  for xx in (-.26,.26):
    oriented('arm rest',xx,.75,-.018,.053,.060,.42,'chairmetal')
    oriented('arm post',xx,.64,.07,.042,.20,.05,'chairmetal')
@@ -181,7 +192,25 @@ assert len([p for p in parts if p[0]=='8318_projector_screen_lowered'])==1
 assert len([p for p in parts if p[0]=='overhead beam projector'])==1
 assert len([p for p in parts if p[0]=='recessed whiteboard glazed porcelain'])==1
 
-# Simple non-PBR photo-based light represented by baked neutral material colors, no GPU requirement.
+# Matching recessed perimeter coves: warm indirect strips beneath the ceiling.
+for side in (-1.93,1.93):
+ box('8318 perimeter cove diffuser',0,3.29,side,7.65,.012,.031,'warmled')
+ box('8318 perimeter cove timber trim',0,3.31,side,7.65,.025,.034,'woodhighlight')
+# Decorative oak baseboards and slim corner shadow reveals.
+for side in (-1.985,1.985):
+ box('8318 lower timber skirting',0,.105,side,8.12,.15,.026,'woodtrim')
+for x in (-4.03,4.03):
+ box('8318 door-corridor wall skirting',x,.095,0,.027,.13,3.76,'woodtrim')
+# Gentle pinstripe accents on the long oak oval table underside.
+for x in (-1.5,-.95,-.45,.10,.64,1.19,1.72):
+ z_extent=.68*math.sqrt(max(.05,1.0-((x+.04)/2.13)**2))
+ box('8318 oak tabletop lateral fine grain',x,.822,0,.012,.002,2*z_extent,'woodhighlight')
+# Two slender whiteboard pen rests integrated with the bottom marker rail.
+for x in (-1.82,-1.30):
+ box('8318 pen rest',x,1.322,-1.866,.23,.018,.027,'brushedbrass')
+
+# Natural wood and brushed metal PBR materials for coordinated professional meeting spaces.
+# Both 8318 and 8319 share identical construction, measurements and furniture style.
 # Preserve screen as a standalone mesh for toggling; other meshes merge by material.
 by_mat=defaultdict(list)
 for label,geom,mat,separate in parts:
@@ -204,6 +233,7 @@ report={
  'chairs':chair_count,'tableSeats':'4 + 4 + 1 + 1',
  'projectionScreenCount':1,'projectorCount':1,'writingWhiteboardCount':1,
  'projectionScreenDefault':'raised',
+ 'designEdition':'unified-meeting-premium-v2','sharedGeometryWith':'8319',
  'features':['large oval oak 10-seater meeting table','two rows of 4 chairs plus end chairs','built-in ceramic whiteboard','overhead projector','motorized screen opposite entrance','frosted partition','window and roller blinds'],
  'dataProvenance':'user-supplied empty-room photos and room instructions; approximate dimensions; conceptual future furniture',
  'surveyed':False,'source':'manual reconstructed 3D mesh, not a scanned model'
