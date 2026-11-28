@@ -8,7 +8,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ai.k-bigdata.kr/tour/room-8318.html">
   <meta property="og:title" content="8318호 회의실 3D 모델 | 빅데이터소프트웨어공학과">
-  <meta property="og:description" content="10인용 타원형 원목 탁자, 매립형 화이트보드, 빔프로젝터 및 전동 스크린을 360도로 둘러보는 3D 회의실 모델">
+  <meta property="og:description" content="10인용 원목 탁자, 고정 매립형 필기 화이트보드 1개와 천장 빔프로젝터 및 전동 영사 스크린 1개를 확인하는 3D 회의실 모델">
   <meta property="og:image" content="https://ai.k-bigdata.kr/assets/promo/og-department.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="8318호 회의실 3D 모델">
@@ -40,8 +40,8 @@
  <div><p class="tag">ROOM 8318 · PROJECT MEETING · 3D MODEL</p><h1>8318호 회의실</h1><p style="font-size:12px;color:#cfdfeb">가구 반입 전 사진과 계획 배치에 맞춰 제작한 10인 회의실</p></div>
  <a href="/tour/">전체 학과 메타버스로 ↗</a>
 </div>
-<div class="note"><strong>조작:</strong> 드래그하여 360도 회전 · 두 손가락/휠로 확대·축소<br>이 모델은 가구 반입 전 실내 사진과 예정된 10인용 배치를 활용한 시안입니다. 실제 가구 디자인 및 치수는 확정되지 않았습니다.</div>
-<div class="buttons"><button id="perspective">전체 조감도</button><button id="entrance">입구에서 보기</button><button id="table">10인용 타원형 탁자</button><button id="whiteboard">매립형 화이트보드</button><button id="screen" aria-pressed="false">전동 스크린 내리기</button></div>
+<div class="note"><strong>조작:</strong> 드래그하여 360도 회전 · 두 손가락/휠로 확대·축소<br>측면은 고정 필기용 화이트보드(1개), 출입문 맞은편은 내리고 올리는 빔프로젝터용 전동 스크린(1개)입니다. 가구·치수는 예정 배치 시안입니다.</div>
+<div class="buttons"><button id="perspective">전체 조감도</button><button id="entrance">입구에서 보기</button><button id="table">10인용 타원형 탁자</button><button id="whiteboard">필기용 화이트보드</button><button id="screen" aria-pressed="false">영사용 스크린 내리기 (1개)</button></div>
 <div class="status" id="loading">8318호 GLB 모델을 불러오는 중입니다…</div>
 <script type="module">
 import * as THREE from 'three';
@@ -66,7 +66,7 @@ const control=new OrbitControls(camera,renderer.domElement);
 control.enableDamping=true;control.dampingFactor=.055;control.minDistance=2.5;control.maxDistance=31;
 control.maxPolarAngle=Math.PI*.49;control.target.set(0,1.30,0);
 let model=null,screenDown=false;
-function setScreen(down){screenDown=down;for(const name of ['8318_projector_screen_lowered','8318_screen_weight_bar']){const part=model?.getObjectByName(name);if(part)part.visible=down;}const btn=document.getElementById('screen');btn.setAttribute('aria-pressed',String(down));btn.textContent=down?'전동 스크린 올리기':'전동 스크린 내리기';}
+function setScreen(down){screenDown=down;for(const name of ['8318_projector_screen_lowered','8318_screen_weight_bar']){const part=model?.getObjectByName(name);if(part)part.visible=down;}const btn=document.getElementById('screen');btn.setAttribute('aria-pressed',String(down));btn.textContent=down?'영사용 스크린 올리기 (1개)':'영사용 스크린 내리기 (1개)';}
 function cutaway(mode='open'){
  if(!model)return;
  for(const name of ['8318_ceiling','8318_tilejoint']){
