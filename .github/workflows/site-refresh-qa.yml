@@ -42,7 +42,7 @@ jobs:
           python -m pip install 'trimesh==4.11.1' 'numpy>=1.26,<3'
           python tools/build_room8317.py
           python tools/build_room8318.py
-          python -c "import trimesh; s=trimesh.load('tour/models/room-8318.glb',force='scene'); assert len(s.geometry)>=18; assert sum(len(m.faces) for m in s.geometry.values()) > 3500"
+          python -c "import trimesh; s=trimesh.load('tour/models/room-8318.glb',force='scene'); assert len(s.geometry)>=18; assert sum(len(m.faces) for m in s.geometry.values()) > 3500; import json; d=json.load(open('tour/models/room-8318-quality.json')); assert (d['projectionScreenCount'],d['projectorCount'],d['writingWhiteboardCount']) == (1,1,1)"
           python -c "import trimesh; s=trimesh.load('tour/models/room-8317.glb',force='scene'); assert len(s.geometry)>=15; assert sum(len(m.faces) for m in s.geometry.values()) > 5000"
       - name: 기존 콘텐츠·입시·분석 회귀 검증
         run: |
